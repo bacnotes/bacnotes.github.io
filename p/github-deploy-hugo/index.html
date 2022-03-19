@@ -344,7 +344,7 @@ if (!doNotTrack) {
     >https://username.github.io</a><br>
 （一個使用者帳號只會有一個，可以拿來經營個人網站）</li>
 </ul>
-<p>第1種網址適合把Hugo這個部落格專案，備份到GitHub上(非部署)，執行步驟如下</p>
+<p>專案型網址適合把Hugo這個部落格專案，備份到GitHub上(非部署)，執行步驟如下</p>
 <ol>
 <li>新增一個GitHub Repo，Repo名自訂</li>
 <li>cd到專案資料夾，輸入<code>git init</code></li>
@@ -355,26 +355,23 @@ if (!doNotTrack) {
 #如果電腦只有使用1組GitHub帳號，直接貼repo網址<br>
 #如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到<a class="link" href="https://bacnotes.github.io/p/github-ssh-key/"  title="上一篇"
      target="_blank" rel="noopener"
-    >上一篇</a>確認<br>
-這樣一來電腦裡的Hugo專案不見也不用擔心囉～之後還可以git clone下來</li>
+    >上一篇</a>確認</li>
 </ol>
-<p>第2種適合作為部署部落格本身使用，執行步驟如下</p>
+<p>這樣一來電腦裡的Hugo專案不見也不用擔心囉～之後還可以git clone下來</p>
+<p>作為部署部落格本身使用，執行步驟如下</p>
 <ol>
 <li>新增一個GitHub Repo，Repo名為<code>username.github.io</code>(須完全符合)</li>
 <li>在專案資料夾路徑下輸入 <code>hugo</code>，會生成靜態頁面檔案於public資料夾</li>
 <li><code>cd public</code></li>
 <li><code>git init</code></li>
-<li><code>git branch -m main</code> # option 修改分支名(GitHub 2020開始推行的預設名稱)</li>
+<li><code>git branch -m main</code></li>
 <li><code>git add .</code></li>
-<li><code>git config --local user.name aaa</code> # option 如果有設定全域user.name就不用</li>
-<li><code>git config --local user.email aaa@email.com</code> # option 如果有設定全域user.email就不用</li>
+<li><code>git config --local user.name aaa</code> #不需要多組帳號管理可跳過</li>
+<li><code>git config --local user.email aaa@email.com</code> #不需要多組帳號管理可跳過</li>
 <li><code>git commit -m 'deploy'</code> # git msg 內容可自訂</li>
 <li><code>git remote add origin &lt;repo網址&gt;</code><br>
-#如果電腦只有使用1組GitHub帳號，直接貼repo網址<br>
-#如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到<a class="link" href="https://bacnotes.github.io/p/github-ssh-key/"  title="上一篇"
-     target="_blank" rel="noopener"
-    >上一篇</a>確認</li>
-<li><code>git push -f --set-upstream origin main</code> # 腳本執行會強制覆蓋之前的紀錄所以有加-f</li>
+#注意事項同專案型網址</li>
+<li><code>git push -f --set-upstream origin main</code> # 強制覆蓋之前的紀錄</li>
 </ol>
 <p>好的，若依照順序有執行成功，可以開始寫腳本檔案了!</p>
 <h2 id="自動化部屬腳本deploysh">自動化部屬腳本deploy.sh</h2>
@@ -405,19 +402,16 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">git init 
 </span></span><span class="line"><span class="cl">git branch -m main 
 </span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl"># if you have global config setting, just skip 2 option commands below
-</span></span><span class="line"><span class="cl">git config --local user.name aaa # option 
-</span></span><span class="line"><span class="cl">git config --local user.email aaa@email.com # option 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git config --local user.name aaa #不需要多組帳號管理可跳過
+</span></span><span class="line"><span class="cl">git config --local user.email aaa@email.com #不需要多組帳號管理可跳過
 </span></span><span class="line"><span class="cl">git commit -m &#39;deploy&#39;
 </span></span><span class="line"><span class="cl">git remote add origin &lt;repo網址&gt; # if you have .ssh/config setting, remember to replace with right structure
 </span></span><span class="line"><span class="cl">git push -f -u origin main
 </span></span><span class="line"><span class="cl">cd -
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>未來要部署時，只需要進到專案資料夾，輸入<code>deploy.sh</code> 就可以一鍵部署囉！<br>
-你問，不是一鍵按下去嗎？為什麼需要3秒呢？<br>
-Um&hellip;打<code>./deploy.sh</code>跟按enter也需要時間啦&hellip;</p>
-<p>參考文章:
+</div><p>參考文章:
 <a class="link" href="https://ianjustin39.github.io/ianlife/build-blog/deploy_hugo_on_github/"  title="部署Hugo個人網頁至GitHub"
      target="_blank" rel="noopener"
     >部署Hugo個人網頁至GitHub</a></p>

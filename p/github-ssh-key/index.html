@@ -318,12 +318,8 @@ if (!doNotTrack) {
      target="_blank" rel="noopener"
     >只要 3 秒，使用 GitHub 一鍵部署你的 Hugo 部落格</a></p>
 <h2 id="為什麼要用一台電腦使用多組-github-帳號">為什麼要用一台電腦使用多組 GitHub 帳號</h2>
-<p>在<strong>後疫情時代</strong>，遠距工作變成時代趨勢<br>
-工作時勢必會有 1 組公司用的 GitHub 帳號(或 GitLab 或&hellip;其他的雲端協作平台)<br>
-但自己在寫 side project 也會用到 1 組 GitHub 帳號<br>
-先演練一下 1 台電腦可以使用 2 組 GitHub 帳號的情境<br>
-聽起來好像很簡單，辦第 2 組 GitHub 帳號就好了吧（就跟 google 帳號一樣？<br>
-但你在 GitHub 的新帳號開了一個 Repo，在編輯器的 terminal 依序輸入下方指令</p>
+<p>當遠距工作變成時代趨勢，工作時勢必會有 1 組公司用的 GitHub 帳號(或 GitLab 或…其他的雲端協作平台)，但自己在寫 side project 也會用到 1 組 GitHub 帳號，那麼辦第 2 組 GitHub 帳號就好了吧（就跟 google 帳號一樣？</p>
+<p>但你在 GitHub 的新帳號開了一個 Repo，在編輯器的 terminal 依序輸入下方指令</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -348,13 +344,11 @@ if (!doNotTrack) {
 fatal: 無法讀取遠端版本庫。</p>
 </blockquote>
 <p>要 commit 的時候，被最初註冊的 userA 帳號 deny</p>
-<p>Um&hellip;啊！<br>
-<img src="./cat.jpg" alt="cat-meme" width="400"/><br>
-之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份<br>
-應該是 SSH key 的問題吧？<br>
-有 2 組帳號，生 2 組 key 應該就沒問題了吧！<br>
-欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key<br>
-上網查了一下相關文章，發現可以寫一個 config 來讓不同帳號對應各自的 key</p>
+<p>Um&hellip;啊！</p>
+<img src="./cat.jpg" alt="cat-meme" width="400"/>  
+<p>之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份，應該是 SSH key 的問題吧？
+有 2 組帳號，生 2 組 key 應該就沒問題了吧！欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key…</p>
+<p>上網查了一下相關文章，發現可以寫一個 config 來讓不同帳號對應各自的 key</p>
 <h2 id="管理多組-ssh-key-流程如下">管理多組 SSH key 流程如下</h2>
 <p>aaa 為範例，可自由代入你的帳號</p>
 <ol>

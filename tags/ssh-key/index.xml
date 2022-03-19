@@ -19,12 +19,8 @@
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;只要 3 秒，使用 GitHub 一鍵部署你的 Hugo 部落格&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;為什麼要用一台電腦使用多組-github-帳號&#34;&gt;為什麼要用一台電腦使用多組 GitHub 帳號&lt;/h2&gt;
-&lt;p&gt;在&lt;strong&gt;後疫情時代&lt;/strong&gt;，遠距工作變成時代趨勢&lt;br&gt;
-工作時勢必會有 1 組公司用的 GitHub 帳號(或 GitLab 或&amp;hellip;其他的雲端協作平台)&lt;br&gt;
-但自己在寫 side project 也會用到 1 組 GitHub 帳號&lt;br&gt;
-先演練一下 1 台電腦可以使用 2 組 GitHub 帳號的情境&lt;br&gt;
-聽起來好像很簡單，辦第 2 組 GitHub 帳號就好了吧（就跟 google 帳號一樣？&lt;br&gt;
-但你在 GitHub 的新帳號開了一個 Repo，在編輯器的 terminal 依序輸入下方指令&lt;/p&gt;
+&lt;p&gt;當遠距工作變成時代趨勢，工作時勢必會有 1 組公司用的 GitHub 帳號(或 GitLab 或…其他的雲端協作平台)，但自己在寫 side project 也會用到 1 組 GitHub 帳號，那麼辦第 2 組 GitHub 帳號就好了吧（就跟 google 帳號一樣？&lt;/p&gt;
+&lt;p&gt;但你在 GitHub 的新帳號開了一個 Repo，在編輯器的 terminal 依序輸入下方指令&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -49,13 +45,11 @@
 fatal: 無法讀取遠端版本庫。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;要 commit 的時候，被最初註冊的 userA 帳號 deny&lt;/p&gt;
-&lt;p&gt;Um&amp;hellip;啊！&lt;br&gt;
-&lt;img src=&#34;./cat.jpg&#34; alt=&#34;cat-meme&#34; width=&#34;400&#34;/&gt;&lt;br&gt;
-之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份&lt;br&gt;
-應該是 SSH key 的問題吧？&lt;br&gt;
-有 2 組帳號，生 2 組 key 應該就沒問題了吧！&lt;br&gt;
-欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key&lt;br&gt;
-上網查了一下相關文章，發現可以寫一個 config 來讓不同帳號對應各自的 key&lt;/p&gt;
+&lt;p&gt;Um&amp;hellip;啊！&lt;/p&gt;
+&lt;img src=&#34;./cat.jpg&#34; alt=&#34;cat-meme&#34; width=&#34;400&#34;/&gt;  
+&lt;p&gt;之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份，應該是 SSH key 的問題吧？
+有 2 組帳號，生 2 組 key 應該就沒問題了吧！欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key…&lt;/p&gt;
+&lt;p&gt;上網查了一下相關文章，發現可以寫一個 config 來讓不同帳號對應各自的 key&lt;/p&gt;
 &lt;h2 id=&#34;管理多組-ssh-key-流程如下&#34;&gt;管理多組 SSH key 流程如下&lt;/h2&gt;
 &lt;p&gt;aaa 為範例，可自由代入你的帳號&lt;/p&gt;
 &lt;ol&gt;
