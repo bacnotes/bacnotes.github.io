@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Google Search Console on bacnotes備份筆記</title>
+        <link>https://bacnotes.github.io/tags/google-search-console/</link>
+        <description>Recent content in Google Search Console on bacnotes備份筆記</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <lastBuildDate>Tue, 28 Dec 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/google-search-console/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>安裝SEO分析工具Google Analytics跟Google Search Console｜bacnotes備份筆記</title>
+        <link>https://bacnotes.github.io/p/google-seo-tools/</link>
+        <pubDate>Tue, 28 Dec 2021 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/p/google-seo-tools/</guid>
+        <description>&lt;img src="https://bacnotes.github.io/p/google-seo-tools/myriam-jessier-VCtI-0qlVgA-unsplash.jpg" alt="Featured image of post 安裝SEO分析工具Google Analytics跟Google Search Console｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;什麼是-google-analytics--google-search-console&#34;&gt;什麼是 Google Analytics &amp;amp; Google Search Console&lt;/h2&gt;
+&lt;h3 id=&#34;google-analytics分析流量來源與站內行為表現&#34;&gt;Google Analytics：分析流量來源與站內行為表現&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可以看進站管道分布，包含直接流量、自然搜尋、社群網站、其他網站連結導入或是來自廣告等等&lt;/li&gt;
+&lt;li&gt;可以了解到達網頁(landing page)集中在哪些頁面&lt;/li&gt;
+&lt;li&gt;觀看使用者類型與進站後的使用者行為，像是停留時間，觀看了幾頁，跟離開頁面&lt;/li&gt;
+&lt;li&gt;確認是否跟原本規劃的網站體驗流程相似，或是在哪些頁面容易流失客戶&lt;/li&gt;
+&lt;li&gt;電商網站可以設定電子商務觀看電子商務報表(轉換率/收益/客單價等)，由於我們只是單純的部落格，未來如果有機會的話再來介紹&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;google-search-console分析自然搜尋流量與站外排名&#34;&gt;Google Search Console：分析自然搜尋流量與站外排名&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可以從成效報表觀察流量的變化，曝光 &amp;gt; 點擊 &amp;gt; 點閱率 &amp;gt; 排序&lt;/li&gt;
+&lt;li&gt;分析有哪些關鍵字跟頁面帶來流量&lt;/li&gt;
+&lt;li&gt;分析自然流量的來源是來自哪些地方&lt;/li&gt;
+&lt;li&gt;定期提交 sitemap 幫助網址被收錄，或是移除想拿掉的網址（sitemap 記得也要同步拿掉)&lt;/li&gt;
+&lt;li&gt;確認網站還有哪一些待改進的體驗&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安裝-google-analytics&#34;&gt;安裝 Google Analytics&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;登入你要使用 GA 的 Google 帳號&lt;/li&gt;
+&lt;li&gt;進到 &lt;a class=&#34;link&#34; href=&#34;https://analytics.google.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://analytics.google.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;填寫帳戶名稱，資料共用設定這部分可以自行判斷&lt;/li&gt;
+&lt;li&gt;填寫資源名稱&lt;/li&gt;
+&lt;li&gt;填寫商家資訊&lt;/li&gt;
+&lt;li&gt;接受 Google Analytics(分析)服務條款合約&lt;/li&gt;
+&lt;li&gt;選擇平台(我是部落格所以選網頁)&lt;/li&gt;
+&lt;li&gt;填寫網站串流網址跟名稱&lt;/li&gt;
+&lt;li&gt;會得到一個評估 ID G-xxxxxxxx (舊版為UA開頭)&lt;/li&gt;
+&lt;li&gt;把評估 ID 貼到 config 檔案即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;GA4 將跨裝置的使用者行為串接起來，相較過去著重在停留時間、頁數，改以事件為核心的分析主體，對於數據的解讀方便許多&lt;/p&gt;
+&lt;p&gt;使用 GA4 的即時報表確認資料是否已開始傳入&lt;/p&gt;
+&lt;img src=&#34;./livedemo.png&#34; alt=&#34;realtime-report&#34; width=&#34;500&#34;/&gt;
+&lt;p&gt;或透過&lt;a class=&#34;link&#34; href=&#34;https://chrome.google.com/webstore/detail/gtmga-debugger/ilnpmccnfdjdjjikgkefkcegefikecdc&#34;  title=&#34;GTM/GA debugger&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GTM/GA debugger&lt;/a&gt;套件確認是否有反應&lt;/p&gt;
+&lt;img src=&#34;./GTMGA.png&#34; alt=&#34;GTMGAdebugger&#34; width=&#34;400&#34;/&gt;
+&lt;p&gt;ok 看起來成功囉！記得也檢查一下 404 頁面有無反應唷！&lt;/p&gt;
+&lt;h2 id=&#34;安裝-google-search-console&#34;&gt;安裝 Google search console&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;建議使用跟 GA 一樣的 Google 帳號&lt;/li&gt;
+&lt;li&gt;進到 &lt;a class=&#34;link&#34; href=&#34;https://search.google.com/search-console/welcome&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://search.google.com/search-console/welcome&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;選取資源類型，若跟我一樣是使用 GitHub pages 服務選右邊&lt;/li&gt;
+&lt;li&gt;填寫網址&lt;/li&gt;
+&lt;li&gt;驗證方法很多，因為剛剛已經安裝好 GA，帳號有編輯權，直接點第 3 種的 GA 驗證按鈕&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ok 進到了資源頁面了！一般來說會需要等個 1 天時間跑資料&lt;/p&gt;
+&lt;img src=&#34;./GoogleSearchConsole_nodata.png&#34; alt=&#34;GoogleSearchConsole&#34; width=&#34;600&#34;/&gt;
+&lt;h2 id=&#34;在網站根目錄下建立-robotstxt&#34;&gt;在網站根目錄下建立 robots.txt&lt;/h2&gt;
+&lt;p&gt;把 robots.txt 放在網站下的根目錄，使用hexo放在source資料夾下即可&lt;br&gt;
+下方是一個常見的範例，網址填入自己的版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User-agent: *
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Allow: /
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Sitemap: https://bacnotes.github.io/sitemap.xml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;＊Google 支援所有格式的標準 Sitemap 通訊協定，但目前不支援在 Sitemap 中使用 &lt;priority&gt; 屬性&lt;/p&gt;
+&lt;h2 id=&#34;到-google-search-console-提交-sitemap&#34;&gt;到 Google Search Console 提交 sitemap&lt;/h2&gt;
+&lt;p&gt;生成靜態網頁的時候會自動產出 sitemap 檔案&lt;br&gt;
+網址是&amp;lt;你的網站名&amp;gt;/sitemap.xml e.g. &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/sitemap.xml&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://bacnotes.github.io/sitemap.xml&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;提交位置在 Google Search Console 索引區塊的 Sitemap&lt;br&gt;
+輸入你的 sitemap 網址即可，一般是 sitemap.xml&lt;/p&gt;
+&lt;img src=&#34;./new-sitemap.png&#34; alt=&#34;new-sitemap&#34; width=&#34;500&#34;/&gt;
+&lt;h2 id=&#34;使用-google-search-console-的要求建立索引&#34;&gt;使用 Google Search Console 的「要求建立索引」&lt;/h2&gt;
+&lt;p&gt;發布文章後，會希望可以盡早被爬蟲爬取建立索引，hexo平台會自動生成sitemap 檔，很方便操作更新sitemap，但公司的行銷人員，可能不一定可以迅速取得工程師的即時協助&lt;br&gt;
+這時候可以點 Google Search Console 上方的輸入框，輸入文章網址，按下 enter就可以建立排程請爬蟲來看看這個網址&lt;br&gt;
+(也可以點側邊欄成效下方的網址審查，也會 focus 到這個框框)&lt;/p&gt;
+&lt;img src=&#34;./search.png&#34; alt=&#34;search&#34; width=&#34;500&#34;/&gt;
+&lt;p&gt;等待一段時間跑出結果&lt;/p&gt;
+&lt;img src=&#34;./not-in-service.png&#34; alt=&#34;not-in-servic&#34; width=&#34;500&#34;/&gt;
+&lt;p&gt;點下方的「要求建立索引」，就會跟 Google 提交建立索引的要求且進入排程，爬蟲就會依照排程來看你剛剛提交的網址了&lt;/p&gt;
+&lt;h2 id=&#34;跟-google-提交-sitemap-完之後其他的搜尋引擎也需要嗎&#34;&gt;跟 Google 提交 Sitemap 完之後，其他的搜尋引擎也需要嗎？&lt;/h2&gt;
+&lt;p&gt;我們用&lt;a class=&#34;link&#34; href=&#34;https://gs.statcounter.com/&#34;  title=&#34;Statcounter&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Statcounter&lt;/a&gt;看看目前搜尋引擎各家的市佔率&lt;br&gt;
+Statcounter 是一個網站流量分析工具，主要提供網頁瀏覽器跟搜尋引擎的使用分佈的訊息&lt;/p&gt;
+&lt;p&gt;以下是上個月各家搜尋引擎全球市占率，Google 有 91.4%的市佔率，而其他家(bing, Baidu, Yahoo!)市占率大約都在個位數&lt;/p&gt;
+&lt;img src=&#34;./worldwide-search-engine-share.png&#34; alt=&#34;worldwide-search-engine-share&#34; width=&#34;500&#34;/&gt;
+&lt;p&gt;由於我們的使用者主要是在台灣，把條件設定成台灣&lt;/p&gt;
+&lt;img src=&#34;./stat-counter.png&#34; alt=&#34;taiwan-search-engine-share&#34; width=&#34;500&#34;/&gt;
+&lt;p&gt;Google 還是一樣市占率最高，且比剛剛全球數據的市佔率還高，為 9 成 4&lt;br&gt;
+看起來我們之後 SEO 還是專心於 Google，畢竟台灣大部分的使用者都使用 Google 搜尋&lt;/p&gt;
+&lt;p&gt;最後，爬蟲大大快來我家吧&lt;/p&gt;
+&lt;img src=&#34;./cat-meme.gif&#34; alt=&#34;cat-meme&#34; width=&#34;400&#34;/&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

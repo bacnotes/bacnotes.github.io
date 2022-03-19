@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。'><title>JavaScript基礎知識複習(3)｜The Complete JavaScript Course｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/javascript-fundamentals-part3/'>
+
+<link rel="stylesheet" href="/scss/style.min.1988f9e369e15c7f9911763ec4928b521d4019b90691676ee318cbc43db61459.css"><meta property='og:title' content='JavaScript基礎知識複習(3)｜The Complete JavaScript Course｜bacnotes備份筆記'>
+<meta property='og:description' content='這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/javascript-fundamentals-part3/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-01-10T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-01-10T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/javascript-fundamentals-part3/javascript.png' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="JavaScript基礎知識複習(3)｜The Complete JavaScript Course｜bacnotes備份筆記">
+<meta name="twitter:description" content="這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。"><meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/javascript-fundamentals-part3/javascript.png' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/javascript-fundamentals-part3/">
+                <img src="/p/javascript-fundamentals-part3/javascript_hu206ed96a14226138f3215dbd4aa48c79_350158_800x0_resize_box_3.png"
+                        srcset="/p/javascript-fundamentals-part3/javascript_hu206ed96a14226138f3215dbd4aa48c79_350158_800x0_resize_box_3.png 800w, /p/javascript-fundamentals-part3/javascript_hu206ed96a14226138f3215dbd4aa48c79_350158_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="344" 
+                        loading="lazy"
+                        alt="Featured image of post JavaScript基礎知識複習(3)｜The Complete JavaScript Course｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/javascript-fundamentals-part3/">JavaScript基礎知識複習(3)｜The Complete JavaScript Course｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 10, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 12 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>歡迎來到JavaScript基礎知識複習(3)，還記得 <code>&amp;&amp;</code> <code>||</code> <code>??</code> 這三個邏輯運算子嗎？其實他們可以跟指派運算子一起使用，如果沒有接觸過的可以先看看第一篇<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part1/"  title="JavaScript基礎知識複習(1)｜The Complete JavaScript Course"
+     target="_blank" rel="noopener"
+    >JavaScript 基礎知識複習(1)</a>的介紹再來往下看唷</p>
+<h2 id="邏輯運算子--指派運算子---">邏輯運算子 + 指派運算子 <code>&amp;&amp;=</code> <code>||=</code> <code>??=</code></h2>
+<ul>
+<li>下方是兩個餐廳資料物件，彼此的屬性略有不同</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Carpi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">numGuests</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant2</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;La Piazza&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Giovanni Rossi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當我們想增加物件內的屬性，可以用邏輯運算子的方式添加</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">=</span> <span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 屬性存在不會有變動
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">=</span> <span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 沒有這個屬性，新增一個numGuests: 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// { name: &#39;Carpi&#39;, numGuests: 20 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// { name: &#39;La Piazza&#39;, owner: &#39;Giovanni Rossi&#39;, numGuests: 10 }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>但還可以寫得更精簡，使用邏輯運算子 + 指派運算子，跟上方的結果是一樣的</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 屬性存在不會有變動
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 沒有這個屬性，新增一個numGuests: 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// { name: &#39;Carpi&#39;, numGuests: 20 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// { name: &#39;La Piazza&#39;, owner: &#39;Giovanni Rossi&#39;, numGuests: 10 }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>遇到 numGuests 數量為<code>0</code>，會因 falsy 更新成後面的值，這個邏輯不是我們期待的結果可以使用<code>??=</code> 的方式避免這個問題</li>
+<li>當屬性 null 不存在或 undefined，使用後方的值增加這個屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">??=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">??=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// { name: &#39;Carpi&#39;, numGuests: 20 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// { name: &#39;La Piazza&#39;, owner: &#39;Giovanni Rossi&#39;, numGuests: 10 }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當我們想更新屬性值的時候則可以使用<code>&amp;&amp;=</code>，如果這個屬性不存在會回傳 undefined</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 更新第一家餐廳的客戶數量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">&amp;&amp;=</span> <span class="mi">300</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// {name: &#39;Carpi&#39;, numGuests: 300}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 更新第二家餐廳的owner
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">owner</span> <span class="o">&amp;&amp;=</span> <span class="s2">&#34;Mars&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// {name: &#39;La Piazza&#39;, owner: &#39;Mars&#39;, numGuests: 10}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="for-迴圈語法糖for-of-迭代元素for-in-迭代屬性">for 迴圈語法糖：for of 迭代元素、for in 迭代屬性</h2>
+<ul>
+<li>每次寫 for 迴圈都覺得寫計數器跟迭代條件很麻煩嗎？其實還有更簡單的寫法</li>
+<li>一樣可以搭配使用 continue 跟 break 語法</li>
+</ul>
+<h3 id="for-of-迴圈迭代陣列裡的元素">for of 迴圈迭代陣列裡的元素</h3>
+<ul>
+<li>for (const 陣列元素 of 陣列)</li>
+<li>迭代元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Focaccia&#34;</span><span class="p">,</span> <span class="s2">&#34;Bruschetta&#34;</span><span class="p">,</span> <span class="s2">&#34;Garlic Bread&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Focaccia
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Bruschetta
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Garlic Bread
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="for-in-迴圈迭代物件屬性">for in 迴圈迭代物件屬性</h3>
+<ul>
+<li>for in 迭代屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">in</span> <span class="nx">openingHours</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">day</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// mon
+</span></span></span><span class="line"><span class="cl"><span class="c1">// tue
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>for in 搭配取值的bracket[]迭代值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">in</span> <span class="nx">openingHours</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">[</span><span class="nx">day</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// mon
+</span></span></span><span class="line"><span class="cl"><span class="c1">// tue
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>for..in 不應該用來迭代一個索引順序很重要的陣列。 陣列索引只是以整數命名的可列舉屬性，其他方面等同於一般物件屬性。 無法擔保 for&hellip;in 以特定順序傳回索引，並且它將傳回全部可列舉屬性，包括非整數名的，以及繼承而來的可列舉屬性。</li>
+</ul>
+<h2 id="使用-objectkeysobjectvalues-迭代物件屬性名或值">使用 Object.keys()、Object.values() 迭代物件屬性名或值</h2>
+<h3 id="objectkeys-迭代物件屬性名成一個陣列">Object.keys 迭代物件屬性名成一個陣列</h3>
+<ul>
+<li>Object.keys(obj)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//  [&#39;mon&#39;, &#39;tue&#39;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">-</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">()</span><span class="nx">可搭配</span> <span class="k">for</span> <span class="k">of</span> <span class="nx">迭代出陣列元素</span><span class="p">(</span><span class="nx">值</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">day</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// mon
+</span></span></span><span class="line"><span class="cl"><span class="c1">// tue
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>跟 for in 迴圈迭代順序相同但 for in 還會列舉出 prototype 的屬性</li>
+</ul>
+<h3 id="objectvalues-迭代物件值成一個陣列">Object.values 迭代物件值成一個陣列</h3>
+<ul>
+<li>Object.values(obj)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [{open: 10, close: 16}, {open: 12, close: 18}]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="同時迭代陣列或物件的屬性跟值陣列entries-objectentriesobj">同時迭代陣列或物件的屬性跟值：陣列.entries() Object.entries(Obj)</h2>
+<h3 id="陣列-arrayprototypeentries">陣列 array.prototype.entries()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Focaccia&#34;</span><span class="p">,</span> <span class="s2">&#34;Bruschetta&#34;</span><span class="p">,</span> <span class="s2">&#34;Garlic Bread&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [ 0, &#39;Focaccia&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// [ 1, &#39;Bruschetta&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// [ 2, &#39;Garlic Bread&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ...展開陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(...</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 0 Focaccia
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 1 Bruschetta
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2 Garlic Bread
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用解構賦值，並從1開始呈現
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">]</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 1: Focaccia
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2: Bruschetta
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3: Garlic Bread
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="物件-objectentriesobj">物件 Object.entries(obj)</h3>
+<ul>
+<li>跟 for in 迴圈迭代順序相同但 for in 還會列舉出 prototype 的屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 屬性key 值value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="p">{</span> <span class="nx">open</span><span class="p">,</span> <span class="nx">close</span> <span class="p">}]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`On </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">, we open at</span><span class="si">${</span><span class="nx">open</span><span class="si">}</span><span class="sb"> and close at </span><span class="si">${</span><span class="nx">close</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// On mon, we open at10 and close at 16
+</span></span></span><span class="line"><span class="cl"><span class="c1">// On tue, we open at12 and close at 18
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="enhanced-object-literals">Enhanced Object Literals</h2>
+<h3 id="當變數跟屬性名稱相同可省略">當變數跟屬性名稱相同可省略</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 變數name 跟 openingHours
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Great Restaurant&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 以往物件賦值，需要屬性key跟值value都寫上去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">openingHours</span><span class="o">:</span><span class="nx">openingHours</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;France&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 現在只要屬性跟變數名一樣，單寫屬性就好，程式碼會幫你把值對起來
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">openingHours</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;France&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="物件方法可省略冒號跟-function">物件方法可省略冒號跟 function</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 過去會寫成
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">order</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 可以簡寫成 長得就跟宣告函式一樣
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">order</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="表達式作為物件的屬性名">表達式作為物件的屬性名</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">weekdays</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;mon&#34;</span><span class="p">,</span> <span class="s2">&#34;tue&#34;</span><span class="p">,</span> <span class="s2">&#34;wed&#34;</span><span class="p">,</span> <span class="s2">&#34;thu&#34;</span><span class="p">,</span> <span class="s2">&#34;fri&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">weekdays</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="sb">`day-</span><span class="si">${</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="si">}</span><span class="sb">`</span><span class="p">]</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">19</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// day-6: {open: 13, close: 19}
+</span></span></span><span class="line"><span class="cl"><span class="c1">// wed: {open: 12, close: 18}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="optional-chaininges2020-">Optional Chaining(ES2020) ?.</h2>
+<ul>
+<li>當資料本身很多屬性且每筆資料不一定存在這個屬性，讀取到不存在的屬性會跳出 Uncaught TypeError</li>
+<li>使用?.讀取屬性，若不存在 null 或 undefined，會立即回傳 undefined，可以避免上方的 Uncaught TypeError</li>
+<li>若為 0 &lsquo;&lsquo;會回傳相對應的值，只有 null undefined 會回傳 undefined</li>
+<li>常搭配??一起使用</li>
+</ul>
+<h3 id="屬性加上-optional-chaining">屬性加上 Optional Chaining</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">wed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Great restaurant&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">openingHours</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用邏輯運算子的寫法 當屬性存在才執行（但資料一多會吐血）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span> <span class="o">&amp;&amp;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">.</span><span class="nx">mon</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">.</span><span class="nx">mon</span><span class="p">.</span><span class="nx">open</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用Optional Chaining的寫法 簡短
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="o">?</span><span class="p">.</span><span class="nx">mon</span><span class="o">?</span><span class="p">.</span><span class="nx">open</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 加上迭代for of 想知道平日幾點開門
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">weekdays</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mon&#39;</span><span class="p">,</span> <span class="s1">&#39;tue&#39;</span><span class="p">,</span> <span class="s1">&#39;wed&#39;</span><span class="p">,</span> <span class="s1">&#39;thu&#39;</span><span class="p">,</span> <span class="s1">&#39;fri&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">weekday</span> <span class="k">of</span> <span class="nx">weekdays</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 避免undefined出現 使用??設定預設值 not open
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">open</span> <span class="o">=</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">[</span><span class="nx">weekday</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="nx">open</span> <span class="o">??</span><span class="s1">&#39;not open&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`On </span><span class="si">${</span><span class="nx">weekday</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">open</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// On mon, 10
+</span></span></span><span class="line"><span class="cl"><span class="c1">// On tue, 12
+</span></span></span><span class="line"><span class="cl"><span class="c1">// On wed, 12
+</span></span></span><span class="line"><span class="cl"><span class="c1">// On thu, not open
+</span></span></span><span class="line"><span class="cl"><span class="c1">// On fri, not open
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="物件方法加上-optional-chaining">物件方法加上 Optional Chaining</h3>
+<ul>
+<li>確認方法是否存在</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">order</span><span class="p">(</span><span class="nx">starterIndex</span><span class="p">,</span> <span class="nx">mainIndex</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;Order!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">orderDelivery</span><span class="p">({</span> <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">mainIndex</span> <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;OrderDelivery!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">order</span><span class="o">?</span><span class="p">.(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">??</span> <span class="s2">&#34;Method not existed&#34;</span><span class="p">);</span> <span class="c1">// Order!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderRisotto</span><span class="o">?</span><span class="p">.(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">??</span> <span class="s2">&#34;Method not exist&#34;</span><span class="p">);</span> <span class="c1">// &#39;Method not exist&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="陣列加上-optional-chaining">陣列加上 Optional Chaining</h3>
+<ul>
+<li>檢查陣列是否有資料</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;hello@jonas.com&#39;</span><span class="p">}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 過去可能要寫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User array empty&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用Optional Chaining 寫起來更精簡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span> <span class="o">??</span> <span class="s1">&#39;User array empty&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="set">Set</h2>
+<ul>
+<li>長得像陣列，是元素的集合，元素可以是任何資料格式</li>
+<li>Set 中所有的元素都是唯一的 (unique values)，不會有重複的值，當你存入重複的元素(值)會被忽略</li>
+<li>Set 內部會用 === 來判斷是否有重複值，唯一的例外是 NaN 會被判斷作是重複的值(雖然 NaN !== NaN)</li>
+<li>元素數量計算使用.size</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">someSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">someSet</span><span class="p">.</span><span class="nx">size</span><span class="p">);</span> <span class="c1">// 3
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>.has(&lsquo;元素&rsquo;)檢查是否有包含元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">someSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">someSet</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">));</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>增加與刪除元素 .add() .delete() .clear()</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">someSet</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">someSet</span><span class="p">);</span> <span class="c1">// [a, b, c, d]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">someSet</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">someSet</span><span class="p">);</span> <span class="c1">// [b, c, d]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">someSet</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">someSet</span><span class="p">);</span> <span class="c1">// []
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>無法用 index 從 Set 中把值取出，會回傳 undefined</li>
+<li>可以迭代</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">someSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">someSet</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span> <span class="c1">// a b c
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查詢資料中不重複元素的數量</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">classmate</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">classmateSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">classmate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">classmateSet</span><span class="p">.</span><span class="nx">size</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>把 Set 變不重複元素的陣列</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">classmate</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">classmateSet</span> <span class="o">=</span> <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">classmate</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">classmateSet</span><span class="p">);</span> <span class="c1">// [ &#39;a&#39;, &#39;c&#39;, &#39;d&#39;, &#39;b&#39; ]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="map">Map</h2>
+<ul>
+<li>長得像物件，key value pair 的組合，可以記住 key 的原始加入 Map 的順序</li>
+<li>可以迭代，迭代順序為加入 Map 的順序</li>
+<li>在 Map 判斷 NaN 跟 NaN 相等（雖然 NaN !== NaN），剩下的值使用=== 判斷是否相等</li>
+</ul>
+<h3 id="新建構一個-map">新建構一個 Map</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span> <span class="c1">//裡面是空的 跟物件有prototype不同
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>新增 key 使用.set(key, value)</li>
+<li>key 值的不限於字串，可以是任何資料型態（number、array、object、function、symbol)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;Firenze, Italy&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Map(1) { 1 =&gt; &#39;Firenze, Italy&#39; }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;Tokyo, Japan&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Map(2) { 1 =&gt; &#39;Firenze, Italy&#39;, 2 =&gt; &#39;Tokyo, Japan&#39; }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>set 的時候不只會更新 Map 內部資料，也會回傳一個新的 Map，所以我們可以連續.set 連續新增很多資料</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;categories&#34;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;Italian&#34;</span><span class="p">,</span> <span class="s2">&#34;Pizzeria&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;we are open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Map(4) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;categories&#39; =&gt; [ &#39;Italian&#39;, &#39;Pizzeria&#39; ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;open&#39; =&gt; 11,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;close&#39; =&gt; 23,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  true =&gt; &#39;we are open&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-get-獲取-key-的對應值">使用 get 獲取 key 的對應值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;Test&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#39;Test&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="讀取-key-值加上邏輯判斷做條件渲染">讀取 key 值加上邏輯判斷做條件渲染</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 新增以下key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">,</span> <span class="mi">21</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;we are open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="s2">&#34;we are closed&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 判斷營業時間
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">time</span> <span class="o">&gt;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// we are closed
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用size-查詢資料長度">使用.size 查詢資料長度</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">size</span><span class="p">);</span> <span class="c1">//6
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-has-確認是否包含某個-key回傳-true-false">使用 has 確認是否包含某個 key，回傳 true false</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span> <span class="c1">//true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-delete-刪除元素-clear-清空元素">使用 delete 刪除元素 clear 清空元素</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//  Map(5) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  2 =&gt; &#39;Tokyo, Japan&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;open&#39; =&gt; 11,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;close&#39; =&gt; 21,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  true =&gt; &#39;we are open&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  false =&gt; &#39;we are closed&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Map(0) {}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>注意：物件如果不是 ref 的方式給值，無法讀取到對應 value</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&#34;Test&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s2">&#34;Test&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">arr</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#39;Test&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可以綁定-dom-元素">可以綁定 DOM 元素</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;h1&#34;</span><span class="p">),</span> <span class="s2">&#34;Heading&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;h1&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Map(1) {h1.bold-title.is-1 =&gt; &#39;Heading&#39;}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="物件轉-map">物件轉 Map</h3>
+<ul>
+<li>Object.entries(obj) 組成巢狀陣列，new Map 轉成 Map</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//[
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ &#39;mon&#39;, { open: 10, close: 16 } ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ &#39;tue&#39;, { open: 12, close: 18 } ]
+</span></span></span><span class="line"><span class="cl"><span class="c1">//]
+</span></span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">hoursMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hoursMap</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Map(2) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;mon&#39; =&gt; { open: 10, close: 16 },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;tue&#39; =&gt; { open: 12, close: 18 }
+</span></span></span><span class="line"><span class="cl"><span class="c1">//}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="迭代-map-key-value">迭代 Map key value</h3>
+<ul>
+<li>
+<p>建議迭代結構為巢狀陣列(同 Object.entries(obj)或[&hellip;array.entries()]輸出的結構)
+// [[&lsquo;key&rsquo;, {value}], [&lsquo;key&rsquo;, {value}], [&lsquo;key&rsquo;, {value}]]</p>
+</li>
+<li>
+<p>使用展開運算子搭配.keys()或.values()，並將迭代出的元素放入一個新陣列</p>
+</li>
+<li>
+<p>直接使用.keys()或.values()會出現[Map Iterator] { &lsquo;question&rsquo;, 1, 2, 3, &lsquo;correct&rsquo;, true, false }</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;question&#34;</span><span class="p">,</span> <span class="s2">&#34;What is the best programming language in the world?&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;Java&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;JavaScript&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;correct&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;Correct 🎉&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="kc">false</span><span class="p">,</span> <span class="s2">&#34;Try again!&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>先看看展開運算子外層加上陣列的結果 console.log([&hellip;question])</li>
+<li>等於 console.log([&hellip;question.entries())</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//[
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ &#39;question&#39;, &#39;What is the best programming language in the world?&#39; ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ 1, &#39;C&#39; ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ 2, &#39;Java&#39; ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ 3, &#39;JavaScript&#39; ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ &#39;correct&#39;, 3 ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ true, &#39;Correct 🎉&#39; ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  [ false, &#39;Try again!&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1">//]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 迭代Map key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([...</span><span class="nx">question</span><span class="p">.</span><span class="nx">keys</span><span class="p">()]);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#39;question&#39;, 1, 2, 3, &#39;correct&#39;, true, false]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 迭代Map value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([...</span><span class="nx">question</span><span class="p">.</span><span class="nx">values</span><span class="p">()]);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//  [&#39;What is the best programming language in the world?&#39;, &#39;C&#39;, &#39;Java&#39;, &#39;JavaScript&#39;, 3, &#39;Correct 🎉&#39;, &#39;Try again!&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 問答
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">question</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;question&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// What is the best programming language in the world?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">question</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">key</span> <span class="o">===</span> <span class="s2">&#34;number&#34;</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Answer </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Anwser 1: C
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Anwser 2: Java
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Anwser 3: JavaScript
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Your Anwser&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">answer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 問答用布林判斷 若答案3 下方判斷是為true 顯示&#39;Correct 🎉&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">question</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">question</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;correct&#34;</span><span class="p">)</span> <span class="o">===</span> <span class="nx">answer</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="如何決定資料結構">如何決定資料結構</h2>
+<h3 id="考量資料來源">考量資料來源</h3>
+<ol>
+<li>程式本身 2. UI 互動介面 3. API(JSON 格式{a, b:[{},{}&hellip;], c})</li>
+</ol>
+<h3 id="資料結構">資料結構</h3>
+<ol>
+<li>list (可用陣列或 set)</li>
+<li>key value pairs (可用 obj 或 map)</li>
+</ol>
+<h3 id="何時適合-set-而不是陣列呢">何時適合 Set 而不是陣列呢</h3>
+<ul>
+<li>需要 list 裡面都是唯一值(不能有重複值)</li>
+<li>不需要索引取值</li>
+<li>不需要對資料做操作</li>
+<li>需要高效能查找</li>
+</ul>
+<h3 id="何時適合-map-而不是物件呢">何時適合 Map 而不是物件呢</h3>
+<ul>
+<li>需要對資料頻繁操作，保持高效能</li>
+<li>當資料插入順序是需要考慮的因素</li>
+<li>需要使用不同資料型態的 key（不限於 string 和 symbol 作為 key)</li>
+<li>方便迭代跟計算大小 size</li>
+<li>比較少需要單獨對部分資料做操作(物件比較方便用.跟[]取值)</li>
+</ul>
+<h3 id="課程小練習">課程小練習</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// challenge 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">game</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">team1</span><span class="o">:</span> <span class="s2">&#34;Bayern Munich&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">team2</span><span class="o">:</span> <span class="s2">&#34;Borrussia Dortmund&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">players</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Neuer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Pavard&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Martinez&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Alaba&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Davies&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Kimmich&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Goretzka&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Coman&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Muller&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Gnarby&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Burki&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Schulz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Hummels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Akanji&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Hakimi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Weigl&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Witsel&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Hazard&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Brandt&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Sancho&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Gotze&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">score</span><span class="o">:</span> <span class="s2">&#34;4:0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">scored</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Gnarby&#34;</span><span class="p">,</span> <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Hummels&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">date</span><span class="o">:</span> <span class="s2">&#34;Nov 9th, 2037&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">odds</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">team1</span><span class="o">:</span> <span class="mf">1.33</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">x</span><span class="o">:</span> <span class="mf">3.25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">team2</span><span class="o">:</span> <span class="mf">6.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 分組
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">[</span><span class="nx">players1</span><span class="p">,</span> <span class="nx">players2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">game</span><span class="p">.</span><span class="nx">players</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">players1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">players2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 組裡面有兩種角色 守門員gk跟 其他球員
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">[</span><span class="nx">gk</span><span class="p">,</span> <span class="p">...</span><span class="nx">fieldPlayers</span><span class="p">]</span> <span class="o">=</span> <span class="nx">players1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gk</span><span class="p">,</span> <span class="nx">fieldPlayers</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 把所有隊伍人的放進去一個陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">allPlayers</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">players1</span><span class="p">,</span> <span class="p">...</span><span class="nx">players2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allPlayers</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 新增三個候補
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">players1Final</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">players1</span><span class="p">,</span> <span class="s2">&#34;Thiago&#34;</span><span class="p">,</span> <span class="s2">&#34;Coutinho&#34;</span><span class="p">,</span> <span class="s2">&#34;Perisic&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">players1Final</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 解構賦值取出變數 x的變數名改為draw
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">odds</span><span class="o">:</span> <span class="p">{</span> <span class="nx">team1</span><span class="p">,</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">team2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="o">=</span> <span class="nx">game</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">team1</span><span class="p">,</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">team2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 丟一堆名字進去，使用其餘運算子合併成陣列，length計算長度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">printGoals</span><span class="p">(...</span><span class="nx">players</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">players</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> goals were scored`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">printGoals</span><span class="p">(</span><span class="s2">&#34;Davies&#34;</span><span class="p">,</span> <span class="s2">&#34;Muller&#34;</span><span class="p">,</span> <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Kimmich&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 勝率比大小 上面已經有寫出team1勝率跟team2勝率
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">team1</span> <span class="o">&gt;</span> <span class="nx">team2</span> <span class="o">&amp;&amp;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Team 1 is more likely to win&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">team1</span> <span class="o">&lt;</span> <span class="nx">team2</span> <span class="o">&amp;&amp;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Team 2 is more likely to win&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// challenge 2
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 依序列印出game.scored array 裡面的球員  Goal 1: Lewandowski
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">]</span> <span class="k">of</span> <span class="nx">game</span><span class="p">.</span><span class="nx">scored</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Goal </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 需要算出team1 x team2平均數 累加value / 長度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">odds</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">odds</span><span class="p">);</span> <span class="c1">// [ 1.33, 3.25, 6.5 ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">odds</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">item</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span> <span class="o">/</span> <span class="nx">odds</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 列印出
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Odd of victory Bayern Munich: 1.33
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Odd of draw: 3.25
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Odd of victory Borrussia Dortmund: 6.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">team</span><span class="p">,</span> <span class="nx">odd</span><span class="p">]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">odds</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Object.entries(game.odds) // [ [ &#39;team1&#39;, 1.33 ], [ &#39;x&#39;, 3.25 ], [ &#39;team2&#39;, 6.5 ] ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">teamStr</span> <span class="o">=</span> <span class="nx">team</span> <span class="o">===</span> <span class="s2">&#34;x&#34;</span> <span class="o">?</span> <span class="s2">&#34;draw&#34;</span> <span class="o">:</span> <span class="sb">`victory </span><span class="si">${</span><span class="nx">game</span><span class="p">[</span><span class="nx">team</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 每次loop出來的team是字串，所以可以用這個[]方式取值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">team</span><span class="p">,</span> <span class="nx">odd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//  分數統計
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  scorers = {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    Gnarby: 1,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    Hummels: 1,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    Lewandowski: 2
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">scorers</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">game</span><span class="p">.</span><span class="nx">scored</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 屬性存在 賦值+1 不存在時賦值=1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">?</span> <span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span><span class="o">++</span> <span class="o">:</span> <span class="p">(</span><span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scorers</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// challenge 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">gameEvents</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">47</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="s2">&#34;🔶 Yellow card&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="s2">&#34;🔴 Red card&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">72</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">76</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">92</span><span class="p">,</span> <span class="s2">&#34;🔶 Yellow card&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 創造不重複事件陣列：迭代巢狀陣列的value變成一個陣列 不重複使用new Set(array)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">events</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">gameEvents</span><span class="p">.</span><span class="nx">values</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">events</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 移除map中64分鐘的資料
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">gameEvents</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">64</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gameEvents</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 列印出發生事件avg時間長度&#34;An event happened, on average, every 9 minutes&#34; 一局90分鐘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">gameEvents</span><span class="p">.</span><span class="nx">keys</span><span class="p">()].</span><span class="nx">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">time</span><span class="p">);</span> <span class="c1">// 92 有超過90分鐘因此另外計算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="sb">`An event happened, on average, every </span><span class="si">${</span><span class="nx">time</span> <span class="o">/</span> <span class="nx">gameEvents</span><span class="p">.</span><span class="nx">size</span><span class="si">}</span><span class="sb"> minutes`</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 加上前後半場標示[FIRST HALF] 17: ⚽️ GOAL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">gameEvents</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">half</span> <span class="o">=</span> <span class="nx">key</span> <span class="o">&lt;=</span> <span class="mi">45</span> <span class="o">?</span> <span class="s2">&#34;First&#34;</span> <span class="o">:</span> <span class="s2">&#34;Second&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="nx">half</span><span class="si">}</span><span class="sb"> HALF]</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#邏輯運算子--指派運算子---">邏輯運算子 + 指派運算子 <code>&amp;&amp;=</code> <code>||=</code> <code>??=</code></a></li>
+    <li><a href="#for-迴圈語法糖for-of-迭代元素for-in-迭代屬性">for 迴圈語法糖：for of 迭代元素、for in 迭代屬性</a>
+      <ul>
+        <li><a href="#for-of-迴圈迭代陣列裡的元素">for of 迴圈迭代陣列裡的元素</a></li>
+        <li><a href="#for-in-迴圈迭代物件屬性">for in 迴圈迭代物件屬性</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-objectkeysobjectvalues-迭代物件屬性名或值">使用 Object.keys()、Object.values() 迭代物件屬性名或值</a>
+      <ul>
+        <li><a href="#objectkeys-迭代物件屬性名成一個陣列">Object.keys 迭代物件屬性名成一個陣列</a></li>
+        <li><a href="#objectvalues-迭代物件值成一個陣列">Object.values 迭代物件值成一個陣列</a></li>
+      </ul>
+    </li>
+    <li><a href="#同時迭代陣列或物件的屬性跟值陣列entries-objectentriesobj">同時迭代陣列或物件的屬性跟值：陣列.entries() Object.entries(Obj)</a>
+      <ul>
+        <li><a href="#陣列-arrayprototypeentries">陣列 array.prototype.entries()</a></li>
+        <li><a href="#物件-objectentriesobj">物件 Object.entries(obj)</a></li>
+      </ul>
+    </li>
+    <li><a href="#enhanced-object-literals">Enhanced Object Literals</a>
+      <ul>
+        <li><a href="#當變數跟屬性名稱相同可省略">當變數跟屬性名稱相同可省略</a></li>
+        <li><a href="#物件方法可省略冒號跟-function">物件方法可省略冒號跟 function</a></li>
+        <li><a href="#表達式作為物件的屬性名">表達式作為物件的屬性名</a></li>
+      </ul>
+    </li>
+    <li><a href="#optional-chaininges2020-">Optional Chaining(ES2020) ?.</a>
+      <ul>
+        <li><a href="#屬性加上-optional-chaining">屬性加上 Optional Chaining</a></li>
+        <li><a href="#物件方法加上-optional-chaining">物件方法加上 Optional Chaining</a></li>
+        <li><a href="#陣列加上-optional-chaining">陣列加上 Optional Chaining</a></li>
+      </ul>
+    </li>
+    <li><a href="#set">Set</a></li>
+    <li><a href="#map">Map</a>
+      <ul>
+        <li><a href="#新建構一個-map">新建構一個 Map</a></li>
+        <li><a href="#使用-get-獲取-key-的對應值">使用 get 獲取 key 的對應值</a></li>
+        <li><a href="#讀取-key-值加上邏輯判斷做條件渲染">讀取 key 值加上邏輯判斷做條件渲染</a></li>
+        <li><a href="#使用size-查詢資料長度">使用.size 查詢資料長度</a></li>
+        <li><a href="#使用-has-確認是否包含某個-key回傳-true-false">使用 has 確認是否包含某個 key，回傳 true false</a></li>
+        <li><a href="#使用-delete-刪除元素-clear-清空元素">使用 delete 刪除元素 clear 清空元素</a></li>
+        <li><a href="#可以綁定-dom-元素">可以綁定 DOM 元素</a></li>
+        <li><a href="#物件轉-map">物件轉 Map</a></li>
+        <li><a href="#迭代-map-key-value">迭代 Map key value</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何決定資料結構">如何決定資料結構</a>
+      <ul>
+        <li><a href="#考量資料來源">考量資料來源</a></li>
+        <li><a href="#資料結構">資料結構</a></li>
+        <li><a href="#何時適合-set-而不是陣列呢">何時適合 Set 而不是陣列呢</a></li>
+        <li><a href="#何時適合-map-而不是物件呢">何時適合 Map 而不是物件呢</a></li>
+        <li><a href="#課程小練習">課程小練習</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

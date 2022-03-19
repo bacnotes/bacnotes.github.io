@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對函式(function)做比較進階的介紹。'><title>JavaScript 進階函式知識 ｜The Complete JavaScript Course｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/javascript-advanced-part1/'>
+
+<link rel="stylesheet" href="/scss/style.min.1988f9e369e15c7f9911763ec4928b521d4019b90691676ee318cbc43db61459.css"><meta property='og:title' content='JavaScript 進階函式知識 ｜The Complete JavaScript Course｜bacnotes備份筆記'>
+<meta property='og:description' content='有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對函式(function)做比較進階的介紹。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/javascript-advanced-part1/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-01-12T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-01-12T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/javascript-advanced-part1/javascript-removebg-preview.png' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="JavaScript 進階函式知識 ｜The Complete JavaScript Course｜bacnotes備份筆記">
+<meta name="twitter:description" content="有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對函式(function)做比較進階的介紹。"><meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/javascript-advanced-part1/javascript-removebg-preview.png' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/javascript-advanced-part1/">
+                <img src="/p/javascript-advanced-part1/javascript-removebg-preview_hu5afc4de35f8caf4a9ddf52b81b394066_38619_800x0_resize_box_3.png"
+                        srcset="/p/javascript-advanced-part1/javascript-removebg-preview_hu5afc4de35f8caf4a9ddf52b81b394066_38619_800x0_resize_box_3.png 800w, /p/javascript-advanced-part1/javascript-removebg-preview_hu5afc4de35f8caf4a9ddf52b81b394066_38619_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="344" 
+                        loading="lazy"
+                        alt="Featured image of post JavaScript 進階函式知識 ｜The Complete JavaScript Course｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/javascript-advanced-part1/">JavaScript 進階函式知識 ｜The Complete JavaScript Course｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對函式(function)做比較進階的介紹。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 12, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 6 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>我們之前在<a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101"
+     target="_blank" rel="noopener"
+    >JavaScript 底層運作原理 101</a>，介紹過 primitives 跟 objects 使用記憶體的方式<br>
+也有在<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part2/"  title="JavaScript基礎知識複習(2)｜The Complete JavaScript Course"
+     target="_blank" rel="noopener"
+    >JavaScript 基礎知識複習(2)</a>，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址</p>
+<p>在這篇文章中，我們會繼續介紹傳址跟傳值在函式傳遞參數(arguments)時，primitives 跟 objects 兩者表現會有什麼不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 有一個字串資料跟一個物件資料
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">flight</span> <span class="o">=</span> <span class="s1">&#39;LH234&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">passport</span><span class="o">:</span> <span class="mi">24739479284</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// flightNum 只是一個flight字串值的copy 兩者使用不同記憶體
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// passenger.name 則是直接把記憶體傳過去 使用同一份記憶體
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">passenger</span><span class="p">.</span><span class="nx">passport</span> <span class="o">===</span> <span class="mi">24739479284</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checked in&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Wrong passport!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// flight是一個primitives 傳值進function
+</span></span></span><span class="line"><span class="cl"><span class="c1">// jonas是一個object 傳址進function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">checkIn</span><span class="p">(</span><span class="nx">flight</span><span class="p">,</span> <span class="nx">jonas</span><span class="p">);</span> <span class="c1">// Checked in
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flight</span><span class="p">);</span> <span class="c1">// flight變數(primitives): LH234 沒有變
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// person.name(物件屬性)：Mr.Jonas Schmedtmann 變了
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當兩個函式操作同一個物件且沒有做淺拷貝，直接傳址</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flight</span> <span class="o">=</span> <span class="s1">&#39;LH234&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">passport</span><span class="o">:</span> <span class="mi">24739479284</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flightNum</span> <span class="o">=</span> <span class="nx">flight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">passenger</span> <span class="o">=</span> <span class="nx">jonas</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 修改記憶體中的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">passenger</span><span class="p">.</span><span class="nx">passport</span> <span class="o">===</span> <span class="mi">24739479284</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checked in&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Wrong passport!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">newPassport</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">person</span><span class="p">.</span><span class="nx">passport</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100000000000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">newPassport</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// a random number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">checkIn</span><span class="p">(</span><span class="nx">flight</span><span class="p">,</span> <span class="nx">jonas</span><span class="p">);</span> <span class="c1">// Wrong passport! (因為改到passport號碼)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>大型專案有時候因為不經意的修改到物件資料，會造成很大的影響，所以需要多注意傳址傳值的概念</li>
+</ul>
+<h2 id="first-class-function-一級函式">First-Class Function 一級函式</h2>
+<p>之前介紹 JavaScript 語言特性時，有提到 JavaScript 有一級函式的特性<br>
+因此我們可以使用 higher-order function：</p>
+<ol>
+<li>可以把 function 當參數傳入另一個 function(又被稱作回呼函式)</li>
+<li>可以 function return function</li>
+</ol>
+<h3 id="callback-function-回呼函式">callback function 回呼函式</h3>
+<p>回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它<br>
+只是通常提到的場景是在處理非同步的時候</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 把所有英文字空白去掉，把字拼在一起的函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">oneWord</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 把第一個英文字都轉大寫字的函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">upperFirstWord</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">first</span><span class="p">,</span> <span class="p">...</span><span class="nx">others</span><span class="p">]</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">[</span><span class="nx">first</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span> <span class="p">...</span><span class="nx">others</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Higher-order function 字串跟函式為參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">transformer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Original string: </span><span class="si">${</span><span class="nx">str</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Transformed string: </span><span class="si">${</span><span class="nx">fn</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Transformed by: </span><span class="si">${</span><span class="nx">fn</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 回呼函式範例1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">transformer</span><span class="p">(</span><span class="s1">&#39;JavaScript is the best!&#39;</span><span class="p">,</span> <span class="nx">upperFirstWord</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Original string: JavaScript is the best!
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Transformed string: JAVASCRIPT is the best!
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Transformed by: upperFirstWord
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 回呼函式範例2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">transformer</span><span class="p">(</span><span class="s1">&#39;JavaScript is the best!&#39;</span><span class="p">,</span> <span class="nx">oneWord</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Original string: JavaScript is the best!
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Transformed string: javascriptisthebest!
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Transformed by: oneWord
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="function-return-function">Function return function</h3>
+<ul>
+<li>可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼<br>
+＊柯里化：把接受多個參數的函數變換成接受一個單一參數（最初函數的第一個參數）的函數，並且返回接受餘下的參數而且返回結果的新函數的技術</li>
+<li>因為 Function return function 會創造閉包，閉包是函式本身及函式被建立時的執行文本(execution context)，因此下方 greeting 的參數 Hey 會被記住</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">greeting</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greeterHey</span> <span class="o">=</span> <span class="nx">greet</span><span class="p">(</span><span class="s1">&#39;Hey&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">greeterHey</span><span class="p">(</span><span class="s1">&#39;Jonas&#39;</span><span class="p">);</span> <span class="c1">// Hey Jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">greeterHey</span><span class="p">(</span><span class="s1">&#39;Steven&#39;</span><span class="p">);</span> <span class="c1">// Hey Stevens
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">greet</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)(</span><span class="s1">&#39;Jonas&#39;</span><span class="p">);</span> <span class="c1">// Hello Jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ＊補充上方的greet函式也可以寫成箭頭函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="p">(</span><span class="nx">greeting</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">greeting</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="call--apply-綁定-this-對象">Call &amp; Apply 綁定 this 對象</h2>
+<p>當我們開發程式後可能會複用不同物件內的方法，但如果你只 copy 方法，使用一般函式呼叫，會發現 this undefined，符合我們之前提到的一般函式呼叫的狀況下，嚴格模式下 this 是 undefined（非嚴格模式下為全域物件）<br>
+這個時候你就需要使用 Call 或 Apply 來告訴程式 this 要綁定的對象</p>
+<h3 id="使用-call-方法">使用 Call 方法</h3>
+<ul>
+<li>call(thisArg, arg1, &hellip; , argN)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">lufthansa</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Lufthansa&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LH&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// book: function() {}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">book</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> booked a seat on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">airline</span><span class="si">}</span><span class="sb"> flight </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bookings</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">flight</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="nx">name</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">book</span><span class="p">(</span><span class="mi">239</span><span class="p">,</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">book</span><span class="p">(</span><span class="mi">635</span><span class="p">,</span> <span class="s1">&#39;John Smith&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 也想在這邊使用上面book的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">eurowings</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Eurowings&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;EW&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// copy方法，內容為push一段文字到bookings
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">book</span> <span class="o">=</span> <span class="nx">lufthansa</span><span class="p">.</span><span class="nx">book</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 若直接用一般函式呼叫 not work
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">book</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;Sarah Williams&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Uncaught TypeError: Cannot read property &#39;airline&#39; of undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 不是去呼叫 book函式而是return 新的函式綁定this對象為eurowings
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">book</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">eurowings</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;Sarah Williams&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">eurowings</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 的確有使用book方法把資料push進來了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  airline: &#39;Eurowings&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  iataCode: &#39;EW&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  bookings: [ { flight: &#39;EW23&#39;, name: &#39;Sarah Williams&#39; } ]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-apply-方法">使用 Apply 方法</h3>
+<ul>
+<li>apply(thisArg, argsArray)</li>
+<li>Call 跟 Apply 差別在參數傳入的資料結構的不同，使用 Apply 綁定時，參數需要放在陣列當中，Call 則是直接寫在()中。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 定義另一個物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">swiss</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Swiss Air Lines&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LX&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 參數放入陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">flightData</span> <span class="o">=</span> <span class="p">[</span><span class="mi">583</span><span class="p">,</span> <span class="s1">&#39;George Cooper&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">book</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">swiss</span><span class="p">,</span> <span class="nx">flightData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 可以看到的確有使用到這個方法推新資料進去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">swiss</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  airline: &#39;Swiss Air Lines&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  iataCode: &#39;LX&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  bookings: [ { flight: &#39;LX583&#39;, name: &#39;George Cooper&#39; } ]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 若使用call需要展開陣列，直接傳參數本身
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">book</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">swiss</span><span class="p">,</span> <span class="p">...</span><span class="nx">flightData</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="不會馬上執行函式的綁定方法bind">不會馬上執行函式的綁定方法：Bind</h3>
+<ul>
+<li>bind(thisArg, arg1, &hellip; , argN)</li>
+<li>bind 是創造一個函式物件的拷貝，不會執行函式</li>
+<li>因此 bind 之後還要再另外寫執行函式的動作()，而 call 是直接執行函式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用剛剛的物件跟原型方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">lufthansa</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Lufthansa&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LH&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// book: function() {}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">book</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> booked a seat on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">airline</span><span class="si">}</span><span class="sb"> flight </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bookings</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">flight</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="nx">name</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">book</span> <span class="o">=</span> <span class="nx">lufthansa</span><span class="p">.</span><span class="nx">book</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">eurowings</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Eurowings&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;EW&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 複習一下 下方是return新的函式綁定this對象為eurowings
+</span></span></span><span class="line"><span class="cl"><span class="c1">// book.call(eurowings, 23, &#39;Sarah Williams&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用這個邏輯把指向不同對象的book函式存到不同變數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">bookEW</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">eurowings</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">bookLH</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">lufthansa</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">bookLX</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">swiss</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">bookEW</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;Steven Williams&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 測試一下有work! Steven Williams booked a seat on Eurowings flight EW23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 層層參數綁定
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">bookEW23</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">eurowings</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 只需要傳一個參數進去就可以呼叫裡面的方法，柯里化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">bookEW23</span><span class="p">(</span><span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bookEW23</span><span class="p">(</span><span class="s1">&#39;Martha Cooper&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>另一個常用的場景是監聽事件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// With Event Listeners
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">planes</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 計數器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// 使用監聽時 this指向觸發event元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">planes</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">planes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span><span class="p">();</span> <span class="c1">// 的確有+1 變成301
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">document</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.buy&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 我們不希望立即觸發所以使用bind綁定this指向對象，等click再執行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">lufthansa</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當函式執行內容不包含 this，還是可以使用 Bind 綁定非 this 部分的參數，讓函式更有彈性的被執行</li>
+<li>不需要 this 的狀況下寫 null 即可</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 不同稅率的計算應用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">addTax</span> <span class="o">=</span> <span class="p">(</span><span class="nx">rate</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">*</span> <span class="nx">rate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 一般函式下操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addTax</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">200</span><span class="p">));</span> <span class="c1">// 220
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 用bind綁定稅率23%
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">addVAT</span> <span class="o">=</span> <span class="nx">addTax</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 等於 addVAT = value =&gt; value + value * 0.23;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addVAT</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span> <span class="c1">// 123
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 嘗試用function return function 改寫上面bind方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">addTax</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">rate</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">*</span> <span class="nx">rate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">addVAT</span> <span class="o">=</span> <span class="nx">addTax</span><span class="p">(</span><span class="mf">0.23</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="immediately-invoked-function-expressions-iife-立即執行函式">Immediately Invoked Function Expressions (IIFE) 立即執行函式</h2>
+<ul>
+<li>只會執行一次的函式，執行完就馬上消失</li>
+<li>函式會創造作用域，外部無法獲取內部的變數</li>
+<li>不會污染外部變數，適合用在第三方函式庫</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">statements</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">})();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 也可以寫箭頭函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(()=&gt;</span> <span class="nx">statements</span><span class="p">)()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 但不會存取在一個變數裡const abc = function () {statements}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在之前的文章有介紹過，const let 也會創造出 block 作用域，外部無法獲取內部參數</li>
+<li>但 var 會被獲取到</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// block區域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">state2</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span> <span class="c1">// Uncaught ReferenceError: state is not defined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state2</span><span class="p">);</span> <span class="c1">// 123
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>因為有了 let const 限制住作用域，因此在 ES6 後就比較少使用到 IIFE</li>
+</ul>
+<h2 id="closure-閉包">Closure 閉包</h2>
+<ul>
+<li>閉包（Closure）是函式以及該函式被宣告時所在的作用域環境（lexical environment）的組合</li>
+<li>如果是第一次接觸閉包觀念應該會有下方反應</li>
+</ul>
+<img src="./1585743166295.jpeg" width=400>
+<ul>
+<li>這部分會需要知道什麼是作用域跟執行文本，不熟的話可以看一下這篇 <a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101｜The Complete JavaScript Course"
+     target="_blank" rel="noopener"
+    >JavaScript 底層運作原理 101</a>再回來</li>
+<li>我們以下方函式來講解閉包的運作</li>
+<li>step1. 創造全域執行文本
+(全域變數環境：secureBooking=fn, booker=fn)</li>
+<li>step2. 執行全域執行文本，創造出個別執行文本
+secureBooking()作用域：可以獲取本地作用域跟父層的環境變數<br>
+(變數環境：passengerCount=0, secureBooking=fn)<br>
+程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker<br>
+(變數環境：passengerCount=0, secureBooking=fn, booker=fn)</li>
+<li>step3. 執行個別文本<br>
+執行 booker()
+(變數環境：empty, secureBooking=fn, booker=fn)<br>
+由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)<br>
+因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn的變數環境，而secureBooking()的變數環境裡面有passengerCount=0</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">secureBooking</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">passengerCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">passengerCount</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">passengerCount</span><span class="si">}</span><span class="sb"> passenger`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">booker</span> <span class="o">=</span> <span class="nx">secureBooking</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">booker</span><span class="p">();</span> <span class="c1">// 1 passenger
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>step 1 &amp; 2 創造＆執行全域執行文本，創造出個別執行文本</p>
+<img src="./callstack_scope.png" width=800>
+<p>step 3 執行個別文本</p>
+<img src="./closure.png" width=800>
+<h3 id="總結">總結</h3>
+<ul>
+<li>閉包建立在所有函式都可以獲取被創造當下的執行文本的變數環境的機制下</li>
+<li>即便執行文本已經被銷毀，函式還是可以透過某種 ref 獲取到這個變數環境</li>
+<li>所以可以取得 passengerCount = 0 的值，且可以持續更新這個變數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">booker</span><span class="p">();</span> <span class="c1">// 1 passenger
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">booker</span><span class="p">();</span> <span class="c1">// 2 passenger
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">booker</span><span class="p">();</span> <span class="c1">// 3 passenger
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>註：如果想知道這個神秘的Closure變數存在哪裡的話，可以在devtools裡console.dir偷偷看一下匿名函式的[[Scopes]]下Closure的passengerCount變數。但因為是private作用域所以無法存取或修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">booker</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">Scopes</span><span class="p">]]</span><span class="o">:</span> <span class="nx">Scopes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">:</span> <span class="nx">Closure</span> <span class="p">(</span><span class="nx">secureBooking</span><span class="p">)</span> <span class="p">{</span><span class="nx">passengerCount</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#first-class-function-一級函式">First-Class Function 一級函式</a>
+      <ul>
+        <li><a href="#callback-function-回呼函式">callback function 回呼函式</a></li>
+        <li><a href="#function-return-function">Function return function</a></li>
+      </ul>
+    </li>
+    <li><a href="#call--apply-綁定-this-對象">Call &amp; Apply 綁定 this 對象</a>
+      <ul>
+        <li><a href="#使用-call-方法">使用 Call 方法</a></li>
+        <li><a href="#使用-apply-方法">使用 Apply 方法</a></li>
+        <li><a href="#不會馬上執行函式的綁定方法bind">不會馬上執行函式的綁定方法：Bind</a></li>
+      </ul>
+    </li>
+    <li><a href="#immediately-invoked-function-expressions-iife-立即執行函式">Immediately Invoked Function Expressions (IIFE) 立即執行函式</a></li>
+    <li><a href="#closure-閉包">Closure 閉包</a>
+      <ul>
+        <li><a href="#總結">總結</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

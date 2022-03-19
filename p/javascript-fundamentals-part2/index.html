@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？這篇會介紹關於JavaScript的嚴格模式、宣告函式的三種寫法、陣列與物件的基本操作以及迭代內部元素的迴圈寫法。。'><title>JavaScript基礎知識複習(2)｜The Complete JavaScript Course｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/javascript-fundamentals-part2/'>
+
+<link rel="stylesheet" href="/scss/style.min.1988f9e369e15c7f9911763ec4928b521d4019b90691676ee318cbc43db61459.css"><meta property='og:title' content='JavaScript基礎知識複習(2)｜The Complete JavaScript Course｜bacnotes備份筆記'>
+<meta property='og:description' content='function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？這篇會介紹關於JavaScript的嚴格模式、宣告函式的三種寫法、陣列與物件的基本操作以及迭代內部元素的迴圈寫法。。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/javascript-fundamentals-part2/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2021-12-31T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2021-12-31T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/javascript-fundamentals-part2/javascript.png' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="JavaScript基礎知識複習(2)｜The Complete JavaScript Course｜bacnotes備份筆記">
+<meta name="twitter:description" content="function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？這篇會介紹關於JavaScript的嚴格模式、宣告函式的三種寫法、陣列與物件的基本操作以及迭代內部元素的迴圈寫法。。"><meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/javascript-fundamentals-part2/javascript.png' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/javascript-fundamentals-part2/">
+                <img src="/p/javascript-fundamentals-part2/javascript_hu206ed96a14226138f3215dbd4aa48c79_350158_800x0_resize_box_3.png"
+                        srcset="/p/javascript-fundamentals-part2/javascript_hu206ed96a14226138f3215dbd4aa48c79_350158_800x0_resize_box_3.png 800w, /p/javascript-fundamentals-part2/javascript_hu206ed96a14226138f3215dbd4aa48c79_350158_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="344" 
+                        loading="lazy"
+                        alt="Featured image of post JavaScript基礎知識複習(2)｜The Complete JavaScript Course｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/javascript-fundamentals-part2/">JavaScript基礎知識複習(2)｜The Complete JavaScript Course｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？這篇會介紹關於JavaScript的嚴格模式、宣告函式的三種寫法、陣列與物件的基本操作以及迭代內部元素的迴圈寫法。。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 31, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 7 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>恭喜你來到第二篇 JavaScript 基礎知識複習(2)<br>
+如果還沒看過 <a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part1/"  title="JavaScript基礎知識複習(1)｜The Complete JavaScript Course"
+     target="_blank" rel="noopener"
+    >JavaScript 基礎知識複習(1)</a><br>
+可以看完上一篇，再回來繼續閱讀唷！</p>
+<h2 id="使用嚴格模式提高程式碼品質">使用嚴格模式提高程式碼品質</h2>
+<p>在檔案最上方加 <code>'use strict mode'</code> ，會幫你檢查哪些不適當的撰寫程式方式，下方狀況會拋出錯誤</p>
+<ul>
+<li>未宣告的全域變數</li>
+<li>對於無法寫入的變數(e.g. NaN, undefined)或不存在的物件屬性賦值</li>
+<li>刪除不能刪除的屬性(e.g. delete Object.prototype)</li>
+<li>物件屬性不是唯一值 unique</li>
+<li>Function 名稱有重複</li>
+<li>deleting plain names</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// !!! syntax error
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用到 reserved keywords</li>
+</ul>
+<h2 id="function">function</h2>
+<ul>
+<li>實踐 dry code，重複使用一樣的邏輯，傳不同的參數</li>
+<li>parameter 是 function 的右邊的參數</li>
+<li>argument 是用在實際呼叫的值</li>
+<li>call = invoke = execute = run 都是執行(函式)的動詞</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fruitProcessor</span><span class="p">(</span><span class="nx">applesCount</span><span class="p">,</span> <span class="nx">orangesCount</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">juice</span> <span class="o">=</span> <span class="sb">`juice with </span><span class="si">${</span><span class="nx">applesCount</span><span class="si">}</span><span class="sb"> apples &amp; </span><span class="si">${</span><span class="nx">orangesCount</span><span class="si">}</span><span class="sb"> oranges`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">juice</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fruitProcessor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// &#39;juice with 2 apples &amp; 5 oranges&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fruitProcessor</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// &#39;juice with 3 apples &amp; 4 oranges&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="函式宣告-function-declaration">函式宣告 function declaration</h3>
+<ul>
+<li>呼叫後存到變數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">calcAge</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">calcAge</span><span class="p">(</span><span class="mi">2036</span><span class="p">);</span> <span class="c1">// 放在function前後都可以 因為hoisting
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="函式表達式-function-expression">函式表達式 function expression</h3>
+<ul>
+<li>匿名函式是 expression 會產生 value，存到左邊變數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calcAge</span><span class="p">(</span><span class="mi">2036</span><span class="p">));</span> <span class="c1">// 1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="箭頭函式-arrow-function">箭頭函式 arrow function</h3>
+<ul>
+<li>ES6 語法，沒有自己的 this</li>
+<li>若箭頭函式直接返回一個物件，必須在物件外面加上小括號</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 單行程式碼 不需要{}跟return
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">calcAge</span> <span class="o">=</span> <span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calcAge</span><span class="p">(</span><span class="mi">2036</span><span class="p">));</span> <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 多行程式碼 需要{}跟return 程式會結束在return這行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">retireAge</span> <span class="o">=</span> <span class="p">(</span><span class="nx">yourName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">retirement</span> <span class="o">=</span> <span class="mi">65</span> <span class="o">-</span> <span class="nx">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">yourName</span><span class="si">}</span><span class="sb"> retires in </span><span class="si">${</span><span class="nx">retirement</span><span class="si">}</span><span class="sb"> years`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">retireAge</span><span class="p">(</span><span class="s2">&#34;bacnotes&#34;</span><span class="p">,</span> <span class="mi">2036</span><span class="p">));</span> <span class="c1">// bacnotes retires in 64 years
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 單一參數時，小括號可以省略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 多個參數時，小括號不能省略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 單行程式碼要直接回傳物件時，則需要再套一層小括號，key value一樣{a:a, b:b} 寫 {a,b}即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 等於
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">b</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="array-陣列">array 陣列</h2>
+<h3 id="宣告陣列">宣告陣列</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arrayA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arrayB</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">123</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>＊JavaScript 的內建物件都不建議 new 作初始定義的。不過有一些特例是一定要的，例如 Date、Error 等等。</p>
+<h3 id="陣列取值序號從-0-開始">陣列取值，序號從 0 開始</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// 第1個元素值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">array</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="c1">// 第n+1個元素值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">array</span><span class="p">[</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="nx">陣列尾巴元素值</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="修改陣列元素值">修改陣列元素值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">arrayA</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">234</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>const 不是不能修改值嗎？ 單獨修改元素值是可以的</li>
+<li>如果是 arrayA = [&lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;] 就不行，因為就表示重新賦值整個陣列</li>
+<li>補充 immutable（不可變更）跟 mutable（可變更）：只有賦值時是傳值的 primitives 是 immutable，而賦值時是傳址的陣列、物件內部值是 mutable</li>
+</ul>
+<p>想更了解傳值跟傳址在記憶體裡的運作方式，可以參考這一篇<br>
+<a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101"
+     target="_blank" rel="noopener"
+    >JavaScript 底層運作原理 101</a></p>
+<h3 id="array-方法">array 方法</h3>
+<ul>
+<li>array.push() 新增元素到陣列最後面，回傳陣列新的長度</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">friends</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">newFriend</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">friends</span><span class="p">);</span> <span class="c1">// [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newFriend</span><span class="p">);</span> <span class="c1">// 5
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>array.pop() 刪除陣列最後一個元素 並回傳 刪除的元素值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">friends</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">popFriend</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">friends</span><span class="p">)[(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">popFriend</span><span class="p">);</span> <span class="c1">// e
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>array.unshift() 新增元素到陣列最前面，回傳陣列新的長度</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">friends</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">unshiftFriend</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="s2">&#34;z&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">friends</span><span class="p">);</span> <span class="c1">// [ &#39;z&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">unshiftFriend</span><span class="p">);</span> <span class="c1">// 5
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>array.shift() 刪除陣列第一個元素，回傳刪除的元素值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">friends</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;z&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">shiftFriend</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">friends</span><span class="p">);</span> <span class="c1">// [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shiftFriend</span><span class="p">);</span> <span class="c1">// z
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>array.indexOf(element, fromIndex) 搜尋元素索引位置</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">friends</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">positionD</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">positionD</span><span class="p">);</span> <span class="c1">// 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">positionL</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;l&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">positionL</span><span class="p">);</span> <span class="c1">// if not existed return -1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>array.includes(element, fromIndex) 回傳陣列中是否有這個元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">hasLowerCaseA</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">hasUpperCaseA</span> <span class="o">=</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34;A&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hasLowerCaseA</span><span class="p">,</span> <span class="nx">hasUpperCaseA</span><span class="p">);</span> <span class="c1">// true, false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>還有很多其他的 array 方法，可以參考這篇 <a class="link" href="https://bacnotes.github.io/p/array-methods/"  title="陣列的處理方法"
+     target="_blank" rel="noopener"
+    >陣列的處理方法</a>
+推薦這篇大大寫的<a class="link" href="https://www.oxxostudio.tw/articles/201908/js-array.html"  title="JavaScript Array 陣列操作方法大全 ( 含 ES6 )"
+     target="_blank" rel="noopener"
+    >JavaScript Array 陣列操作方法大全 ( 含 ES6 )</a></p>
+<h2 id="object-物件">object 物件</h2>
+<ul>
+<li>key value pair</li>
+<li>value 可以儲存不同格式的資料</li>
+</ul>
+<h3 id="宣告物件">宣告物件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dot-notation-取值物件屬性">dot notation 取值：物件.屬性</h3>
+<p>直觀簡潔，無法在[]裡面修改資料</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span> <span class="c1">// &#39;Schmedtmann&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="bracket-notation-取值物件屬性">bracket notation 取值：物件[&lsquo;屬性&rsquo;]</h3>
+<p>可以在[]裡面修改資料<br>
+[]裡面是一個 expression，屬性記得用單引號包裹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="s2">&#34;lastName&#34;</span><span class="p">]);</span> <span class="c1">// &#39;Schmedtmann&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">nameKey</span> <span class="o">=</span> <span class="s2">&#34;Name&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="s2">&#34;last&#34;</span> <span class="o">+</span> <span class="nx">nameKey</span><span class="p">]);</span> <span class="c1">// &#39;Schmedtmann&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="brackets-notation-可以使用-expressiondot-notation-無法">brackets notation 可以使用 expression，dot notation 無法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">interestedIn</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;what do you want ot know about Jonas? Choose between firstName, lastName,age or job&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// dot notation 無法用expression取得屬性(物件沒有interestedIn的屬性)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">interestedIn</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// bracket 可使用expression取得屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">]);</span> <span class="c1">// teacher
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 當屬性存在列印出屬性值，屬性不存在時列印出&#39;data not existed&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="o">?</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="o">:</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;data not existed&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="新增修改元素值使用--賦值">新增/修改元素值：使用  =  賦值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// dot notation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="s1">&#39;Portugal&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// bracket notation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">[</span><span class="s1">&#39;twitter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;@jonas&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">82</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Schmedtmann&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">82</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s1">&#39;teacher&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;Portugal&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">twitter</span><span class="o">:</span> <span class="s1">&#39;@jonas&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用模板字串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> has </span><span class="si">${</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">friends</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> friends, and his best friends is called </span><span class="si">${</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">friends</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Jonas has 3 friends, and his best friends is called a
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="object-方法">object 方法</h3>
+<ul>
+<li>物件的 function，習慣叫 method</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">birthYear</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2027</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">(</span><span class="mi">2000</span><span class="p">));</span> <span class="c1">// 27
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="s2">&#34;calcAge&#34;</span><span class="p">](</span><span class="mi">2000</span><span class="p">));</span> <span class="c1">// 27
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>關於 this 的使用，有助於精簡程式碼</li>
+<li>如果需要用一樣的物件，寫 this 就不需要修改寫死的變數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jona&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">birthYear</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hasDriverLicense</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// return 2027 - jonas.birthYear 寫字的名字會不好維護
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">2027</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span> <span class="c1">// 更新值就不用每次調用都重複計算，減少浪費效能
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="for-迴圈">for 迴圈</h2>
+<ul>
+<li><code>for ([初始表達式]; [條件為真時會執行{}內容]; [更新表達式])</code></li>
+<li>適合確定迴圈次數時使用(e.g. by array 的元素長度或一個數字)</li>
+<li>可用來精簡重複執行重複的程式碼</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 假設要執行10次，從0開始到9結束
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 從 i = 0 開始，當(i &lt; 9)條件為true會執行{}內的內容，完成後i++
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`lifting weights repetition </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb"> 🏋️‍♀️ `</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">0</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">1</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">2</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">3</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">4</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">5</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">6</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">7</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">8</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">9</span> <span class="err">🏋️‍♀️</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>反向迴圈 Backwards loop</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 假設要執行10次，從9開始到0結束
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 從 i = 9 開始，當(i &gt; 0)條件為true會執行{}內的內容，完成後i--
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`lifting weights repetition </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb"> 🏋️‍♀️ `</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">9</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">8</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">7</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">6</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">5</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">4</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">3</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">2</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">1</span> <span class="err">🏋️‍♀️</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifting</span> <span class="nx">weights</span> <span class="nx">repetition</span> <span class="mi">0</span> <span class="err">🏋️‍♀️</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>陣列使用迴圈迭代元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 範例1 迭代元素資料類型並放到另一陣列type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// filling types array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">type</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span> <span class="c1">// [ &#39;number&#39;, &#39;number&#39;, &#39;number&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 範例2 迭代元素元素值並放到另一陣列ages
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1991</span><span class="p">,</span> <span class="mi">2003</span><span class="p">,</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">1972</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ages</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">years</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">2038</span> <span class="o">-</span> <span class="nx">years</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//[ 47, 35, 16, 66 ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 範例3 使用比較簡潔的forEach語法 列印出元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>continue: 跳出本次迴圈，執行下個迴圈(e.g. i = 2 → i = 3)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arrayB</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;stringA&#34;</span><span class="p">,</span> <span class="s2">&#34;stringB&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2022</span> <span class="o">-</span> <span class="mi">11</span><span class="p">,</span> <span class="kc">true</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayB</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="s2">&#34;string&#34;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// stringA string
+</span></span></span><span class="line"><span class="cl"><span class="c1">// stringB string
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>break: 終止整個迴圈</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayB</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;number&#34;</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// stringA string
+</span></span></span><span class="line"><span class="cl"><span class="c1">// stringB string
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>巢狀迴圈</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`-----starting excercise </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`-----lifting </span><span class="si">${</span><span class="nx">j</span><span class="si">}</span><span class="sb"> time🏋️‍♀️`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="while-loop">while Loop</h2>
+<ul>
+<li><code>while (condition) 當條件為真，則會一直執行{}</code></li>
+<li>適合不確定迴圈次數時使用(e.g. Math.random 的亂數)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">text</span> <span class="o">+=</span> <span class="s2">&#34;The number is &#34;</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>隨機 1-6 的骰子，骰到 6 才會停止</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">dice</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 隨機產生1~6的數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">dice</span> <span class="o">!==</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Your rolled a </span><span class="si">${</span><span class="nx">dice</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dice</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dice</span> <span class="o">===</span> <span class="mi">6</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Loop is about to end...`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Math.floor() 回傳小於等於所給數字的最大整數。(正數時等於無條件捨去，負數時等於無條件進位)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Math.random() 回傳一個偽隨機小數(pseudo-random) 介於0到1之間(包含0，不包含1)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>＊以上是 JavaScript 的基礎複習，如果喜歡的話還可以繼續往下看唷。
+<a class="link" href="https://bacnotes.github.io/p/javascript-advanced-part1/"  title="JavaScript進階函式知識｜The Complete JavaScript Course"
+     target="_blank" rel="noopener"
+    >JavaScript 進階函式知識｜ The Complete JavaScript Course</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用嚴格模式提高程式碼品質">使用嚴格模式提高程式碼品質</a></li>
+    <li><a href="#function">function</a>
+      <ul>
+        <li><a href="#函式宣告-function-declaration">函式宣告 function declaration</a></li>
+        <li><a href="#函式表達式-function-expression">函式表達式 function expression</a></li>
+        <li><a href="#箭頭函式-arrow-function">箭頭函式 arrow function</a></li>
+      </ul>
+    </li>
+    <li><a href="#array-陣列">array 陣列</a>
+      <ul>
+        <li><a href="#宣告陣列">宣告陣列</a></li>
+        <li><a href="#陣列取值序號從-0-開始">陣列取值，序號從 0 開始</a></li>
+        <li><a href="#修改陣列元素值">修改陣列元素值</a></li>
+        <li><a href="#array-方法">array 方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#object-物件">object 物件</a>
+      <ul>
+        <li><a href="#宣告物件">宣告物件</a></li>
+        <li><a href="#dot-notation-取值物件屬性">dot notation 取值：物件.屬性</a></li>
+        <li><a href="#bracket-notation-取值物件屬性">bracket notation 取值：物件[&lsquo;屬性&rsquo;]</a></li>
+        <li><a href="#brackets-notation-可以使用-expressiondot-notation-無法">brackets notation 可以使用 expression，dot notation 無法</a></li>
+        <li><a href="#新增修改元素值使用--賦值">新增/修改元素值：使用  =  賦值</a></li>
+        <li><a href="#object-方法">object 方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#for-迴圈">for 迴圈</a></li>
+    <li><a href="#while-loop">while Loop</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

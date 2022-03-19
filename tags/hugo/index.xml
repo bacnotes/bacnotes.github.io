@@ -73,7 +73,7 @@
 &lt;ul&gt;
 &lt;li&gt;依照官方影片說明，在 C:\下方新增 Hugo 資料夾&lt;/li&gt;
 &lt;/ul&gt;
-&lt;iframe width=&#34;640&#34; height=&#34;360&#34; src=&#34;https://www.youtube.com/embed/&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/WvhCGlLcrF8&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;ul&gt;
 &lt;li&gt;Hugo 資料夾下新增 Sites 跟 bin 資料夾(Sites 是專案資料夾，bin 是儲存執行檔案用)&lt;/li&gt;
 &lt;li&gt;到&lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/releases&#34;  title=&#34;Hugo Releases&#34;

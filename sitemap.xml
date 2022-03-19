@@ -3,7 +3,83 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bacnotes.github.io/</loc>
-    <lastmod>2021-12-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/post/</loc>
+    <lastmod>2022-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/react/</loc>
+    <lastmod>2022-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/react-effect-reducer-context/</loc>
+    <lastmod>2022-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/</loc>
+    <lastmod>2022-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/react-styling/</loc>
+    <lastmod>2022-02-02T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/javascript/</loc>
+    <lastmod>2022-01-30T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/string-methods/</loc>
+    <lastmod>2022-01-30T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/object-oriented-programming/</loc>
+    <lastmod>2022-01-14T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/javascript-advanced-part1/</loc>
+    <lastmod>2022-01-12T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/javascript-fundamentals-part3/</loc>
+    <lastmod>2022-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/react-knowledge-101/</loc>
+    <lastmod>2022-01-06T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/javascript-behind-the-scenes/</loc>
+    <lastmod>2022-01-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/javascript-dom-manipulation/</loc>
+    <lastmod>2022-01-02T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/javascript-fundamentals-part2/</loc>
+    <lastmod>2021-12-31T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/javascript-fundamentals-part1/</loc>
+    <lastmod>2021-12-29T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/google-analytics/</loc>
+    <lastmod>2021-12-28T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/google-search-console/</loc>
+    <lastmod>2021-12-28T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/seo/</loc>
+    <lastmod>2021-12-28T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/google-seo-tools/</loc>
+    <lastmod>2021-12-28T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/deploy/</loc>
@@ -11,14 +87,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/github/</loc>
-    <lastmod>2021-12-26T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://bacnotes.github.io/post/</loc>
-    <lastmod>2021-12-26T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://bacnotes.github.io/tags/</loc>
     <lastmod>2021-12-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -57,9 +125,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/search/</loc>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://bacnotes.github.io/categories/test/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/%E5%85%B3%E4%BA%8E/</loc>

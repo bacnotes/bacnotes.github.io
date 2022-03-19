@@ -6,7 +6,47 @@
         <description>Recent content in Tags on bacnotes備份筆記</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
-        <lastBuildDate>Sun, 26 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 03 Feb 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>React</title>
+        <link>https://bacnotes.github.io/tags/react/</link>
+        <pubDate>Thu, 03 Feb 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/tags/react/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>JavaScript</title>
+        <link>https://bacnotes.github.io/tags/javascript/</link>
+        <pubDate>Sun, 30 Jan 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/tags/javascript/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Google Analytics</title>
+        <link>https://bacnotes.github.io/tags/google-analytics/</link>
+        <pubDate>Tue, 28 Dec 2021 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/tags/google-analytics/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Google Search Console</title>
+        <link>https://bacnotes.github.io/tags/google-search-console/</link>
+        <pubDate>Tue, 28 Dec 2021 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/tags/google-search-console/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SEO</title>
+        <link>https://bacnotes.github.io/tags/seo/</link>
+        <pubDate>Tue, 28 Dec 2021 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/tags/seo/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Deploy</title>
         <link>https://bacnotes.github.io/tags/deploy/</link>
         <pubDate>Sun, 26 Dec 2021 00:00:00 +0000</pubDate>

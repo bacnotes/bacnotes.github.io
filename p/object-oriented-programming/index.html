@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='程式語言通常分成兩種設計方式，一種是物件導向程式設計OOP，把物件的屬性跟方法「封裝」在物件中管理，使程式碼更容易理解。一種是函式程式設計FP(Functional Programming)，把每個函式做的事情「最小化」，一次只做一件事。兩者的存在都是為了讓程式更易讀更好用。這篇會講解的是物件導向程式設計。'><title>今晚，我們來聊點物件導向程式設計(Object-Oriented Programming) ｜The Complete JavaScript Course｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/object-oriented-programming/'>
+
+<link rel="stylesheet" href="/scss/style.min.1988f9e369e15c7f9911763ec4928b521d4019b90691676ee318cbc43db61459.css"><meta property='og:title' content='今晚，我們來聊點物件導向程式設計(Object-Oriented Programming) ｜The Complete JavaScript Course｜bacnotes備份筆記'>
+<meta property='og:description' content='程式語言通常分成兩種設計方式，一種是物件導向程式設計OOP，把物件的屬性跟方法「封裝」在物件中管理，使程式碼更容易理解。一種是函式程式設計FP(Functional Programming)，把每個函式做的事情「最小化」，一次只做一件事。兩者的存在都是為了讓程式更易讀更好用。這篇會講解的是物件導向程式設計。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/object-oriented-programming/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-01-14T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-01-14T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/object-oriented-programming/pexels-j%C3%A9shoots-271458.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="今晚，我們來聊點物件導向程式設計(Object-Oriented Programming) ｜The Complete JavaScript Course｜bacnotes備份筆記">
+<meta name="twitter:description" content="程式語言通常分成兩種設計方式，一種是物件導向程式設計OOP，把物件的屬性跟方法「封裝」在物件中管理，使程式碼更容易理解。一種是函式程式設計FP(Functional Programming)，把每個函式做的事情「最小化」，一次只做一件事。兩者的存在都是為了讓程式更易讀更好用。這篇會講解的是物件導向程式設計。"><meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/object-oriented-programming/pexels-j%C3%A9shoots-271458.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/object-oriented-programming/">
+                <img src="/p/object-oriented-programming/pexels-j%C3%A9shoots-271458_hu3d03a01dcc18bc5be0e67db3d8d209a6_2056159_800x0_resize_q75_box.jpg"
+                        srcset="/p/object-oriented-programming/pexels-j%C3%A9shoots-271458_hu3d03a01dcc18bc5be0e67db3d8d209a6_2056159_800x0_resize_q75_box.jpg 800w, /p/object-oriented-programming/pexels-j%C3%A9shoots-271458_hu3d03a01dcc18bc5be0e67db3d8d209a6_2056159_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post 今晚，我們來聊點物件導向程式設計(Object-Oriented Programming) ｜The Complete JavaScript Course｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/object-oriented-programming/">今晚，我們來聊點物件導向程式設計(Object-Oriented Programming) ｜The Complete JavaScript Course｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            程式語言通常分成兩種設計方式，一種是物件導向程式設計OOP，把物件的屬性跟方法「封裝」在物件中管理，使程式碼更容易理解。一種是函式程式設計FP(Functional Programming)，把每個函式做的事情「最小化」，一次只做一件事。兩者的存在都是為了讓程式更易讀更好用。這篇會講解的是物件導向程式設計。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 14, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 9 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>產出好維護好管理的程式碼是重要的，想像今天你的任務是要從這個房間裡找出某一本書，你覺得你需要多少時間？</p>
+<img src="./15772480102360.jpeg" width="700" alt="room">
+<p>如果專案程式碼長這樣的話，還沒開始 debug 腦袋就已經先當機了&hellip;</p>
+<p>物件導向程式設計就是為了解決這個問題而誕生的一種方便管理程式碼的方式</p>
+<h2 id="什麼是物件導向程式設計object-oriented-programming">什麼是物件導向程式設計(Object-Oriented Programming)</h2>
+<ul>
+<li>基於物件概念的程式設計方法</li>
+<li>使用物件形容(model)具體或抽象的 feature(e.g. user, todo-item, 元件或資料結構)</li>
+<li>我們把相關屬性跟方法都包在一個物件，可以很方便取得內部資料</li>
+<li>物件是獨立的(self-contained)的程式碼片段，透過彼此互動構築成一個應用程式</li>
+<li>公開的 API 即是透過物件內方法跟應用程式互動</li>
+</ul>
+<h2 id="物件導向程式語言四大原則">物件導向程式語言四大原則</h2>
+<h3 id="抽象化">抽象化</h3>
+<ul>
+<li>隱藏實作細節的機制</li>
+</ul>
+<h3 id="封裝">封裝</h3>
+<ul>
+<li>把屬性跟方法封裝在 class 不讓外部讀取修改，但 class 內部可以讀取</li>
+<li>封裝好(讓屬性跟方法保持 private)可避免產生非預期 bug</li>
+<li>當外在程式碼能夠更動到 class 內部資料，會連動影響到調用這個 class 的相關程式碼</li>
+<li>需要公開存取 API 可設計成開放存取</li>
+</ul>
+<h3 id="繼承">繼承</h3>
+<ul>
+<li>當有兩個相似的 class，我們可以使用繼承特性避免撰寫重複程式碼(parent class → child class)</li>
+</ul>
+<h3 id="多型">多型</h3>
+<ul>
+<li>child class 可以覆寫 parent class 的方法</li>
+</ul>
+<h2 id="class-跟-instance-實例是什麼">class 跟 instance 實例是什麼？</h2>
+<ul>
+<li>class 是一個藍圖(非物件)，透過 class 建構出來的東西是 instance 實例</li>
+<li>但 JavaScript 其實沒有真正的 class 這個類別實例(而 Java，C++有)</li>
+<li>JavaScript 的 class 比較像是語法糖，透過建構函式來模擬 class，可以調用原型(prototype-based)方法</li>
+</ul>
+<h2 id="prototype-原型是什麼">prototype 原型是什麼？</h2>
+<ul>
+<li>在 JavaScript 物件都會連結到原型，原型繼承(prototypal inheritance)表示所有被連結到的實例都可以使用原型的方法</li>
+<li>舉例來說，我們在使用陣列的 map 方法，也是從陣列的 prototype 取用這個方法，而不是 num 本身有的方法()</li>
+</ul>
+<h2 id="建立原型的-3-種方法">建立原型的 3 種方法</h2>
+<ul>
+<li>建立原型是為了可以使用原型繼承</li>
+</ul>
+<ol>
+<li>使用建構函式(Constructor functions)跟 new 運算子產生新的實例</li>
+<li>ES6 的 class 語法糖</li>
+<li>Object.create（最簡單創造出一個物件連結 prototype 的方法)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">//[ 3, 4, 5 ]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用建構函式跟-new-運算子建立原型連結">使用建構函式跟 new 運算子建立原型連結</h3>
+<ul>
+<li>寫一個建構函式，使用 new 運算子產生新的物件實例{}</li>
+<li>當函式被呼叫，物件實例的 this 會指向這個實例本身{} (因為使用 new 運算子才有這個特性，跟一般函式 this 不同)</li>
+<li>實例會連結到建構函式，讓實例可以使用建構函式的方法，因此每個物件下會有<code>.__proto__</code>屬性</li>
+<li>建構函式本身會 return{}</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用同原型創造不同實例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// this 指向實例本身
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Person {}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 設定實例屬性為外部傳進來的參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 方法不會寫在原型裡面，會造成多餘的程式碼，若有一千個物件就有一千個方法程式碼
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 創造一個firstName為Jonas birthYear為1991的Person實例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Jonas&#34;</span><span class="p">,</span> <span class="mi">1991</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// Person { firstName: &#39;Jonas&#39;, birthYear: 1991 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 創造一個firstName為mirenda birthYear為2003的Person實例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">mirenda</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;mirenda&#34;</span><span class="p">,</span> <span class="mi">2003</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mirenda</span><span class="p">);</span> <span class="c1">// Person { firstName: &#39;mirenda&#39;, birthYear: 2003 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用.prototype.方法名 新增原型共用方法
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 一樣所有物件可以透過prototype inheritance共用，但只需要管理這段程式碼，不會有多餘的copy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 可以共用原型方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 46
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">mirenda</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 34
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用.prototype 新增原型屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">species</span> <span class="o">=</span> <span class="s2">&#34;Homo Sapiens&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">species</span><span class="p">);</span> <span class="c1">// 可以取得共用屬性 Homo Sapiens
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// Person { firstName: &#39;Jonas&#39;, birthYear: 1991 } 但不會出現在jonas實例裡面，除非有寫入
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="檢查實例所屬原型方法">檢查實例所屬原型方法</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span> <span class="k">instanceof</span> <span class="nx">Person</span><span class="p">);</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// 若是原型連結的實例為 true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">jonas</span><span class="p">));</span> <span class="c1">// 若是原型連結的實例為 true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="檢查實例是否含有某屬性-hasownproperty">檢查實例是否含有某屬性 hasOwnProperty</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&#34;firstName&#34;</span><span class="p">));</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">species</span><span class="p">);</span> <span class="c1">// Homo Sapiens
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&#34;species&#34;</span><span class="p">));</span> <span class="c1">// false 因為不是jonas擁有屬性 而是原型
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="prototype-chain-原型鏈">prototype chain 原型鏈</h4>
+<img src="./prototypechain.png" width="700" alt="prototype-chain">
+<h4 id="建構函式-vs-原型-vs-實例-關係圖">建構函式 v.s. 原型 v.s. 實例 關係圖</h4>
+<img src="./relation.png" width="700" alt="relation">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 建構函式.prototype = 原型
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 原型.constructor = 建構函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 建構函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Instance properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// new 建構函式 = 實例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Jonas&#34;</span><span class="p">,</span> <span class="mi">1991</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// Person { firstName: &#39;Jonas&#39;, birthYear: 1991 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 實例.__proto__ = 物件原型
+</span></span></span><span class="line"><span class="cl"><span class="c1">// jonas的原型是Person，故可以獲取Person的方法或屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//{species: &#39;Homo Sapiens&#39;, calcAge: ƒ (), constructor: ƒ(firstName, birthYear), [[Prototype]]: Object}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Person的原型是物件原型 (Object.prototype)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …} 列出物件方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 物件原型的prototype是null(原型鏈chain最上層)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 以陣列實例來看原型鏈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 實例的原型是陣列原型Array.prototype，可獲取陣列的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [constructor: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 陣列原型的原型是物件，可獲取物件的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 物件原型(Object.prototype)的prototype是null(原型鏈chain最上層)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// null
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="es6-的-class-建立原型連結">ES6 的 class 建立原型連結</h3>
+<h4 id="跟-function-一樣有-expression-和-declaration-兩種寫法">跟 function 一樣有 expression 和 declaration 兩種寫法</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// class expression
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kr">class</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// class declaration（寫起來比上方程式碼工整，都寫在一個物件中，方法不用寫在外面管理)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 寫在這邊的方法都會進到prototype
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessica</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span> <span class="mi">1996</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jessica</span><span class="p">);</span> <span class="c1">// Person {firstName: &#39;Jessica Davis&#39;, birthYear: 1996}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jessica</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 41
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jessica</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">PersonCl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="關於-class-的幾個重點">關於 class 的幾個重點</h4>
+<ol>
+<li>class 不會被提升 hoisting(即便寫 class declaration)</li>
+<li>class 具備一級函式特性(可作為參數傳入，也可被回傳)</li>
+<li>class 須在嚴格模式下執行</li>
+<li>class 寫法比第一種(建構函式/const 實例 = new 函式/Person.prototype.方法)更好閱讀與維護，constructor/屬性/方法都寫在 class 裡，方法不需要寫在外面也可以使用 prototype inheritance</li>
+</ol>
+<h4 id="getters--setter">getters &amp; setter</h4>
+<ul>
+<li>所有物件都有的屬性(assessor properties)，相對於一般屬性稱為 data properties</li>
+<li>是獲取值或設定值的 function</li>
+<li>適合用在 validation</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">530</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">latest</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// this.movements.slice(-1)是一個陣列，為了取值用pop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 需要至少一個參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">set</span> <span class="nx">latest</span><span class="p">(</span><span class="nx">mov</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mov</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 像是獲取屬性一樣來使用這個方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">account</span><span class="p">.</span><span class="nx">latest</span><span class="p">);</span> <span class="c1">// 300
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 像是更改屬性一樣來使用這個方法 而非account.latest(50)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">account</span><span class="p">.</span><span class="nx">latest</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">account</span><span class="p">.</span><span class="nx">movements</span><span class="p">);</span> <span class="c1">// [200, 530, 120, 300, 50]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以使用剛剛的 Person 來寫個 get 跟 set function</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 建構時會使用參數fullName 呼叫set fullName方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// set a property that already exists
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 當使用.fullName就會呼叫這個方法，包含一開始建構實例時
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// set跟 constructor都使用firstName會有衝突 使用另一個變數存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// jessica.fullName才不會undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessica</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span> <span class="mi">1996</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jessica</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 41
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">walter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Walter&#34;</span><span class="p">,</span> <span class="mi">1996</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Walter is not a full name
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="static-methods">static methods</h4>
+<ul>
+<li>使用關鍵字 static 來定義一個靜態的方法（method）給類別（class），靜態方法在由類別所建立的物件實體（instance）上不能被呼叫，靜態方法只能由類別本身呼叫</li>
+<li>例如 Array.from() 可以把類陣列轉成陣列，但陣列本身不能呼叫這個方法
+因為這個方法是放在 Array constructor 身上，而非陣列的原型，所以陣列無法獲取</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 這種寫法方法不會更新在原型，jonas無法繼承
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">hey</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hey&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Person</span><span class="p">.</span><span class="nx">hey</span><span class="p">();</span> <span class="c1">// hey class Person {...省略} (this會是建構函式本身)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">.</span><span class="nx">hey</span><span class="p">();</span> <span class="c1">// Uncaught TypeError: jonas.hey is not a function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用static關鍵字，可出現跟上方一樣的結果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 實例可以獲取的方法 會被加入原型.prototype property
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 建構時才能獲取的方法，實例無法獲取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">static</span> <span class="nx">hey</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hey&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>另一個小練習，get set 時使用另一個變數名(speedUS 而非 speed)就不用擔心撞變數名的問題</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">make</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">make</span> <span class="o">=</span> <span class="nx">make</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">accelerate</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">make</span><span class="si">}</span><span class="sb"> is going at </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="si">}</span><span class="sb"> km/h`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">brake</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">-=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">make</span><span class="si">}</span><span class="sb"> is going at </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="si">}</span><span class="sb"> km/h`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">speedUS</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">/</span> <span class="mf">1.6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">set</span> <span class="nx">speedUS</span><span class="p">(</span><span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span> <span class="o">*</span> <span class="mf">1.6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ford</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CarCl</span><span class="p">(</span><span class="s2">&#34;Ford&#34;</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ford</span><span class="p">.</span><span class="nx">speedUS</span><span class="p">);</span> <span class="c1">// 75
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ford</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">();</span> <span class="c1">// Ford is going at 130km/h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ford</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">();</span> <span class="c1">// Ford is going at 140km/h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ford</span><span class="p">.</span><span class="nx">brake</span><span class="p">();</span> <span class="c1">// // Ford is going at 135km/h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ford</span><span class="p">.</span><span class="nx">speedUS</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span> <span class="c1">// 50
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ford</span><span class="p">);</span> <span class="c1">//Car{make:&#34;Ford&#34;, speed: 80}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="objectcreate-建立原型連結">Object.create() 建立原型連結</h3>
+<ul>
+<li>不需要寫建構函式 constructor new，或是.prototype</li>
+<li>下方範例一般不會這樣做，顯示機制用</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PersonProto</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 可以不需要寫constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 建立原型連結到steven
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">steven</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">PersonProto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">steven</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 手動增加原型內容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">steven</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;Steven&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">steven</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="mi">2002</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">steven</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">//35
+</span></span></span><span class="line"><span class="cl"><span class="c1">// {}  &gt; __proto__: calcAge: f calcAge()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">steven</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">PersonProto</span><span class="p">);</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 建立原型連結到sarah
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sarah</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">PersonProto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PersonProto</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 不需要寫constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 建立一個方法來新增屬性，相較上面一個個新增
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">init</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 誰呼叫this就是誰
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">sarah</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">&#34;Sarah&#34;</span><span class="p">,</span> <span class="mi">1979</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">sarah</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 58
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="class-間的繼承-父類別-parent-class--子類別-child-class">class 間的繼承: 父類別 parent class &amp; 子類別 child class</h2>
+<ul>
+<li>了解如何用 Object.create()在 class 間設置原型鏈，讓父類別原型方法跟屬性可以被子類別繼承</li>
+<li>子類別繼承父類別的方法跟屬性，也可以有自己的方法跟屬性</li>
+<li>當子層父層有一樣名稱的方法，會用子層的</li>
+</ul>
+<img src="./inheritance.png" alt="inheritance" width ="700">
+<h3 id="使用建構函式跟-new-運算子建立父子類別繼承">使用建構函式跟 new 運算子建立父子類別繼承</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 人類原型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 人類原型建立方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 學生原型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Student</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 呼叫人類屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 如果用一般函式呼叫(沒有用new) Person(firstName, birthYear) 會Uncaught Error: cannot set firstName of undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// a regular function call, the this keyword is set to undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 如果需要呼叫函式並設置this在這個函式，使用call
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 新增任何子類別原型的方法前，需要先建立連結，下方會回傳空物件，若順序錯誤空物件會覆蓋掉新增的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 學生原型建立方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 建立一個學生
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">mike</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s2">&#34;Mike&#34;</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="s2">&#34;Computer Science&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mike</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 成功呼叫到父類別方法，跟scope chain一樣當子層找不到會往父層找
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 若子層有定義自己的calcAge()，會呼叫子層的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">mike</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 17
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>子類別實例跟子類別跟父類別關係</li>
+</ul>
+<img src="./prototype_chain_2.png" alt="inheritance" width ="700">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 學生原型 可以看到introduce方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mike</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span> <span class="c1">// Person { introduce: [Function (anonymous)] }
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 人類原型 可以看到calcAge方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mike</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span> <span class="c1">// { calcAge: [Function (anonymous)] }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mike</span> <span class="k">instanceof</span> <span class="nx">Student</span><span class="p">);</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mike</span> <span class="k">instanceof</span> <span class="nx">Person</span><span class="p">);</span> <span class="c1">// true 若沒有上面建立連結會是false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mike</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">);</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">Student</span><span class="p">;</span> <span class="c1">// 加上這行fix mike的constructor指向ㄎ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span><span class="p">);</span> <span class="c1">// 若沒有上面這行會指向Person
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-es6-class-建立父子類別繼承">使用 ES6 class 建立父子類別繼承</h3>
+<ul>
+<li>使用 extend 父類別 搭配 super 父類別參數</li>
+<li>super 是父層的建構函式 constructor</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 人類原型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 人類原型建立方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 學生原型 不用寫父層.call 用extends就會指向父層了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Student</span> <span class="kr">extends</span> <span class="nx">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// super永遠寫在最上面 子層的this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">super</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">introduce</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 覆寫父層方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// calcAge() {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//  console.log(`i am ${2037- this.birthYear}`)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結，讓兩個class建立父子關係
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 在添加任何學生原型的方法前，需要先建立連結，因為下方會先回傳空物件，若順序錯誤空物件會覆蓋掉新增的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 建立一個學生
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">mike</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s2">&#34;Mike&#34;</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="s2">&#34;Computer Science&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mike</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span> <span class="c1">// My name is Mike and I study Computer Science
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 成功呼叫到父類別方法，若子層有同樣calcAge()則會呼叫子層方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">mike</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 17
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-objectcreate-建立父子類別繼承">使用 Object.create 建立父子類別繼承</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PersonProto</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">init</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">StudentProto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">PersonProto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">jay</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">StudentProto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 子層新增相同名稱方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">StudentProto</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 呼叫函式並設置this在這個函式，使用call 獲取父層init方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">PersonProto</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 子層新增不同方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">StudentProto</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">jay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">&#34;Jay&#34;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="s2">&#34;computer science&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jay</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span> <span class="c1">// My name is Jay and I study computer science
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jay</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">()</span> <span class="c1">// 27
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什麼是物件導向程式設計object-oriented-programming">什麼是物件導向程式設計(Object-Oriented Programming)</a></li>
+    <li><a href="#物件導向程式語言四大原則">物件導向程式語言四大原則</a>
+      <ul>
+        <li><a href="#抽象化">抽象化</a></li>
+        <li><a href="#封裝">封裝</a></li>
+        <li><a href="#繼承">繼承</a></li>
+        <li><a href="#多型">多型</a></li>
+      </ul>
+    </li>
+    <li><a href="#class-跟-instance-實例是什麼">class 跟 instance 實例是什麼？</a></li>
+    <li><a href="#prototype-原型是什麼">prototype 原型是什麼？</a></li>
+    <li><a href="#建立原型的-3-種方法">建立原型的 3 種方法</a>
+      <ul>
+        <li><a href="#使用建構函式跟-new-運算子建立原型連結">使用建構函式跟 new 運算子建立原型連結</a></li>
+        <li><a href="#es6-的-class-建立原型連結">ES6 的 class 建立原型連結</a></li>
+        <li><a href="#objectcreate-建立原型連結">Object.create() 建立原型連結</a></li>
+      </ul>
+    </li>
+    <li><a href="#class-間的繼承-父類別-parent-class--子類別-child-class">class 間的繼承: 父類別 parent class &amp; 子類別 child class</a>
+      <ul>
+        <li><a href="#使用建構函式跟-new-運算子建立父子類別繼承">使用建構函式跟 new 運算子建立父子類別繼承</a></li>
+        <li><a href="#使用-es6-class-建立父子類別繼承">使用 ES6 class 建立父子類別繼承</a></li>
+        <li><a href="#使用-objectcreate-建立父子類別繼承">使用 Object.create 建立父子類別繼承</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

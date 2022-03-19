@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Event Loop是什麼?單執行緒又是什麼？除了告訴你JavaScript的語言特性外，也會介紹關於JavaScript一些背後的運作原理。'><title>JavaScript底層運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/javascript-behind-the-scenes/'>
+
+<link rel="stylesheet" href="/scss/style.min.1988f9e369e15c7f9911763ec4928b521d4019b90691676ee318cbc43db61459.css"><meta property='og:title' content='JavaScript底層運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記'>
+<meta property='og:description' content='Event Loop是什麼?單執行緒又是什麼？除了告訴你JavaScript的語言特性外，也會介紹關於JavaScript一些背後的運作原理。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/javascript-behind-the-scenes/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-01-03T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-01-03T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/javascript-behind-the-scenes/kanan-khasmammadov-7K8_U900tVc-unsplash.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="JavaScript底層運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記">
+<meta name="twitter:description" content="Event Loop是什麼?單執行緒又是什麼？除了告訴你JavaScript的語言特性外，也會介紹關於JavaScript一些背後的運作原理。"><meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/javascript-behind-the-scenes/kanan-khasmammadov-7K8_U900tVc-unsplash.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/javascript-behind-the-scenes/">
+                <img src="/p/javascript-behind-the-scenes/kanan-khasmammadov-7K8_U900tVc-unsplash_hu1499a893ce824cc10dc28f27c37e5d8f_1839383_800x0_resize_q75_box.jpg"
+                        srcset="/p/javascript-behind-the-scenes/kanan-khasmammadov-7K8_U900tVc-unsplash_hu1499a893ce824cc10dc28f27c37e5d8f_1839383_800x0_resize_q75_box.jpg 800w, /p/javascript-behind-the-scenes/kanan-khasmammadov-7K8_U900tVc-unsplash_hu1499a893ce824cc10dc28f27c37e5d8f_1839383_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="515" 
+                        loading="lazy"
+                        alt="Featured image of post JavaScript底層運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/javascript-behind-the-scenes/">JavaScript底層運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Event Loop是什麼?單執行緒又是什麼？除了告訴你JavaScript的語言特性外，也會介紹關於JavaScript一些背後的運作原理。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 03, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 8 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="javascript-的特性">JavaScript 的特性</h2>
+<h3 id="high-level-高階語言">high level 高階(語言)</h3>
+<ul>
+<li>高階是接近人類讀得懂的語言，低階是接近機器的 2 進位的機器碼(machine code)</li>
+<li>例如 c 語言(低階語言)，需要處理宣告新變數時的記憶體</li>
+<li>而高階語言的 python 跟 JavaScript 不需要，但效能不會有 c 語言好</li>
+</ul>
+<h3 id="prototype-based-object-oriented-物件導向">prototype based object-oriented 物件導向</h3>
+<ul>
+<li>JavaScript 資料除了 primitives 都是物件</li>
+<li>陣列也是物件，只是 key 為 index</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">typeof</span> <span class="nx">arr</span> <span class="c1">//object
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="interpreted-or-just-in-time-compiled">interpreted or just-in-time compiled</h3>
+<ul>
+<li>JavaScript 引擎會幫我們轉成 2 進位的機器碼</li>
+</ul>
+<h3 id="dynamic-typed-動態資料型態">dynamic-typed 動態資料型態</h3>
+<ul>
+<li>宣告變數時不需要給予型別(C、Java、Ruby 要)</li>
+<li>容易改變型別</li>
+</ul>
+<h3 id="single-threaded-單執行緒">single-threaded 單執行緒</h3>
+<ul>
+<li>一次只能執行一件事</li>
+</ul>
+<h3 id="garbage-collected-有記憶體回收機制">garbage collected 有記憶體回收機制</h3>
+<ul>
+<li>有機制會自動移除記憶體中老舊或沒有使用的變數</li>
+</ul>
+<h3 id="multi-paradigm-可以同時使用多種風格來寫程式">multi-paradigm 可以同時使用多種風格來寫程式</h3>
+<ul>
+<li>可以用 Procedural Programming 程序化程式設計</li>
+<li>可以用 Function Programming 函式程式設計</li>
+<li>可以用 Object-Oriented Programming 物件導向程式設計</li>
+</ul>
+<h3 id="with-first-class-functions-一級函式">with first-class functions 一級函式</h3>
+<ul>
+<li>一級函式是一種特性，部分程式語言沒有，而 JavaScript 有</li>
+<li>一級函式表示在這個語言函式可以被當作一個變數(variable)，賦值給其他變數或做為參數傳遞(functions are values)</li>
+</ul>
+<h3 id="non-blocking-event-loop-concurrent-model">non-blocking event loop concurrent model</h3>
+<ul>
+<li>由於單執行緒但又得處理同時發生的多種任務，容易阻塞</li>
+<li>JavaScript 引擎會使用 event loop，一個背景執行的 task，任務執行完的結果會放到 call stack</li>
+</ul>
+<h2 id="javascript-引擎-vs-執行環境-runtime-vs執行文本-context">JavaScript 引擎 v.s. 執行環境 runtime v.s.執行文本 context</h2>
+<h3 id="javascript-引擎">JavaScript 引擎</h3>
+<ul>
+<li>各家瀏覽器有自己的 JavaScript 引擎，用來執行 JavaScript</li>
+<li>Google 開發的 V8 引擎，不只用於 Chrome 還有 Node.js(可以在瀏覽器外執行 JavaScript)</li>
+<li>JavaScript 引擎包含一個 Call Stack(execution context)跟一個 Heap</li>
+<li>Heap 是非結構化的記憶體池，儲存所有物件</li>
+<li>interpretation：程式碼轉成一行行執行的 code，再轉成機器碼</li>
+<li>compilation：整包程式碼轉成 machine code(2 進位)，再執行程式</li>
+<li>just-in-time compilation: 程式碼轉成 2 進位後立即執行(避免等待)</li>
+<li>當一段程式碼進到引擎會執行下方程序</li>
+</ul>
+<img src="./interpretation.png" alt="interpretation">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">step1.</span> <span class="n">parsing</span><span class="o">:</span> <span class="n">JavaScript</span> → <span class="nf">AST</span><span class="p">(</span><span class="n">abstract</span> <span class="n">syntax</span> <span class="n">tree</span><span class="p">)</span> 結構化<span class="n">JavaScript</span>
+</span></span><span class="line"><span class="cl"><span class="n">step2.</span> <span class="n">compilation</span><span class="o">:</span> <span class="n">AST</span> → <span class="m">2</span>進位的機器碼
+</span></span><span class="line"><span class="cl"><span class="n">step3.</span> <span class="n">execution</span><span class="o">:</span> 在<span class="n">call</span> <span class="n">stack執行</span>
+</span></span><span class="line"><span class="cl"><span class="n">step2</span><span class="o">~</span><span class="m">3</span><span class="n">. optimization</span><span class="o">:</span> 邊執行邊最佳化<span class="p">(</span>在特別的<span class="n">thread執行</span>，無法<span class="n">access</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="javascript-runtime-執行環境">JavaScript Runtime 執行環境</h3>
+<ul>
+<li>
+<p>browser: JavaScript 引擎 + webAPIs + callback queue</p>
+</li>
+<li>
+<p>call stack : 由上到下執行 stack 裡面每一行程式，變數的記憶體也是在這個階段建立(hoisting)，遇到需要呼叫 API 的非同步函式會把裡面的 call back function 丟到 webAPI 排程執行</p>
+</li>
+<li>
+<p>webAPIs 處理非同步函式，當有收到回傳結果，會依照回傳時間順序把 callback function 傳到 callback queue</p>
+</li>
+<li>
+<p>當 stack 清空時，callback queue 就會把 callback function 依序（queue先進先出)丟到 stack 裡執行</p>
+</li>
+<li>
+<p>這整個過程就是 event loop，為了提高瀏覽器的使用體驗，不會被非同步函式等待過程阻塞的機制
+<img src="./browser.png" alt="interpretation"></p>
+</li>
+<li>
+<p>node.js: JavaScript 引擎 + C ++ bindings &amp; thread pool + callback queue (這邊知道的大概即可)</p>
+</li>
+</ul>
+<img src="./node.png" alt="interpretation">
+<p>＊stack 是先進後出(後進先出)的資料結構，queue 是先進先出的資料結構</p>
+<h3 id="execution-context-執行文本">execution context 執行文本</h3>
+<p>＊為了跟執行環境 runtime 做名詞區隔，使用不同中文名稱指稱</p>
+<ul>
+<li>
+<p>執行文本包含<br>
+&ndash; variable environment 變數環境:包含 let const var 宣告, 函式, 參數 arguments obj<br>
+&ndash; scope chain 作用域鏈:讓個別函式可以 ref 到函式外的變數，會存在個別執行文本<br>
+&ndash; this:每個執行文本都有自己的 this，在創造階段時誕生(執行階段前)</p>
+</li>
+<li>
+<p>有創造階段跟執行階段</p>
+</li>
+<li>
+<p>箭頭函式沒有自己的 this 或參數，但可以使用父層的 this 或參數</p>
+</li>
+<li>
+<p>執行順序<br>
+step1. 創造全域執行文本(top-level/not inside the function)<br>
+＊ 只有非 function 的會被執行，因為 function 要被呼叫才會執行<br>
+＊ 只會有一個 global execution context<br>
+step2. 執行全域執行文本(inside global EC)<br>
+step3. 執行函式等待 callback 回傳結果<br>
+＊ 依序呼叫個別函式，個別函式的文本會被創造<br>
+＊ call stack 的內容就是由這些個別函式跟文本所組成</p>
+</li>
+</ul>
+<img src="./EC.png" alt="execution-context" width="800px">
+<h2 id="scope-作用域--scope-chain-作用域鏈">scope 作用域 &amp; scope chain 作用域鏈</h2>
+<h3 id="global-scope-全域">global scope 全域</h3>
+<ul>
+<li>位於 function 跟 block 外</li>
+<li>可以被所有地方存取</li>
+</ul>
+<h3 id="function-scope-函式作用域">function scope 函式作用域</h3>
+<ul>
+<li>也被稱作 local scope</li>
+<li>只能在函式內存取，嘗試存取會出現 error</li>
+<li>ES6 開始嚴格模式下也是 block scope</li>
+</ul>
+<h3 id="block-scopees6-開始出現-區塊作用域">block scope(ES6 開始出現) 區塊作用域</h3>
+<ul>
+<li>let 跟 const 被限制只能在 block 範圍內存取</li>
+<li>var 還是可以被 function scope 存取</li>
+<li>ES6 開始嚴格模式下 function scope 也是 block scope(寫兩次因為很重要)</li>
+</ul>
+<h3 id="scope-chain">scope chain</h3>
+<ul>
+<li>當變數不存在現有 scope，無論是 block 或 function 都可以讀外面父層裡的變數</li>
+<li>找不到時會一層層往外找(variable lookup)，完全找不到會出現 ReferenceError</li>
+<li>只能往外找，不能往內 console.log(function 或 block 裡面的變數)會 ReferenceError</li>
+<li>sibling 之間不行互相讀取</li>
+<li>每個 scope chain 都包含他的變數跟的父層的變數</li>
+<li>scope chain 可以讀取的變數跟 function 在 call stack 執行順序無關</li>
+</ul>
+<img src="./scope.png" alt="scope" width="800px">
+<h3 id="callstack-vs-scope-chain">callstack v.s. scope chain</h3>
+<ul>
+<li>使用下方函式舉例</li>
+<li>step1. 創造全域執行文本<br>
+(全域變數環境：a=&lsquo;Jonas&rsquo;, first=fn, third=fn)</li>
+<li>step2. 執行全域執行文本，創造出個別執行文本<br>
+first()作用域：可以獲取本地作用域跟父層的變數環境<br>
+(變數環境：b=&lsquo;Hello&rsquo;, second=fn, a=&lsquo;Jonas&rsquo;, first=fn, third=fn)<br>
+second()作用域：可以獲取本地作用域跟父層的變數環境<br>
+(變數環境：c, b=&lsquo;Hello&rsquo;, second=fn, a=&lsquo;Jonas&rsquo;, first=fn, third=fn)<br>
+third()作用域：可以獲取本地作用域跟父層的變數環境<br>
+(變數環境：d=&lsquo;Hey&rsquo;, a=&lsquo;Jonas&rsquo;, first=fn, third=fn)</li>
+<li>step3. 執行個別文本(執行函式)，等待 callback 回傳結果</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">first</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">first</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">second</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">second</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;H1&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">third</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">third</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="s1">&#39;Hey!&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// ReferenceError
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="./callstack-and-scope.png" alt="callstack-and-scope" width="800px">
+<p>＊下方是另一個範例，輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Jonas&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">calcAge</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">printAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 執行時裡面沒有age，variable lookup往父層找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">output</span> <span class="o">=</span> <span class="sb">`You are </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, born in </span><span class="si">${</span><span class="nx">birthYear</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">birthYear</span> <span class="o">&gt;=</span> <span class="mi">1981</span> <span class="o">&amp;&amp;</span> <span class="nx">birthYear</span> <span class="o">&lt;=</span> <span class="mi">1996</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">var</span> <span class="nx">millenial</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1">// 創造跟外面一樣變數名的新變數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Steven&#39;</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="sb">`you are a millenial, </span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 執行時裡面沒有firstName，往父層找 you are a millenial, Jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">      <span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 內部重新賦值output 下方會列印出新的值的output
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">output</span> <span class="o">=</span> <span class="s1">&#39;New output&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="c1">// 無法獲取內部變數 str is not defined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">millenial</span><span class="p">);</span> <span class="c1">// var不是block scope是function scope因此可以獲取同function的變數 true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> <span class="c1">//add function 嚴格模式下也是block scope 會ReferenceError，非嚴格模式下會是8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="c1">//&#39;New output&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">printAge</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">age</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">calcAge</span><span class="p">(</span><span class="mi">1991</span><span class="p">)</span> <span class="c1">// You are 46, born 1991
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span> <span class="c1">// ReferenceError 無法獲取內部變數age
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">printAge</span><span class="p">();</span> <span class="c1">// ReferenceError 無法獲取內部變數 printAge()
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="總結">總結</h3>
+<ul>
+<li>要了解變數存活的區域，哪裡可以獲取這些值</li>
+<li>如何設計變數的位置跟獲取程式的變數</li>
+<li>lexical scoping 是使用 function 跟 block 等封閉環境，控制變數存取</li>
+<li>scope 宣告變數的環境，有 global 全域, function 函式跟 block 區塊三種作用域</li>
+<li>所有 scope 都可以獲取父層的 scope，因為這是一條 scope chain</li>
+</ul>
+<h2 id="hoisting-提升">Hoisting 提升</h2>
+<ul>
+<li>表面上是可以在宣告前被使用</li>
+<li>其實是在執行階段前，已經在創造階段就建立在變數環境(variable environment)</li>
+<li>不同變數行為不同</li>
+</ul>
+<h3 id="函式宣告">函式宣告</h3>
+<ul>
+<li>函式宣告會提升</li>
+<li>未宣告使用為實際值</li>
+<li>變數存取範圍嚴格模式下為 block scope，非嚴格模式下為 function scope</li>
+</ul>
+<h3 id="var">var</h3>
+<ul>
+<li>var 會提升</li>
+<li>未宣告使用為 undefined</li>
+<li>變數存取範圍為 function scope</li>
+</ul>
+<h3 id="constlet">const/let</h3>
+<ul>
+<li>const 跟 let，技術上來說有提升但是未初始化 uninitialized 沒有可取用的值</li>
+<li>未宣告使用下會被鎖在 TDZ(temporary dead zone)</li>
+<li>變數存取範圍為 block scope</li>
+</ul>
+<img src="./hoist.png" alt="hoist" width="800px">
+<h3 id="函式表達式跟箭頭函式">函式表達式跟箭頭函式</h3>
+<ul>
+<li>函式表達式跟箭頭函式若用 var 存取會提升</li>
+<li>未宣告使用是 undefined，反之則跟 const/let 特性一樣</li>
+<li>這也是為何在函式表達式中，我們無法使用在宣告變數前調用函式，而函式宣告可以不顧函式宣告順序，任何地方都可以調用</li>
+</ul>
+<h3 id="tdz-是什麼-es6-開始出現">TDZ 是什麼 (ES6 開始出現)</h3>
+<ul>
+<li>TDZ 為變數初始化前的區塊</li>
+<li>下圖 job 在被 const 宣告前被呼叫，會出現 ReferenceError cannot access &lsquo;job&rsquo; before initialization，需要宣告後才能被使用</li>
+<li>但如果呼叫完全沒被創造的變數，會顯示另一種訊息 ReferenceError x is not defined</li>
+<li>有 TDZ 比較容易抓出未宣告使用的錯誤</li>
+<li>另一個 TDZ 存在好處是，因 const 無法重新賦值，所以無法設定 undefined 再給新的值，TDZ 可以讓 const 順利運作</li>
+<li>hoisting 的好處：mutual recursion，讓 code 可讀性高，而 var 的 hoisting 算是副產物，後見之明看來不是好東東</li>
+</ul>
+<img src="./TDZ.png" alt="TDZ" width="800px">
+<p>＊下方輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// Variables
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">);</span> <span class="c1">// not defined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">job</span><span class="p">);</span> <span class="c1">// ReferenceError cannot access &#39;job&#39; before initialization
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">year</span><span class="p">);</span> <span class="c1">// ReferenceError cannot access &#39;job&#39; before initialization
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">job</span> <span class="o">=</span> <span class="s1">&#39;teacher&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">year</span> <span class="o">=</span> <span class="mi">1991</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">--</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Functions
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addDecl</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addExpr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// cannot access &#39;addExpr&#39; before initialization
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addArrow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// undefined(2,3) -&gt; // addArrow is not a function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">addDecl</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">addExpr</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addArrow</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>因為 hoisting 造成的 bug 範例，使用 const/let 可避免，養成先宣告變數再使用的好習慣</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// 原本期待不存在product執行deleteShoppingCart()
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 因為沒宣告變數就使用，值變成undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1">// !undefined而變成true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">!</span><span class="nx">numProducts</span><span class="p">);</span> <span class="c1">//true  // !undefined is true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">numProducts</span><span class="p">)</span> <span class="nx">deleteShoppingCart</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">numProducts</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">deleteShoppingCart</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;All products deleted!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當用 var 宣告，會在 browser 的 window(全域變數)下多一個屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span> <span class="o">===</span> <span class="nb">window</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">z</span> <span class="o">===</span> <span class="nb">window</span><span class="p">.</span><span class="nx">z</span><span class="p">);</span> <span class="c1">// false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="this-是什麼">this 是什麼?</h2>
+<ul>
+<li>所有執行文本下都會有的特別變數，值取決於被呼叫的方式</li>
+<li>作為 Method(物件下的 function)呼叫時，this 是呼叫他的變數</li>
+<li>一般函式呼叫，嚴格模式下 this 值是 undefined，非嚴格模式下為全域物件</li>
+<li>箭頭函式沒有自己的 this，this 值取決於父層(parent scope)</li>
+<li>eventListener 呼叫時，指向觸發的元素</li>
+<li>this 不會是函式自己，也不會是變數環境(Variable Environment)</li>
+<li>new, call, apply, bind 會於<a class="link" href="https://bacnotes.github.io/p/javascript-advanced-part1/"  title="其他篇"
+     target="_blank" rel="noopener"
+    >其他篇</a>介紹</li>
+</ul>
+<p>＊下方輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// this Keyword in Practice
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">//window object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">calcAge</span><span class="p">(</span><span class="mi">1991</span><span class="p">);</span> <span class="c1">// 46 嚴格模式 this是undefined 非嚴格模式this是window object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAgeArrow</span> <span class="o">=</span> <span class="nx">birthYear</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">calcAgeArrow</span><span class="p">(</span><span class="mi">1980</span><span class="p">);</span> <span class="c1">// 父層的this window object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 46 jonas呼叫 this是jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">matilda</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">2017</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">matilda</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">;</span> <span class="c1">// copy calcAge method from jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">matilda</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// matilda, 20
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// this是動態的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">;</span> <span class="c1">// copy function to a new variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">f</span><span class="p">();</span> <span class="c1">// 一般函式方法呼叫this undefined, cannot read property &#39;year&#39; of undefined at calcAge
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="讓-this-指向父層的-2-種做法">讓 this 指向父層的 2 種做法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// var firstName = &#39;Matilda&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// console.log(this); // jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Solution 1 (ES6前) 在函式外定義self為this 取得jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const self = this; // self or that
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const isMillenial = function () {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   console.log(self);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   console.log(self.year &gt;= 1981 &amp;&amp; self.year &lt;= 1996);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// };
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Solution 2 （modern) 使用箭頭函式，沒有自己的this，會往父層找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">isMillenial</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">&gt;=</span> <span class="mi">1981</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">&lt;=</span> <span class="mi">1996</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">isMillenial</span><span class="p">();</span> <span class="c1">// 一般函式呼叫 嚴格模式下undefined 除非用self綁定this或用箭頭函式呼叫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 沒有solution狀況下 cannot read property of &#39;year&#39; of undefined
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="一般函式-vs-箭頭函式">一般函式 v.s. 箭頭函式</h2>
+<h3 id="物件內的函式">物件內的函式</h3>
+<ul>
+<li>當使用一般函式會有自己的 this，可以取得 jonas.firsName</li>
+<li>當使用箭頭函式會沒有自己的 this，會往父層取變數，bug 通常在這裡發生（可能取得 undefined 或真的有一個變數值)</li>
+<li>全域避免使用 var</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// 用 let/const 的話會是 undefined，使用 var 就會是&#39;hey mirenda&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;mirenda&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 箭頭函式沒有自己的this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">greet</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// window obj, hey mirenda
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="arguments">arguments</h3>
+<ul>
+<li>只存在一般函式，箭頭函式沒有</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">addExpr</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">addExpr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">addExpr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span> <span class="c1">// 雖然function上面參數設定2個，但可以加上更多arguments存到Arguments陣列，可以loop加總這些參數等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addArrow</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">addArrow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>arguments 跟其餘運算子的搭配</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">orderPizza</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mainIngredients</span><span class="p">,</span> <span class="p">...</span><span class="nx">otherIngredients</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mainIngredients</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">otherIngredients</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderPizza</span><span class="p">(</span><span class="s1">&#39;mushrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;onions&#39;</span><span class="p">,</span> <span class="s1">&#39;olives&#39;</span><span class="p">,</span> <span class="s1">&#39;spinach&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// mushrooms [ &#39;onions&#39;, &#39;olives&#39;, &#39;spinach&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderPizza</span><span class="p">(</span><span class="s1">&#39;mushrooms&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// mushrooms []
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當函式很多 argument 不好記順序，可以傳入一個物件作為參數，函式會解構物件並執行函式</li>
+<li>常用於第三方函式庫</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">starterMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Focaccia&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruschetta&#39;</span><span class="p">,</span> <span class="s1">&#39;Garlic Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Caprese Salad&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mainMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;Pasta&#39;</span><span class="p">,</span> <span class="s1">&#39;Risotto&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">orderDelivery</span><span class="o">:</span> <span class="kd">function</span> <span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">mainIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>    <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span>   <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">address</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="sb">`Order received! </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">starterMenu</span><span class="p">[</span><span class="nx">starterIndex</span><span class="p">]</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">mainMenu</span><span class="p">[</span><span class="nx">mainIndex</span><span class="p">]</span><span class="si">}</span><span class="sb"> will be delivered to </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb"> at </span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderDelivery</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">time</span><span class="o">:</span> <span class="s1">&#39;22:30&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">address</span><span class="o">:</span> <span class="s1">&#39;via del sole, 21&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mainIndex</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">starterIndex</span><span class="o">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Order received! Garlic Bread and Risotto will be delivered to via del sole, 21 at 22:30
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 沒有全部參數 會用函式參數的預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderDelivery</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">address</span><span class="o">:</span> <span class="s1">&#39;via del sole, 21&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">starterIndex</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Order received! Garlic Bread and Pizza will be delivered to via del sole, 21 at 00:00
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="primitives-vs-objects">primitives v.s. objects</h2>
+<ul>
+<li>primitives 包含 數字、字串、布林、undefined、null、Symbol、BigInt，其他都是 objects</li>
+<li>primitives 記憶體存在 call stack</li>
+<li>objects 記憶體存在 Heap</li>
+</ul>
+<img src="./primative.png" alt="primatives-objects" width="800px">
+<h3 id="primitives">primitives</h3>
+<ul>
+<li>let age = 30 給一個 call stack 的記憶體地址跟 30 的值(0001)</li>
+<li>let oldAge = age 傳 age 的 call stack 地址(0001)給 oldAge</li>
+<li>primitives 的值是 immutable（不可變更），當我們寫 age = 31 會再給一個新的記憶體的地址跟值給 age(0002)，而非修改原本的 30 的那塊記憶體(0001)的內容</li>
+</ul>
+<h3 id="objects">objects</h3>
+<ul>
+<li>const me = {name: &lsquo;Jonas&rsquo;}，給一個 call stack 記憶體的地址跟 Heap 的地址</li>
+<li>因為物件檔案可能太大，所以記憶體實際上是存在 Heap</li>
+<li>const friend = me，會傳 me 記憶體的地址給 friend</li>
+<li>friend.name = &lsquo;mirenda&rsquo; 物件跟上面的 primitives 不同，會改到 me 的值(D30F)，值參照同樣的 Heap 地址，並沒有另外再給一個新的記憶體，可以參考下方圖表的箭頭（只有一個)</li>
+</ul>
+<img src="./address.png" alt="address" width="800px">
+<h3 id="常用淺拷貝方法">常用淺拷貝方法</h3>
+<ul>
+<li>Object.assign</li>
+<li>用於物件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessica</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jessica&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Williams&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">27</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">family</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessicaCopy</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">jessica</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">jessicaCopy</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="s1">&#39;Davis&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Before marriage:&#39;</span><span class="p">,</span> <span class="nx">jessica</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span> <span class="c1">// &#39;Williams&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;After marriage: &#39;</span><span class="p">,</span> <span class="nx">jessicaCopy</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span> <span class="c1">// &#39;Davis&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>展開運算子</li>
+<li>除了物件外也可用於 string、array、array-like、Set、Map 等可迭代物件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">arrCopy</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arr</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#javascript-的特性">JavaScript 的特性</a>
+      <ul>
+        <li><a href="#high-level-高階語言">high level 高階(語言)</a></li>
+        <li><a href="#prototype-based-object-oriented-物件導向">prototype based object-oriented 物件導向</a></li>
+        <li><a href="#interpreted-or-just-in-time-compiled">interpreted or just-in-time compiled</a></li>
+        <li><a href="#dynamic-typed-動態資料型態">dynamic-typed 動態資料型態</a></li>
+        <li><a href="#single-threaded-單執行緒">single-threaded 單執行緒</a></li>
+        <li><a href="#garbage-collected-有記憶體回收機制">garbage collected 有記憶體回收機制</a></li>
+        <li><a href="#multi-paradigm-可以同時使用多種風格來寫程式">multi-paradigm 可以同時使用多種風格來寫程式</a></li>
+        <li><a href="#with-first-class-functions-一級函式">with first-class functions 一級函式</a></li>
+        <li><a href="#non-blocking-event-loop-concurrent-model">non-blocking event loop concurrent model</a></li>
+      </ul>
+    </li>
+    <li><a href="#javascript-引擎-vs-執行環境-runtime-vs執行文本-context">JavaScript 引擎 v.s. 執行環境 runtime v.s.執行文本 context</a>
+      <ul>
+        <li><a href="#javascript-引擎">JavaScript 引擎</a></li>
+        <li><a href="#javascript-runtime-執行環境">JavaScript Runtime 執行環境</a></li>
+        <li><a href="#execution-context-執行文本">execution context 執行文本</a></li>
+      </ul>
+    </li>
+    <li><a href="#scope-作用域--scope-chain-作用域鏈">scope 作用域 &amp; scope chain 作用域鏈</a>
+      <ul>
+        <li><a href="#global-scope-全域">global scope 全域</a></li>
+        <li><a href="#function-scope-函式作用域">function scope 函式作用域</a></li>
+        <li><a href="#block-scopees6-開始出現-區塊作用域">block scope(ES6 開始出現) 區塊作用域</a></li>
+        <li><a href="#scope-chain">scope chain</a></li>
+        <li><a href="#callstack-vs-scope-chain">callstack v.s. scope chain</a></li>
+        <li><a href="#總結">總結</a></li>
+      </ul>
+    </li>
+    <li><a href="#hoisting-提升">Hoisting 提升</a>
+      <ul>
+        <li><a href="#函式宣告">函式宣告</a></li>
+        <li><a href="#var">var</a></li>
+        <li><a href="#constlet">const/let</a></li>
+        <li><a href="#函式表達式跟箭頭函式">函式表達式跟箭頭函式</a></li>
+        <li><a href="#tdz-是什麼-es6-開始出現">TDZ 是什麼 (ES6 開始出現)</a></li>
+      </ul>
+    </li>
+    <li><a href="#this-是什麼">this 是什麼?</a>
+      <ul>
+        <li><a href="#讓-this-指向父層的-2-種做法">讓 this 指向父層的 2 種做法</a></li>
+      </ul>
+    </li>
+    <li><a href="#一般函式-vs-箭頭函式">一般函式 v.s. 箭頭函式</a>
+      <ul>
+        <li><a href="#物件內的函式">物件內的函式</a></li>
+        <li><a href="#arguments">arguments</a></li>
+      </ul>
+    </li>
+    <li><a href="#primitives-vs-objects">primitives v.s. objects</a>
+      <ul>
+        <li><a href="#primitives">primitives</a></li>
+        <li><a href="#objects">objects</a></li>
+        <li><a href="#常用淺拷貝方法">常用淺拷貝方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

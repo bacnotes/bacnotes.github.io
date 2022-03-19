@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='提到React的樣式，就不得不提到當今趨勢的Styled Component跟CSS modules。這篇會分析四種撰寫樣式方法的優缺點，包含inline style、CSS、Styled Component、CSS modules。'><title>React CSS撰寫方式好多種，我該怎麼選？｜React - The Complete Guide｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/react-styling/'>
+
+<link rel="stylesheet" href="/scss/style.min.1988f9e369e15c7f9911763ec4928b521d4019b90691676ee318cbc43db61459.css"><meta property='og:title' content='React CSS撰寫方式好多種，我該怎麼選？｜React - The Complete Guide｜bacnotes備份筆記'>
+<meta property='og:description' content='提到React的樣式，就不得不提到當今趨勢的Styled Component跟CSS modules。這篇會分析四種撰寫樣式方法的優缺點，包含inline style、CSS、Styled Component、CSS modules。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/react-styling/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='React' /><meta property='article:published_time' content='2022-02-02T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-02-02T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/react-styling/pexels-vlada-karpovich-7025515.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="React CSS撰寫方式好多種，我該怎麼選？｜React - The Complete Guide｜bacnotes備份筆記">
+<meta name="twitter:description" content="提到React的樣式，就不得不提到當今趨勢的Styled Component跟CSS modules。這篇會分析四種撰寫樣式方法的優缺點，包含inline style、CSS、Styled Component、CSS modules。"><meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/react-styling/pexels-vlada-karpovich-7025515.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/react-styling/">
+                <img src="/p/react-styling/pexels-vlada-karpovich-7025515_hu3d03a01dcc18bc5be0e67db3d8d209a6_3812665_800x0_resize_q75_box.jpg"
+                        srcset="/p/react-styling/pexels-vlada-karpovich-7025515_hu3d03a01dcc18bc5be0e67db3d8d209a6_3812665_800x0_resize_q75_box.jpg 800w, /p/react-styling/pexels-vlada-karpovich-7025515_hu3d03a01dcc18bc5be0e67db3d8d209a6_3812665_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post React CSS撰寫方式好多種，我該怎麼選？｜React - The Complete Guide｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/react-styling/">React CSS撰寫方式好多種，我該怎麼選？｜React - The Complete Guide｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            提到React的樣式，就不得不提到當今趨勢的Styled Component跟CSS modules。這篇會分析四種撰寫樣式方法的優缺點，包含inline style、CSS、Styled Component、CSS modules。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 02, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 4 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="元件該怎麼添加-css-樣式">元件該怎麼添加 CSS 樣式?</h2>
+<p>主要方法有四種：</p>
+<ul>
+<li>Inline style 直接給他寫上去(最難維護)</li>
+<li>CSS(全域套用容易撞名)</li>
+<li>Styled Component(CSS in JS)</li>
+<li>CSS modules(CSS JS 分離)</li>
+</ul>
+<h2 id="inline-style-撰寫動態樣式">inline style 撰寫動態樣式</h2>
+<ul>
+<li>useState 來更新有效無效狀態</li>
+<li>沒效套用紅色，有效套用黑色</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">props</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span> <span class="nx">enteredValue</span><span class="p">,</span> <span class="nx">setEnteredValue</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span> <span class="nx">isValid</span><span class="p">,</span> <span class="nx">setIsValid</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">goalInputChangeHandler</span> <span class="o">=</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setEnteredValue</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="nx">enteredValue</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setIsValid</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">style </span><span class="o">=</span><span class="p">{{</span> <span class="nx">borderColor</span><span class="o">:</span> <span class="o">!</span><span class="nx">isValid</span> <span class="o">?</span> <span class="s1">&#39;red&#39;</span> <span class="o">:</span> <span class="s1">&#39;Black&#39;</span><span class="p">,</span> <span class="nx">background</span><span class="o">:</span> <span class="o">!</span><span class="nx">isValid</span> <span class="o">?</span> <span class="s1">&#39;red&#39;</span> <span class="o">:</span> <span class="s1">&#39;Black&#39;</span><span class="p">}}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">goalInputChangeHandler</span><span class="p">}&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="為什麼不用-inline-style-撰寫動態樣式">為什麼不用 inline style 撰寫動態樣式?</h3>
+<ul>
+<li>分散在 html 程式的樣式不好管理</li>
+<li>inline style 會覆蓋掉其他 CSS 樣式(權重僅次!important)，找改動點更費時</li>
+</ul>
+<h2 id="css-撰寫動態樣式">CSS 撰寫動態樣式</h2>
+<ul>
+<li>把剛剛的樣式貼到 CSS file</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">form-control</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">outline</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">border-corlor</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="err">...等等其他固定的樣式</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">invalid</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>拿掉 inline style ，動態添加 className</li>
+<li><a class="link" href="https://bacnotes.github.io/p/react-knowledge-101/"  title="上一篇"
+     target="_blank" rel="noopener"
+    >上一篇&quot;</a>有提到 class 是 JavaScript 的保留字，所以不使用 class</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"> <span class="c1">// 固定樣式form-control搭配動態樣式isValid
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="sb">`form-control </span><span class="si">${</span><span class="o">!</span><span class="nx">isValid</span> <span class="o">?</span> <span class="s1">&#39;invalid&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="si">}</span><span class="sb">`</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">goalInputChangeHandler</span><span class="p">}&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="為什麼不用-css-撰寫動態樣式">為什麼不用 CSS 撰寫動態樣式</h3>
+<ul>
+<li>因為樣式會套用在全域環境，即生效在所有元件上，而大型專案上在 className 命名的時候很難避免撞名，樣式容易發生衝突</li>
+<li>使用 Styled Component 套件來創造 scoped CSS</li>
+</ul>
+<h2 id="styled-component-撰寫動態樣式">Styled Component 撰寫動態樣式</h2>
+<h3 id="安裝套件跟撰寫方式">安裝套件跟撰寫方式</h3>
+<ul>
+<li>cd 到專案資料夾<code> npm install --save styled-components</code></li>
+<li>const Input = styled.html 元素<code>CSS樣式</code> (attacked template literal)</li>
+<li>styled package 有所有 html 元素的方法，透過``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中</li>
+<li>動態產生獨特 hash</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styled</span> <span class="nx">from</span> <span class="s2">&#34;styled-components&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">input</span><span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">  font: inherit;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  padding: 0.5rem 1.5rem;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  // 偽元素選擇器
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:focus {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    outline: none;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:hover,
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:active {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    background: #ac2342;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-props-動態管理樣式">使用 props 動態管理樣式</h3>
+<ul>
+<li>可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 這種聯集的選擇器)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styled</span> <span class="nx">from</span> <span class="s1">&#39;styled-components&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">FormControl</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">  margin: 0.5rem 0;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:label {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    font-weight: bold;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    display: block;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    margin-bottom: 0.5rem;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    color: </span><span class="si">${</span><span class="nx">props</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">invalid</span> <span class="o">?</span> <span class="s1">&#39;red&#39;</span> <span class="o">:</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:input {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    display: block;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    width: 100%;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    border: 1px solid </span><span class="si">${</span><span class="nx">props</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">invalid</span> <span class="o">?</span> <span class="s1">&#39;red&#39;</span> <span class="o">:</span> <span class="s1">&#39;#ccc&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    background: </span><span class="si">${</span><span class="nx">props</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">invalid</span> <span class="o">?</span> <span class="s1">&#39;#ffd7d7&#39;</span> <span class="o">:</span> <span class="s1">&#39;transparent&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    font: inherit;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    line-height: 1.5rem;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    padding: 0 0.25rem;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:input:focus {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    outline: none;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    background: #fad0ec;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    border-color: #8b005d;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">formSubmitHandler</span><span class="p">}&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 原本CSS&lt;div className={`form-control ${!isValid ? &#39;invalid&#39;:&#39;&#39;}`}&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 改成FormControl是一個帶有樣式的 div
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 動態className改成invalid或valid透過props 布林值決定
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">&lt;</span><span class="nt">FormControl</span> <span class="na">invalid</span><span class="o">=</span><span class="p">{</span><span class="o">!</span><span class="nx">isValid</span><span class="p">}&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span><span class="nx">Course</span> <span class="nx">Goal</span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">goalInputChangeHandler</span><span class="p">}</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">FormControl</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span><span class="nx">Add</span> <span class="nx">Goal</span><span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="style-component-使用-media-queries">style component 使用 media queries</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">button</span><span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">  // 手機版展開
+</span></span></span><span class="line"><span class="cl"><span class="sb">  width: 100%;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  font: inherit;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  padding: 0.5rem 1.5rem;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  border: 1px solid #8b005d;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  color: white;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  background: #8b005d;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+</span></span></span><span class="line"><span class="cl"><span class="sb">  cursor: pointer;
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">  // 平板變小
+</span></span></span><span class="line"><span class="cl"><span class="sb">  @media (min-width: 768px) {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    width: auto;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:focus {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    outline: none;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:hover,
+</span></span></span><span class="line"><span class="cl"><span class="sb">  &amp;:active {
+</span></span></span><span class="line"><span class="cl"><span class="sb">    background: #ac0e77;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    border-color: #ac0e77;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+</span></span></span><span class="line"><span class="cl"><span class="sb">  }
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="style-component-的優缺點">style component 的優缺點</h3>
+<ul>
+<li>優點：不用想 className 名字了</li>
+<li>缺點：隨機的 hash 不容易 debug，但透過安裝 babel-plugin-styled-components 可以在瀏覽器看到元件名稱</li>
+<li>適合喜歡 CSS 跟 JS 邏輯寫在一起的人</li>
+</ul>
+<h2 id="css-modules">CSS modules</h2>
+<ul>
+<li>不用安裝套件，CRA 本身支援 CSS modules</li>
+<li>把副檔名.css 檔案改成.module.css，引用路徑也要改</li>
+<li>className = {styles.樣式選擇器名}</li>
+<li>瀏覽器看到 class 名為：元件名_class 名__hash，因此不會撞名</li>
+<li>class 名若有橫線<code>-</code>連接，寫法需要改成<code>${style['form-control']}</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// import後面的變數名自由命名，會當作物件(整包樣式屬性)傳入，這邊以styles為範例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s2">&#34;./Button.module.css&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 這邊
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">type</span><span class="p">}</span> <span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">button</span><span class="p">}</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="css-modules-使用-media-queries">CSS modules 使用 media queries</h3>
+<ul>
+<li>一樣寫在 CSS 檔案就好</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font</span><span class="p">:</span> <span class="kc">inherit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">rem</span> <span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#8b005d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="mh">#8b005d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">focus</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">outline</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">hover</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">active</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="mh">#ac0e77</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="mh">#ac0e77</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">8</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="css-modules-的優缺點">CSS modules 的優缺點</h3>
+<ul>
+<li>優點：命名時不用擔心撞名，hash 維持獨特性</li>
+<li>缺點：需要改副檔名，一開始沒導入後面手動要改比較累一點</li>
+<li>適合喜歡 CSS 跟 JS 分離的人</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/react/">React</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#元件該怎麼添加-css-樣式">元件該怎麼添加 CSS 樣式?</a></li>
+    <li><a href="#inline-style-撰寫動態樣式">inline style 撰寫動態樣式</a>
+      <ul>
+        <li><a href="#為什麼不用-inline-style-撰寫動態樣式">為什麼不用 inline style 撰寫動態樣式?</a></li>
+      </ul>
+    </li>
+    <li><a href="#css-撰寫動態樣式">CSS 撰寫動態樣式</a>
+      <ul>
+        <li><a href="#為什麼不用-css-撰寫動態樣式">為什麼不用 CSS 撰寫動態樣式</a></li>
+      </ul>
+    </li>
+    <li><a href="#styled-component-撰寫動態樣式">Styled Component 撰寫動態樣式</a>
+      <ul>
+        <li><a href="#安裝套件跟撰寫方式">安裝套件跟撰寫方式</a></li>
+        <li><a href="#使用-props-動態管理樣式">使用 props 動態管理樣式</a></li>
+        <li><a href="#style-component-使用-media-queries">style component 使用 media queries</a></li>
+        <li><a href="#style-component-的優缺點">style component 的優缺點</a></li>
+      </ul>
+    </li>
+    <li><a href="#css-modules">CSS modules</a>
+      <ul>
+        <li><a href="#css-modules-使用-media-queries">CSS modules 使用 media queries</a></li>
+        <li><a href="#css-modules-的優缺點">CSS modules 的優缺點</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
