@@ -13,7 +13,7 @@
         
         <guid>https://bacnotes.github.io/p/github-deploy-hugo/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash.jpg" alt="Featured image of post 只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記" /&gt;&lt;p&gt;關於部署的工具有很多，身為工程師的你一定聽過GitHub!&lt;br&gt;
-&lt;img src=&#34;./github_logo.png&#34; alt=&#34;github&#34; width=&#34;500&#34;/&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;h2 id=&#34;為什麼用github部署&#34;&gt;為什麼用GitHub部署&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;因為免費(o)&lt;/li&gt;
@@ -26,13 +26,13 @@
 那SEO表現呢?  這時候可以用&lt;a class=&#34;link&#34; href=&#34;https://ahrefs.com/website-authority-checker&#34;  title=&#34;ahrefs&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ahrefs&lt;/a&gt;快速確認一下&lt;/p&gt;
-&lt;img src=&#34;./github.png&#34; alt=&#34;github&#34; width=&#34;500&#34;/&gt;
+&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;&lt;strong&gt;GitHub&lt;/strong&gt;在網站權重跟外部連結數都有很好的表現&lt;br&gt;
 拿&lt;strong&gt;medium&lt;/strong&gt;來當對手的話呢&lt;br&gt;
-&lt;img src=&#34;./medium.png&#34; alt=&#34;medium&#34; width=&#34;500&#34;/&gt;&lt;br&gt;
+&lt;!-- raw HTML omitted --&gt;&lt;br&gt;
 &lt;strong&gt;GitHub 加十分 🙌&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;跟另一個也是很常拿來建立部落格的平台，且SEO客製化程度較高的&lt;strong&gt;wordpress&lt;/strong&gt;相比呢
-&lt;img src=&#34;./wordpress.png&#34; alt=&#34;wordpress&#34; width=&#34;500&#34;/&gt;&lt;br&gt;
+&lt;!-- raw HTML omitted --&gt;&lt;br&gt;
 &lt;strong&gt;GitHub 再加十分 🙌&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;看起來是不錯的選擇唷！那麼來實作看看吧！&lt;/p&gt;
 &lt;h2 id=&#34;github-pages部署靜態網頁&#34;&gt;GitHub Pages部署靜態網頁&lt;/h2&gt;

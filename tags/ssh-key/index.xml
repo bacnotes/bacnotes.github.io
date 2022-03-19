@@ -12,7 +12,7 @@
         <pubDate>Sat, 25 Dec 2021 00:00:00 +0000</pubDate>
         
         <guid>https://bacnotes.github.io/p/github-ssh-key/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/github-ssh-key/maria-ziegler-jJnZg7vBfMs-unsplash.jpeg" alt="Featured image of post 關於SSH key與多組GitHub帳號切換｜bacnotes備份筆記" /&gt;&lt;img src=&#34;./cat_white.png&#34; alt=&#34;white-cat-meme&#34; width=&#34;400&#34;/&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/github-ssh-key/maria-ziegler-jJnZg7vBfMs-unsplash.jpeg" alt="Featured image of post 關於SSH key與多組GitHub帳號切換｜bacnotes備份筆記" /&gt;&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;Um&amp;hellip;在部署前卡到了 Github 多組帳號權限的問題&lt;br&gt;
 如果你的電腦只有使用 1 組 GitHub 帳號，可以點下方連結直接到下一篇&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/github-deploy-hugo&#34;  title=&#34;[只要3秒，使用GitHub一鍵部署你的Hugo部落格&#34;
@@ -46,7 +46,7 @@ fatal: 無法讀取遠端版本庫。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;要 commit 的時候，被最初註冊的 userA 帳號 deny&lt;/p&gt;
 &lt;p&gt;Um&amp;hellip;啊！&lt;/p&gt;
-&lt;img src=&#34;./cat.jpg&#34; alt=&#34;cat-meme&#34; width=&#34;400&#34;/&gt;  
+&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份，應該是 SSH key 的問題吧？
 有 2 組帳號，生 2 組 key 應該就沒問題了吧！欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key…&lt;/p&gt;
 &lt;p&gt;上網查了一下相關文章，發現可以寫一個 config 來讓不同帳號對應各自的 key&lt;/p&gt;
