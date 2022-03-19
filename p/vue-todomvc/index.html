@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='上次聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。'><h1><title>用TodoMVC 複習 Vue Option API｜bacnotes備份筆記</title></h1>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/vue-todomvc/'>
+
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='用TodoMVC 複習 Vue Option API｜bacnotes備份筆記'>
+<meta property='og:description' content='上次聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/vue-todomvc/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Vue' /><meta property='article:published_time' content='2022-02-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-02-26T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/vue-todomvc/Dup9I4d.jpeg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="用TodoMVC 複習 Vue Option API｜bacnotes備份筆記">
+<meta name="twitter:description" content="上次聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/vue-todomvc/Dup9I4d.jpeg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <p class="site-name"><a href="/">bacnotes備份筆記</a></p>
+            <p class="site-description">記錄小小Junior的學習過程</p>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/vue-todomvc/">
+                <img src="/p/vue-todomvc/Dup9I4d_huebbfad1edfa8e198fe68a27ac6a615ca_19543_800x0_resize_q75_box.jpeg"
+                        srcset="/p/vue-todomvc/Dup9I4d_huebbfad1edfa8e198fe68a27ac6a615ca_19543_800x0_resize_q75_box.jpeg 800w, /p/vue-todomvc/Dup9I4d_huebbfad1edfa8e198fe68a27ac6a615ca_19543_1600x0_resize_q75_box.jpeg 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 用TodoMVC 複習 Vue Option API｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <p class="article-title">
+            <a href="/p/vue-todomvc/">用TodoMVC 複習 Vue Option API｜bacnotes備份筆記</a>
+        </p>
+    
+        
+        <p class="article-subtitle">
+            上次聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。
+        </p>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 26, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 15 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="什麼是-vue">什麼是 Vue</h2>
+<!-- raw HTML omitted -->
+<ul>
+<li>Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)，目前三大框架主流之一</li>
+<li>以元件為中心的宣告式程式設計，無需直接操作 DOM，資料驅動畫面，透過雙向綁定讓資料有變化畫面也會響應，提高開發效率</li>
+<li>實現關注點分離，把視覺呈現、資料等元素，放在單一檔案中，但又在技術上切分得很乾淨；template 專注在 HTML 結構，script 處理 JavaScript 邏輯，Style 則是撰寫樣式的部分，每一模組各自有獨立關注焦點</li>
+<li>過往 DOM 操作，元素需要一個個用 CSS 選擇器選出來，而 Vue 只在單頁面創造一個容器<code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code>；其他變數跟事件綁定則是使用語法糖直接寫在 HTML 上</li>
+<li>SPA 單頁應用，不像過往跟 server 溝通，每次發請求收到新的 HTML 就會重新渲染頁面，Vue 可部分更新畫面，不需要整個頁面重新渲染，使用者體驗佳(伺服器傳送一次 HTML，就接管整個頁面的生命週期)；對比全端開發的多頁應用，則每次請求後都會再刷新一次頁面</li>
+<li>程式碼較簡潔，可讀性高(相對沒有使用框架的狀況)，有助於後續協作跟維護</li>
+</ul>
+<h2 id="framework-框架-vs-library-函式庫">Framework 框架 v.s Library 函式庫</h2>
+<ul>
+<li>兩者都是幫助我們在開發時可以少寫一些 code 的工具</li>
+<li>差異在於函式庫是我們決定呼叫的時機，而框架是我們依照邏輯去填寫框架所需要的資料，框架決定呼叫的時機</li>
+<li>框架呼叫我們的代碼，我們的代碼呼叫函式庫</li>
+<li>函式庫被包含在框架裡</li>
+</ul>
+<h3 id="framework-框架eg-vue-react-angular">framework 框架(e.g. Vue, React, Angular)</h3>
+<ul>
+<li>有自己的生命週期來決定調用這些資料跟方法的時機，裡面的資料跟方法該如何傳遞會有一定的規範，</li>
+</ul>
+<h3 id="library-函式庫eg-dayjs-sweetalert">Library 函式庫(e.g. day.js, SweetAlert)</h3>
+<ul>
+<li>類似套件的概念，透過函式庫的處理，可以獲取對應的回傳結果(格式轉換/彈跳視窗)</li>
+</ul>
+<p><a class="link" href="https://www.freecodecamp.org/news/the-difference-between-a-framework-and-a-library-bd133054023f/"  title="The Difference Between a Framework and a Library"
+     target="_blank" rel="noopener"
+    >The Difference Between a Framework and a Library</a></p>
+<h2 id="建構-vue-專案-的方式">建構 Vue 專案 的方式</h2>
+<ul>
+<li>
+<p>CDN
+開發版：會有對應 console warnings
+<a class="link" href="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"  target="_blank" rel="noopener"
+    >https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js</a></p>
+<p>上線版：optimized for size and speed
+<a class="link" href="https://cdn.jsdelivr.net/npm/vue@2"  target="_blank" rel="noopener"
+    >https://cdn.jsdelivr.net/npm/vue@2</a></p>
+<p>CDN 優點：
+&ndash; 依照地區最近的伺服器提供服務(透過不同節點提供當地使用者服務)，減少存取資料延遲
+&ndash; CDN 伺服器分擔流量，降低本來的 loading
+&ndash; CDN 有快取，當服務突然有問題短時間還可以撐一下</p>
+<p>CDN 缺點：
+&ndash; 要付費
+&ndash; CDN 掛掉你的產品也會掛掉
+&ndash; 每次網站更新，需要主動清除 CDN 快取，不然使用者會看到不夠即時的 資訊</p>
+</li>
+<li>
+<p>Vue CLI
+&ndash; 基於 Webpack 打包程式碼，透過讀取入口文件、解析依賴模組、收集 dependency、程式碼轉譯、打包合併、代碼優化，最終將高版本/離散的程式碼編譯打包成低版本/高兼容性的產物代碼建構成一個 JavaScript 的捆綁包，結合 webpack-dev-server 提供靜態資源
+&ndash; 開發環境運行相對 Vite 慢，冷啟動跟熱加載都會隨著應用程式變大，等待時間更長，開發體驗較差
+&ndash; 配置很齊全，舊瀏覽器相容性高</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>Vite
+&ndash; 基於 ESM (ES Modules)，開發時使用 ESbuild(Go 語言撰寫)，依賴瀏覽器 ES6 Modules 的原生支持，在運行的時候直接發 HTTP 請求 JavaScript 模組
+&ndash; 冷啟動跟熱加載快速，開發體驗速度快，開發時編譯的程式碼簡潔，舊瀏覽器相容性低
+&ndash; production 會使用 rollup 打包，開發編譯跟 production 打包是不同系統，可能少數狀況下會有不同行為</li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="vue-生命週期">Vue 生命週期</h2>
+<p>在 SPA 應用，針對部分元件掛載/資料更新/卸載時有對應的生命週期適合操作，透過這些 Vue 內建的 Hook function 來介入</p>
+<ul>
+<li>beforeCreate：初始化 Vue 實例/事件跟生命週期
+&ndash; 尚無法讀取 data, computed, methods, watch/event callbacks
+&ndash; 適合展示 loading 畫面，不適合 fetch 資料，還沒有 data 可以存</li>
+<li>created：創建完實例(虛擬 DOM)
+&ndash; 設置 data, computed, methods, watch/event callbacks
+&ndash; 尚無法讀取$el，適合 fetch 資料</li>
+<li>beforeMount：尚未掛載模板
+&ndash; 相關 render 函式首次被調用</li>
+<li>mounted：實例掛載模板(真實 DOM)
+&ndash; el 被新創建的 vm.$el 替換</li>
+<li>beforeUpdate：data 更新但還沒重新渲染畫面
+&ndash; 適合在此更新資料，可重複呼叫</li>
+<li>updated：data 更新且渲染畫面完成
+&ndash; 可以取得更新的 DOM，可重複呼叫</li>
+<li>beforeDestroy：實例被銷毀前
+&ndash; 適合在此時卸載手動添加的監聽/訂閱</li>
+<li>destroyed：實例被銷毀</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="父子元件的生命週期">父子元件的生命週期</h3>
+<ol>
+<li>
+<p>掛載：父元件是在子元件 mounted 後才 mounted
+父元件 beforeCreate
+父元件 created
+父元件 beforeMount
+子元件 beforeCreate
+子元件 created
+子元件 beforeMount
+子元件 mounted
+父元件 mounted</p>
+</li>
+<li>
+<p>資料更新
+父元件 beforeUpdate
+子元件 beforeUpdate
+子元件 updated
+父元件 updated</p>
+</li>
+<li>
+<p>銷毀元件
+父元件 beforeDestroy
+子元件 beforeDestroy
+子元件 destroyed
+父元件 destroyed</p>
+</li>
+</ol>
+<h2 id="vue-跨元件傳遞資料">Vue 跨元件傳遞資料</h2>
+<ol>
+<li>
+<p>父傳子：Props
+透過 props 把值從父層丟到子層，當元件距離很遠就會不好傳遞
+<a class="link" href="https://vuejs.org/api/options-state.html#props"  title="props"
+     target="_blank" rel="noopener"
+    >props API</a></p>
+</li>
+<li>
+<p>子傳父：emit
+子層要改變父層狀態的話，可透過子層發送 emit 觸發父層的 methods 來更新狀態
+<a class="link" href="https://vuejs.org/api/options-state.html#emits"  title="emits"
+     target="_blank" rel="noopener"
+    >emits API</a></p>
+</li>
+<li>
+<p>兄弟層的傳遞：
+需要搭配 event 往上傳，Props 往下傳
+使用 EventBus（vue3 已移除，建議用 vuex 管理)
+$on: 監聽 $once: 監聽一次 $off: 取消監聽 $emit: 傳遞事件
+created 即進行監聽，beforeDestroy 進行取消
+<a class="link" href="https://ithelp.ithome.com.tw/articles/10266312?sc=iThelpR"  title="這篇"
+     target="_blank" rel="noopener"
+    >可以參考這篇</a></p>
+</li>
+<li>
+<p>vuex store
+統一管理讓所有元件可跨層級獲取這些資料，若需要非同步觸發資料的更新，也可以用 action 來 emit 事件，然後透過 mutation 裡面的方法來更新資料</p>
+</li>
+</ol>
+<p>＊避免濫用 vuex 管理所有資料，在傳遞不易或跟跨頁面（切換路由等）時使用（e.g. 驗證狀態/購物車/遊戲結果等)；父子元件就用本來的 props 或 emit 即可(e.g. fetch API 資料往下傳遞給各元件)</p>
+<ol start="5">
+<li>Event-bus
+Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就會導致衝突，且監聽也需要做好管理，不需要的時候要記得清除，例如在多個路由切換時，若不同頁面使用了同一個事件名，會導致重複觸發事件的問題（因事件的監聽不會隨著元件的銷毀而跟著銷毀，要主動去註銷事件），且註銷也需要小心處理，沒註銷正確也有可能導致後續觸發失敗</li>
+</ol>
+<h2 id="專案資料夾配置">專案資料夾配置</h2>
+<p>之前曾經看到過很完整的配置範例，包含 Sass 資料夾規劃
+<!-- raw HTML omitted --></p>
+<h2 id="vue-開發者工具">vue 開發者工具</h2>
+<p><a class="link" href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd/related"  title="chrome extension連結"
+     target="_blank" rel="noopener"
+    >chrome extension 連結</a></p>
+<h2 id="user-story-概略版">User Story 概略版</h2>
+<ul>
+<li>輸入框一開始會是 focus 狀態，placeholder 有提示文字</li>
+<li>有任務時輸入框會多一個 label 做出來的三角形按鈕</li>
+<li>點三角形按鈕會全選所有任務</li>
+<li>手動全選任務也會觸發三角形按鈕全選樣式</li>
+<li>任務的 layout 是 checkbox/任務內容/刪除按鈕</li>
+<li>雙擊選項編輯任務內容</li>
+<li>footer 有 span 文字提示還有多少件事項沒完成，需考慮單複數</li>
+<li>三個篩選器篩選不同狀態的任務 all/active/complete (不同路由)</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><a class="link" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.4.1/index.css"  title="CSS"
+     target="_blank" rel="noopener"
+    >CSS</a></p>
+<h2 id="創建-vue-實例">創建 Vue 實例</h2>
+<ul>
+<li>CDN 載入 Vue 後就有構造函式，我們可以透過 new Vue 創建實例，綁定對應 HTML 元素/容器</li>
+<li>JavaScript 創建 Vue 實例，綁定 HTML 元素/容器</li>
+<li>下方為 todomvc 簡單規劃區塊，<code>#app</code> 綁定<code>&lt;div id =&quot;#app&quot;&gt;&lt;/div&gt;</code></li>
+<li></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;{{</span> <span class="nx">title</span> <span class="p">}}&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todos&#34;</span><span class="p">,</span> <span class="c1">// 屬性：值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vue-模板語言跟表達式">vue 模板語言跟表達式</h2>
+<ul>
+<li>雙括弧{{ 表達式 }}，若為變數會顯示 key 的對應 Value，跟 React 的{表達式}一樣，放在<code>&lt;HTML元素&gt;{{ }}&lt;/HTML元素&gt;</code>之間</li>
+<li>如果變數被&quot;&ldquo;包著{{&ldquo;變數&rdquo;}}，會顯示純字串</li>
+<li>用來形容 HTML 屬性用的變數會使用<code>&quot;&quot;</code>，<code>&lt;HTML元素 class=&quot;變數&quot;&gt;&lt;/HTML元素&gt;</code></li>
+</ul>
+<h2 id="v-bind-動態綁定-data-屬性-屬性名">v-bind 動態綁定 data 屬性 <code>:屬性名</code></h2>
+<ul>
+<li><a class="link" href="https://vuejs.org/api/options-state.html#data"  title="data"
+     target="_blank" rel="noopener"
+    >data API</a></li>
+<li>實現 JavaScript 跟 HTML 資料綁定</li>
+<li><code>v-bind</code>可以用縮寫符號<code>:</code>代替</li>
+<li>當屬性值為 true 會出現，若值為<code>null</code> <code>undefined</code> <code>false</code> 屬性不會出現</li>
+<li><code>:class</code>可以異動 class name，但只能針對 vue 自己增加的做改變，不能動到原本生成的</li>
+<li>由 completed 的布林值決定 text 樣式，<code>&lt;li :class=&quot;completed&quot;&gt;text&lt;/li&gt;</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo&#34;</span> <span class="o">:</span><span class="na">class</span><span class="o">=</span><span class="s">&#34;{ completed }&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//也可以直接寫成一個key value物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo&#34;</span> <span class="o">:</span><span class="na">class</span><span class="o">=</span><span class="s">&#34;{ completed: true }&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 若單個屬性要插入多個值，可以運用陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo&#34;</span> <span class="o">:</span><span class="na">class</span><span class="o">=</span><span class="s">&#34;[{ completed: true }, { edit: true }]&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">completed</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="v-for-迴圈-v-foritem-index-in-items-keyitemid">v-for 迴圈 <code>v-for=&quot;(item, index) in items&quot; :key=&quot;item.id&quot;</code></h2>
+<ul>
+<li>items 可為陣列/物件/數字/字串/Iterables</li>
+<li>物件迭代順序是根據 key，key 像是 MongoDB 內建的<code>_id</code>，vue 會用 key 確認資料是否有正常刪改，為了避免在 diff 演算後減少發生刪改後渲染有錯，且為了讓演算法有更好的效能，強烈建議要加上，但不要使用 index</li>
+<li>如果一串資料中沒定義 id，可用 uuid 套件產出補上，不要用 index 作為 key。由於 index 對應的資料是浮動而非絕對位置，因此在比較虛擬 dom 跟真實 dom 的過程中會出錯</li>
+<li>vue2 v-for 的優先順序高於 v-if，vue3 v-if 的優先順序高於 v-for，避免在同一元素上同時使用兩者，最好的做法是用 computed 篩選出列表再迴圈渲染</li>
+<li>這邊的 item 物件也可以傳給下層 HTML 元素利用</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">v-for</span><span class="s">=&#34;item in items&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    :key=&#34;item.id&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    class=&#34;item&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    :class=&#34;{ completed: item.completed }&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;div class=&#34;view&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;input class=&#34;toggle&#34; type=&#34;checkbox&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;label for=&#34;&#34;</span><span class="p">&gt;{{</span> <span class="na">item.title</span> <span class="p">}}&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;destroy&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">todos</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;todo1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;todo2&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;todo3&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="v-on-監聽事件-事件類型">v-on 監聽事件 <code>@事件類型</code></h2>
+<ul>
+<li><code>v-on</code>可以用縮寫符號<code>@</code>代替，@click @change @keyup</li>
+<li>參數加上  $event，可以用來取得 DOM event  物件的值</li>
+<li>v-for=&ldquo;item in items&quot;的結構裡，還可以傳物件給事件 @click=&ldquo;事件類型(item 物件)&rdquo;</li>
+<li>由於 windows.event(全域 event 物件)已經被棄用，若事件方法有用到 event 物件設定$event參數以取得event物件，參數使用 $event，<code>@click=&quot;事件類型($event)&quot;</code>，以取得觸發事件內部參數</li>
+<li>常見的按鍵.enter .esc .space 等有專用修飾符不需要再另記 key code
+<a class="link" href="https://cn.vuejs.org/v2/guide/events.html%22%e9%8d%b5%e7%9b%a4%e6%94%af%e6%8f%b4%e6%b8%85%e5%96%ae%22"  target="_blank" rel="noopener"
+    >鍵盤支援清單</a></li>
+<li>常見的事件修飾符.stop(阻擋冒泡) .prevent(阻擋預設事件重載頁面) .capture(向下捕獲方式觸發) .self(限定指定元素本身觸發) .once(只觸發一次) .passive(滾動事件延遲，讓行動端不卡)，修飾符可以串連</li>
+<li>事件綁定的方法 callback function 寫在 script 的 methods 裡面</li>
+<li>input 綁定事件參數差異</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// input綁定任意鍵觸發handleKeyup方法，並傳入newTodo變數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">newTodo</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup</span><span class="s">=&#34;handleKeyup(newTodo)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;new-todo&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">autofocus</span>
+</span></span><span class="line"><span class="cl">    <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;what needs to be done？&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// input限制enter鍵觸發handleKeyup，並傳入newTodo變數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">newTodo</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup.enter</span><span class="s">=&#34;handleKeyup(newTodo)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;new-todo&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">autofocus</span>
+</span></span><span class="line"><span class="cl">    <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;what needs to be done？&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 透過$event 來拿到 event 物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">newTodo</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="na">keyup</span><span class="o">=</span><span class="s">&#34;handleKeyup(newTodo, $event)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;new-todo&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">autofocus</span>
+</span></span><span class="line"><span class="cl">    <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;what needs to be done？&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 測試有無成功觸發事件，console出傳入參數，名稱任意
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">handleKeyup2</span><span class="p">(</span><span class="nx">inputContent</span><span class="p">,</span> <span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inputContent</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="v-model-雙向綁定-input-跟資料-v-bind--v-on">v-model 雙向綁定 input 跟資料 (v-bind + v-on)</h2>
+<ul>
+<li>v-bind 資料 → 畫面，v-on 畫面 → 資料</li>
+<li>v-model 初始值優先看 data 裡面的值，表單上寫的<code>checked selected屬性</code>會忽略</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 綁定在 input 寫一個 v-model=&#34;data對應屬性&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">newTodo</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;new-todo&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">autofocus</span>
+</span></span><span class="line"><span class="cl">    <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;what needs to be done？&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">newTodo</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="c1">//新增一個屬性 初始值空的字串&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>不同類型的 input 會偵測不同事件，更新不同屬性</li>
+<li><code>type = text</code> <code>textarea元素</code> 偵測到  <code>input</code>  事件會更新  <code>value</code> (<code>&lt;input&gt;, &lt;select&gt; &lt;textarea&gt; </code>元素的 value 被修改時會觸發 input 事件)
+＊ textarea 標籤中間的雙括弧不會雙向綁定，只會單向顯示資料內容，不要用這個 (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) 使用  <code>v-model</code>
+<a class="link" href="https://vuejs.org/v2/guide/forms.html"  target="_blank" rel="noopener"
+    >https://vuejs.org/v2/guide/forms.html</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="nt">v-model</span><span class="s">=&#34;text&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;span&gt;Multiline message is:&lt;/span&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;p style=&#34;white-space: pre-line;&#34;&gt;{{ message }}&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;textarea v-model=&#34;message&#34; placeholder=&#34;add multiple lines&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">text</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>type = checkbox type= radio</code> 單複選偵測  change  事件，抓取 checked  值(true/false)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 單選radio
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;radio&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;one&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;One&#34;</span> <span class="nt">v-model</span><span class="s">=&#34;picked&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;label for=&#34;one&#34;&gt;One&lt;/label&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;br /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;input type=&#34;radio&#34; id=&#34;two&#34; value=&#34;Two&#34; v-model=&#34;picked&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;label for=&#34;two&#34;&gt;Two&lt;/label&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;br /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;span&gt;Picked: {{ picked }}&lt;/span&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  // 單選checkbox
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;input type=&#34;checkbox&#34; id=&#34;checkbox&#34; v-model=&#34;checked&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;label for=&#34;checkbox&#34;&gt;{{ checked }}&lt;/label&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;br /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  // 多選checkbox，綁定陣列，透過&#34;checkedNames&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">  將對應的value傳入陣列，顯示勾選的名字
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;input type=&#34;checkbox&#34; id=&#34;jack&#34; value=&#34;Jack&#34; v-model=&#34;checkedNames&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;label for=&#34;jack&#34;&gt;Jack&lt;/label&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;input type=&#34;checkbox&#34; id=&#34;john&#34; value=&#34;John&#34; v-model=&#34;checkedNames&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;label for=&#34;john&#34;&gt;John&lt;/label&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;input type=&#34;checkbox&#34; id=&#34;mike&#34; value=&#34;Mike&#34; v-model=&#34;checkedNames&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;label for=&#34;mike&#34;</span><span class="p">&gt;</span><span class="na">Mike</span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span><span class="nx">Checked</span> <span class="nx">names</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">checkedNames</span> <span class="p">}}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">picked</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">checked</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">checkedNames</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>select</code>下拉選單偵測<code>change</code>事件，更新<code>value</code>值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//&#34;selected&#34; 將勾選的value 傳到陣列顯示
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">select</span> <span class="nt">v-model</span><span class="s">=&#34;selected&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">disabled</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span><span class="nx">Please</span> <span class="nx">select</span> <span class="nx">one</span><span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">option</span><span class="p">&gt;</span><span class="nx">A</span><span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">option</span><span class="p">&gt;</span><span class="nx">B</span><span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">option</span><span class="p">&gt;</span><span class="nx">C</span><span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span><span class="nx">Selected</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">selected</span> <span class="p">}}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">selected</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="新增-todo">新增 todo</h2>
+<ul>
+<li>引入 uuid 套件，在 script 測試 alert(uuidv4())</li>
+<li>把 newTodo 內容加上新屬性 uuid 產出的 id，push 到 data 裡面的 todos 陣列</li>
+<li>新增完後把 newTodo 清空(避免按 enter 會增加一樣的內容)</li>
+<li>空白 return 提示內容為空</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">newTodo</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="na">keyup.enter</span><span class="err">=&#34;</span><span class="na">addTodo</span><span class="err">(</span><span class="na">newTodo</span><span class="err">,</span> <span class="err">$</span><span class="na">event</span><span class="err">)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;new-todo&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">autofocus</span>
+</span></span><span class="line"><span class="cl">    <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;what needs to be done？&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">newTodo</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// update dummy data with id
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">todos</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">addTodo</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">newTodo</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newTodo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 每筆資料都增加 id 屬性，值帶入 uuidv4()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">newTodo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">newTodo</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="刪除-todo">刪除 todo</h2>
+<ul>
+<li>要找到對應元素需要 id，透過參數回傳</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-list&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">v-for</span><span class="s">=&#34;todo in todos&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      class=&#34;todo&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      :class=&#34;{ completed: todo.completed }&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;div class=&#34;view&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;input type=&#34;checkbox&#34; class=&#34;toggle&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;label for=&#34;&#34;&gt;{{ todo.title }}&lt;/label&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;!-- 帶入 todo 參數 --&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;button @click=&#34;removeTodo(todo)&#34; class=&#34;destroy&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">newTodo</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">todos</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">removeTodo</span><span class="p">(</span><span class="nx">todo</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 留下非點擊到的todo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">todo</span> <span class="p">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="動態切換-todo-刪除線樣式雙向綁定">動態切換 todo 刪除線樣式(雙向綁定)</h3>
+<ul>
+<li>點 label 切換會有打勾變化，是 checkbox 本身有無 checked 的樣式，還沒跟資料狀態綁定，需要在使用者點擊核選方塊時，改變刪除線樣式</li>
+<li>先前用:todo.completed 屬性來動態顯示刪除線 :class=&quot;{completed: todo.completed}，現在把 todo.completed 資料狀態用 v-model=&ldquo;todo.completed&quot;綁定回 input 的 checked 值（這個是 vue 預設 v-model 使用情境)</li>
+<li>此當我們畫面操作改變 checked 值 todo.completed 值也會連動</li>
+<li>資料 completed 初始值要設定好，確認沒有寫反</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">v-for</span><span class="s">=&#34;todo in todos&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    :key=&#34;todo.id&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    class=&#34;todo&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    :class=&#34;{ completed: todo.completed }&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;div class=&#34;view&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      // &#34;todo.completed&#34; 為真與否也會影響:class //
+</span></span></span><span class="line"><span class="cl"><span class="s">      如果completed:false就會這個v-bind綁定就會消失
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;input v-model=&#34;todo.completed&#34; class=&#34;toggle&#34; type=&#34;checkbox&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;label for=&#34;&#34;</span><span class="p">&gt;{{</span> <span class="na">todo.title</span> <span class="p">}}&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">button</span> <span class="nt">@click</span><span class="s">=&#34;removeTodo(todo)&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;destroy&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">newTodo</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">todos</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="nx">uuidv4</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;todo3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="條件渲染v-show-和-v-if">條件渲染：v-show 和 v-if</h2>
+<ul>
+<li>清單為空時， main 跟 footer 跟 toggle all 的 icon 也會消失</li>
+<li>用 todos.length 來判斷清單為空，依條件顯示 footer &amp; main</li>
+<li>根據條件隱藏的元素加上 v-show=&ldquo;todos.length&rdquo;</li>
+<li><code>v-if</code>：適合切換頻率小，不希望出現在 DOM tree，不希望使用者打開 DevTool 就看到隱藏的內容</li>
+<li><code>v-show</code>：只是加上  <code>display: none</code>  讓使用者看不到，仍保留在 DOM tree，適合切換頻率高的元件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 清單為空為false不會顯示 但DOM會有下方這行且加上屬性display:none
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footer&#34;</span>  <span class="nt">v-show</span><span class="s">=&#34;todos.length&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">//</span> <span class="na">清單為空為false不會顯示</span> <span class="na">這行在DOM會顯示為</span><span class="err">&lt;!----</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footer&#34;</span>  <span class="nt">v-if</span><span class="s">=&#34;todos.length&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">newTodo</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">todos</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>組合  <code>v-if</code>、<code>v-else</code>、<code>v-else-if</code>  來控制流程</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="c1">// if else
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="nt">v-if</span><span class="s">=&#34;Math.random() &gt; 0.5&#34;&gt;Now you see me&lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-else&gt;Now you don&#39;t&lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">&lt;/template&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">```vue // if else-if else
+</span></span></span><span class="line"><span class="cl"><span class="s">&lt;template&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-if=&#34;type === &#39;A&#39;&#34;&gt;A&lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-else-if=&#34;type === &#39;B&#39;&#34;&gt;B&lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-else-if=&#34;type === &#39;C&#39;&#34;</span><span class="p">&gt;</span><span class="na">C</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="nt">v-else</span><span class="p">&gt;</span><span class="na">Not</span> <span class="na">A</span><span class="err">/</span><span class="na">B</span><span class="err">/</span><span class="na">C</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>當 todos.length 為 false 只留 No footer 文字</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footer&#34;</span> <span class="nt">v-if</span><span class="s">=&#34;todos.length&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;!--</span> <span class="na">...</span> <span class="err">--</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="nt">v-else</span><span class="p">&gt;</span><span class="na">No</span> <span class="na">footer</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="computed-需運算再放到畫面上的資料">computed 需運算再放到畫面上的資料</h2>
+<ul>
+<li><a class="link" href="https://vuejs.org/api/options-state.html#computed"  title="computed"
+     target="_blank" rel="noopener"
+    >computed API</a></li>
+<li>跟 data 一樣會 return 值</li>
+<li>會建立一個快取，值沒有變化就不會重新運算，相較 methods 每次重新渲染就會呼叫一次方法，computed 效能較好（類似 react 的 useState)</li>
+<li>可以用來實作運算邏輯，當資料有改變就會更新</li>
+</ul>
+<h3 id="篩選-all-active-complete">篩選 all active complete</h3>
+<ul>
+<li>運用陣列的  <code>filter</code>  方法來篩選 all active complete todos</li>
+<li>篩選 function 用 filters 封裝</li>
+<li>active 數量顯示在 footer</li>
+<li>新增變數 filteredOption，設定狀態 all active completed</li>
+<li>透過按鈕觸發 setFilterdOption  更新狀態</li>
+<li>改用  filteredTodos  來渲染清單內容，computed 裡新增  filteredTodos</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 清單
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-list&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">v-for</span><span class="s">=&#34;todo in filteredTodos&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      :key=&#34;todo.id&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      class=&#34;todo&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      :class=&#34;{ completed: todo.completed }&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">  // footer
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;strong&gt;{{ activeTodos }}&lt;/strong&gt; items left // 篩選按鈕
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;ul class=&#34;filters&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;a href=&#34;#/all&#34; @click=&#34;setFilteredOption(&#39;all&#39;)&#34;&gt;All&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;a href=&#34;#/active&#34; @click=&#34;setFilteredOption(&#39;active&#39;)&#34;</span><span class="p">&gt;</span><span class="na">Active</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#/completed&#34;</span> <span class="nt">@click</span><span class="s">=&#34;setFilteredOption(&#39;completed&#39;)&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&gt;</span><span class="nx">Completed</span><span class="o">&lt;</span><span class="err">/a</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 過於分散
+</span></span></span><span class="line"><span class="cl"><span class="c1">// const allTodos = (todos) =&gt; todos
+</span></span></span><span class="line"><span class="cl"><span class="c1">// const activeTodos = (todos) =&gt; todos.filter((todo) =&gt; !todo.completed)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// const completedTodos = (todos) =&gt; todos.filter((todo) =&gt; todo.completed)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">filters</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">all</span><span class="o">:</span> <span class="p">(</span><span class="nx">todos</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">todos</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">active</span><span class="o">:</span> <span class="p">(</span><span class="nx">todos</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">completed</span><span class="o">:</span> <span class="p">(</span><span class="nx">todos</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">filteredOption</span><span class="o">:</span> <span class="s2">&#34;all&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setFilteredOption</span><span class="p">(</span><span class="nx">filteredOption</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">filteredOption</span> <span class="o">=</span> <span class="nx">filteredOption</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">activeTodos</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">filters</span><span class="p">.</span><span class="nx">active</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// bracket notation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">filteredTodos</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">filters</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">filteredOption</span><span class="p">](</span><span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// filters.all(this.todos)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// filters.active(this.todos)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// filters.completed(this.todos)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="被選擇的按鈕樣式">被選擇的按鈕樣式</h3>
+<ul>
+<li>被點的會掛上 selected 取消原先點的 selected</li>
+<li>用 v-bind 的 true 會顯示屬性 false 不會顯示屬性實作 selected(不用另外定義 data)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footer&#34;</span> <span class="nt">v-show</span><span class="s">=&#34;todos.length&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-count&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;{{</span> <span class="nx">activeTodos</span> <span class="p">}}&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> <span class="p">{{</span> <span class="nx">activeTodos</span> <span class="o">|</span> <span class="nx">pluralize</span> <span class="p">}}</span> <span class="nx">left</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;filters&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">a</span>
+</span></span><span class="line"><span class="cl">          <span class="na">href</span><span class="o">=</span><span class="s">&#34;#/all&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">:</span><span class="na">class</span><span class="o">=</span><span class="s">&#34;{ selected: filteredOption === &#39;all&#39; }&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="na">v</span><span class="nt">-on:click</span><span class="s">=&#34;setFilteredOption(&#39;all&#39;)&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">&gt;</span><span class="nx">All</span><span class="o">&lt;</span><span class="err">/a</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">a</span>
+</span></span><span class="line"><span class="cl">          <span class="na">href</span><span class="o">=</span><span class="s">&#34;#/active&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">:</span><span class="na">class</span><span class="o">=</span><span class="s">&#34;{ selected: filteredOption === &#39;active&#39; }&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="na">v</span><span class="nt">-on:click</span><span class="s">=&#34;setFilteredOption(&#39;active&#39;)&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">&gt;</span><span class="nx">Active</span><span class="o">&lt;</span><span class="err">/a</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">a</span>
+</span></span><span class="line"><span class="cl">          <span class="na">href</span><span class="o">=</span><span class="s">&#34;#/completed&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">:</span><span class="na">class</span><span class="o">=</span><span class="s">&#34;{ selected: filteredOption === &#39;completed&#39; }&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="na">v</span><span class="nt">-on:click</span><span class="s">=&#34;setFilteredOption(&#39;completed&#39;)&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="p">&gt;</span><span class="nx">Completed</span><span class="o">&lt;</span><span class="err">/a</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">v</span><span class="nt">-on:click</span><span class="s">=&#34;removeCompleteTodos(todos)&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;clear-completed&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Clear</span> <span class="nx">completed</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="filters-vue3-移除可用-computed-代替">filters (vue3 移除，可用 computed 代替)</h2>
+<ul>
+<li><code>{{ 變數 | filters 的方法 }}</code></li>
+<li>常用於大小寫 / 單複數 / 時間格式 / 貨幣格式</li>
+<li>當 activeTodos 為 1，回傳 item，超過則傳 items</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-count&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;{{</span> <span class="nx">activeTodos</span> <span class="p">}}&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> <span class="p">{{</span> <span class="nx">activeTodos</span> <span class="o">|</span> <span class="nx">pluralize</span> <span class="p">}}</span> <span class="nx">left</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">filters</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">toUpperCase</span><span class="p">(</span><span class="nx">words</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">words</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pluralize</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">?</span> <span class="s1">&#39;items&#39;</span> <span class="o">:</span> <span class="s1">&#39;item&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="清空已完成項目">清空已完成項目</h3>
+<ul>
+<li>removeCompleteTodos(todos)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">v</span><span class="nt">-on:click</span><span class="s">=&#34;removeCompleteTodos(todos)&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;clear-completed&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Clear</span> <span class="nx">completed</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">removeCompleteTodos</span><span class="p">(</span><span class="nx">todos</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span> <span class="o">===</span> <span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="localstorage-保存資料">LocalStorage 保存資料</h3>
+<ul>
+<li>saveStorage 掛載 created 後，預設值已經定義在 created 階段。原本在 data 寫的 todos 預設值可以刪除</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 取出時JSON.parse()轉JavaScript物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 當沒有資料時給他一個空陣列 不然如果是null會造成連鎖錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">this</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;STORAGE_KEY&#39;</span><span class="p">))</span><span class="o">||</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">saveStorage</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 存入時搭配 JSON.stringify() 轉成字串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="nx">STORAGE_KEY</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="watch-監控資料變化">watch 監控資料變化</h2>
+<ul>
+<li>淺層監聽：陣列內資料數量增減（預設）</li>
+<li><a class="link" href="https://vuejs.org/api/options-state.html#watch"  title="watch"
+     target="_blank" rel="noopener"
+    >watc API</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 一旦 todos 有變化，就會執行{}裡的內容。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">todos</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">saveStorage</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>深層監聽：陣列資料屬性改變</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 為了帶入deep屬性 把todos 改寫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">todos</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;saveStorage&#34;</span><span class="p">);</span> <span class="c1">//測試用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">saveStorage</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">deep</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//開啟深層監聽
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="編輯-todo">編輯 todo</h2>
+<ul>
+<li>雙擊觸發編輯模式，<!-- raw HTML omitted --> 加上.editing 樣式（display:block /none 切換）</li>
+<li>編輯模式(focus 狀態)按下 Enter 完成編輯並解除編輯模式</li>
+<li>編輯模式按下 ESC 跟離開輸入框 (blur 事件)取消編輯並解除編輯模式</li>
+<li>完成編輯時(Enter)內容是空白的話，會刪除這個 id 的空白 todo（內容不得為空)</li>
+<li>新增 currentEditTodo 來管理編輯內容</li>
+<li>currentEditTodo 使用 v-model 進行雙向綁定，type 即時更新 currentEditTodo</li>
+<li>完成編輯時覆寫回原本的 todos</li>
+</ul>
+<h3 id="動態添加-editing-樣式">動態添加 editing 樣式</h3>
+<ul>
+<li>當 todo 的 id === currentEditTodo.id，input 加上 editing 的 class</li>
+<li>原本已經有:class 了，用物件包裹兩個 key value</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-list&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">v-for</span><span class="s">=&#34;todo in filteredTodos&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      :key=&#34;todo.id&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      class=&#34;todo&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      :class=&#34;{
+</span></span></span><span class="line"><span class="cl"><span class="s">        completed: todo.completed,
+</span></span></span><span class="line"><span class="cl"><span class="s">        editing: todo.id === currentEditTodo.id,
+</span></span></span><span class="line"><span class="cl"><span class="s">      }&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;div class=&#34;view&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;input v-model=&#34;todo.completed&#34; class=&#34;toggle&#34; type=&#34;checkbox&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        // 雙click就可以取得物件 todo是v-for的元素
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;label @dblclick=&#34;editTodo(todo)&#34;</span><span class="p">&gt;{{</span> <span class="na">todo.title</span> <span class="p">}}&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;destroy&#34;</span> <span class="nt">@click</span><span class="s">=&#34;removeTodo(todo)&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// edit這邊的input加上v-model，就可以讓資料跟畫面連動
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">currentEditTodo.title</span><span class="err">&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">newTodo</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">todos</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">currentEditTodo</span><span class="o">:</span><span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">filteredOption</span><span class="o">:</span> <span class="s2">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">method</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">editTodo</span><span class="p">(</span><span class="nx">todo</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 複製todo 如果直接寫= {todo}會指稱到同一個物件記體，改到原始資料
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">currentEditTodo</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">todo</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="取消編輯回到原來沒有-editing-狀態">取消編輯（回到原來沒有 editing 狀態）</h3>
+<ul>
+<li>cancelEdit 把 this.currentEditTodo 變成一個空物件</li>
+<li>當 currentEditTodo 被清空後 v-bind 的條件  <code>todo.id === currentEditTodo.id</code>  無法成立</li>
+<li>editing 屬性消失，畫面也從輸入框變回一般的顯示狀態</li>
+<li>esc 鍵綁定 keyup 事件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">currentEditTodo.title</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup.esc</span><span class="s">=&#34;cancelEdit&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cancelEdit</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">currentEditTodo</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="完成編輯">完成編輯</h3>
+<ul>
+<li>按下 enter(click 事件)或點其他地方(blur 事件)就把 currentEditTodo 換進去 this.todo 裡面</li>
+<li>把編輯完成的 currentEditTodo，放入 todos 陣列中 id 相同的位置</li>
+<li>編輯狀況下修改最後是空白的話，直接刪除這個項目</li>
+<li>放入後清空 currentEditTodo，li 上的 editing 樣式會同時消失</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">currentEditTodo.title</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup.esc</span><span class="s">=&#34;cancelEdit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup.enter</span><span class="s">=&#34;doneEdit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@blur</span><span class="s">=&#34;doneEdit&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">doneEdit</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// map複製一份id 與 currentEditTodo 對應的新內容。否則就原封不動更新到this.todos
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">todo</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 兩者id一樣代表在修改狀態 沒在修改時this.currentEdit是空物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">currentEditTodo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">...</span><span class="k">this</span><span class="p">.</span><span class="nx">currentEditTodo</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="nx">todo</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// trim完變成空字串 內容強制轉型false會被過濾掉
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">todo</span> <span class="p">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">currentEditTodo</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="全部勾選取消">全部勾選/取消</h2>
+<h3 id="所有-todo-打勾上方-label-toggle-all-也會連動打勾">所有 todo 打勾上方 label #toggle-all 也會連動打勾</h3>
+<ul>
+<li>點擊 label 也能選到 checkbox，所以樣式是做在 label 上</li>
+<li>html 架構 label 位於 input 後方，但畫面上呈現在 input 架構之前，利用 position 調整位置</li>
+<li>css 上是用偽元素做&gt;的 content 並把旋轉 90 度</li>
+<li>設計一個 computed 屬性回傳 todos 是否全部完成</li>
+<li>用 activeTodos === 0 判斷</li>
+<li>雙向綁定 input 切換 todos 裡全部項目 checked 完成狀態</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 在 true/false 值改變時，都會觸發
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;toggle-all&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;toggle-all&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span> <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">allDone</span><span class="err">&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">allDone</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeTodos</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="最上方的打勾下方所有清單也會打勾">最上方的打勾下方所有清單也會打勾</h3>
+<ul>
+<li>切換 todos 裡全部項目的 completed 屬性，每次點擊都會切換 true/false</li>
+<li>用展開運算子  &hellip;  把 todo 內容全部拷貝一份，然後再針對想要修改的  completed  屬性重新設定</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">allDone</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">// 下面全打勾 連動上面toggle all
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">get</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeTodos</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">// 上面打勾就會下面completed都會變成completed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">set</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span><span class="nx">todo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">completed</span><span class="o">:</span> <span class="nx">value</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="directives-自定義屬性">directives 自定義屬性</h2>
+<ul>
+<li>讓不同的 Vue 實例可以共享指令</li>
+<li>第一個參數一定要帶入想綁定的元素 element</li>
+<li>第二個參數 binding 下有很多屬性 value, oldValue，詳細可參考<a class="link" href="https://vuejs.org/guide/reusability/custom-directives.html"  title="這裡"
+     target="_blank" rel="noopener"
+    >這裡</a></li>
+<li>做好指令可以在 template 裡用  <code>v-todo-focus</code>  來使用</li>
+</ul>
+<h3 id="編輯模式自動-focus-表單">編輯模式自動 focus 表單</h3>
+<ul>
+<li>當  v-todo-focus  回傳  true，就為該元素呼叫  focus()  方法，讓游標鎖定到編輯輸入框裡</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 把 v-todo-focus 放到 input
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">當</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">id</span> <span class="nx">和</span> <span class="nx">currentEditTodo</span><span class="p">.</span><span class="nx">id</span> <span class="nx">相同時</span><span class="err">，</span><span class="nx">就代表該</span> <span class="nx">to</span><span class="o">-</span><span class="k">do</span> <span class="nx">正在編輯模式中</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-model</span><span class="err">=&#34;</span><span class="na">currentEditTodo.title</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">v</span><span class="nt">-todo-focus</span><span class="err">=&#34;</span><span class="na">todo.id</span> <span class="err">===</span> <span class="na">currentEditTodo.id</span><span class="err">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;edit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup.esc</span><span class="s">=&#34;cancelEdit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@keyup.enter</span><span class="s">=&#34;doneEdit&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">@blur</span><span class="s">=&#34;doneEdit&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">directives</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 在 JavaScript 的物件 key 帶入特殊符號，需要把 key 設定成字串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s2">&#34;todo-focus&#34;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">binding</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">binding</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">el</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="option-api-vs-composition-api">Option API v.s. Composition API</h2>
+<ul>
+<li>Option API(data, methods, 生命週期)裡面定義的 property 可以用 this.property 獲取</li>
+<li>this 指向元件實例本身</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Properties returned from data() becomes reactive state
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// and will be exposed on `this`.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">increment</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`The initial count is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="nt">@click</span><span class="s">=&#34;increment&#34;</span><span class="p">&gt;</span><span class="na">count</span> <span class="na">is</span><span class="o">:</span> <span class="p">{{</span> <span class="na">count</span> <span class="p">}}&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>屬性不使用箭頭函式，會影響裡面的 this 綁定，一開始就會變成全域 window，而不是在呼叫的時候才知道是誰</li>
+<li>建議寫法為</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">methods</span><span class="o">:</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 寫法1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">someFunction</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// this會是元件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 寫法2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">someFunction</span><span class="err">：</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// this會是元件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 勿使用箭頭函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">removeTodo</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// this 會指向global context
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>想多了解 Composition API 可以參考這篇
+<a class="link" href="https://bacnotes.github.io/vue-compositionapi/"  title="介紹Vue3與Composition API"
+     target="_blank" rel="noopener"
+    >介紹 Vue3 與 Composition API</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/vue/">Vue</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什麼是-vue">什麼是 Vue</a></li>
+    <li><a href="#framework-框架-vs-library-函式庫">Framework 框架 v.s Library 函式庫</a>
+      <ul>
+        <li><a href="#framework-框架eg-vue-react-angular">framework 框架(e.g. Vue, React, Angular)</a></li>
+        <li><a href="#library-函式庫eg-dayjs-sweetalert">Library 函式庫(e.g. day.js, SweetAlert)</a></li>
+      </ul>
+    </li>
+    <li><a href="#建構-vue-專案-的方式">建構 Vue 專案 的方式</a></li>
+    <li><a href="#vue-生命週期">Vue 生命週期</a>
+      <ul>
+        <li><a href="#父子元件的生命週期">父子元件的生命週期</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue-跨元件傳遞資料">Vue 跨元件傳遞資料</a></li>
+    <li><a href="#專案資料夾配置">專案資料夾配置</a></li>
+    <li><a href="#vue-開發者工具">vue 開發者工具</a></li>
+    <li><a href="#user-story-概略版">User Story 概略版</a></li>
+    <li><a href="#創建-vue-實例">創建 Vue 實例</a></li>
+    <li><a href="#vue-模板語言跟表達式">vue 模板語言跟表達式</a></li>
+    <li><a href="#v-bind-動態綁定-data-屬性-屬性名">v-bind 動態綁定 data 屬性 <code>:屬性名</code></a></li>
+    <li><a href="#v-for-迴圈-v-foritem-index-in-items-keyitemid">v-for 迴圈 <code>v-for=&quot;(item, index) in items&quot; :key=&quot;item.id&quot;</code></a></li>
+    <li><a href="#v-on-監聽事件-事件類型">v-on 監聽事件 <code>@事件類型</code></a></li>
+    <li><a href="#v-model-雙向綁定-input-跟資料-v-bind--v-on">v-model 雙向綁定 input 跟資料 (v-bind + v-on)</a></li>
+    <li><a href="#新增-todo">新增 todo</a></li>
+    <li><a href="#刪除-todo">刪除 todo</a>
+      <ul>
+        <li><a href="#動態切換-todo-刪除線樣式雙向綁定">動態切換 todo 刪除線樣式(雙向綁定)</a></li>
+      </ul>
+    </li>
+    <li><a href="#條件渲染v-show-和-v-if">條件渲染：v-show 和 v-if</a></li>
+    <li><a href="#computed-需運算再放到畫面上的資料">computed 需運算再放到畫面上的資料</a>
+      <ul>
+        <li><a href="#篩選-all-active-complete">篩選 all active complete</a></li>
+        <li><a href="#被選擇的按鈕樣式">被選擇的按鈕樣式</a></li>
+      </ul>
+    </li>
+    <li><a href="#filters-vue3-移除可用-computed-代替">filters (vue3 移除，可用 computed 代替)</a>
+      <ul>
+        <li><a href="#清空已完成項目">清空已完成項目</a></li>
+        <li><a href="#localstorage-保存資料">LocalStorage 保存資料</a></li>
+      </ul>
+    </li>
+    <li><a href="#watch-監控資料變化">watch 監控資料變化</a></li>
+    <li><a href="#編輯-todo">編輯 todo</a>
+      <ul>
+        <li><a href="#動態添加-editing-樣式">動態添加 editing 樣式</a></li>
+        <li><a href="#取消編輯回到原來沒有-editing-狀態">取消編輯（回到原來沒有 editing 狀態）</a></li>
+        <li><a href="#完成編輯">完成編輯</a></li>
+      </ul>
+    </li>
+    <li><a href="#全部勾選取消">全部勾選/取消</a>
+      <ul>
+        <li><a href="#所有-todo-打勾上方-label-toggle-all-也會連動打勾">所有 todo 打勾上方 label #toggle-all 也會連動打勾</a></li>
+        <li><a href="#最上方的打勾下方所有清單也會打勾">最上方的打勾下方所有清單也會打勾</a></li>
+      </ul>
+    </li>
+    <li><a href="#directives-自定義屬性">directives 自定義屬性</a>
+      <ul>
+        <li><a href="#編輯模式自動-focus-表單">編輯模式自動 focus 表單</a></li>
+      </ul>
+    </li>
+    <li><a href="#option-api-vs-composition-api">Option API v.s. Composition API</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

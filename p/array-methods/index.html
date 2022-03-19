@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='陣列是許多fetch資料後需要處理的資料型態，這份陣列方法懶人包整理了slice()、concat()、join()、flat()、flatMap()、map()、filter()、reduce()、find()、findIndex()、at()、some()、every()、splice()、reverse()、sort()、forEach()、Array.from()、fill()等用法。'><h1><title>陣列的處理方法｜bacnotes備份筆記</title></h1>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/array-methods/'>
+
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='陣列的處理方法｜bacnotes備份筆記'>
+<meta property='og:description' content='陣列是許多fetch資料後需要處理的資料型態，這份陣列方法懶人包整理了slice()、concat()、join()、flat()、flatMap()、map()、filter()、reduce()、find()、findIndex()、at()、some()、every()、splice()、reverse()、sort()、forEach()、Array.from()、fill()等用法。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/array-methods/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-02-11T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-02-11T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/array-methods/pexels-photo-7988086.jpeg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="陣列的處理方法｜bacnotes備份筆記">
+<meta name="twitter:description" content="陣列是許多fetch資料後需要處理的資料型態，這份陣列方法懶人包整理了slice()、concat()、join()、flat()、flatMap()、map()、filter()、reduce()、find()、findIndex()、at()、some()、every()、splice()、reverse()、sort()、forEach()、Array.from()、fill()等用法。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/array-methods/pexels-photo-7988086.jpeg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <p class="site-name"><a href="/">bacnotes備份筆記</a></p>
+            <p class="site-description">記錄小小Junior的學習過程</p>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/array-methods/">
+                <img src="/p/array-methods/pexels-photo-7988086_hu32d02208a7a23794672f78ec0a2370e0_145353_800x0_resize_q75_box.jpeg"
+                        srcset="/p/array-methods/pexels-photo-7988086_hu32d02208a7a23794672f78ec0a2370e0_145353_800x0_resize_q75_box.jpeg 800w, /p/array-methods/pexels-photo-7988086_hu32d02208a7a23794672f78ec0a2370e0_145353_1600x0_resize_q75_box.jpeg 1600w"
+                        width="800" 
+                        height="587" 
+                        loading="lazy"
+                        alt="Featured image of post 陣列的處理方法｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <p class="article-title">
+            <a href="/p/array-methods/">陣列的處理方法｜bacnotes備份筆記</a>
+        </p>
+    
+        
+        <p class="article-subtitle">
+            陣列是許多fetch資料後需要處理的資料型態，這份陣列方法懶人包整理了slice()、concat()、join()、flat()、flatMap()、map()、filter()、reduce()、find()、findIndex()、at()、some()、every()、splice()、reverse()、sort()、forEach()、Array.from()、fill()等用法。
+        </p>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 11, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 15 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="不會改變原始資料">不會改變原始資料</h2>
+<p>&lt;&ndash; 參數為值系列 &ndash;&gt;</p>
+<h3 id="slice">slice()</h3>
+<ul>
+<li>array.slice([start[, end]])</li>
+<li>跟展開運算子 [&hellip;array]一樣常被用作淺拷貝</li>
+<li>回傳一個新陣列物件，為原陣列選擇之 start 至 end（end index 元素不包含在回傳結果）的淺拷貝</li>
+<li>可以不傳參數(start 預設 0，end 預設 array.length)</li>
+<li>可單傳 start 參數或 start end 都傳</li>
+<li>接受負數，slice(2,-1) 代表拷貝陣列中第三個元素至倒數第二個元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;ant&#34;</span><span class="p">,</span> <span class="s2">&#34;bison&#34;</span><span class="p">,</span> <span class="s2">&#34;camel&#34;</span><span class="p">,</span> <span class="s2">&#34;duck&#34;</span><span class="p">,</span> <span class="s2">&#34;elephant&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">animals</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#39;ant&#39;, &#39;bison&#39;, &#39;camel&#39;, &#39;duck&#39;, &#39;elephant&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">animals</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;camel&#34;, &#34;duck&#34;, &#34;elephant&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">animals</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;camel&#34;, &#34;duck&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">animals</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;duck&#34;, &#34;elephant&#34;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="concat">concat()</h3>
+<ul>
+<li>var newArray = oldArray.concat(value1[, value2[, &hellip;[, valueN]]])</li>
+<li>合併兩個或多個陣列。回傳一個包含呼叫者陣列本身的值，作為代替的是回傳一個新陣列</li>
+<li>跟展開運算子[&hellip;arr, &hellip;arr2] 一樣</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">array1</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">array2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;, &#34;f&#34;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="join">join()</h3>
+<ul>
+<li>array.join([separator])</li>
+<li>回傳合併所有陣列元素的字串</li>
+<li>separator 為用來隔開陣列中每個元素的字串。如果必要的話，separator 會自動被轉成字串型態。如果未傳入此參數，陣列中的元素將預設用英文逗號（「,」）隔開。如果 separator 是空字串，合併後，元素間不會有任何字元。</li>
+<li>任何 undefined 或 null 的元素都會被視為空字串處理。</li>
+<li>假如 arr.length 為 0，將回傳空字串。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Wind&#34;</span><span class="p">,</span> <span class="s2">&#34;Rain&#34;</span><span class="p">,</span> <span class="s2">&#34;Fire&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">();</span> <span class="c1">// &#39;Wind,Rain,Fire&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span> <span class="c1">// &#39;WindRainFire&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;, &#34;</span><span class="p">);</span> <span class="c1">// &#39;Wind, Rain, Fire&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34; + &#34;</span><span class="p">);</span> <span class="c1">// &#39;Wind + Rain + Fire&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="flat-ie-沒有支援">flat() (IE 沒有支援)</h3>
+<ul>
+<li>var newArray = arr.flat([depth]);</li>
+<li>函數以遞迴方式將特定深度的子陣列重新串接成為一新的陣列</li>
+<li>第一個參數為指定巢狀陣列展開的深度，預設為 1</li>
+<li>當遭遇空元素時，flat()函數會自動清除陣列中空的元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 巢狀1層
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">arr1</span><span class="p">.</span><span class="nx">flat</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [1, 2, 3, 4]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 巢狀1層
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">arr2</span><span class="p">.</span><span class="nx">flat</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [1, 2, 3, 4, [5, 6]]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 巢狀2層
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">arr3</span><span class="p">.</span><span class="nx">flat</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [1, 2, 3, 4, 5, 6]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 相加帳戶中所有金額
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 不同物件中的某個屬性為陣列，將陣列值丟到一個新陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 攤平陣列中巢狀結構（單層)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 加總
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overallBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="nx">mov</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="flatmap-ie-沒有支援">flatMap() (IE 沒有支援)</h3>
+<ul>
+<li>var new_array = arr.flatMap(function callback(currentValue[, index[, array]]) {
+// return element for new_array
+}[, thisArg])</li>
+<li>幾乎等同 map().flat()，但比分別調用這兩個方法效能更好</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 不同物件中的某個屬性為陣列，將陣列值丟到一個新陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 攤平陣列中巢狀結構（單層)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 加總
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overallBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="nx">mov</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&lt;&ndash; 參數為 callback 系列 &ndash;&gt;</p>
+<h3 id="map">map()</h3>
+<ul>
+<li>var new_array = arr.map(function callback(currentValue[, index[, array]]) {
+// Return element for new_array
+}[, thisArg])</li>
+<li>把元素丟到函式裡執行，並回傳一個新陣列</li>
+<li>callback 可以收三個參數（當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+<li>可以用作淺拷貝</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// pass a function to map
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [2, 8, 18, 32]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="filter">filter()</h3>
+<ul>
+<li>var newArray = array.filter(callback(element[, index[, array]])[, thisArg])</li>
+<li>回傳通過該函式檢驗之元素所構成的新陣列</li>
+<li>callback 可以收三個參數（當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;spray&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;limit&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;elite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;exuberant&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;destruction&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;present&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">words</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;exuberant&#34;, &#34;destruction&#34;, &#34;present&#34;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reduce">reduce()</h3>
+<ul>
+<li>array.reduce(callback[accumulator, currentValue, currentIndex, array], initialValue)</li>
+<li>迭代到的陣列元素，回傳 accumulator，accumulator 是累加處理結果（累加是邏輯的累加不一定是數值累加）</li>
+<li>callback 可以收四個參數（accumulator 累加器處理結果、當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+<li>若有傳入 initialValue，則由索引 0 之元素開始，若無則自索引 1 之元素開始</li>
+<li>空陣列呼叫 reduce() 方法且沒有提供累加器初始值，將會發生錯誤</li>
+<li>可以把陣列變成一個計算結果，結果可以是數字/物件各種形式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// a is accumulator, b is currentValue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 累加
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">added</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">added</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 找max最大值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">movements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span> <span class="k">return</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="k">return</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">maxValue</span> <span class="o">=</span> <span class="nx">movements</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">maxVlue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 攤平巢狀陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span>  <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flattened</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">reducer</span><span class="p">),[]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flattened</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [0, 1, 2, 3, 4, 5]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 計數器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Tiff&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruce&#39;</span><span class="p">,</span> <span class="s1">&#39;Alice&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">allNames</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">allNames</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">allNames</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">allNames</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">allNames</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">countedNames</span> <span class="o">=</span> <span class="nx">names</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,{});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countedNames</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// { &#39;Alice&#39;: 2, &#39;Bob&#39;: 1, &#39;Tiff&#39;: 1, &#39;Bruce&#39;: 1 }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="find">find()</h3>
+<ul>
+<li>array.find(callback[, thisArg])</li>
+<li>回傳第一個滿足所提供之測試函式的元素值</li>
+<li>查找不到會回傳 undefined</li>
+<li>callback 可以收三個參數（當前處理函數、當前處理函數 index、正在操作的陣列）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 查找含有特定屬性的物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">account</span><span class="p">.</span><span class="nx">owner</span> <span class="o">===</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">account</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 查找數值大於10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">44</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">found</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">element</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">found</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 12
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="findindex-vs-indexof">findIndex() v.s. indexOf()</h3>
+<ul>
+<li>array.findIndex(callback[, thisArg])</li>
+<li>回傳第一個滿足所提供之測試函式的元素索引，若找不到會回傳-1</li>
+<li>callback 可以收三個參數（當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+<li>indexOf(element, fromIndex) 也可以搜尋元素索引位置，但參數通常是給一個 primitives 值</li>
+<li>findIndex()期望參數為一個 callback，可以處理複雜邏輯</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 刪除特定筆資料
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">btnCloseAccount</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">account</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">username</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">accounts</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">44</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isLargeNumber</span> <span class="o">=</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">element</span> <span class="o">&gt;</span> <span class="mi">13</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">isLargeNumber</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="at">at()</h3>
+<ul>
+<li>功能類似 find()，array.at(index)等於 array[index]</li>
+<li>回傳索引的元素，通常用來取最尾端的元素</li>
+<li>允許正整數和負整數。負整數從數組中的最後一項開始倒數</li>
+<li>找不到元素回傳 undefined</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">44</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`index </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb"> is </span><span class="si">${</span><span class="nx">array</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;index 2 is 8&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`index </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb"> is </span><span class="si">${</span><span class="nx">array</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;index -2 is 130&#34;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="some">some()</h3>
+<ul>
+<li>arr.some(callback[, thisArg])</li>
+<li>some() 測試陣列中是否至少有一個元素，符合該函式條件，回傳結果為 true false</li>
+<li>callback 可以收三個參數（當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// checks whether an element is even
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">even</span> <span class="o">=</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">element</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">even</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 檢查是否有任一存款紀錄
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">movements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">anyDeposit</span> <span class="o">=</span> <span class="nx">movements</span><span class="p">.</span><span class="nx">some</span><span class="p">((</span><span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">mov</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">anyDeposit</span><span class="p">);</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 借貸條件為，曾存款過且需有一筆存款金額大於等於借貸金額10% 假設借貸30000 需要有一筆大於3000的存款
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">btnLoan</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">inputLoanAmount</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">condition</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">mov</span> <span class="o">&gt;=</span> <span class="nx">amount</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">condition</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">amount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">updateUI</span><span class="p">(</span><span class="nx">currentAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="every">every()</h3>
+<ul>
+<li>arr.every(callback[, thisArg])</li>
+<li>every() 方法會測試陣列中的所有元素是否都通過函式條件，回傳結果為 true false</li>
+<li>callback 可以收三個參數（當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isBelowThreshold</span> <span class="o">=</span> <span class="p">(</span><span class="nx">currentValue</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">currentValue</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array1</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">isBelowThreshold</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="會改變原始資料">會改變原始資料</h2>
+<p>push()、pop()、shift()、unshift()之前在這篇有介紹過，可以看這邊</p>
+<h3 id="splice">splice()</h3>
+<ul>
+<li>array.splice(start[, deleteCount[, item1[, item2[, &hellip;]]]])</li>
+<li>回傳一個包含被刪除的元素陣列</li>
+<li>如果只有一個元素被刪除，依舊是回傳包含一個元素的陣列。若沒有元素被刪除，則會回傳空陣列。</li>
+<li>多數時候不在意回傳值而是修改後的陣列資料，可以用來取代陣列某個索引的元素，可以新增元素也可以刪除元素</li>
+<li>start 是改動點，若大於陣列長度，起始點為陣列長度。若為負，起始點為-1。複數絕對值大於陣列長度，則起始點為 0</li>
+<li>deleteCount 為刪除元素數量</li>
+<li>array.splice(-1) 等於 array.pop()</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">months</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Jan&#34;</span><span class="p">,</span> <span class="s2">&#34;March&#34;</span><span class="p">,</span> <span class="s2">&#34;April&#34;</span><span class="p">,</span> <span class="s2">&#34;June&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">months</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&#34;Feb&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 起始點1，刪除0個元素，並插入元素&#39;Feb&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// []
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">months</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;Jan&#34;, &#34;Feb&#34;, &#34;March&#34;, &#34;April&#34;, &#34;June&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">months</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;May&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 作為取代方法，起始點4 刪除1元素 並插入元素&#39;May&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// [ &#39;June&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">months</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;Jan&#34;, &#34;Feb&#34;, &#34;March&#34;, &#34;April&#34;, &#34;May&#34;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reverse">reverse()</h3>
+<ul>
+<li>array.reverse()</li>
+<li>回傳反轉後的陣列</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span><span class="p">,</span> <span class="s2">&#34;two&#34;</span><span class="p">,</span> <span class="s2">&#34;three&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">array</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;three&#34;, &#34;two&#34;, &#34;one&#34;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="針對每個元素處理">針對每個元素處理</h2>
+<ul>
+<li>原始資料可改可不改，看函式邏輯</li>
+<li>可以只迭代 render 在畫面上，也可修改資料 e.g.新增物件屬性等</li>
+</ul>
+<h2 id="sort">sort()</h2>
+<ul>
+<li>arr.sort([compareFunction])</li>
+<li>對一個陣列的所有元素進行排序，並回傳此陣列。排序不一定是穩定的（stable）</li>
+<li>由於依賴執行環境的實作，所以並不能保證排序的時間及空間複雜度</li>
+<li>預設的排序順序是根據字串的 Unicode 編碼位置（code points）而定，可以用第一個參數 compareFunction(a, b)自定義比較邏輯</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">在某排序標準下</span> <span class="nx">a</span> <span class="nx">小於</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">在某排序標準下</span> <span class="nx">a</span> <span class="nx">大於</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// a 必須等於 b
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>若 compareFunction(a, b) 的回傳值小於 0，則會把 a 排在小於 b 之索引的位置，即 a 排在 b 前面。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 若 a 小於 b ，a - b &lt; 0 a會被丟到前面，由小排到大
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">movements</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>若 compareFunction(a, b) 的回傳值大於 0，則會把 b 排在小於 a 之索引的位置，即 b 排在 a 前面。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 若 a 大於 b ，b - a &lt; 0，a會被丟到後面，由大排到小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">movements</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">b</span> <span class="o">-</span> <span class="nx">a</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>若 compareFunction(a, b) 回傳 0，則 a 與 b 皆不會改變彼此的順序，但會與其他全部的元素比較來排序。備註：ECMAscript 標準並不保證這個行為，因此不是所有瀏覽器（如 Mozilla 版本在 2003 以前）都遵守此行為。</li>
+<li>compareFunction(a, b) 在給予一組特定元素 a 及 b 為此函數之兩引數時必須總是回傳相同的值。若回傳值不一致，排序順序則為 undefined。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 展示的function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">displayMovements</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">movements</span><span class="p">,</span> <span class="nx">sort</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 有要sort才會使用排序後資料(copy資料)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">movs</span> <span class="o">=</span> <span class="nx">sort</span> <span class="o">?</span> <span class="nx">movements</span><span class="p">.</span><span class="nx">slice</span><span class="p">().</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span>  <span class="o">-</span> <span class="nx">b</span> <span class="p">)</span> <span class="o">:</span><span class="nx">movements</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">movs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">render</span> <span class="kd">function</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">btnSort</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 改變畫面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">displayMovements</span><span class="p">(</span><span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">,</span> <span class="o">!</span><span class="nx">sorted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 更新狀態
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">sorted</span> <span class="o">=</span> <span class="o">!</span><span class="nx">sorted</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&lt;&ndash; 參數為 callback 系列 &ndash;&gt;</p>
+<h3 id="foreach">forEach()</h3>
+<ul>
+<li>array.forEach(callback(currentValue [, index [, array]])[, thisArg])</li>
+<li>對每個陣列內的元素執行一次函式的內容，不會回傳執行結果，但可以修改原來的陣列</li>
+<li>callback 可以收三個參數（當前處理元素、當前處理元素 index、正在操作的陣列）</li>
+<li>forEach 無法從迴圈跳出，會執行完畢</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 交易紀錄
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you deposited </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you withdrew </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 等於之前的for of 搭配array.entries()同時取出index(key) value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">index</span><span class="p">,</span> <span class="nx">el</span><span class="p">]</span> <span class="k">of</span> <span class="nx">array</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you deposited </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you withdrew </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 0: you deposited 100 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 1: you deposited 300 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2: you withdrew 250 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3: you deposited 200 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 4: you deposited 300 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 5: you withdrew 20 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 6: you deposited 50 dollars
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7: you withdrew 100 dollars
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>forEach 用在 set 跟 map</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// set
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">currenciesUnique</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="s2">&#34;USD&#34;</span><span class="p">,</span> <span class="s2">&#34;EUR&#34;</span><span class="p">,</span> <span class="s2">&#34;GBP&#34;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">currenciesUnique</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">map</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// USD: USD
+</span></span></span><span class="line"><span class="cl"><span class="c1">// EUR: EUR
+</span></span></span><span class="line"><span class="cl"><span class="c1">// GBP: GBP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// map
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">currencies</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;USD&#34;</span><span class="p">,</span> <span class="s2">&#34;United States dollar&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;EUR&#34;</span><span class="p">,</span> <span class="s2">&#34;Euro&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;GBP&#34;</span><span class="p">,</span> <span class="s2">&#34;Pound sterling&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">currencies</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">map</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// USD: United States dollar
+</span></span></span><span class="line"><span class="cl"><span class="c1">// EUR: Euro
+</span></span></span><span class="line"><span class="cl"><span class="c1">// GBP: Pound sterling
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>增加物件屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">createUsernames</span> <span class="o">=</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">accounts</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">acc</span><span class="p">.</span><span class="nx">owner</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="產生-array-跟注入元素方法">產生 Array 跟注入元素方法</h2>
+<h3 id="new-array">new Array()</h3>
+<ul>
+<li>陽春版手動放陣列元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="new-array搭配-fill-注入元素">new Array，搭配 fill() 注入元素</h3>
+<ul>
+<li>fill() 方法會將陣列中索引的第一個到最後一個的每個位置全部填入一個靜態的值</li>
+<li>arr.fill(value[, start[, end]])，start 預設 0，end 預設陣列長</li>
+<li>元素區間為 [start, end)，意即包含 start 但不包含 end</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [ &lt;7 empty items&gt; ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [1, 1, 1, 1, 1, 1, 1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arr2</span><span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// index 3開始到 index 4 注入元素1
+</span></span></span><span class="line"><span class="cl"><span class="c1">//[ &lt;3 empty items&gt;, 1, 1, &lt;2 empty items&gt; ]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="arrayfrom">Array.from()</h3>
+<ul>
+<li>Array.from() 方法會從類陣列（array-like）或是可迭代（iterable）物件建立一個新的 Array 實體</li>
+<li>第一個參數是 arrayLike 將類陣列或可迭代物件轉換成陣列</li>
+<li>第二個參數是 Map 函式迭代陣列中的每一個元素</li>
+<li>第三個參數是函式執行時的 this 對象</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [1,1,1,1,1,1,1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [1,2,3,4,5,6,7]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Array [&#34;f&#34;, &#34;o&#34;, &#34;o&#34;]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>querySelectorAll 選到的 nodeList 可以先用 Array.from 方法轉陣列</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 選取需要的div元素，取出textContent
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">labelBalance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()=&gt;{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">movementsUI</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__value&#39;</span><span class="p">),</span> <span class="nx">el</span> <span class="p">=&gt;</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;€&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">movementsUI</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">movementsUI2</span> <span class="o">=</span> <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__value&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="小練習">小練習</h2>
+<ul>
+<li>slice concat forEach</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 寫一個&#39;checkDogs&#39; 功能 收兩個陣列參數，依序列印第幾隻狗夠是成年或幼年/幾歲
+</span></span></span><span class="line"><span class="cl"><span class="c1">//TEST DATA 1: Julia&#39;s data [3, 5, 2, 12, 7], Kate&#39;s data [4, 1, 15, 8, 3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//TEST DATA 2: Julia&#39;s data [9, 16, 6, 8, 3], Kate&#39;s data [10, 5, 6, 1, 4]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">checkDogs</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">arr1</span><span class="p">,</span> <span class="nx">arr2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// [...arr1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 排除第一個跟最後兩筆錯誤資料
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">dogsJulia</span> <span class="o">=</span> <span class="nx">arr1</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dogsKate</span> <span class="o">=</span> <span class="nx">arr2</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 合併兩組陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">allDogs</span> <span class="o">=</span> <span class="nx">dogsJulia</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">dogsKate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// console文字 大於等於3算adult 小於算puppy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">allDogs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">dogType</span> <span class="o">=</span> <span class="nx">el</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="o">?</span> <span class="s2">&#34;adult&#34;</span> <span class="o">:</span> <span class="s2">&#34;puppy&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Dog </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb"> is an </span><span class="si">${</span><span class="nx">dogType</span><span class="si">}</span><span class="sb"> and is </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> years old`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>map filter reduce</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 寫一個calcAverageHumanAge 換算成平均人類年齡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAverageHumanAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">ages</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 狗狗年齡換算人類邏輯 若&lt;=2 直接*2; 若&gt;2 初始值16 + 年齡*4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">humanAges</span> <span class="o">=</span> <span class="nx">ages</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">age</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">age</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">?</span> <span class="nx">age</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">16</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">age</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">);</span> <span class="c1">// 排除換算年齡小於18的狗狗  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">/</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 狗狗換算平均年齡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 下方reduce若沒有設定初始值 結果會有錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// const avg = adults.reduce((sum, age, i, arr) =&gt; sum + age / arr.length, 0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 2 3. (2+3)/2 = 2.5 === 2/2+3/2 = 2.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">avg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">calcAverageHumanAge</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>綜合練習</li>
+<li>三元運算子算是兩行，不會隱含 return</li>
+<li>count++ 跟 ++count 差異</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// challenge #3
+</span></span></span><span class="line"><span class="cl"><span class="c1">// data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">account1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account2</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account3</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account4</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span><span class="nx">account1</span><span class="p">,</span> <span class="nx">account2</span><span class="p">,</span> <span class="nx">account3</span><span class="p">,</span> <span class="nx">account4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 1-1 所有帳戶存款紀錄加總 map flat
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overAllBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flat</span><span class="p">()</span> <span class="c1">// 變成一維陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">el</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">overAllBalance</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 1-2 所有帳戶存款紀錄加總 flatMap
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overAllBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span> <span class="c1">// 變成一維陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">el</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">overAllBalance</span><span class="p">);</span> <span class="c1">// 25180
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2 大於1000存款記錄有幾筆
+</span></span></span><span class="line"><span class="cl"><span class="c1">// reduce 第二個參數為初始值 複習計數器用法
+</span></span></span><span class="line"><span class="cl"><span class="c1">// sum++先return 再+ ; ++sum 先+再return
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">numDeposit1000</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">count</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="o">?</span> <span class="o">++</span><span class="nx">count</span> <span class="o">:</span> <span class="nx">count</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numDeposit1000</span><span class="p">);</span> <span class="c1">// 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3 reduce 回傳結果為{存款記錄筆數: 提款記錄筆數:}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">balanceCounter</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">sums</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="nx">sums</span><span class="p">.</span><span class="nx">deposits</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="nx">sums</span><span class="p">.</span><span class="nx">withdraws</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 這邊有+= 運算 非單行 記得加return
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">sums</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="nx">deposits</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">withdraws</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">balanceCounter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// {deposits: 25180, withdraws: -7340}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 更簡潔的寫法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">balanceCounter</span> <span class="o">=</span> <span class="nx">accounts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">sums</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">sums</span><span class="p">[</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="s2">&#34;deposits&#34;</span> <span class="o">:</span> <span class="s2">&#34;withdraws&#34;</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">sums</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="nx">deposits</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">withdraws</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">balanceCounter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 4. 格式轉換器 this is a nice title -&gt; This Is a Nice Title
+</span></span></span><span class="line"><span class="cl"><span class="c1">// array.includes(element)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">covertTitleCase</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">exceptions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;an&#34;</span><span class="p">,</span> <span class="s2">&#34;and&#34;</span><span class="p">,</span> <span class="s2">&#34;the&#34;</span><span class="p">,</span> <span class="s2">&#34;but&#34;</span><span class="p">,</span> <span class="s2">&#34;or&#34;</span><span class="p">,</span> <span class="s2">&#34;on&#34;</span><span class="p">,</span> <span class="s2">&#34;in&#34;</span><span class="p">,</span> <span class="s2">&#34;with&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">titleCase</span> <span class="o">=</span> <span class="nx">title</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">exceptions</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">?</span> <span class="nx">word</span> <span class="o">:</span> <span class="nx">word</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">word</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">titleCase</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>綜合練習2</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// challenge #4
+</span></span></span><span class="line"><span class="cl"><span class="c1">// TEST DATA:
+</span></span></span><span class="line"><span class="cl"><span class="c1">// const dogs = [
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  { weight: 22, curFood: 250, owners: [&#39;Alice&#39;, &#39;Bob&#39;] },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  { weight: 8, curFood: 200, owners: [&#39;Matilda&#39;] },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  { weight: 13, curFood: 275, owners: [&#39;Sarah&#39;, &#39;John&#39;] },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  { weight: 32, curFood: 340, owners: [&#39;Michael&#39;] }
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 1. calculate the recommended food portion and add it to the object as a new property. Do NOT create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 2. Find Sarah&#39;s dog and log to the console whether it&#39;s eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3. Create an array containing all owners of dogs who eat too much (&#39;ownersEatTooMuch&#39;) and an array with all owners of dogs who eat too little (&#39;ownersEatTooLittle&#39;).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 4. Log a string to the console for each array created in 3., like this: &#34;Matilda and Alice and Bob&#39;s dogs eat too much!&#34; and &#34;Sarah and John and Michael&#39;s dogs eat too little!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array&#39;s objects)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#不會改變原始資料">不會改變原始資料</a>
+      <ul>
+        <li><a href="#slice">slice()</a></li>
+        <li><a href="#concat">concat()</a></li>
+        <li><a href="#join">join()</a></li>
+        <li><a href="#flat-ie-沒有支援">flat() (IE 沒有支援)</a></li>
+        <li><a href="#flatmap-ie-沒有支援">flatMap() (IE 沒有支援)</a></li>
+        <li><a href="#map">map()</a></li>
+        <li><a href="#filter">filter()</a></li>
+        <li><a href="#reduce">reduce()</a></li>
+        <li><a href="#find">find()</a></li>
+        <li><a href="#findindex-vs-indexof">findIndex() v.s. indexOf()</a></li>
+        <li><a href="#at">at()</a></li>
+        <li><a href="#some">some()</a></li>
+        <li><a href="#every">every()</a></li>
+      </ul>
+    </li>
+    <li><a href="#會改變原始資料">會改變原始資料</a>
+      <ul>
+        <li><a href="#splice">splice()</a></li>
+        <li><a href="#reverse">reverse()</a></li>
+      </ul>
+    </li>
+    <li><a href="#針對每個元素處理">針對每個元素處理</a></li>
+    <li><a href="#sort">sort()</a>
+      <ul>
+        <li><a href="#foreach">forEach()</a></li>
+      </ul>
+    </li>
+    <li><a href="#產生-array-跟注入元素方法">產生 Array 跟注入元素方法</a>
+      <ul>
+        <li><a href="#new-array">new Array()</a></li>
+        <li><a href="#new-array搭配-fill-注入元素">new Array，搭配 fill() 注入元素</a></li>
+        <li><a href="#arrayfrom">Array.from()</a></li>
+      </ul>
+    </li>
+    <li><a href="#小練習">小練習</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
