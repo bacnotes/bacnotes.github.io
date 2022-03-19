@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='GitHub Pages是GitHub提供的免費靜態網頁託管服務，教你如何使用GitHub Pages，不再重複打指令，terminal直接輸入./deploy.sh，一鍵讓部落格文章上線！'><title>只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/github-deploy-hugo/'>
+
+<link rel="stylesheet" href="/scss/style.min.07bb6d80282315c128a047d83da2055f38bfc5494ecb29a65a193b78dc76cb45.css"><meta property='og:title' content='只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記'>
+<meta property='og:description' content='GitHub Pages是GitHub提供的免費靜態網頁託管服務，教你如何使用GitHub Pages，不再重複打指令，terminal直接輸入./deploy.sh，一鍵讓部落格文章上線！'>
+<meta property='og:url' content='https://bacnotes.github.io/p/github-deploy-hugo/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='GitHub' /><meta property='article:tag' content='Deploy' /><meta property='article:published_time' content='2021-12-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-12-26T00:00:00&#43;00:00'/><meta property='og:image' content='https://bacnotes.github.io/p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記">
+<meta name="twitter:description" content="GitHub Pages是GitHub提供的免費靜態網頁託管服務，教你如何使用GitHub Pages，不再重複打指令，terminal直接輸入./deploy.sh，一鍵讓部落格文章上線！"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/github-deploy-hugo/">
+                <img src="/p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash_hu34ce0191b88a37780da4e3c1a288bda4_3436174_800x0_resize_q75_box.jpg"
+                        srcset="/p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash_hu34ce0191b88a37780da4e3c1a288bda4_3436174_800x0_resize_q75_box.jpg 800w, /p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash_hu34ce0191b88a37780da4e3c1a288bda4_3436174_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="1200" 
+                        loading="lazy"
+                        alt="Featured image of post 只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/github-deploy-hugo/">只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            GitHub Pages是GitHub提供的免費靜態網頁託管服務，教你如何使用GitHub Pages，不再重複打指令，terminal直接輸入./deploy.sh，一鍵讓部落格文章上線！
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 26, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 1 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>關於部署的工具有很多，身為工程師的你一定聽過GitHub!<br>
+<img src="./github_logo.png" alt="github" width="500"/></p>
+<h2 id="為什麼用github部署">為什麼用GitHub部署</h2>
+<ul>
+<li>因為免費(o)</li>
+<li>因為用起來很親切，簡單又方便(o)</li>
+<li>因為部署到生效的過程很快速(o)</li>
+<li>因為部落格後面有GitHub域名很潮(x)</li>
+</ul>
+<p>GitHub Pages是GitHub提供的<strong>免費</strong>靜態網頁託管服務<br>
+雖然是免費，不過用起來體驗也很好<br>
+那SEO表現呢?  這時候可以用<a class="link" href="https://ahrefs.com/website-authority-checker"  title="ahrefs"
+     target="_blank" rel="noopener"
+    >ahrefs</a>快速確認一下</p>
+<img src="./github.png" alt="github" width="500"/>
+<p><strong>GitHub</strong>在網站權重跟外部連結數都有很好的表現<br>
+拿<strong>medium</strong>來當對手的話呢<br>
+<img src="./medium.png" alt="medium" width="500"/><br>
+<strong>GitHub 加十分 🙌</strong></p>
+<p>跟另一個也是很常拿來建立部落格的平台，且SEO客製化程度較高的<strong>wordpress</strong>相比呢
+<img src="./wordpress.png" alt="wordpress" width="500"/><br>
+<strong>GitHub 再加十分 🙌</strong></p>
+<p>看起來是不錯的選擇唷！那麼來實作看看吧！</p>
+<h2 id="github-pages部署靜態網頁">GitHub Pages部署靜態網頁</h2>
+<p>GitHub Pages有兩種</p>
+<ul>
+<li>專案型網址 <a class="link" href="https://username.github.io/reponame"  target="_blank" rel="noopener"
+    >https://username.github.io/reponame</a><br>
+（一個帳號可以有很多個repo專案，每個專案都可以有一個靜態網頁）</li>
+<li>帳號型網址 <a class="link" href="https://username.github.io"  target="_blank" rel="noopener"
+    >https://username.github.io</a><br>
+（一個使用者帳號只會有一個，可以拿來經營個人網站）</li>
+</ul>
+<p>第1種網址適合把Hugo這個部落格專案，備份到GitHub上(非部署)，執行步驟如下</p>
+<ol>
+<li>新增一個GitHub Repo，Repo名自訂</li>
+<li>cd到專案資料夾，輸入<code>git init</code></li>
+<li><code>git branch -m main</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m 'init project'</code> # git msg 內容可自訂</li>
+<li><code>git remote add origin &lt;自訂repo網址&gt;</code><br>
+#如果電腦只有使用1組GitHub帳號，直接貼repo網址<br>
+#如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到<a class="link" href="https://bacnotes.github.io/p/github-ssh-key/"  title="上一篇"
+     target="_blank" rel="noopener"
+    >上一篇</a>確認<br>
+這樣一來電腦裡的Hugo專案不見也不用擔心囉～之後還可以git clone下來</li>
+</ol>
+<p>第2種適合作為部署部落格本身使用，執行步驟如下</p>
+<ol>
+<li>新增一個GitHub Repo，Repo名為<code>username.github.io</code>(須完全符合)</li>
+<li>在專案資料夾路徑下輸入 <code>hugo</code>，會生成靜態頁面檔案於public資料夾</li>
+<li><code>cd public</code></li>
+<li><code>git init</code></li>
+<li><code>git branch -m main</code> # option 修改分支名(GitHub 2020開始推行的預設名稱)</li>
+<li><code>git add .</code></li>
+<li><code>git config --local user.name aaa</code> # option 如果有設定全域user.name就不用</li>
+<li><code>git config --local user.email aaa@email.com</code> # option 如果有設定全域user.email就不用</li>
+<li><code>git commit -m 'deploy'</code> # git msg 內容可自訂</li>
+<li><code>git remote add origin &lt;repo網址&gt;</code><br>
+#如果電腦只有使用1組GitHub帳號，直接貼repo網址<br>
+#如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到<a class="link" href="https://bacnotes.github.io/p/github-ssh-key/"  title="上一篇"
+     target="_blank" rel="noopener"
+    >上一篇</a>確認</li>
+<li><code>git push -f --set-upstream origin main</code> # 腳本執行會強制覆蓋之前的紀錄所以有加-f</li>
+</ol>
+<p>好的，若依照順序有執行成功，可以開始寫腳本檔案了!</p>
+<h2 id="自動化部屬腳本deploysh">自動化部屬腳本deploy.sh</h2>
+<ol>
+<li>在專案資料夾的<strong>根目錄</strong>建立deploy.sh檔，貼上下方文字</li>
+<li>repo網址記得替換成自己的，option依照自己狀況調整即可</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo 
+</span></span><span class="line"><span class="cl">cd public
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git init 
+</span></span><span class="line"><span class="cl">git branch -m main 
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl"># if you have global config setting, just skip 2 option commands below
+</span></span><span class="line"><span class="cl">git config --local user.name aaa # option 
+</span></span><span class="line"><span class="cl">git config --local user.email aaa@email.com # option 
+</span></span><span class="line"><span class="cl">git commit -m &#39;deploy&#39;
+</span></span><span class="line"><span class="cl">git remote add origin &lt;repo網址&gt; # if you have .ssh/config setting, remember to replace with right structure
+</span></span><span class="line"><span class="cl">git push -f -u origin main
+</span></span><span class="line"><span class="cl">cd -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>未來要部署時，只需要進到專案資料夾，輸入<code>deploy.sh</code> 就可以一鍵部署囉！<br>
+你問，不是一鍵按下去嗎？為什麼需要3秒呢？<br>
+Um&hellip;打<code>./deploy.sh</code>跟按enter也需要時間啦&hellip;</p>
+<p>參考文章:
+<a class="link" href="https://ianjustin39.github.io/ianlife/build-blog/deploy_hugo_on_github/"  title="部署Hugo個人網頁至GitHub"
+     target="_blank" rel="noopener"
+    >部署Hugo個人網頁至GitHub</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/github/">GitHub</a>
+        
+            <a href="/tags/deploy/">Deploy</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#為什麼用github部署">為什麼用GitHub部署</a></li>
+    <li><a href="#github-pages部署靜態網頁">GitHub Pages部署靜態網頁</a></li>
+    <li><a href="#自動化部屬腳本deploysh">自動化部屬腳本deploy.sh</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

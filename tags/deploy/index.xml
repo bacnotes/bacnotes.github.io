@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Deploy on bacnotes備份筆記</title>
+        <link>https://bacnotes.github.io/tags/deploy/</link>
+        <description>Recent content in Deploy on bacnotes備份筆記</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <lastBuildDate>Sun, 26 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/deploy/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記</title>
+        <link>https://bacnotes.github.io/p/github-deploy-hugo/</link>
+        <pubDate>Sun, 26 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://bacnotes.github.io/p/github-deploy-hugo/</guid>
+        <description>&lt;img src="https://bacnotes.github.io/p/github-deploy-hugo/mohammad-rahmani-q1p2DrLBtko-unsplash.jpg" alt="Featured image of post 只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記" /&gt;&lt;p&gt;關於部署的工具有很多，身為工程師的你一定聽過GitHub!&lt;br&gt;
+&lt;img src=&#34;./github_logo.png&#34; alt=&#34;github&#34; width=&#34;500&#34;/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;為什麼用github部署&#34;&gt;為什麼用GitHub部署&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;因為免費(o)&lt;/li&gt;
+&lt;li&gt;因為用起來很親切，簡單又方便(o)&lt;/li&gt;
+&lt;li&gt;因為部署到生效的過程很快速(o)&lt;/li&gt;
+&lt;li&gt;因為部落格後面有GitHub域名很潮(x)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GitHub Pages是GitHub提供的&lt;strong&gt;免費&lt;/strong&gt;靜態網頁託管服務&lt;br&gt;
+雖然是免費，不過用起來體驗也很好&lt;br&gt;
+那SEO表現呢?  這時候可以用&lt;a class=&#34;link&#34; href=&#34;https://ahrefs.com/website-authority-checker&#34;  title=&#34;ahrefs&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ahrefs&lt;/a&gt;快速確認一下&lt;/p&gt;
+&lt;img src=&#34;./github.png&#34; alt=&#34;github&#34; width=&#34;500&#34;/&gt;
+&lt;p&gt;&lt;strong&gt;GitHub&lt;/strong&gt;在網站權重跟外部連結數都有很好的表現&lt;br&gt;
+拿&lt;strong&gt;medium&lt;/strong&gt;來當對手的話呢&lt;br&gt;
+&lt;img src=&#34;./medium.png&#34; alt=&#34;medium&#34; width=&#34;500&#34;/&gt;&lt;br&gt;
+&lt;strong&gt;GitHub 加十分 🙌&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;跟另一個也是很常拿來建立部落格的平台，且SEO客製化程度較高的&lt;strong&gt;wordpress&lt;/strong&gt;相比呢
+&lt;img src=&#34;./wordpress.png&#34; alt=&#34;wordpress&#34; width=&#34;500&#34;/&gt;&lt;br&gt;
+&lt;strong&gt;GitHub 再加十分 🙌&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;看起來是不錯的選擇唷！那麼來實作看看吧！&lt;/p&gt;
+&lt;h2 id=&#34;github-pages部署靜態網頁&#34;&gt;GitHub Pages部署靜態網頁&lt;/h2&gt;
+&lt;p&gt;GitHub Pages有兩種&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;專案型網址 &lt;a class=&#34;link&#34; href=&#34;https://username.github.io/reponame&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://username.github.io/reponame&lt;/a&gt;&lt;br&gt;
+（一個帳號可以有很多個repo專案，每個專案都可以有一個靜態網頁）&lt;/li&gt;
+&lt;li&gt;帳號型網址 &lt;a class=&#34;link&#34; href=&#34;https://username.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://username.github.io&lt;/a&gt;&lt;br&gt;
+（一個使用者帳號只會有一個，可以拿來經營個人網站）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第1種網址適合把Hugo這個部落格專案，備份到GitHub上(非部署)，執行步驟如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新增一個GitHub Repo，Repo名自訂&lt;/li&gt;
+&lt;li&gt;cd到專案資料夾，輸入&lt;code&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git branch -m main&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git commit -m &#39;init project&#39;&lt;/code&gt; # git msg 內容可自訂&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add origin &amp;lt;自訂repo網址&amp;gt;&lt;/code&gt;&lt;br&gt;
+#如果電腦只有使用1組GitHub帳號，直接貼repo網址&lt;br&gt;
+#如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到&lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/github-ssh-key/&#34;  title=&#34;上一篇&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;上一篇&lt;/a&gt;確認&lt;br&gt;
+這樣一來電腦裡的Hugo專案不見也不用擔心囉～之後還可以git clone下來&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第2種適合作為部署部落格本身使用，執行步驟如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新增一個GitHub Repo，Repo名為&lt;code&gt;username.github.io&lt;/code&gt;(須完全符合)&lt;/li&gt;
+&lt;li&gt;在專案資料夾路徑下輸入 &lt;code&gt;hugo&lt;/code&gt;，會生成靜態頁面檔案於public資料夾&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd public&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git branch -m main&lt;/code&gt; # option 修改分支名(GitHub 2020開始推行的預設名稱)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git config --local user.name aaa&lt;/code&gt; # option 如果有設定全域user.name就不用&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git config --local user.email aaa@email.com&lt;/code&gt; # option 如果有設定全域user.email就不用&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git commit -m &#39;deploy&#39;&lt;/code&gt; # git msg 內容可自訂&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add origin &amp;lt;repo網址&amp;gt;&lt;/code&gt;&lt;br&gt;
+#如果電腦只有使用1組GitHub帳號，直接貼repo網址&lt;br&gt;
+#如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到&lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/github-ssh-key/&#34;  title=&#34;上一篇&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;上一篇&lt;/a&gt;確認&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push -f --set-upstream origin main&lt;/code&gt; # 腳本執行會強制覆蓋之前的紀錄所以有加-f&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;好的，若依照順序有執行成功，可以開始寫腳本檔案了!&lt;/p&gt;
+&lt;h2 id=&#34;自動化部屬腳本deploysh&#34;&gt;自動化部屬腳本deploy.sh&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;在專案資料夾的&lt;strong&gt;根目錄&lt;/strong&gt;建立deploy.sh檔，貼上下方文字&lt;/li&gt;
+&lt;li&gt;repo網址記得替換成自己的，option依照自己狀況調整即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd public
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch -m main 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# if you have global config setting, just skip 2 option commands below
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --local user.name aaa # option 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --local user.email aaa@email.com # option 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &amp;#39;deploy&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin &amp;lt;repo網址&amp;gt; # if you have .ssh/config setting, remember to replace with right structure
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -f -u origin main
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;未來要部署時，只需要進到專案資料夾，輸入&lt;code&gt;deploy.sh&lt;/code&gt; 就可以一鍵部署囉！&lt;br&gt;
+你問，不是一鍵按下去嗎？為什麼需要3秒呢？&lt;br&gt;
+Um&amp;hellip;打&lt;code&gt;./deploy.sh&lt;/code&gt;跟按enter也需要時間啦&amp;hellip;&lt;/p&gt;
+&lt;p&gt;參考文章:
+&lt;a class=&#34;link&#34; href=&#34;https://ianjustin39.github.io/ianlife/build-blog/deploy_hugo_on_github/&#34;  title=&#34;部署Hugo個人網頁至GitHub&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;部署Hugo個人網頁至GitHub&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

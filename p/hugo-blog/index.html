@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='為什麼工程師要寫部落格？很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。'><title>工程師的技術部落格要怎麼架？使用Hugo!｜bacnotes備份筆記</title>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/hugo-blog/'>
+
+<link rel="stylesheet" href="/scss/style.min.07bb6d80282315c128a047d83da2055f38bfc5494ecb29a65a193b78dc76cb45.css"><meta property='og:title' content='工程師的技術部落格要怎麼架？使用Hugo!｜bacnotes備份筆記'>
+<meta property='og:description' content='為什麼工程師要寫部落格？很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/hugo-blog/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2021-12-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-12-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://bacnotes.github.io/p/hugo-blog/helena-hertz-wWZzXlDpMog-unsplash.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="工程師的技術部落格要怎麼架？使用Hugo!｜bacnotes備份筆記">
+<meta name="twitter:description" content="為什麼工程師要寫部落格？很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/hugo-blog/helena-hertz-wWZzXlDpMog-unsplash.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">bacnotes備份筆記</a></h1>
+            <h2 class="site-description">記錄小小Junior的學習過程</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/hugo-blog/">
+                <img src="/p/hugo-blog/helena-hertz-wWZzXlDpMog-unsplash_hu45a5e3ad5e058da6a00650ed8fd40bea_15530_800x0_resize_q75_box.jpg"
+                        srcset="/p/hugo-blog/helena-hertz-wWZzXlDpMog-unsplash_hu45a5e3ad5e058da6a00650ed8fd40bea_15530_800x0_resize_q75_box.jpg 800w, /p/hugo-blog/helena-hertz-wWZzXlDpMog-unsplash_hu45a5e3ad5e058da6a00650ed8fd40bea_15530_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="600" 
+                        loading="lazy"
+                        alt="Featured image of post 工程師的技術部落格要怎麼架？使用Hugo!｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugo-blog/">工程師的技術部落格要怎麼架？使用Hugo!｜bacnotes備份筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            為什麼工程師要寫部落格？很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 23, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 1 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="為什麼工程師要寫部落格">為什麼工程師要寫部落格</h2>
+<p>身為一個<strong>專業的工程師</strong>，你也許會需要</p>
+<ul>
+<li>一台筆電(o)</li>
+<li>持續學習(o)</li>
+<li>跟容量大的腦袋來備份知識(x)</li>
+</ul>
+<p>Um&hellip;工程師的世界永遠有追不完的技術<br>
+自知腦容量沒有這麼大，記錄成部落格文字來比較可靠，而且</p>
+<blockquote>
+<p>寫成部落格也有機會跟別人交流，也許還會有高手可以切磋(!</p>
+</blockquote>
+<h2 id="部落格架站選擇---jekyll-hexo-hugo-gatsby不是那個抓頭髮的">部落格架站選擇 - Jekyll, Hexo, Hugo, Gatsby(不是那個抓頭髮的)</h2>
+<p>除了 hugo 外還有很多人氣的靜態網站生成器 <a class="link" href="https://jekyllrb.com/"  title="Jekyll (Ruby)"
+     target="_blank" rel="noopener"
+    >Jekyll (Ruby)</a> / <a class="link" href="https://hexo.io/zh-tw/"  title="Hexo (JavaScript)"
+     target="_blank" rel="noopener"
+    >Hexo (JavaScript)</a> / <a class="link" href="https://www.gatsbyjs.com/"  title="Gatsby (React)"
+     target="_blank" rel="noopener"
+    >Gatsby (React)</a>等，也有很多比較文</p>
+<ul>
+<li><a class="link" href="https://ithelp.ithome.com.tw/m/articles/10269253"  title="[Day06] Jekyll vs Hexo vs Hugo"
+     target="_blank" rel="noopener"
+    >[Day06] Jekyll vs Hexo vs Hugo</a></li>
+<li><a class="link" href="https://www.tangruiping.com/post/hexo-hugo-vuepress-gatsby.html"  title="Hexo Hugo Vuepress Gatsby静态网站生成器的选择"
+     target="_blank" rel="noopener"
+    >Hexo Hugo Vuepress Gatsby 静态网站生成器的选择</a></li>
+</ul>
+<p>因為<a class="link" href="https://gohugo.io/getting-started/installing/"  title="Hugo"
+     target="_blank" rel="noopener"
+    >Hugo</a>號稱部屬最快的框架，用 Go 語言寫的，也許未來有時間會想學學看這個 google 工程師團隊開發的語言，而且時間就是金錢啊！就先選用這個了！</p>
+<h2 id="安裝-hugo">安裝 Hugo</h2>
+<h3 id="如果是用-mac直接-homebrew-下載">如果是用 Mac，直接 homebrew 下載</h3>
+<ul>
+<li>直接<code>brew install hugo</code></li>
+<li>如果沒用過 homebrew 套件管理軟體可以先下載<a class="link" href="https://brew.sh/"  title="homebrew"
+     target="_blank" rel="noopener"
+    >homebrew</a></li>
+<li>用 <code>hugo version</code> or <code>hugo help</code> 來檢查是否有新增成功</li>
+</ul>
+<h3 id="如果是用-windows可以使用-chocolatey-下載">如果是用 Windows，可以使用 Chocolatey 下載</h3>
+<ul>
+<li>
+<p>沒用過 ChocoLatey 套件管理工具的話，可以先參考這篇安裝說明<br>
+<a class="link" href="https://ithelp.ithome.com.tw/articles/10242201"  title="用指令安裝程式--Chocolatey"
+     target="_blank" rel="noopener"
+    >用指令安裝程式&ndash;Chocolatey</a></p>
+</li>
+<li>
+<p>下載完後來安裝 Hugo<br>
+基礎版是<code>choco install hugo -confirm</code><br>
+另一種 Sass/SCSS version 是 <code>choco install hugo-extended -confirm</code><br>
+這個看之後部落格選擇的主題，會使用到 Sass/SCSS 語法的就選後者</p>
+</li>
+<li>
+<p>依照官方影片說明，在 C:\下方新增 Hugo 資料夾</p>
+</li>
+</ul>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul>
+<li>Hugo 資料夾下新增 Sites 跟 bin 資料夾(Sites 是專案資料夾，bin 是儲存執行檔案用)</li>
+<li>到<a class="link" href="https://github.com/gohugoio/hugo/releases"  title="Hugo Releases"
+     target="_blank" rel="noopener"
+    >Hugo Releases</a> 下載安裝檔，解壓縮完的檔案丟到 bin 資料夾</li>
+<li>新增 window 開發環境變數，在變數 PATH 下新增一個值叫<code>C:\Hugo\bin</code>，讓全域都可以執行 hugo 命令</li>
+<li>到其他資料夾用 <code>hugo version</code> or <code>hugo help</code> 來檢查是否有新增成功</li>
+</ul>
+<h3 id="新增網站的專案資料夾">新增網站的專案資料夾</h3>
+<p>＊以下用<code>example.com</code>為部落格網址作為範例，這邊根據自己的網站名做修改即可(mac 跟 windows 流程大同小異)</p>
+<ul>
+<li>window 的使用者 cd 到<code>C:\Hugo\Sites&gt;</code>，mac 的使用者 cd 到你設定的專案資料夾</li>
+<li>執行<code>hugo new site example.com</code></li>
+</ul>
+<h3 id="選擇與安裝喜歡的主題">選擇與安裝喜歡的主題</h3>
+<ul>
+<li>到<a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
+    >Hugo Themes</a>找喜歡的主題</li>
+<li>我選用的是 hugo-theme-stack
+&ndash; <code>git clone</code>你喜歡的主題到<code>theme</code>資料夾<br>
+&ndash; 一開始我們的部落格裡面沒有內容，hugo-theme-stack 有提供範例，<code>exampleSite</code>資料夾，我們用這個來覆蓋專案資料夾看看實際部落格效果
+&ndash; 在 example.com 網站資料夾下執行 <code>hugo server</code><br>
+&ndash; 網址列查看<code>http://localhost:1313</code></li>
+</ul>
+<img src="./screenshot.png" alt="drawing" width="600"/>
+<p>哇真的出現了!好感人啊！<br>
+現在只有自己可以看到，下一篇會介紹如何使用 GitHub 來部署我們的部落格<br>
+<a class="link" href="https://bacnotes.github.io/p/github-deploy-hugo/"  title="只要3秒，使用GitHub一鍵部署你的Hugo部落格"
+     target="_blank" rel="noopener"
+    >只要 3 秒，使用 GitHub 一鍵部署你的 Hugo 部落格</a><br>
+部署前記得先來客製一下部落格標題跟說明文字唷<br>
+不太確定該怎麼設定嗎？那來看看這篇 <a class="link" href="https://bacnotes.github.io/p/hugo-config-and-disqus/"  title="如何設定Hugo config跟Disqus討論區"
+     target="_blank" rel="noopener"
+    >如何設定 Hugo config 跟 Disqus 討論區</a></p>
+<p>參考文章: <a class="link" href="https://ithelp.ithome.com.tw/m/articles/10269925"  title="[Day07] Let&#39;s Hugo!"
+     target="_blank" rel="noopener"
+    >[Day07] Let&rsquo;s Hugo!</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hugo/">Hugo</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#為什麼工程師要寫部落格">為什麼工程師要寫部落格</a></li>
+    <li><a href="#部落格架站選擇---jekyll-hexo-hugo-gatsby不是那個抓頭髮的">部落格架站選擇 - Jekyll, Hexo, Hugo, Gatsby(不是那個抓頭髮的)</a></li>
+    <li><a href="#安裝-hugo">安裝 Hugo</a>
+      <ul>
+        <li><a href="#如果是用-mac直接-homebrew-下載">如果是用 Mac，直接 homebrew 下載</a></li>
+        <li><a href="#如果是用-windows可以使用-chocolatey-下載">如果是用 Windows，可以使用 Chocolatey 下載</a></li>
+        <li><a href="#新增網站的專案資料夾">新增網站的專案資料夾</a></li>
+        <li><a href="#選擇與安裝喜歡的主題">選擇與安裝喜歡的主題</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
