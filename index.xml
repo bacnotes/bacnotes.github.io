@@ -13,7 +13,14 @@
         
         <guid>https://bacnotes.github.io/p/vue-todomvc/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/vue-todomvc/Dup9I4d.jpeg" alt="Featured image of post 用TodoMVC 複習 Vue Option API｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;什麼是-vue&#34;&gt;什麼是 Vue&lt;/h2&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/QC8R8Gd.pn&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)，目前三大框架主流之一&lt;/li&gt;
 &lt;li&gt;以元件為中心的宣告式程式設計，無需直接操作 DOM，資料驅動畫面，透過雙向綁定讓資料有變化畫面也會響應，提高開發效率&lt;/li&gt;
@@ -66,14 +73,28 @@
 &amp;ndash; 配置很齊全，舊瀏覽器相容性高&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/bundler.37740380.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Vite
 &amp;ndash; 基於 ESM (ES Modules)，開發時使用 ESbuild(Go 語言撰寫)，依賴瀏覽器 ES6 Modules 的原生支持，在運行的時候直接發 HTTP 請求 JavaScript 模組
 &amp;ndash; 冷啟動跟熱加載快速，開發體驗速度快，開發時編譯的程式碼簡潔，舊瀏覽器相容性低
 &amp;ndash; production 會使用 rollup 打包，開發編譯跟 production 打包是不同系統，可能少數狀況下會有不同行為&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/esm.3070012d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;vue-生命週期&#34;&gt;Vue 生命週期&lt;/h2&gt;
 &lt;p&gt;在 SPA 應用，針對部分元件掛載/資料更新/卸載時有對應的生命週期適合操作，透過這些 Vue 內建的 Hook function 來介入&lt;/p&gt;
 &lt;ul&gt;
@@ -95,7 +116,14 @@
 &amp;ndash; 適合在此時卸載手動添加的監聽/訂閱&lt;/li&gt;
 &lt;li&gt;destroyed：實例被銷毀&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/1741752219-59c9b774a4ccf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;父子元件的生命週期&#34;&gt;父子元件的生命週期&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -161,8 +189,15 @@ created 即進行監聽，beforeDestroy 進行取消
 Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就會導致衝突，且監聽也需要做好管理，不需要的時候要記得清除，例如在多個路由切換時，若不同頁面使用了同一個事件名，會導致重複觸發事件的問題（因事件的監聽不會隨著元件的銷毀而跟著銷毀，要主動去註銷事件），且註銷也需要小心處理，沒註銷正確也有可能導致後續觸發失敗&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;專案資料夾配置&#34;&gt;專案資料夾配置&lt;/h2&gt;
-&lt;p&gt;之前曾經看到過很完整的配置範例，包含 Sass 資料夾規劃
-&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;之前曾經看到過很完整的配置範例，包含 Sass 資料夾規劃&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/vue-file.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;vue-開發者工具&#34;&gt;vue 開發者工具&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd/related&#34;  title=&#34;chrome extension連結&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -178,7 +213,14 @@ Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就
 &lt;li&gt;footer 有 span 文字提示還有多少件事項沒完成，需考慮單複數&lt;/li&gt;
 &lt;li&gt;三個篩選器篩選不同狀態的任務 all/active/complete (不同路由)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/todomvc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://cdn.jsdelivr.net/npm/todomvc-app-css@2.4.1/index.css&#34;  title=&#34;CSS&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;CSS&lt;/a&gt;&lt;/p&gt;
@@ -9386,7 +9428,20 @@ watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的
         
         <guid>https://bacnotes.github.io/p/object-oriented-programming/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/object-oriented-programming/pexels-j%C3%A9shoots-271458.jpg" alt="Featured image of post 今晚，我們來聊點物件導向程式設計(Object-Oriented Programming) ｜bacnotes備份筆記" /&gt;&lt;p&gt;產出好維護好管理的程式碼是重要的，想像今天你的任務是要從這個房間裡找出某一本書，你覺得你需要多少時間？&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/object-oriented-programming/15772480102360.jpeg&#34;
+	width=&#34;600&#34;
+	height=&#34;450&#34;
+	srcset=&#34;https://bacnotes.github.io/p/object-oriented-programming/15772480102360_hu0ef0b3401692dd7690959291ebbe432d_97023_480x0_resize_q75_box.jpeg 480w, https://bacnotes.github.io/p/object-oriented-programming/15772480102360_hu0ef0b3401692dd7690959291ebbe432d_97023_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;messy-room&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;如果專案程式碼長這樣的話，還沒開始 debug 腦袋就已經先當機了&amp;hellip;&lt;/p&gt;
 &lt;p&gt;物件導向程式設計就是為了解決這個問題而誕生的一種方便管理程式碼的方式&lt;/p&gt;
 &lt;h2 id=&#34;什麼是物件導向程式設計object-oriented-programming&#34;&gt;什麼是物件導向程式設計(Object-Oriented Programming)&lt;/h2&gt;
@@ -9551,9 +9606,29 @@ watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;prototype-chain-原型鏈&#34;&gt;prototype chain 原型鏈&lt;/h4&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/object-oriented-programming/prototypechain.png&#34;
+	width=&#34;872&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://bacnotes.github.io/p/object-oriented-programming/prototypechain_hu73632d47e187df4fb0fa383c456ddb25_213543_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/object-oriented-programming/prototypechain_hu73632d47e187df4fb0fa383c456ddb25_213543_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;prototype-chain&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h4 id=&#34;建構函式-vs-原型-vs-實例-關係圖&#34;&gt;建構函式 v.s. 原型 v.s. 實例 關係圖&lt;/h4&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/relation.pn&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -10152,7 +10227,18 @@ watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的
 &lt;li&gt;子類別繼承父類別的方法跟屬性，也可以有自己的方法跟屬性&lt;/li&gt;
 &lt;li&gt;當子層父層有一樣名稱的方法，會用子層的&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/object-oriented-programming/inheritance.png&#34;
+	width=&#34;907&#34;
+	height=&#34;439&#34;
+	srcset=&#34;https://bacnotes.github.io/p/object-oriented-programming/inheritance_hu0008856d59afe3d8a4f0b7a560092a32_116278_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/object-oriented-programming/inheritance_hu0008856d59afe3d8a4f0b7a560092a32_116278_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;495px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;使用建構函式跟-new-運算子建立父子類別繼承&#34;&gt;使用建構函式跟 new 運算子建立父子類別繼承&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -10237,7 +10323,14 @@ watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;子類別實例跟子類別跟父類別關係&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/prototype_chain_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -10443,7 +10536,7 @@ jay.calcAge() // 27&lt;/p&gt;
         <guid>https://bacnotes.github.io/p/javascript-advanced-part1/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/javascript-advanced-part1/javascript-removebg-preview.png" alt="Featured image of post JavaScript 進階函式知識 ｜bacnotes備份筆記" /&gt;&lt;p&gt;我們之前在&lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/&#34;  title=&#34;JavaScript底層運作原理101&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;JavaScript 底層運作原理 101&lt;/a&gt;，介紹過 primitives 跟 objects 使用記憶體的方式&lt;br&gt;
+    &gt;JavaScript 底層運作原理 101&lt;/a&gt;，介紹過 primitives 跟 objects 使用記憶體的方式
 也有在&lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part2/&#34;  title=&#34;JavaScript基礎知識複習(2)｜The Complete JavaScript Course&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;JavaScript 基礎知識複習(2)&lt;/a&gt;，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址&lt;/p&gt;
@@ -10544,7 +10637,7 @@ jay.calcAge() // 27&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;flightNum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;flight&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;passenger&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jonas&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;checkIn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;flightNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;passenger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;flightNum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;LH999&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// 修改記憶體中的值
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nx&#34;&gt;passenger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Mr. &amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;passenger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -10567,14 +10660,14 @@ jay.calcAge() // 27&lt;/p&gt;
 &lt;li&gt;大型專案有時候因為不經意的修改到物件資料，會造成很大的影響，所以需要多注意傳址傳值的概念&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;first-class-function-一級函式&#34;&gt;First-Class Function 一級函式&lt;/h2&gt;
-&lt;p&gt;之前介紹 JavaScript 語言特性時，有提到 JavaScript 有一級函式的特性&lt;br&gt;
+&lt;p&gt;之前介紹 JavaScript 語言特性時，有提到 JavaScript 有一級函式的特性
 因此我們可以使用 higher-order function：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;可以把 function 當參數傳入另一個 function(又被稱作回呼函式)&lt;/li&gt;
 &lt;li&gt;可以 function return function&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;callback-function-回呼函式&#34;&gt;callback function 回呼函式&lt;/h3&gt;
-&lt;p&gt;回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它&lt;br&gt;
+&lt;p&gt;回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它
 只是通常提到的場景是在處理非同步的時候&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -10644,7 +10737,7 @@ jay.calcAge() // 27&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;function-return-function&#34;&gt;Function return function&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼&lt;br&gt;
+&lt;li&gt;可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼
 ＊柯里化：把接受多個參數的函數變換成接受一個單一參數（最初函數的第一個參數）的函數，並且返回接受餘下的參數而且返回結果的新函數的技術&lt;/li&gt;
 &lt;li&gt;因為 Function return function 會創造閉包，閉包是函式本身及函式被建立時的執行文本(execution context)，因此下方 greeting 的參數 Hey 會被記住&lt;/li&gt;
 &lt;/ul&gt;
@@ -10683,7 +10776,7 @@ jay.calcAge() // 27&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;call--apply-綁定-this-對象&#34;&gt;Call &amp;amp; Apply 綁定 this 對象&lt;/h2&gt;
-&lt;p&gt;當我們開發程式後可能會複用不同物件內的方法，但如果你只 copy 方法，使用一般函式呼叫，會發現 this undefined，符合我們之前提到的一般函式呼叫的狀況下，嚴格模式下 this 是 undefined（非嚴格模式下為全域物件）&lt;br&gt;
+&lt;p&gt;當我們開發程式後可能會複用不同物件內的方法，但如果你只 copy 方法，使用一般函式呼叫，會發現 this undefined，符合我們之前提到的一般函式呼叫的狀況下，嚴格模式下 this 是 undefined（非嚴格模式下為全域物件）
 這個時候你就需要使用 Call 或 Apply 來告訴程式 this 要綁定的對象&lt;/p&gt;
 &lt;h3 id=&#34;使用-call-方法&#34;&gt;使用 Call 方法&lt;/h3&gt;
 &lt;ul&gt;
@@ -11065,7 +11158,20 @@ jay.calcAge() // 27&lt;/p&gt;
 &lt;li&gt;閉包（Closure）是函式以及該函式被宣告時所在的作用域環境（lexical environment）的組合&lt;/li&gt;
 &lt;li&gt;如果是第一次接觸閉包觀念應該會有下方反應&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-advanced-part1/1585743166295.jpeg&#34;
+	width=&#34;600&#34;
+	height=&#34;450&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-advanced-part1/1585743166295_hu741cbe81cae4c194c84a768507409dfd_46153_480x0_resize_q75_box.jpeg 480w, https://bacnotes.github.io/p/javascript-advanced-part1/1585743166295_hu741cbe81cae4c194c84a768507409dfd_46153_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;wtf-meme&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;這部分會需要知道什麼是作用域跟執行文本，不熟的話可以看一下這篇 &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/&#34;  title=&#34;JavaScript底層運作原理101｜The Complete JavaScript Course&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -11074,14 +11180,14 @@ jay.calcAge() // 27&lt;/p&gt;
 &lt;li&gt;step1. 創造全域執行文本
 (全域變數環境：secureBooking=fn, booker=fn)&lt;/li&gt;
 &lt;li&gt;step2. 執行全域執行文本，創造出個別執行文本
-secureBooking()作用域：可以獲取本地作用域跟父層的環境變數&lt;br&gt;
-(變數環境：passengerCount=0, secureBooking=fn)&lt;br&gt;
-程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker&lt;br&gt;
+secureBooking()作用域：可以獲取本地作用域跟父層的環境變數
+(變數環境：passengerCount=0, secureBooking=fn)
+程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker
 (變數環境：passengerCount=0, secureBooking=fn, booker=fn)&lt;/li&gt;
-&lt;li&gt;step3. 執行個別文本&lt;br&gt;
+&lt;li&gt;step3. 執行個別文本
 執行 booker()
-(變數環境：empty, secureBooking=fn, booker=fn)&lt;br&gt;
-由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)&lt;br&gt;
+(變數環境：empty, secureBooking=fn, booker=fn)
+由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)
 因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn的變數環境，而secureBooking()的變數環境裡面有passengerCount=0&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -11111,9 +11217,31 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數&l
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;step 1 &amp;amp; 2 創造＆執行全域執行文本，創造出個別執行文本&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-advanced-part1/callstack_scope.png&#34;
+	width=&#34;1150&#34;
+	height=&#34;568&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-advanced-part1/callstack_scope_hud86e7c4641ee1a10f523deb524f7d7df_182734_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-advanced-part1/callstack_scope_hud86e7c4641ee1a10f523deb524f7d7df_182734_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;485px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;step 3 執行個別文本&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-advanced-part1/closure.png&#34;
+	width=&#34;1147&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-advanced-part1/closure_hufbdc4875f1c4f86c24a6756f00628889_258437_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-advanced-part1/closure_hufbdc4875f1c4f86c24a6756f00628889_258437_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;481px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;總結&#34;&gt;總結&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;閉包建立在所有函式都可以獲取被創造當下的執行文本的變數環境的機制下&lt;/li&gt;
@@ -11143,7 +11271,7 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數&l
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;booker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Scopes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Scopes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Closure&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;secureBooking&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passengerCount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -12638,7 +12766,7 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數&l
         <pubDate>Thu, 06 Jan 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/react-knowledge-101/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/react-knowledge-101/photo-1633356122544-f134324a6cee.jpeg" alt="Featured image of post 自學React的你需要知道的一些知識｜bacnotes備份筆記" /&gt;&lt;p&gt;本文是基於下方這堂 Udemy 課程的筆記，對 React 有興趣的話可以購買看看唷&lt;br&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/react-knowledge-101/photo-1633356122544-f134324a6cee.jpeg" alt="Featured image of post 自學React的你需要知道的一些知識｜bacnotes備份筆記" /&gt;&lt;p&gt;本文是基於下方這堂 Udemy 課程的筆記，對 React 有興趣的話可以購買看看唷
 &lt;a class=&#34;link&#34; href=&#34;https://www.udemy.com/course/react-the-complete-guide-incl-redux/&#34;  title=&#34;React - The Complete Guide (incl Hooks, React Router, Redux&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;React - The Complete Guide (incl Hooks, React Router, Redux)&lt;/a&gt;&lt;/p&gt;
@@ -12668,15 +12796,15 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數&l
 &lt;h2 id=&#34;2-為什麼用-react&#34;&gt;2. 為什麼用 React&lt;/h2&gt;
 &lt;h3 id=&#34;對開發者好處&#34;&gt;對開發者好處&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;使用 Declarative programming 宣告式程式設計&lt;br&gt;
+&lt;li&gt;使用 Declarative programming 宣告式程式設計
 描述目標而非流程，比起過往 DOM 操作要一個個選元素，一個口令一個動作的指令式程式設計 imperative programming，可以讓撰寫的程式碼精簡不少&lt;/li&gt;
-&lt;li&gt;以元件為中心&lt;br&gt;
+&lt;li&gt;以元件為中心
 把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複代碼&lt;/li&gt;
-&lt;li&gt;JSX 語法&lt;br&gt;
+&lt;li&gt;JSX 語法
 JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直接寫在 HTML 上，很方便，像是在 HTML 上實作 JS 邏輯，且容易閱讀&lt;/li&gt;
-&lt;li&gt;關注點分離&lt;br&gt;
+&lt;li&gt;關注點分離
 每一模組各自有獨立關注焦點，有助於後續協作跟維護&lt;/li&gt;
-&lt;li&gt;資料驅動畫面&lt;br&gt;
+&lt;li&gt;資料驅動畫面
 用 useState+雙向綁定 HTML 元素，資料有變動畫面就會變動
 不用再寫一個渲染指令請程式更新畫面&lt;/li&gt;
 &lt;/ul&gt;
@@ -13464,7 +13592,7 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Modal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;＊onCancel 是離開一個 dialog 元素會觸發的事件(e.g. 點遮罩或右上角 x，或取消按鈕)&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;＊onCancel 是離開一個 dialog 元素會觸發的事件(e.g. 點遮罩或右上角 x，或取消按鈕)
 ＊onConfirm 是點確認&lt;/p&gt;
 &lt;h2 id=&#34;14-加上路由&#34;&gt;14. 加上路由&lt;/h2&gt;
 &lt;ul&gt;
@@ -14894,10 +15022,23 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MainNavigation&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;最後想補充一下&amp;hellip;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;最後想補充一下&amp;hellip;
 其實我覺得 Vue 也不錯啊（x)&lt;/p&gt;
 &lt;p&gt;有好吃的語法糖：用@監聽事件，@submit.prevent.stop 就可阻止瀏覽器提交表單跟冒泡：動態 class，watch 深層監聽物件屬性，computed 動態更新，v-model 雙向綁定表單&amp;hellip;各種好吃的糖)&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile.jpeg&#34;
+	width=&#34;388&#34;
+	height=&#34;401&#34;
+	srcset=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile_hud4d4f2c437a37a6da93416be95c29e39_12858_480x0_resize_q75_box.jpeg 480w, https://bacnotes.github.io/p/react-knowledge-101/smile_hud4d4f2c437a37a6da93416be95c29e39_12858_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;smile-cat-meme&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;96&#34;
+		data-flex-basis=&#34;232px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;原來暗藏一篇 Vue 推銷文，真是太邪惡了&lt;/p&gt;
 </description>
         </item>
@@ -14974,7 +15115,20 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;li&gt;just-in-time compilation: 程式碼轉成 2 進位後立即執行(避免等待)&lt;/li&gt;
 &lt;li&gt;當一段程式碼進到引擎會執行下方程序&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/interpretation.png&#34;
+	width=&#34;934&#34;
+	height=&#34;505&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/interpretation_hudcf2d5f2e9e41ce739c997b2cf88693c_211277_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/interpretation_hudcf2d5f2e9e41ce739c997b2cf88693c_211277_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;javascript-interpretation&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;184&#34;
+		data-flex-basis=&#34;443px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -14991,35 +15145,51 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;javascript-runtime-執行環境&#34;&gt;JavaScript Runtime 執行環境&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;browser: JavaScript 引擎 + webAPIs + callback queue&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;call stack : 由上到下執行 stack 裡面每一行程式，變數的記憶體也是在這個階段建立(hoisting)，遇到需要呼叫 API 的非同步函式會把裡面的 call back function 丟到 webAPI 排程執行&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;webAPIs 處理非同步函式，當有收到回傳結果，會依照回傳時間順序把 callback function 傳到 callback queue&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;當 stack 清空時，callback queue 就會把 callback function 依序（queue先進先出)丟到 stack 裡執行&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;這整個過程就是 event loop，為了提高瀏覽器的使用體驗，不會被非同步函式等待過程阻塞的機制
-&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;node.js: JavaScript 引擎 + C ++ bindings &amp;amp; thread pool + callback queue (這邊知道的大概即可)&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;browser: JavaScript 引擎 + webAPIs + callback queue&lt;/li&gt;
+&lt;li&gt;call stack : 由上到下執行 stack 裡面每一行程式，變數的記憶體也是在這個階段建立(hoisting)，遇到需要呼叫 API 的非同步函式會把裡面的 call back function 丟到 webAPI 排程執行&lt;/li&gt;
+&lt;li&gt;webAPIs 處理非同步函式，當有收到回傳結果，會依照回傳時間順序把 callback function 傳到 callback queue&lt;/li&gt;
+&lt;li&gt;當 stack 清空時，callback queue 就會把 callback function 依序（queue先進先出)丟到 stack 裡執行&lt;/li&gt;
+&lt;li&gt;這整個過程就是 event loop，為了提高瀏覽器的使用體驗，不會被非同步函式等待過程阻塞的機制&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/browser.png&#34;
+	width=&#34;971&#34;
+	height=&#34;433&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/browser_hu2c56e1b4359c8804f0814f5b11b9593a_128438_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/browser_hu2c56e1b4359c8804f0814f5b11b9593a_128438_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;browser-interpretation&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;224&#34;
+		data-flex-basis=&#34;538px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;node.js: JavaScript 引擎 + C ++ bindings &amp;amp; thread pool + callback queue (這邊知道的大概即可)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/node.png&#34;
+	width=&#34;909&#34;
+	height=&#34;435&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/node_hu4a6e0adeafc33f70a6a092844ac2e8f0_94360_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/node_hu4a6e0adeafc33f70a6a092844ac2e8f0_94360_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;node-interpretation&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;501px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;＊stack 是先進後出(後進先出)的資料結構，queue 是先進先出的資料結構&lt;/p&gt;
 &lt;h3 id=&#34;execution-context-執行文本&#34;&gt;execution context 執行文本&lt;/h3&gt;
 &lt;p&gt;＊為了跟執行環境 runtime 做名詞區隔，使用不同中文名稱指稱&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;執行文本包含&lt;br&gt;
-&amp;ndash; variable environment 變數環境:包含 let const var 宣告, 函式, 參數 arguments obj&lt;br&gt;
-&amp;ndash; scope chain 作用域鏈:讓個別函式可以 ref 到函式外的變數，會存在個別執行文本&lt;br&gt;
+&lt;p&gt;執行文本包含
+&amp;ndash; variable environment 變數環境:包含 let const var 宣告, 函式, 參數 arguments obj
+&amp;ndash; scope chain 作用域鏈:讓個別函式可以 ref 到函式外的變數，會存在個別執行文本
 &amp;ndash; this:每個執行文本都有自己的 this，在創造階段時誕生(執行階段前)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -15029,17 +15199,30 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;p&gt;箭頭函式沒有自己的 this 或參數，但可以使用父層的 this 或參數&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;執行順序&lt;br&gt;
-step1. 創造全域執行文本(top-level/not inside the function)&lt;br&gt;
-＊ 只有非 function 的會被執行，因為 function 要被呼叫才會執行&lt;br&gt;
-＊ 只會有一個 global execution context&lt;br&gt;
-step2. 執行全域執行文本(inside global EC)&lt;br&gt;
-step3. 執行函式等待 callback 回傳結果&lt;br&gt;
-＊ 依序呼叫個別函式，個別函式的文本會被創造&lt;br&gt;
+&lt;p&gt;執行順序
+step1. 創造全域執行文本(top-level/not inside the function)
+＊ 只有非 function 的會被執行，因為 function 要被呼叫才會執行
+＊ 只會有一個 global execution context
+step2. 執行全域執行文本(inside global EC)
+step3. 執行函式等待 callback 回傳結果
+＊ 依序呼叫個別函式，個別函式的文本會被創造
 ＊ call stack 的內容就是由這些個別函式跟文本所組成&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/EC.png&#34;
+	width=&#34;747&#34;
+	height=&#34;359&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/EC_hu94fd729e6557cadec0ebaa708590420f_137786_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/EC_hu94fd729e6557cadec0ebaa708590420f_137786_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;execution-context&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;499px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;scope-作用域--scope-chain-作用域鏈&#34;&gt;scope 作用域 &amp;amp; scope chain 作用域鏈&lt;/h2&gt;
 &lt;h3 id=&#34;global-scope-全域&#34;&gt;global scope 全域&lt;/h3&gt;
 &lt;ul&gt;
@@ -15067,18 +15250,31 @@ step3. 執行函式等待 callback 回傳結果&lt;br&gt;
 &lt;li&gt;每個 scope chain 都包含他的變數跟的父層的變數&lt;/li&gt;
 &lt;li&gt;scope chain 可以讀取的變數跟 function 在 call stack 執行順序無關&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/scope.png&#34;
+	width=&#34;1152&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/scope_hu05b513e5f6fba10c94c9db17b1f02077_283212_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/scope_hu05b513e5f6fba10c94c9db17b1f02077_283212_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;scope-chain&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;485px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;callstack-vs-scope-chain&#34;&gt;callstack v.s. scope chain&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;使用下方函式舉例&lt;/li&gt;
-&lt;li&gt;step1. 創造全域執行文本&lt;br&gt;
+&lt;li&gt;step1. 創造全域執行文本
 (全域變數環境：a=&amp;lsquo;Jonas&amp;rsquo;, first=fn, third=fn)&lt;/li&gt;
-&lt;li&gt;step2. 執行全域執行文本，創造出個別執行文本&lt;br&gt;
-first()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
-(變數環境：b=&amp;lsquo;Hello&amp;rsquo;, second=fn, a=&amp;lsquo;Jonas&amp;rsquo;, first=fn, third=fn)&lt;br&gt;
-second()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
-(變數環境：c, b=&amp;lsquo;Hello&amp;rsquo;, second=fn, a=&amp;lsquo;Jonas&amp;rsquo;, first=fn, third=fn)&lt;br&gt;
-third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
+&lt;li&gt;step2. 執行全域執行文本，創造出個別執行文本
+first()作用域：可以獲取本地作用域跟父層的變數環境
+(變數環境：b=&amp;lsquo;Hello&amp;rsquo;, second=fn, a=&amp;lsquo;Jonas&amp;rsquo;, first=fn, third=fn)
+second()作用域：可以獲取本地作用域跟父層的變數環境
+(變數環境：c, b=&amp;lsquo;Hello&amp;rsquo;, second=fn, a=&amp;lsquo;Jonas&amp;rsquo;, first=fn, third=fn)
+third()作用域：可以獲取本地作用域跟父層的變數環境
 (變數環境：d=&amp;lsquo;Hey&amp;rsquo;, a=&amp;lsquo;Jonas&amp;rsquo;, first=fn, third=fn)&lt;/li&gt;
 &lt;li&gt;step3. 執行個別文本(執行函式)，等待 callback 回傳結果&lt;/li&gt;
 &lt;/ul&gt;
@@ -15124,7 +15320,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/callstack-and-scope.png&#34;
+	width=&#34;707&#34;
+	height=&#34;349&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/callstack-and-scope_huf6b99f8402cf9eedd4b6269ff2783709_151040_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/callstack-and-scope_huf6b99f8402cf9eedd4b6269ff2783709_151040_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;callstack-and-scope&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;486px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;＊下方是另一個範例，輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -15186,7 +15395,7 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;c1&#34;&gt;// 創造跟外面一樣變數名的新變數
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;      &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;firstName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Steven&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;str&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`you are a millenial, &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;firstName&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;c1&#34;&gt;// 執行時裡面沒有firstName，往父層找 you are a millenial, Jonas
@@ -15246,7 +15455,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;li&gt;未宣告使用下會被鎖在 TDZ(temporary dead zone)&lt;/li&gt;
 &lt;li&gt;變數存取範圍為 block scope&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/hoist.png&#34;
+	width=&#34;796&#34;
+	height=&#34;253&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/hoist_hu5da78da24b756abb905ab65f4ecdd668_65308_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/hoist_hu5da78da24b756abb905ab65f4ecdd668_65308_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;hoisting&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;314&#34;
+		data-flex-basis=&#34;755px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;函式表達式跟箭頭函式&#34;&gt;函式表達式跟箭頭函式&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;函式表達式跟箭頭函式若用 var 存取會提升&lt;/li&gt;
@@ -15262,7 +15484,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;li&gt;另一個 TDZ 存在好處是，因 const 無法重新賦值，所以無法設定 undefined 再給新的值，TDZ 可以讓 const 順利運作&lt;/li&gt;
 &lt;li&gt;hoisting 的好處：mutual recursion，讓 code 可讀性高，而 var 的 hoisting 算是副產物，後見之明看來不是好東東&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/TDZ.png&#34;
+	width=&#34;735&#34;
+	height=&#34;262&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/TDZ_hud1fae32dcc95e1a3f34c7aae34654707_93014_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/TDZ_hud1fae32dcc95e1a3f34c7aae34654707_93014_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;temparary-dead-zone&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;280&#34;
+		data-flex-basis=&#34;673px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;＊下方輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -15704,7 +15939,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;li&gt;primitives 記憶體存在 call stack&lt;/li&gt;
 &lt;li&gt;objects 記憶體存在 Heap&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/primative.png&#34;
+	width=&#34;741&#34;
+	height=&#34;349&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/primative_hubebe0eda4a6e483df1e545ee7e3a62d7_70501_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/primative_hubebe0eda4a6e483df1e545ee7e3a62d7_70501_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;primatives-vs-objects&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;212&#34;
+		data-flex-basis=&#34;509px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;primitives&#34;&gt;primitives&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;let age = 30 給一個 call stack 的記憶體地址跟 30 的值(0001)&lt;/li&gt;
@@ -15718,7 +15966,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;li&gt;const friend = me，會傳 me 記憶體的地址給 friend&lt;/li&gt;
 &lt;li&gt;friend.name = &amp;lsquo;mirenda&amp;rsquo; 物件跟上面的 primitives 不同，會改到 me 的值(D30F)，值參照同樣的 Heap 地址，並沒有另外再給一個新的記憶體，可以參考下方圖表的箭頭（只有一個)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/address.png&#34;
+	width=&#34;714&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-behind-the-scenes/address_hu85d7c18c8981960c21ce1ac6a4394a9c_109083_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-behind-the-scenes/address_hu85d7c18c8981960c21ce1ac6a4394a9c_109083_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;memory-address&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;508px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;常用淺拷貝方法&#34;&gt;常用淺拷貝方法&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Object.assign&lt;/li&gt;
@@ -15774,10 +16035,10 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
         <pubDate>Sun, 02 Jan 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/javascript-dom-manipulation/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/javascript-dom-manipulation/jade-seok-WOv2t_N6iwQ-unsplash.jpg" alt="Featured image of post DOM操作基礎知識複習｜bacnotes備份筆記" /&gt;&lt;p&gt;完全沒有接觸過 JavaScript 語言的朋友們，可以先補足下方知識點再繼續閱讀唷&lt;br&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/javascript-dom-manipulation/jade-seok-WOv2t_N6iwQ-unsplash.jpg" alt="Featured image of post DOM操作基礎知識複習｜bacnotes備份筆記" /&gt;&lt;p&gt;完全沒有接觸過 JavaScript 語言的朋友們，可以先補足下方知識點再繼續閱讀唷
 &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/&#34;  title=&#34;JavaScript基礎知識複習(1)｜The Complete JavaScript Course&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;JavaScript 基礎知識複習(1)&lt;/a&gt;&lt;br&gt;
+    &gt;JavaScript 基礎知識複習(1)&lt;/a&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part2/&#34;  title=&#34;JavaScript基礎知識複習(2)｜The Complete JavaScript Course&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;JavaScript 基礎知識複習(2)&lt;/a&gt;&lt;/p&gt;
@@ -15791,7 +16052,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;li&gt;DOM 方法(e.g. querySelector)跟屬性(e.g. innerHTML)不屬於 JavaScript 這個語言，而是 WebAPIs(瀏覽器上使用 JavaScript 撰寫的 library)的一部分&lt;/li&gt;
 &lt;li&gt;我們可以用 JavaScript 去跟 WebAPIs 互動，像是 timer、fetch API&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-dom-manipulation/1200px-DOM-model.svg.png&#34;
+	width=&#34;1200&#34;
+	height=&#34;1242&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-dom-manipulation/1200px-DOM-model.svg_hu2b59aadb9830e47ce8281d143f46e8cc_147965_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-dom-manipulation/1200px-DOM-model.svg_hu2b59aadb9830e47ce8281d143f46e8cc_147965_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;dom-tree&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;96&#34;
+		data-flex-basis=&#34;231px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;選取元素&#34;&gt;選取元素&lt;/h2&gt;
 &lt;h3 id=&#34;選取單個元素-documentqueryselector&#34;&gt;選取單個元素 document.querySelector()&lt;/h3&gt;
 &lt;ul&gt;
@@ -16980,7 +17254,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;The Complete JavaScript Course - From Zero to Expert&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;為什麼想上這堂課&#34;&gt;為什麼想上這堂課&lt;/h2&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/1640770701360.png&#34;
+	width=&#34;600&#34;
+	height=&#34;600&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/1640770701360_huae6431b52461a0b77c57fd688b08862c_317218_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-fundamentals-part1/1640770701360_huae6431b52461a0b77c57fd688b08862c_317218_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;yes-no-meme&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;由於整堂課有 69 小時，自己擷取的重點不一定符合所有階段的學習者，可能比較精簡
 如果有看不懂的地方可以在下方留言，或建議還是來親自體驗一下這堂課
 下方也會加入一些自己過往學習JavaScript的筆記&lt;/p&gt;
@@ -17518,7 +17805,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/MKgie.png&#34;
+	width=&#34;650&#34;
+	height=&#34;200&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/MKgie_huefb3941bd214e0d86ddd778593c5d5b3_3869_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-fundamentals-part1/MKgie_huefb3941bd214e0d86ddd778593c5d5b3_3869_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;if-value-form&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;325&#34;
+		data-flex-basis=&#34;780px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;!(變數)也會讓變數強制轉型&lt;/li&gt;
 &lt;/ul&gt;
@@ -17598,7 +17898,20 @@ third()作用域：可以獲取本地作用域跟父層的變數環境&lt;br&gt;
 &lt;li&gt;寬鬆的等號容易產生 bug，所以只會使用&lt;code&gt;===&lt;/code&gt;跟&lt;code&gt;!==&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;&amp;quot;0&amp;quot; == false&lt;/code&gt; // true (&amp;ldquo;0&amp;quot;轉成數字 0，false 轉成 0)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/5bdbd.png&#34;
+	width=&#34;674&#34;
+	height=&#34;633&#34;
+	srcset=&#34;https://bacnotes.github.io/p/javascript-fundamentals-part1/5bdbd_hu33368197d3279b46945973086619e636_6093_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/javascript-fundamentals-part1/5bdbd_hu33368197d3279b46945973086619e636_6093_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;type-compare-table&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;106&#34;
+		data-flex-basis=&#34;255px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;有興趣可看這份&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Equality_comparisons_and_sameness&#34;  title=&#34;一般相等比較表&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;MDN 一般相等比較表&lt;/a&gt;

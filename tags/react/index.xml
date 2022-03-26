@@ -4672,7 +4672,7 @@
         <pubDate>Thu, 06 Jan 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/react-knowledge-101/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/react-knowledge-101/photo-1633356122544-f134324a6cee.jpeg" alt="Featured image of post 自學React的你需要知道的一些知識｜bacnotes備份筆記" /&gt;&lt;p&gt;本文是基於下方這堂 Udemy 課程的筆記，對 React 有興趣的話可以購買看看唷&lt;br&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/react-knowledge-101/photo-1633356122544-f134324a6cee.jpeg" alt="Featured image of post 自學React的你需要知道的一些知識｜bacnotes備份筆記" /&gt;&lt;p&gt;本文是基於下方這堂 Udemy 課程的筆記，對 React 有興趣的話可以購買看看唷
 &lt;a class=&#34;link&#34; href=&#34;https://www.udemy.com/course/react-the-complete-guide-incl-redux/&#34;  title=&#34;React - The Complete Guide (incl Hooks, React Router, Redux&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;React - The Complete Guide (incl Hooks, React Router, Redux)&lt;/a&gt;&lt;/p&gt;
@@ -4702,15 +4702,15 @@
 &lt;h2 id=&#34;2-為什麼用-react&#34;&gt;2. 為什麼用 React&lt;/h2&gt;
 &lt;h3 id=&#34;對開發者好處&#34;&gt;對開發者好處&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;使用 Declarative programming 宣告式程式設計&lt;br&gt;
+&lt;li&gt;使用 Declarative programming 宣告式程式設計
 描述目標而非流程，比起過往 DOM 操作要一個個選元素，一個口令一個動作的指令式程式設計 imperative programming，可以讓撰寫的程式碼精簡不少&lt;/li&gt;
-&lt;li&gt;以元件為中心&lt;br&gt;
+&lt;li&gt;以元件為中心
 把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複代碼&lt;/li&gt;
-&lt;li&gt;JSX 語法&lt;br&gt;
+&lt;li&gt;JSX 語法
 JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直接寫在 HTML 上，很方便，像是在 HTML 上實作 JS 邏輯，且容易閱讀&lt;/li&gt;
-&lt;li&gt;關注點分離&lt;br&gt;
+&lt;li&gt;關注點分離
 每一模組各自有獨立關注焦點，有助於後續協作跟維護&lt;/li&gt;
-&lt;li&gt;資料驅動畫面&lt;br&gt;
+&lt;li&gt;資料驅動畫面
 用 useState+雙向綁定 HTML 元素，資料有變動畫面就會變動
 不用再寫一個渲染指令請程式更新畫面&lt;/li&gt;
 &lt;/ul&gt;
@@ -5498,7 +5498,7 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Modal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;＊onCancel 是離開一個 dialog 元素會觸發的事件(e.g. 點遮罩或右上角 x，或取消按鈕)&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;＊onCancel 是離開一個 dialog 元素會觸發的事件(e.g. 點遮罩或右上角 x，或取消按鈕)
 ＊onConfirm 是點確認&lt;/p&gt;
 &lt;h2 id=&#34;14-加上路由&#34;&gt;14. 加上路由&lt;/h2&gt;
 &lt;ul&gt;
@@ -6928,10 +6928,23 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MainNavigation&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;最後想補充一下&amp;hellip;&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;最後想補充一下&amp;hellip;
 其實我覺得 Vue 也不錯啊（x)&lt;/p&gt;
 &lt;p&gt;有好吃的語法糖：用@監聽事件，@submit.prevent.stop 就可阻止瀏覽器提交表單跟冒泡：動態 class，watch 深層監聽物件屬性，computed 動態更新，v-model 雙向綁定表單&amp;hellip;各種好吃的糖)&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile.jpeg&#34;
+	width=&#34;388&#34;
+	height=&#34;401&#34;
+	srcset=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile_hud4d4f2c437a37a6da93416be95c29e39_12858_480x0_resize_q75_box.jpeg 480w, https://bacnotes.github.io/p/react-knowledge-101/smile_hud4d4f2c437a37a6da93416be95c29e39_12858_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;smile-cat-meme&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;96&#34;
+		data-flex-basis=&#34;232px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;原來暗藏一篇 Vue 推銷文，真是太邪惡了&lt;/p&gt;
 </description>
         </item>

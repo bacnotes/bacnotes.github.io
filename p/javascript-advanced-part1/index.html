@@ -293,7 +293,7 @@ if (!doNotTrack) {
     
     <p>我們之前在<a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101"
      target="_blank" rel="noopener"
-    >JavaScript 底層運作原理 101</a>，介紹過 primitives 跟 objects 使用記憶體的方式<br>
+    >JavaScript 底層運作原理 101</a>，介紹過 primitives 跟 objects 使用記憶體的方式
 也有在<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part2/"  title="JavaScript基礎知識複習(2)｜The Complete JavaScript Course"
      target="_blank" rel="noopener"
     >JavaScript 基礎知識複習(2)</a>，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址</p>
@@ -394,7 +394,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flightNum</span> <span class="o">=</span> <span class="nx">flight</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">passenger</span> <span class="o">=</span> <span class="nx">jonas</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// 修改記憶體中的值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
@@ -417,14 +417,14 @@ if (!doNotTrack) {
 <li>大型專案有時候因為不經意的修改到物件資料，會造成很大的影響，所以需要多注意傳址傳值的概念</li>
 </ul>
 <h2 id="first-class-function-一級函式">First-Class Function 一級函式</h2>
-<p>之前介紹 JavaScript 語言特性時，有提到 JavaScript 有一級函式的特性<br>
+<p>之前介紹 JavaScript 語言特性時，有提到 JavaScript 有一級函式的特性
 因此我們可以使用 higher-order function：</p>
 <ol>
 <li>可以把 function 當參數傳入另一個 function(又被稱作回呼函式)</li>
 <li>可以 function return function</li>
 </ol>
 <h3 id="callback-function-回呼函式">callback function 回呼函式</h3>
-<p>回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它<br>
+<p>回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它
 只是通常提到的場景是在處理非同步的時候</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -494,7 +494,7 @@ if (!doNotTrack) {
 </div>
 </div><h3 id="function-return-function">Function return function</h3>
 <ul>
-<li>可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼<br>
+<li>可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼
 ＊柯里化：把接受多個參數的函數變換成接受一個單一參數（最初函數的第一個參數）的函數，並且返回接受餘下的參數而且返回結果的新函數的技術</li>
 <li>因為 Function return function 會創造閉包，閉包是函式本身及函式被建立時的執行文本(execution context)，因此下方 greeting 的參數 Hey 會被記住</li>
 </ul>
@@ -533,7 +533,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="call--apply-綁定-this-對象">Call &amp; Apply 綁定 this 對象</h2>
-<p>當我們開發程式後可能會複用不同物件內的方法，但如果你只 copy 方法，使用一般函式呼叫，會發現 this undefined，符合我們之前提到的一般函式呼叫的狀況下，嚴格模式下 this 是 undefined（非嚴格模式下為全域物件）<br>
+<p>當我們開發程式後可能會複用不同物件內的方法，但如果你只 copy 方法，使用一般函式呼叫，會發現 this undefined，符合我們之前提到的一般函式呼叫的狀況下，嚴格模式下 this 是 undefined（非嚴格模式下為全域物件）
 這個時候你就需要使用 Call 或 Apply 來告訴程式 this 要綁定的對象</p>
 <h3 id="使用-call-方法">使用 Call 方法</h3>
 <ul>
@@ -915,7 +915,20 @@ if (!doNotTrack) {
 <li>閉包（Closure）是函式以及該函式被宣告時所在的作用域環境（lexical environment）的組合</li>
 <li>如果是第一次接觸閉包觀念應該會有下方反應</li>
 </ul>
-<!-- raw HTML omitted -->
+<p><img src="/p/javascript-advanced-part1/1585743166295.jpeg"
+	width="600"
+	height="450"
+	srcset="/p/javascript-advanced-part1/1585743166295_hu741cbe81cae4c194c84a768507409dfd_46153_480x0_resize_q75_box.jpeg 480w, /p/javascript-advanced-part1/1585743166295_hu741cbe81cae4c194c84a768507409dfd_46153_1024x0_resize_q75_box.jpeg 1024w"
+	loading="lazy"
+	
+		alt="wtf-meme"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
 <ul>
 <li>這部分會需要知道什麼是作用域跟執行文本，不熟的話可以看一下這篇 <a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101｜The Complete JavaScript Course"
      target="_blank" rel="noopener"
@@ -924,14 +937,14 @@ if (!doNotTrack) {
 <li>step1. 創造全域執行文本
 (全域變數環境：secureBooking=fn, booker=fn)</li>
 <li>step2. 執行全域執行文本，創造出個別執行文本
-secureBooking()作用域：可以獲取本地作用域跟父層的環境變數<br>
-(變數環境：passengerCount=0, secureBooking=fn)<br>
-程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker<br>
+secureBooking()作用域：可以獲取本地作用域跟父層的環境變數
+(變數環境：passengerCount=0, secureBooking=fn)
+程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker
 (變數環境：passengerCount=0, secureBooking=fn, booker=fn)</li>
-<li>step3. 執行個別文本<br>
+<li>step3. 執行個別文本
 執行 booker()
-(變數環境：empty, secureBooking=fn, booker=fn)<br>
-由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)<br>
+(變數環境：empty, secureBooking=fn, booker=fn)
+由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)
 因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn的變數環境，而secureBooking()的變數環境裡面有passengerCount=0</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -961,9 +974,31 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數<b
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>step 1 &amp; 2 創造＆執行全域執行文本，創造出個別執行文本</p>
-<!-- raw HTML omitted -->
+<p><img src="/p/javascript-advanced-part1/callstack_scope.png"
+	width="1150"
+	height="568"
+	srcset="/p/javascript-advanced-part1/callstack_scope_hud86e7c4641ee1a10f523deb524f7d7df_182734_480x0_resize_box_3.png 480w, /p/javascript-advanced-part1/callstack_scope_hud86e7c4641ee1a10f523deb524f7d7df_182734_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="485px"
+	
+></p>
 <p>step 3 執行個別文本</p>
-<!-- raw HTML omitted -->
+<p><img src="/p/javascript-advanced-part1/closure.png"
+	width="1147"
+	height="572"
+	srcset="/p/javascript-advanced-part1/closure_hufbdc4875f1c4f86c24a6756f00628889_258437_480x0_resize_box_3.png 480w, /p/javascript-advanced-part1/closure_hufbdc4875f1c4f86c24a6756f00628889_258437_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="481px"
+	
+></p>
 <h3 id="總結">總結</h3>
 <ul>
 <li>閉包建立在所有函式都可以獲取被創造當下的執行文本的變數環境的機制下</li>
@@ -993,7 +1028,7 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數<b
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">booker</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//  
+</span></span><span class="line"><span class="cl"><span class="c1">//
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">Scopes</span><span class="p">]]</span><span class="o">:</span> <span class="nx">Scopes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">:</span> <span class="nx">Closure</span> <span class="p">(</span><span class="nx">secureBooking</span><span class="p">)</span> <span class="p">{</span><span class="nx">passengerCount</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>

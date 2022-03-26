@@ -292,7 +292,14 @@ if (!doNotTrack) {
     
     
     <h2 id="什麼是-vue">什麼是 Vue</h2>
-<!-- raw HTML omitted -->
+<p><img src="/QC8R8Gd.pn"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <ul>
 <li>Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)，目前三大框架主流之一</li>
 <li>以元件為中心的宣告式程式設計，無需直接操作 DOM，資料驅動畫面，透過雙向綁定讓資料有變化畫面也會響應，提高開發效率</li>
@@ -345,14 +352,28 @@ if (!doNotTrack) {
 &ndash; 配置很齊全，舊瀏覽器相容性高</p>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<p><img src="/bundler.37740380.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <ul>
 <li>Vite
 &ndash; 基於 ESM (ES Modules)，開發時使用 ESbuild(Go 語言撰寫)，依賴瀏覽器 ES6 Modules 的原生支持，在運行的時候直接發 HTTP 請求 JavaScript 模組
 &ndash; 冷啟動跟熱加載快速，開發體驗速度快，開發時編譯的程式碼簡潔，舊瀏覽器相容性低
 &ndash; production 會使用 rollup 打包，開發編譯跟 production 打包是不同系統，可能少數狀況下會有不同行為</li>
 </ul>
-<!-- raw HTML omitted -->
+<p><img src="/esm.3070012d.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h2 id="vue-生命週期">Vue 生命週期</h2>
 <p>在 SPA 應用，針對部分元件掛載/資料更新/卸載時有對應的生命週期適合操作，透過這些 Vue 內建的 Hook function 來介入</p>
 <ul>
@@ -374,7 +395,14 @@ if (!doNotTrack) {
 &ndash; 適合在此時卸載手動添加的監聽/訂閱</li>
 <li>destroyed：實例被銷毀</li>
 </ul>
-<!-- raw HTML omitted -->
+<p><img src="/1741752219-59c9b774a4ccf.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h3 id="父子元件的生命週期">父子元件的生命週期</h3>
 <ol>
 <li>
@@ -440,8 +468,15 @@ created 即進行監聽，beforeDestroy 進行取消
 Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就會導致衝突，且監聽也需要做好管理，不需要的時候要記得清除，例如在多個路由切換時，若不同頁面使用了同一個事件名，會導致重複觸發事件的問題（因事件的監聽不會隨著元件的銷毀而跟著銷毀，要主動去註銷事件），且註銷也需要小心處理，沒註銷正確也有可能導致後續觸發失敗</li>
 </ol>
 <h2 id="專案資料夾配置">專案資料夾配置</h2>
-<p>之前曾經看到過很完整的配置範例，包含 Sass 資料夾規劃
-<!-- raw HTML omitted --></p>
+<p>之前曾經看到過很完整的配置範例，包含 Sass 資料夾規劃</p>
+<p><img src="/vue-file.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <h2 id="vue-開發者工具">vue 開發者工具</h2>
 <p><a class="link" href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd/related"  title="chrome extension連結"
      target="_blank" rel="noopener"
@@ -457,7 +492,14 @@ Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就
 <li>footer 有 span 文字提示還有多少件事項沒完成，需考慮單複數</li>
 <li>三個篩選器篩選不同狀態的任務 all/active/complete (不同路由)</li>
 </ul>
-<!-- raw HTML omitted -->
+<p><img src="/todomvc.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
 <p><a class="link" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.4.1/index.css"  title="CSS"
      target="_blank" rel="noopener"
     >CSS</a></p>
