@@ -19,7 +19,7 @@
 &lt;li&gt;持續學習(o)&lt;/li&gt;
 &lt;li&gt;跟容量大的腦袋來備份知識(x)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Um&amp;hellip;工程師的世界永遠有追不完的技術，自知腦容量沒有這麼大，記錄成部落格文字來比較可靠，而且&lt;/p&gt;
+&lt;p&gt;Um&amp;hellip; 工程師的世界永遠有追不完的技術，自知腦容量沒有這麼大，記錄成部落格文字來比較可靠，而且&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;寫成部落格也有機會跟別人交流，也許還會有高手可以切磋(!&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -54,7 +54,7 @@
 &lt;h3 id=&#34;如果是用-windows可以使用-chocolatey-下載&#34;&gt;如果是用 Windows，可以使用 Chocolatey 下載&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;沒用過 ChocoLatey 套件管理工具的話，可以先參考這篇安裝說明&lt;br&gt;
+&lt;p&gt;沒用過 ChocoLatey 套件管理工具的話，可以先參考這篇安裝說明
 &lt;a class=&#34;link&#34; href=&#34;https://ithelp.ithome.com.tw/articles/10242201&#34;  title=&#34;用指令安裝程式--Chocolatey&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;用指令安裝程式&amp;ndash;Chocolatey&lt;/a&gt;&lt;/p&gt;
@@ -83,23 +83,40 @@
 &lt;li&gt;到其他資料夾用 &lt;code&gt;hugo version&lt;/code&gt; or &lt;code&gt;hugo help&lt;/code&gt; 來檢查是否有新增成功&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;新增網站的專案資料夾&#34;&gt;新增網站的專案資料夾&lt;/h3&gt;
-&lt;p&gt;＊以下用&lt;code&gt;example.com&lt;/code&gt;為部落格網址作為範例，這邊根據自己的網站名做修改即可(mac 跟 windows 流程大同小異)&lt;/p&gt;
+&lt;p&gt;＊以下用 &lt;code&gt;example.com&lt;/code&gt; 為部落格網址作為範例，這邊根據自己的網站名做修改即可(mac 跟 windows 流程大同小異)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;window 的使用者 cd 到&lt;code&gt;C:\Hugo\Sites&amp;gt;&lt;/code&gt;，mac 的使用者 cd 到你設定的專案資料夾&lt;/li&gt;
 &lt;li&gt;執行&lt;code&gt;hugo new site example.com&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;選擇與安裝喜歡的主題&#34;&gt;選擇與安裝喜歡的主題&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;到&lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Hugo Themes&lt;/a&gt;找喜歡的主題&lt;/li&gt;
-&lt;li&gt;我選用的是 hugo-theme-stack
-&amp;ndash; &lt;code&gt;git clone&lt;/code&gt;你喜歡的主題到&lt;code&gt;theme&lt;/code&gt;資料夾&lt;br&gt;
-&amp;ndash; 一開始我們的部落格裡面沒有內容，hugo-theme-stack 有提供範例，&lt;code&gt;exampleSite&lt;/code&gt;資料夾，我們用這個來覆蓋專案資料夾看看實際部落格效果
-&amp;ndash; 在 example.com 網站資料夾下執行 &lt;code&gt;hugo server&lt;/code&gt;&lt;br&gt;
-&amp;ndash; 網址列查看&lt;code&gt;http://localhost:1313&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;到&lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo Themes&lt;/a&gt;找喜歡的主題&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我選用的是 hugo-theme-stack
+&amp;ndash; &lt;code&gt;git clone&lt;/code&gt; 你喜歡的主題到 &lt;code&gt;theme&lt;/code&gt; 資料夾
+&amp;ndash; 一開始我們的部落格裡面沒有內容，hugo-theme-stack 有提供範例， &lt;code&gt;exampleSite&lt;/code&gt; 資料夾，我們用這個來覆蓋專案資料夾看看實際部落格效果
+&amp;ndash; 在 example.com 網站資料夾下執行 &lt;code&gt;hugo server&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ndash; 網址列查看 &lt;code&gt;http://localhost:1313&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;哇真的出現了!好感人啊！  現在只有自己可以看到，下一篇會介紹如何使用 GitHub 來部署我們的部落格&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/hugo-blog/screenshot.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;1000&#34;
+	srcset=&#34;https://bacnotes.github.io/p/hugo-blog/screenshot_hu3a3d43638442b4410f8a7ad58b7acc37_51344_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/hugo-blog/screenshot_hu3a3d43638442b4410f8a7ad58b7acc37_51344_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sample-site-blog&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;哇真的出現了! 好感人啊！  現在只有自己可以看到，下一篇會介紹如何使用 GitHub 來部署我們的部落格
 &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/github-deploy-hugo/&#34;  title=&#34;只要3秒，使用GitHub一鍵部署你的Hugo部落格&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;只要 3 秒，使用 GitHub 一鍵部署你的 Hugo 部落格&lt;/a&gt;&lt;/p&gt;

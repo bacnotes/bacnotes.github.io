@@ -291,8 +291,7 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>關於部署的工具有很多，身為工程師的你一定聽過GitHub!<br>
-<!-- raw HTML omitted --></p>
+    <p>關於部署的工具有很多，身為工程師的你一定聽過GitHub!</p>
 <h2 id="為什麼用github部署">為什麼用GitHub部署</h2>
 <ul>
 <li>因為免費(o)</li>
@@ -300,28 +299,67 @@ if (!doNotTrack) {
 <li>因為部署到生效的過程很快速(o)</li>
 <li>因為部落格後面有GitHub域名很潮(x)</li>
 </ul>
-<p>GitHub Pages是GitHub提供的<strong>免費</strong>靜態網頁託管服務<br>
-雖然是免費，不過用起來體驗也很好<br>
+<p>GitHub Pages是GitHub提供的<strong>免費</strong>靜態網頁託管服務
+雖然是免費，不過用起來體驗也很好
 那SEO表現呢?  這時候可以用<a class="link" href="https://ahrefs.com/website-authority-checker"  title="ahrefs"
      target="_blank" rel="noopener"
     >ahrefs</a>快速確認一下</p>
-<!-- raw HTML omitted -->
-<p><strong>GitHub</strong>在網站權重跟外部連結數都有很好的表現<br>
-拿<strong>medium</strong>來當對手的話呢<br>
-<!-- raw HTML omitted --><br>
-<strong>GitHub 加十分 🙌</strong></p>
-<p>跟另一個也是很常拿來建立部落格的平台，且SEO客製化程度較高的<strong>wordpress</strong>相比呢
-<!-- raw HTML omitted --><br>
-<strong>GitHub 再加十分 🙌</strong></p>
+<p><img src="/p/github-deploy-hugo/github.png"
+	width="599"
+	height="542"
+	srcset="/p/github-deploy-hugo/github_hu38c5fdfd99161cddbb882920ecd27d5a_57692_480x0_resize_box_3.png 480w, /p/github-deploy-hugo/github_hu38c5fdfd99161cddbb882920ecd27d5a_57692_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="github-aherfs-rank"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="265px"
+	
+></p>
+<p><strong>GitHub</strong>在網站權重跟外部連結數都有很好的表現
+拿<strong>medium</strong>來當對手的話呢</p>
+<p><img src="/p/github-deploy-hugo/medium.png"
+	width="593"
+	height="538"
+	srcset="/p/github-deploy-hugo/medium_hu4f9949cc26ac048a0c7cc0ba58c5d8bd_57722_480x0_resize_box_3.png 480w, /p/github-deploy-hugo/medium_hu4f9949cc26ac048a0c7cc0ba58c5d8bd_57722_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="medium-aherfs-rank"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="264px"
+	
+></p>
+<p><strong>GitHub 加十分 🙌</strong></p>
+<p>跟另一個也是很常拿來建立部落格的平台，且SEO客製化程度較高的<strong>wordpress</strong>相比呢</p>
+<p><img src="/p/github-deploy-hugo/wordpress.png"
+	width="593"
+	height="536"
+	srcset="/p/github-deploy-hugo/wordpress_hu2f7a38e3bc41a26d8a35a92e19919b7a_59892_480x0_resize_box_3.png 480w, /p/github-deploy-hugo/wordpress_hu2f7a38e3bc41a26d8a35a92e19919b7a_59892_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="wordpress-aherfs-rank"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="265px"
+	
+></p>
+<p><strong>GitHub 再加十分 🙌</strong></p>
 <p>看起來是不錯的選擇唷！那麼來實作看看吧！</p>
 <h2 id="github-pages部署靜態網頁">GitHub Pages部署靜態網頁</h2>
 <p>GitHub Pages有兩種</p>
 <ul>
 <li>專案型網址 <a class="link" href="https://username.github.io/reponame"  target="_blank" rel="noopener"
-    >https://username.github.io/reponame</a><br>
+    >https://username.github.io/reponame</a>
 （一個帳號可以有很多個repo專案，每個專案都可以有一個靜態網頁）</li>
 <li>帳號型網址 <a class="link" href="https://username.github.io"  target="_blank" rel="noopener"
-    >https://username.github.io</a><br>
+    >https://username.github.io</a>
 （一個使用者帳號只會有一個，可以拿來經營個人網站）</li>
 </ul>
 <p>專案型網址適合把Hugo這個部落格專案，備份到GitHub上(非部署)，執行步驟如下</p>
@@ -331,8 +369,8 @@ if (!doNotTrack) {
 <li><code>git branch -m main</code></li>
 <li><code>git add .</code></li>
 <li><code>git commit -m 'init project'</code> # git msg 內容可自訂</li>
-<li><code>git remote add origin &lt;自訂repo網址&gt;</code><br>
-#如果電腦只有使用1組GitHub帳號，直接貼repo網址<br>
+<li><code>git remote add origin &lt;自訂repo網址&gt;</code>
+#如果電腦只有使用1組GitHub帳號，直接貼repo網址
 #如果電腦本身有多組GitHub帳號，確認@host名:git網址結構是否有調整正確，可回到<a class="link" href="https://bacnotes.github.io/p/github-ssh-key/"  title="上一篇"
      target="_blank" rel="noopener"
     >上一篇</a>確認</li>
@@ -349,7 +387,7 @@ if (!doNotTrack) {
 <li><code>git config --local user.name aaa</code> #不需要多組帳號管理可跳過</li>
 <li><code>git config --local user.email aaa@email.com</code> #不需要多組帳號管理可跳過</li>
 <li><code>git commit -m 'deploy'</code> # git msg 內容可自訂</li>
-<li><code>git remote add origin &lt;repo網址&gt;</code><br>
+<li><code>git remote add origin &lt;repo網址&gt;</code>
 #注意事項同專案型網址</li>
 <li><code>git push -f --set-upstream origin main</code> # 強制覆蓋之前的紀錄</li>
 </ol>
@@ -376,11 +414,11 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo 
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo
 </span></span><span class="line"><span class="cl">cd public
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">git init 
-</span></span><span class="line"><span class="cl">git branch -m main 
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git branch -m main
 </span></span><span class="line"><span class="cl">git add .
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git config --local user.name aaa #不需要多組帳號管理可跳過

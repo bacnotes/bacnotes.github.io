@@ -12,9 +12,22 @@
         <pubDate>Sat, 25 Dec 2021 00:00:00 +0000</pubDate>
         
         <guid>https://bacnotes.github.io/p/github-ssh-key/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/github-ssh-key/maria-ziegler-jJnZg7vBfMs-unsplash.jpeg" alt="Featured image of post 關於SSH key與多組GitHub帳號切換｜bacnotes備份筆記" /&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Um&amp;hellip;在部署前卡到了 Github 多組帳號權限的問題&lt;br&gt;
-如果你的電腦只有使用 1 組 GitHub 帳號，可以點下方連結直接到下一篇&lt;br&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/github-ssh-key/maria-ziegler-jJnZg7vBfMs-unsplash.jpeg" alt="Featured image of post 關於SSH key與多組GitHub帳號切換｜bacnotes備份筆記" /&gt;&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/github-ssh-key/cat_white.png&#34;
+	width=&#34;600&#34;
+	height=&#34;760&#34;
+	srcset=&#34;https://bacnotes.github.io/p/github-ssh-key/cat_white_hu687556cfe0ac81cfbbc007b8806c4239_412966_480x0_resize_box_3.png 480w, https://bacnotes.github.io/p/github-ssh-key/cat_white_hu687556cfe0ac81cfbbc007b8806c4239_412966_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;white-cat-meme&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;189px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Um&amp;hellip;在部署前卡到了 Github 多組帳號權限的問題
+如果你的電腦只有使用 1 組 GitHub 帳號，可以點下方連結直接到下一篇
 &lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/github-deploy-hugo&#34;  title=&#34;[只要3秒，使用GitHub一鍵部署你的Hugo部落格&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;只要 3 秒，使用 GitHub 一鍵部署你的 Hugo 部落格&lt;/a&gt;&lt;/p&gt;
@@ -46,7 +59,20 @@ fatal: 無法讀取遠端版本庫。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;要 commit 的時候，被最初註冊的 userA 帳號 deny&lt;/p&gt;
 &lt;p&gt;Um&amp;hellip;啊！&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/github-ssh-key/cat.jpg&#34;
+	width=&#34;637&#34;
+	height=&#34;460&#34;
+	srcset=&#34;https://bacnotes.github.io/p/github-ssh-key/cat_hudaaf540c0316f87024b389d3f6684767_48671_480x0_resize_q75_box.jpg 480w, https://bacnotes.github.io/p/github-ssh-key/cat_hudaaf540c0316f87024b389d3f6684767_48671_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;cat-in-universe&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;332px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份，應該是 SSH key 的問題吧？
 有 2 組帳號，生 2 組 key 應該就沒問題了吧！欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key…&lt;/p&gt;
 &lt;p&gt;上網查了一下相關文章，發現可以寫一個 config 來讓不同帳號對應各自的 key&lt;/p&gt;
@@ -55,8 +81,8 @@ fatal: 無法讀取遠端版本庫。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;產生 SSH key &lt;code&gt;ssh-keygen -t rsa -C &amp;quot;aaa@example.com&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;決定要儲存的檔名(路徑)
-在 Enter file in which to save the key (/Users/XXX/.ssh/id_rsa):&lt;br&gt;
-後方填入 &lt;code&gt;/Users/aaa/.ssh/id_rsa_aaa&lt;/code&gt;&lt;br&gt;
+在 Enter file in which to save the key (/Users/XXX/.ssh/id_rsa):
+後方填入 &lt;code&gt;/Users/aaa/.ssh/id_rsa_aaa&lt;/code&gt;
 *如果沒有新的命名，就會覆蓋原本的 id_rsa&lt;/li&gt;
 &lt;li&gt;Enter passphrase(看個人，可以直接 enter 不設定密碼)&lt;/li&gt;
 &lt;li&gt;Enter same passphrase again(如果有設定要再輸入一次，沒有就直接 enter)&lt;/li&gt;
@@ -88,7 +114,7 @@ fatal: 無法讀取遠端版本庫。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;看到上方訊息表示有成功連線囉！&lt;br&gt;
+&lt;p&gt;看到上方訊息表示有成功連線囉！
 第 2 個帳號照著上方步驟寫在同個 config 檔案即可&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -119,7 +145,7 @@ fatal: 無法讀取遠端版本庫。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;注意：經過上面的設定檔後，repo 的位置會從預定的
-&lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:ooo/ooo.git 變成 &lt;a class=&#34;link&#34; href=&#34;mailto:git@gh.aaa&#34; &gt;git@gh.aaa&lt;/a&gt;:ooo/ooo.git&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:ooo/ooo.git 變成 &lt;a class=&#34;link&#34; href=&#34;mailto:git@gh.aaa&#34; &gt;git@gh.aaa&lt;/a&gt;:ooo/ooo.git
 後續在新增 repo 連結時需注意，不然可能吃不到 config 設定檔唷&lt;/p&gt;
 &lt;p&gt;參考文章:
 &lt;a class=&#34;link&#34; href=&#34;https://dotblogs.com.tw/as15774/2018/04/30/174737&#34;  title=&#34;[[Git] 多個SSH Key與帳號的設定(Mac)&#34;

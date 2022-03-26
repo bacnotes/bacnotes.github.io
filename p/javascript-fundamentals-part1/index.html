@@ -277,7 +277,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    閱讀時間: 8 分鐘
+                    閱讀時間: 9 分鐘
                 </time>
             </div>
         
@@ -291,14 +291,14 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>最近看到網路上文章有人推這堂 Udemy 的 JavaScript 課程，然後就買下來了<br>
+    <p>最近看到網路上文章有人推這堂 Udemy 的 JavaScript 課程，然後就買下來了
 <a class="link" href="https://www.udemy.com/course/the-complete-javascript-course/"  title="The Complete JavaScript Course - From Zero to Expert"
      target="_blank" rel="noopener"
     >The Complete JavaScript Course - From Zero to Expert</a></p>
 <h2 id="為什麼想上這堂課">為什麼想上這堂課</h2>
 <!-- raw HTML omitted -->
-<p>由於整堂課有 69 小時，自己擷取的重點不一定符合所有階段的學習者，可能比較精簡 <br>
-如果有看不懂的地方可以在下方留言，或建議還是來親自體驗一下這堂課<br>
+<p>由於整堂課有 69 小時，自己擷取的重點不一定符合所有階段的學習者，可能比較精簡
+如果有看不懂的地方可以在下方留言，或建議還是來親自體驗一下這堂課
 下方也會加入一些自己過往學習JavaScript的筆記</p>
 <h2 id="什麼是-es6ecmascript6">什麼是 ES6（ECMAScript6）？</h2>
 <ul>
@@ -312,18 +312,34 @@ if (!doNotTrack) {
 </ul>
 <h2 id="es6-新增了哪些語法">ES6 新增了哪些語法</h2>
 <ul>
-<li>解構賦值<br>
+<li>解構賦值
 &ndash; 可以用精簡的語法來命名變數，可彈性修改變數名稱</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">variable</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="nx">cat</span><span class="p">}</span> <span class="o">=</span> <span class="nx">variable</span> <span class="c1">//若想針對c做新變數命名為cat
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">variable</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">a</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">b</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">c</span><span class="o">:</span> <span class="nx">cat</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="o">=</span> <span class="nx">variable</span> <span class="c1">//若想針對c做新變數命名為cat
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">cat</span><span class="p">)</span> <span class="c1">// 1 2 3
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -358,34 +374,38 @@ if (!doNotTrack) {
 </span><span class="lnt">26
 </span><span class="lnt">27
 </span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="nx">starterMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Focaccia&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruschetta&#39;</span><span class="p">,</span> <span class="s1">&#39;Garlic Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Caprese Salad&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">starterMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Focaccia&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruschetta&#39;</span><span class="p">,</span> <span class="s1">&#39;Garlic Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Caprese Salad&#39;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 解構賦值時加入預設值[] 避免undefined
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">menu</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">starterMenu</span><span class="o">:</span> <span class="nx">starters</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">restaurant</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">menu</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">starterMenu</span><span class="o">:</span> <span class="nx">starters</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="o">=</span> <span class="nx">restaurant</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">menu</span><span class="p">,</span> <span class="nx">starters</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [] [ &#39;Focaccia&#39;, &#39;Bruschetta&#39;, &#39;Garlic Bread&#39;, &#39;Caprese Salad&#39; ]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 函數使用預設參數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">check</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">check</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="nx">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 1 3 2 undefined
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 物件方法使用預設參數
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">orderDelivery</span><span class="o">:</span> <span class="kd">function</span> <span class="p">({</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">mainIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>    <span class="c1">// 預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span>   <span class="c1">// 預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">address</span><span class="p">,</span> <span class="c1">// 沒訂預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">})</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">      <span class="sb">`</span><span class="si">${</span><span class="nx">starterIndex</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">mainIndex</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb">`</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">orderDelivery</span><span class="o">:</span> <span class="kd">function</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">mainIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">address</span><span class="p">,</span> <span class="c1">// 沒訂預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sb">`</span><span class="si">${</span><span class="nx">starterIndex</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">mainIndex</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderDelivery</span><span class="p">({})</span> <span class="c1">// 1, 0, 00:00, undefined
 </span></span></span></code></pre></td></tr></table>
@@ -403,6 +423,12 @@ if (!doNotTrack) {
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// 陣列範例
@@ -412,8 +438,14 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 物件範例
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">22</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">({</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">)</span> <span class="c1">// 不能直接對block{}賦值，需要包在()中
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">b</span><span class="o">:</span> <span class="mi">22</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">b</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">a</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">)</span> <span class="c1">// 不能直接對block{}賦值，需要包在()中
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="c1">// 22 11
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -435,30 +467,36 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl">  <span class="c1">// 陣列範例
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">nested</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">i</span><span class="p">,</span> <span class="p">,[</span><span class="nx">j</span><span class="p">,</span> <span class="nx">k</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">nested</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">i</span><span class="p">,</span> <span class="p">,</span> <span class="p">[</span><span class="nx">j</span><span class="p">,</span> <span class="nx">k</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">nested</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="c1">// 1 3 4
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 物件範例
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">fri</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">open</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// Open 24 hours
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">close</span><span class="o">:</span> <span class="mi">24</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fri</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">open</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// Open 24 hours
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="nx">close</span><span class="o">:</span> <span class="mi">24</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
 </span></span><span class="line"><span class="cl">  <span class="p">};</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">fri</span><span class="o">:</span> <span class="p">{</span> <span class="nx">open</span><span class="p">,</span> <span class="nx">close</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fri</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">open</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">close</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="o">=</span> <span class="nx">openingHours</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">open</span><span class="p">,</span> <span class="nx">close</span><span class="p">)</span> <span class="c1">// 0 24
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>Promise 語法<br>
-&ndash; 解決了 callback hell（難以維護的巢狀結構程式碼）<br>
+<li>Promise 語法
+&ndash; 解決了 callback hell（難以維護的巢狀結構程式碼）
 &ndash; ES7 有 async/await 更好讀</li>
-<li>展開運算子<br>
+<li>展開運算子
 &ndash; 可以展開物件、做淺拷貝、合併陣列、把可迭代的物件（string、array、array-like、Set、Map）跟非迭代物件 objects 變成陣列，且不用新增變數</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -480,8 +518,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>其餘運算子<br>
-&ndash; 可以將陣列後方剩下的值存成一個陣列，解構賦值時好用（不會存取 skip,, 的 key 跟有出現過的 key）</li>
+<li>其餘運算子
+&ndash; 可以將陣列後方剩下的值存成一個陣列，解構賦值時好用（不會存取 skip, , 的 key 跟有出現過的 key）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -500,6 +538,12 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 陣列範例
@@ -508,26 +552,32 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span> <span class="c1">// [33, 2]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 物件範例
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">openingHours</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">thu</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">fri</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">sat</span><span class="o">:</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">thu</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fri</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">sat</span><span class="o">:</span> <span class="mi">12</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span><span class="nx">sat</span><span class="p">,</span> <span class="p">...</span><span class="nx">weekdays</span><span class="p">}</span> <span class="o">=</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">weekdays</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="nx">thu</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span> <span class="nx">fri</span><span class="o">:</span> <span class="mi">13</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">sat</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">weekdays</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="o">=</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">weekdays</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">thu</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fri</span><span class="o">:</span> <span class="mi">13</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>箭頭函式<br>
-&ndash; 可以打較少的程式碼，提高程式碼可讀性<br>
-&ndash; 過往 this 值依照執行環境所有不同，不好判斷<br>
+<li>箭頭函式
+&ndash; 可以打較少的程式碼，提高程式碼可讀性
+&ndash; 過往 this 值依照執行環境所有不同，不好判斷
 &ndash; 而箭頭函式的 this 則是綁定定義他（而非呼叫他）的物件，看他身處在的 function scope 的 this 指向誰
 &ndash; 白話文：箭頭函式沒有自己的this，但可以使用父層的 this</li>
-<li>模板字串<br>
-&ndash; 過往可以透過單引號或雙引號跟加號拼接字串，巢狀的時候需要雙引號包裹單引號(反過來則不行)<br>
-&ndash; 遇到拼接內容是 HTML 結構，換行需要加<code>\n</code>，使用上麻煩閱讀上也不容易<br>
+<li>模板字串
+&ndash; 過往可以透過單引號或雙引號跟加號拼接字串，巢狀的時候需要雙引號包裹單引號(反過來則不行)
+&ndash; 遇到拼接內容是 HTML 結構，換行需要加 <code>\n</code> ，使用上麻煩閱讀上也不容易
 &ndash; 想寫縮寫或所有格（e.g. I&rsquo;m cool, bac&rsquo;s）的英文內容可能遇到需要用跳脫字元&quot;I'm&quot;，而字串模板解決了上述不方便使用的問題</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -536,20 +586,24 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">yourName</span> <span class="o">=</span> <span class="s1">&#39;bacnotes&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">codeName</span> <span class="o">=</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">string</span> <span class="o">=</span> <span class="sb">`Hi I&#39;m </span><span class="si">${</span><span class="nx">yourName</span><span class="si">}</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">And</span> <span class="nx">I</span> <span class="nx">love</span> <span class="nx">$</span><span class="p">{</span><span class="nx">codeName</span><span class="p">}</span><span class="o">!!</span><span class="sb">`;
+</span></span><span class="line"><span class="cl">  <span class="nx">And</span> <span class="nx">I</span> <span class="nx">love</span> <span class="nx">$</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">codeName</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="o">!!</span><span class="sb">`;
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>Enhanced Object Literals<br>
+<li>Enhanced Object Literals
 屬性名跟本地變量名相同可以省略後面的冒號跟值</li>
-<li>引入 class 類別<br>
+<li>引入 class 類別
 作為 JavaScript 現有原型程式(prototype-based)繼承的語法糖</li>
-<li>引入模組 Import and Export modules<br>
+<li>引入模組 Import and Export modules
 方便管理程式碼之間的相依性，非同步載入（過往 require 是同步語法）</li>
 </ul>
 <h2 id="javascript-在網頁渲染時執行位置">JavaScript 在網頁渲染時執行位置</h2>
@@ -564,12 +618,14 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;./script.js&#39;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/body&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="nx">body</span> <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">script</span> <span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;./script.js&#39;</span> <span class="o">&gt;</span> <span class="o">&lt;</span> <span class="err">/script&gt; &lt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">/body&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -622,31 +678,31 @@ if (!doNotTrack) {
 <li><code>not defined</code> 沒宣告/沒賦值 → 系統提示沒有宣告</li>
 </ul>
 <h2 id="宣告變數方式-letconstvar">宣告變數方式 let、const、var</h2>
-<p>從 ES6 開始有了<code>const</code>跟<code>let</code>兩種新的呼叫方式<br>
-並且最小的區塊切分從<code>function</code>變成 block{}，避免變數污染的發生</p>
+<p>從 ES6 開始有了 <code>const</code> 跟 <code>let</code> 兩種新的呼叫方式
+並且最小的區塊切分從 <code>function</code> 變成 block{}，避免變數污染的發生</p>
 <ul>
 <li>
-<p><code>let</code> 跟 <code>const</code> 的差異<br>
-&ndash; <code>let</code>的變數隨時可以用 = 重新賦值<br>
-&ndash; <code>const</code>的變數無法用 = 重新賦值，適合用在常數，若為陣列或物件屬性的值還是可被改變<br>
-&ndash; <code>const</code>若為 primitives，不能做 var += var 的操作<br>
-&ndash; 由於值的變更有產生 bug 的風險，基本上宣告會使用<code>const</code>，若會重複賦值再用<code>let</code><br>
-&ndash; 不會使用早期的宣告變數方式<code>var</code>，早期宣告變數方法只有<code>var</code>搭配<code>function</code>把作用域鎖在函式裡面，但若放在<code>if else</code>等區塊語句，會讓<code>var</code>宣告的變數洩漏到全域，造成變數污染</p>
+<p><code>let</code> 跟 <code>const</code> 的差異
+&ndash; <code>let</code> 的變數隨時可以用 = 重新賦值
+&ndash; <code>const</code> 的變數無法用 = 重新賦值，適合用在常數，若為陣列或物件屬性的值還是可被改變
+&ndash; <code>const</code> 若為 primitives，不能做 var += var 的操作
+&ndash; 由於值的變更有產生 bug 的風險，基本上宣告會使用 <code>const</code> ，若會重複賦值再用 <code>let</code></p>
+<p>&ndash; 不會使用早期的宣告變數方式 <code>var</code> ，早期宣告變數方法只有 <code>var</code> 搭配 <code>function</code> 把作用域鎖在函式裡面，但若放在 <code>if else</code> 等區塊語句，會讓 <code>var</code> 宣告的變數洩漏到全域，造成變數污染</p>
 </li>
 <li>
-<p><code>let</code> 跟 <code>const</code> 的共同處<br>
-&ndash; 同區塊上不能重複宣告<br>
+<p><code>let</code> 跟 <code>const</code> 的共同處
+&ndash; 同區塊上不能重複宣告
 &ndash; 區塊內宣告不會洩漏到全域</p>
 </li>
 <li>
-<p>作用域<br>
-&ndash; <code>var</code>在主程式區是全域變數，在<code>function</code>內是區域變數<br>
+<p>作用域
+&ndash; <code>var</code> 在主程式區是全域變數，在 <code>function</code> 內是區域變數
 &ndash; 在 block 區塊語句（if、else、for、while 等）裡面用 var 宣告的變數，會洩漏到全域中，造成區域變數覆蓋全域變數</p>
 </li>
 <li>
-<p>絕對不要直接命名而不使用<code>let</code> <code>const</code> <code>var</code><br>
-&ndash; 像是<code>job = 'code'</code><br>
-&ndash; 沒有 scope，會變成全域變數，而且不在控管下，會造成記憶體管理問題</p>
+<p>絕對不要直接命名而不使用<code>let</code> <code>const</code> <code>var</code>
+&ndash; 像是 <code>job = 'code'</code></p>
+<p>&ndash; 沒有 scope，會變成全域變數，而且不在控管下，會造成記憶體管理問題</p>
 </li>
 </ul>
 <h2 id="算數運算子-arithmetic-operator">算數運算子 Arithmetic Operator</h2>
@@ -690,14 +746,16 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="p">()</span> <span class="mi">21</span>
-</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="err">/ 14</span>
-</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="o">-</span> <span class="mi">13</span>
-</span></span><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="o">&lt;</span> <span class="nx">比較</span> <span class="mi">11</span>
-</span></span><span class="line"><span class="cl"><span class="o">&amp;&amp;</span> <span class="mi">6</span>
-</span></span><span class="line"><span class="cl"><span class="o">||</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span>
+</span></span><span class="line"><span class="cl">    <span class="err">/ 14 +</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="mi">13</span> <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span> <span class="nx">比較</span> <span class="mi">11</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">6</span> <span class="o">||</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">5</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -731,13 +789,13 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span>
 </span></span><span class="line"><span class="cl"><span class="nx">x</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">25</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">5</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="c1">// 10 10
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">假設是左到右</span> <span class="nx">x</span><span class="err">＝</span><span class="nx">y時</span> <span class="nx">y會是undefined</span> <span class="nx">所以必須是右到左</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">假設是左到右</span> <span class="nx">x</span><span class="err">＝</span> <span class="nx">y時</span> <span class="nx">y會是undefined</span> <span class="nx">所以必須是右到左</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="顯性轉型-type-conversion">顯性轉型 Type Conversion</h2>
 <ul>
 <li><code>String()</code> 可以將 null 和 undefined 轉換為字串</li>
-<li><code>toString()</code> 可以將所有資料都轉換為字串<br>
+<li><code>toString()</code> 可以將所有資料都轉換為字串
 但是要排除 null 和 undefined（TypeError: Cannot read property &rsquo;toString&rsquo; ）</li>
 <li><code>toString(value, radix)</code> 可以轉 2 或 8 或 10 或 16 進位字串</li>
 <li><code>JSON.stringify()</code>轉成 JSON 字串&quot;&quot;</li>
@@ -832,18 +890,18 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 狀況1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">height</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;defined&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;defined&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;not defined&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;not defined&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// not defined
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 狀況2
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;defined&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;defined&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;not defined&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;not defined&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// not defined 雖然有define為0 但因為0是falsy 所以顯示還是not defined
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 此為設計錯誤導致顯示出非預期的結果
@@ -859,8 +917,8 @@ if (!doNotTrack) {
 <!-- raw HTML omitted -->
 <p>有興趣可看這份<a class="link" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Equality_comparisons_and_sameness"  title="一般相等比較表"
      target="_blank" rel="noopener"
-    >MDN 一般相等比較表</a><br>
-＊<code>[]</code>會先由<code>toString()</code>強制轉型為字串，再強制轉型為數字</p>
+    >MDN 一般相等比較表</a>
+＊ <code>[]</code> 會先由 <code>toString()</code> 強制轉型為字串，再強制轉型為數字</p>
 <h2 id="and-or--邏輯運算子">AND OR ! 邏輯運算子</h2>
 <h3 id="用於-if-條件增加判斷">用於 if 條件增加判斷</h3>
 <ul>
@@ -878,11 +936,11 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">當a</span> <span class="nx">is</span> <span class="kc">false</span> <span class="nx">b</span> <span class="nx">is</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl"><span class="o">!</span><span class="nx">a</span>        <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span>    <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span>    <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">!</span><span class="nx">a</span> <span class="o">&amp;&amp;</span>  <span class="nx">b</span>  <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span> <span class="o">||</span> <span class="o">!</span><span class="nx">b</span>   <span class="c1">// false
+</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="nx">a</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span> <span class="o">||</span> <span class="nx">b</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">!</span><span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">a</span> <span class="o">||</span> <span class="o">!</span><span class="nx">b</span> <span class="c1">// false
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="用於-short-circuiting">用於 short-circuiting</h3>
@@ -904,17 +962,15 @@ if (!doNotTrack) {
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 不限資料型態
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">var1</span> <span class="o">&amp;&amp;</span> <span class="nx">var2</span> <span class="p">(</span><span class="nx">當左邊變數為true</span><span class="err">，</span><span class="nx">才套用右邊的值</span><span class="err">，</span><span class="nx">若為false會套用左邊值</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">var1</span> <span class="o">&amp;&amp;</span> <span class="nx">var2</span><span class="p">(</span><span class="nx">當左邊變數為true</span><span class="err">，</span> <span class="nx">才套用右邊的值</span><span class="err">，</span> <span class="nx">若為false會套用左邊值</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="s1">&#39;cat&#39;</span><span class="p">)</span> <span class="c1">// &#39;cat&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="kc">null</span><span class="p">)</span>  <span class="c1">// 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span><span class="p">)</span>    <span class="c1">// &#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="kc">null</span><span class="p">)</span> <span class="c1">// 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// &#39;&#39;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">var1</span> <span class="o">||</span> <span class="nx">var2</span> <span class="p">(</span><span class="nx">當左邊變數為false</span><span class="err">，</span><span class="nx">才套用右邊的值</span><span class="err">，</span><span class="nx">若為true會套用左邊值</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">var1</span> <span class="o">||</span> <span class="nx">var2</span><span class="p">(</span><span class="nx">當左邊變數為false</span><span class="err">，</span> <span class="nx">才套用右邊的值</span><span class="err">，</span> <span class="nx">若為true會套用左邊值</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span> <span class="o">||</span> <span class="s1">&#39;cat&#39;</span><span class="p">)</span> <span class="c1">// 3
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">||</span> <span class="kc">null</span><span class="p">)</span> <span class="c1">// null
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">undefined</span> <span class="o">||</span> <span class="mi">0</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span> <span class="o">||</span> <span class="s1">&#39;hi&#39;</span> <span class="o">||</span> <span class="mi">23</span><span class="p">)</span> <span class="c1">// &#39;hi&#39;
@@ -942,9 +998,9 @@ if (!doNotTrack) {
 </div>
 </div><h2 id="表達式-statements-vs-陳述式-expressions">表達式 statements v.s. 陳述式 expressions</h2>
 <ul>
-<li>表達式：會回傳結果<br>
+<li>表達式：會回傳結果
 e.g. 純值、變數、運算子、執行函式、正規表達式、函式表達式…</li>
-<li>陳述式：會執行一些程式碼，可能是幾個單詞或是片段（不會是單一個字母），不會回傳結果<br>
+<li>陳述式：會執行一些程式碼，可能是幾個單詞或是片段（不會是單一個字母），不會回傳結果
 e.g. 宣告（var、function）、流程控制（block、if…else）、迴圈（for、while）、其它（import, export）</li>
 </ul>
 <h2 id="流程判斷">流程判斷</h2>
@@ -975,19 +1031,19 @@ e.g. 宣告（var、function）、流程控制（block、if…else）、迴圈�
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 比較運算子來設定條件，可以搭配&amp;&amp; || !邏輯運算子設定更細緻的判斷
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accountName</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;your accountName: 8 ~ 20 characters&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">accountName</span> <span class="o">&gt;</span> <span class="mi">8</span> <span class="o">&amp;&amp;</span> <span class="nx">accountName</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;correct account length&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;correct account length&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 不符合條件，提示使用者檢查帳號長度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;please check your account length&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 不符合條件，提示使用者檢查帳號長度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;please check your account length&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 有三組以上條件，中間的條件會用else if標示，最後才是else
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;bigger than 10&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;bigger than 10&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;equal to 10&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;equal to 10&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;smaller than 10&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;smaller than 10&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1039,17 +1095,17 @@ e.g. 宣告（var、function）、流程控制（block、if…else）、迴圈�
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;morning&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="s1">&#39;morning&#39;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;go to school&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="s1">&#39;noon&#39;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;eat lunch&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="s1">&#39;night&#39;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;sleep&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">default</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;nothing&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;morning&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;go to school&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;noon&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;eat lunch&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;night&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;sleep&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;nothing&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1066,33 +1122,33 @@ e.g. 宣告（var、function）、流程控制（block、if…else）、迴圈�
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="mi">1995</span> <span class="nx">Brendan</span> <span class="nx">Eich10天內創造了第一版JavaScript叫</span> <span class="nx">mocha</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1996</span> <span class="nx">LiveScript</span> <span class="err">→</span> <span class="nx">JavaScript</span> <span class="nx">改名字希望吸引Java開發者</span><span class="err">，</span><span class="nx">但無關乎Java這個程式語言</span>
-</span></span><span class="line"><span class="cl">     <span class="nx">MS發布IE</span><span class="err">，</span><span class="nx">從NetScape</span> <span class="nx">copyJavaScript叫JScript</span> <span class="nx">擔心侵權改名</span><span class="err">，</span><span class="nx">但還是很像的東西</span>
-</span></span><span class="line"><span class="cl">     <span class="nx">為了長遠發展</span><span class="err">，</span><span class="nx">需要標準化</span><span class="err">，</span><span class="nx">於是提交給ECMA獨立機構</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1997</span> <span class="nx">ECMAscript</span> <span class="nx">ES1發布</span><span class="err">，</span><span class="nx">大家使用一樣的標準跟規範開發</span>
-</span></span><span class="line"><span class="cl"><span class="mi">2009</span> <span class="nx">ES5</span><span class="o">/</span><span class="nx">ES2016</span><span class="p">(</span><span class="nx">ECMAScript5</span><span class="p">)</span> <span class="nx">有一些新feature</span>
-</span></span><span class="line"><span class="cl"><span class="mi">2015</span> <span class="nx">ES6</span><span class="o">/</span><span class="nx">ES2017</span><span class="p">(</span><span class="nx">ECMAScript6</span><span class="p">)</span> <span class="nx">新紀元</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1996</span> <span class="nx">LiveScript</span><span class="err">→</span> <span class="nx">JavaScript</span> <span class="nx">改名字希望吸引Java開發者</span><span class="err">，</span> <span class="nx">但無關乎Java這個程式語言</span>
+</span></span><span class="line"><span class="cl"><span class="nx">MS發布IE</span><span class="err">，</span> <span class="nx">從NetScape</span> <span class="nx">copyJavaScript叫JScript</span> <span class="nx">擔心侵權改名</span><span class="err">，</span> <span class="nx">但還是很像的東西</span>
+</span></span><span class="line"><span class="cl"><span class="nx">為了長遠發展</span><span class="err">，</span> <span class="nx">需要標準化</span><span class="err">，</span> <span class="nx">於是提交給ECMA獨立機構</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1997</span> <span class="nx">ECMAscript</span> <span class="nx">ES1發布</span><span class="err">，</span> <span class="nx">大家使用一樣的標準跟規範開發</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2009</span> <span class="nx">ES5</span> <span class="o">/</span> <span class="nx">ES2016</span><span class="p">(</span><span class="nx">ECMAScript5</span><span class="p">)</span> <span class="nx">有一些新feature</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2015</span> <span class="nx">ES6</span> <span class="o">/</span> <span class="nx">ES2017</span><span class="p">(</span><span class="nx">ECMAScript6</span><span class="p">)</span> <span class="nx">新紀元</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="javascript-和瀏覽器的相容性">JavaScript 和瀏覽器的相容性</h2>
 <ul>
 <li>Backward compatibility: ES1 語法在現代瀏覽器還是相容的</li>
-<li>Forwards compatibility: 舊版本 IE8 瀏覽器不理解新版本 JavaScript 的規範<br>
+<li>Forwards compatibility: 舊版本 IE8 瀏覽器不理解新版本 JavaScript 的規範
 我們可以透過更新瀏覽器避免不相容</li>
 <li>ES5: fully supported in all browsers IE9(2011)</li>
-<li>ES6 → ES2021: well supported in all modern browsers, not in older ones.<br>
+<li>ES6 → ES2021: well supported in all modern browsers, not in older ones.
 can use most features in production with transpiling and polyfilling
 所以會使用 BABEL</li>
-<li>ES2022: ESNext future versions<br>
+<li>ES2022: ESNext future versions
 can use some features in production with transpiling and polyfilling</li>
-<li>先學 Modern JavaScript 但還是需要知道過往 JavaScript 運作方式<br>
-e.g. const let v.s. var<br>
+<li>先學 Modern JavaScript 但還是需要知道過往 JavaScript 運作方式
+e.g. const let v.s. var
 e.g. function construction v.s ES6 Class</li>
 <li>關於<a class="link" href="https://javascript.info/polyfills"  title="Polyfills and transpilers"
      target="_blank" rel="noopener"
     >Polyfills and transpilers</a></li>
 </ul>
-<p>恭喜你看完這一篇 JavaScript 基礎知識複習(1)，休息一下再往下一篇前進吧！<br>
+<p>恭喜你看完這一篇 JavaScript 基礎知識複習(1)，休息一下再往下一篇前進吧！
 <a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part2/"  title="JavaScript 基礎知識複習(2)｜The Complete JavaScript Course"
      target="_blank" rel="noopener"
     >JavaScript 基礎知識複習(2)</a></p>
