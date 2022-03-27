@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
         <lastBuildDate>Mon, 14 Mar 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/date/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記</title>
+        <title>數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記</title>
         <link>https://bacnotes.github.io/p/math-number-date/</link>
         <pubDate>Mon, 14 Mar 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/math-number-date/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg" alt="Featured image of post 數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;數字檢查跟數字轉換&#34;&gt;數字檢查跟數字轉換&lt;/h2&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg" alt="Featured image of post 數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;數字檢查跟數字轉換&#34;&gt;數字檢查跟數字轉換&lt;/h2&gt;
 &lt;h3 id=&#34;javascript-數字都是浮點數&#34;&gt;JavaScript 數字都是浮點數&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
