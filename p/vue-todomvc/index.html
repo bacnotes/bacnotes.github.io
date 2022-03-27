@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。'><h1><title>用TodoMVC 複習 Vue Option API｜bacnotes備份筆記</title></h1>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Vue是三大主流框架之一，2022/2/7開始Vue Cli預設版本以Vue3為主，由於工作上的專案或產品可能 Vue2 版本撰寫，未來若有重構需求，勢必得先了解Vue2架構的邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Vue跟Option API吧。'><h1><title>用TodoMVC 複習 Vue 跟 Option API｜bacnotes備份筆記</title></h1>
 
 <link rel='canonical' href='https://bacnotes.github.io/p/vue-todomvc/'>
 
-<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='用TodoMVC 複習 Vue Option API｜bacnotes備份筆記'>
-<meta property='og:description' content='聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。'>
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='用TodoMVC 複習 Vue 跟 Option API｜bacnotes備份筆記'>
+<meta property='og:description' content='Vue是三大主流框架之一，2022/2/7開始Vue Cli預設版本以Vue3為主，由於工作上的專案或產品可能 Vue2 版本撰寫，未來若有重構需求，勢必得先了解Vue2架構的邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Vue跟Option API吧。'>
 <meta property='og:url' content='https://bacnotes.github.io/p/vue-todomvc/'>
 <meta property='og:site_name' content='bacnotes備份筆記'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Vue' /><meta property='article:published_time' content='2022-02-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-02-26T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/vue-todomvc/Dup9I4d.jpeg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Vue' /><meta property='article:published_time' content='2022-02-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-02-24T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/vue-todomvc/Dup9I4d.jpeg' />
 <meta name="twitter:site" content="@bacnotes">
-    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="用TodoMVC 複習 Vue Option API｜bacnotes備份筆記">
-<meta name="twitter:description" content="聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="用TodoMVC 複習 Vue 跟 Option API｜bacnotes備份筆記">
+<meta name="twitter:description" content="Vue是三大主流框架之一，2022/2/7開始Vue Cli預設版本以Vue3為主，由於工作上的專案或產品可能 Vue2 版本撰寫，未來若有重構需求，勢必得先了解Vue2架構的邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Vue跟Option API吧。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://bacnotes.github.io/p/vue-todomvc/Dup9I4d.jpeg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
@@ -229,7 +229,7 @@ if (!doNotTrack) {
                         width="800" 
                         height="450" 
                         loading="lazy"
-                        alt="Featured image of post 用TodoMVC 複習 Vue Option API｜bacnotes備份筆記" />
+                        alt="Featured image of post 用TodoMVC 複習 Vue 跟 Option API｜bacnotes備份筆記" />
                 
             </a>
         </div>
@@ -240,12 +240,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <p class="article-title">
-            <a href="/p/vue-todomvc/">用TodoMVC 複習 Vue Option API｜bacnotes備份筆記</a>
+            <a href="/p/vue-todomvc/">用TodoMVC 複習 Vue 跟 Option API｜bacnotes備份筆記</a>
         </p>
     
         
         <p class="article-subtitle">
-            聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。
+            Vue是三大主流框架之一，2022/2/7開始Vue Cli預設版本以Vue3為主，由於工作上的專案或產品可能 Vue2 版本撰寫，未來若有重構需求，勢必得先了解Vue2架構的邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Vue跟Option API吧。
         </p>
         
     </div>
@@ -263,7 +263,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Feb 26, 2022</time>
+                <time class="article-time--published">Feb 24, 2022</time>
             </div>
         
 
@@ -306,7 +306,7 @@ if (!doNotTrack) {
 	
 ></p>
 <ul>
-<li>Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)，目前三大框架主流之一</li>
+<li>Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)</li>
 <li>以元件為中心的宣告式程式設計，無需直接操作 DOM，資料驅動畫面，透過雙向綁定讓資料有變化畫面也會響應，提高開發效率</li>
 <li>實現關注點分離，把視覺呈現、資料等元素，放在單一檔案中，但又在技術上切分得很乾淨；template 專注在 HTML 結構，script 處理 JavaScript 邏輯，Style 則是撰寫樣式的部分，每一模組各自有獨立關注焦點</li>
 <li>過往 DOM 操作，元素需要一個個用 CSS 選擇器選出來，而 Vue 只在單頁面創造一個容器<code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code>；其他變數跟事件綁定則是使用語法糖直接寫在 HTML 上</li>
