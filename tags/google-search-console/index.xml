@@ -41,7 +41,7 @@
 &lt;li&gt;選擇平台(我是部落格所以選網頁)&lt;/li&gt;
 &lt;li&gt;填寫網站串流網址跟名稱&lt;/li&gt;
 &lt;li&gt;會得到一個評估 ID G-xxxxxxxx (舊版為UA開頭)&lt;/li&gt;
-&lt;li&gt;把評估 ID 貼到 config 檔案即可&lt;/li&gt;
+&lt;li&gt;把評估 ID 貼到 hugo 的 config 設定檔即可&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;GA4 將跨裝置的使用者行為串接起來，相較過去著重在停留時間、頁數，改以事件為核心的分析主體，對於數據的解讀方便許多&lt;/p&gt;
 &lt;p&gt;使用 GA4 的即時報表確認資料是否已開始傳入&lt;/p&gt;

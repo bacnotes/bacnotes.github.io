@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -359,17 +360,19 @@ if (!doNotTrack) {
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">form-control</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">outline</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="n">border-corlor</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="err">...等等其他固定的樣式</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">outline</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">border-corlor</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">...等等其他固定的樣式</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">invalid</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -399,7 +402,7 @@ if (!doNotTrack) {
 <ul>
 <li>cd 到專案資料夾<code> npm install --save styled-components</code></li>
 <li>const Input = styled.html 元素<code>CSS樣式</code> (attacked template literal)</li>
-<li>styled package 有所有 html 元素的方法，透過``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中</li>
+<li>styled package 有所有 html 元素的方法，透過反引號``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中</li>
 <li>動態產生獨特 hash</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -438,7 +441,7 @@ if (!doNotTrack) {
 </div>
 </div><h3 id="使用-props-動態管理樣式">使用 props 動態管理樣式</h3>
 <ul>
-<li>可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 這種聯集的選擇器)</li>
+<li>可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 聯集的選擇器)</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -595,7 +598,7 @@ if (!doNotTrack) {
 <ul>
 <li>不用安裝套件，CRA 本身支援 CSS modules</li>
 <li>把副檔名.css 檔案改成.module.css，引用路徑也要改</li>
-<li>className = {styles.樣式選擇器名}</li>
+<li>className = {styles. 樣式選擇器名}</li>
 <li>瀏覽器看到 class 名為：元件名_class 名__hash，因此不會撞名</li>
 <li>class 名若有橫線<code>-</code>連接，寫法需要改成<code>${style['form-control']}</code></li>
 </ul>
@@ -665,31 +668,31 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">font</span><span class="p">:</span> <span class="kc">inherit</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">padding</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">rem</span> <span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#8b005d</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="mh">#8b005d</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font</span><span class="p">:</span> <span class="kc">inherit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">rem</span> <span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#8b005d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#8b005d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">focus</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">outline</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">outline</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">hover</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">active</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="mh">#ac0e77</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="mh">#ac0e77</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">8</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#ac0e77</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-color</span><span class="p">:</span> <span class="mh">#ac0e77</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">8</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">width</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>

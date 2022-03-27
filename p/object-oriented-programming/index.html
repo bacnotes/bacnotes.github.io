@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -306,8 +307,8 @@ if (!doNotTrack) {
 		data-flex-basis="320px"
 	
 ></p>
-<p>如果專案程式碼長這樣的話，還沒開始 debug 腦袋就已經先當機了&hellip;</p>
-<p>物件導向程式設計就是為了解決這個問題而誕生的一種方便管理程式碼的方式</p>
+<p>如果專案程式碼長這樣的話，還沒開始 debug 腦袋就已經先當機了&hellip;
+而物件導向程式設計就是為了解決這個問題而誕生的一種方便管理程式碼的方式</p>
 <h2 id="什麼是物件導向程式設計object-oriented-programming">什麼是物件導向程式設計(Object-Oriented Programming)</h2>
 <ul>
 <li>基於物件概念的程式設計方法</li>
@@ -410,13 +411,13 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用同原型創造不同實例
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// this 指向實例本身
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Person {}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 設定實例屬性為外部傳進來的參數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 方法不會寫在原型裡面，會造成多餘的程式碼，若有一千個物件就有一千個方法程式碼
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// this 指向實例本身
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Person {}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 設定實例屬性為外部傳進來的參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 方法不會寫在原型裡面，會造成多餘的程式碼，若有一千個物件就有一千個方法程式碼
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 創造一個firstName為Jonas birthYear為1991的Person實例
@@ -429,8 +430,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用.prototype.方法名 新增原型共用方法
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 一樣所有物件可以透過prototype inheritance共用，但只需要管理這段程式碼，不會有多餘的copy
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 可以共用原型方法
@@ -485,12 +486,16 @@ if (!doNotTrack) {
 	
 ></p>
 <h4 id="建構函式-vs-原型-vs-實例-關係圖">建構函式 v.s. 原型 v.s. 實例 關係圖</h4>
-<p><img src="/relation.pn"
-	
-	
-	
+<p><img src="/p/object-oriented-programming/relation.png"
+	width="880"
+	height="413"
+	srcset="/p/object-oriented-programming/relation_hu918aafb0ba1ae13705136f4f88d76628_153833_480x0_resize_box_3.png 480w, /p/object-oriented-programming/relation_hu918aafb0ba1ae13705136f4f88d76628_153833_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="213"
+		data-flex-basis="511px"
 	
 ></p>
 <div class="highlight"><div class="chroma">
@@ -541,10 +546,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 原型.constructor = 建構函式
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 建構函式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// Instance properties
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Instance properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// new 建構函式 = 實例
@@ -614,26 +619,26 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// class expression
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kr">class</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// class declaration（寫起來比上方程式碼工整，都寫在一個物件中，方法不用寫在外面管理)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 寫在這邊的方法都會進到prototype
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 寫在這邊的方法都會進到prototype
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessica</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span> <span class="mi">1996</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jessica</span><span class="p">);</span> <span class="c1">// Person {firstName: &#39;Jessica Davis&#39;, birthYear: 1996}
@@ -678,17 +683,17 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">530</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">530</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">latest</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// this.movements.slice(-1)是一個陣列，為了取值用pop
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">pop</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 需要至少一個參數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">set</span> <span class="nx">latest</span><span class="p">(</span><span class="nx">mov</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mov</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">latest</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// this.movements.slice(-1)是一個陣列，為了取值用pop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 需要至少一個參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">set</span> <span class="nx">latest</span><span class="p">(</span><span class="nx">mov</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mov</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 像是獲取屬性一樣來使用這個方法
@@ -742,35 +747,35 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 建構時會使用參數fullName 呼叫set fullName方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 建構時會使用參數fullName 呼叫set fullName方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// set a property that already exists
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 當使用.fullName就會呼叫這個方法，包含一開始建構實例時
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">// set跟 constructor都使用firstName會有衝突 使用另一個變數存
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// jessica.fullName才不會undefined
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// set a property that already exists
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 當使用.fullName就會呼叫這個方法，包含一開始建構實例時
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// set跟 constructor都使用firstName會有衝突 使用另一個變數存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// jessica.fullName才不會undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessica</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span> <span class="mi">1996</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jessica</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 41
@@ -859,35 +864,35 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 這種寫法方法不會更新在原型，jonas無法繼承
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">hey</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hey&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">hey</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hey&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">Person</span><span class="p">.</span><span class="nx">hey</span><span class="p">();</span> <span class="c1">// hey class Person {...省略} (this會是建構函式本身)
@@ -895,37 +900,37 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用static關鍵字，可出現跟上方一樣的結果
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="nx">fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="c1">// 實例可以獲取的方法 會被加入原型.prototype property
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 實例可以獲取的方法 會被加入原型.prototype property
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">fullName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">age</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">set</span> <span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">))</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not a full name`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">fullName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_fullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="c1">// 建構時才能獲取的方法，實例無法獲取
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">static</span> <span class="nx">hey</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hey&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 建構時才能獲取的方法，實例無法獲取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">static</span> <span class="nx">hey</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hey&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -969,28 +974,28 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">make</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">make</span> <span class="o">=</span> <span class="nx">make</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">make</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">make</span> <span class="o">=</span> <span class="nx">make</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">accelerate</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">make</span><span class="si">}</span><span class="sb"> is going at </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="si">}</span><span class="sb"> km/h`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">accelerate</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">make</span><span class="si">}</span><span class="sb"> is going at </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="si">}</span><span class="sb"> km/h`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">brake</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">-=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">make</span><span class="si">}</span><span class="sb"> is going at </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="si">}</span><span class="sb"> km/h`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">brake</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">-=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">make</span><span class="si">}</span><span class="sb"> is going at </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="si">}</span><span class="sb"> km/h`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">get</span> <span class="nx">speedUS</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">/</span> <span class="mf">1.6</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span> <span class="nx">speedUS</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">/</span> <span class="mf">1.6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">set</span> <span class="nx">speedUS</span><span class="p">(</span><span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span> <span class="o">*</span> <span class="mf">1.6</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">set</span> <span class="nx">speedUS</span><span class="p">(</span><span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span> <span class="o">*</span> <span class="mf">1.6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ford</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CarCl</span><span class="p">(</span><span class="s2">&#34;Ford&#34;</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
@@ -1048,10 +1053,10 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PersonProto</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 可以不需要寫constructor
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 可以不需要寫constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 建立原型連結到steven
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">steven</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">PersonProto</span><span class="p">);</span>
@@ -1069,16 +1074,16 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sarah</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">PersonProto</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PersonProto</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 不需要寫constructor
+</span></span><span class="line"><span class="cl">    <span class="c1">// 不需要寫constructor
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 建立一個方法來新增屬性，相較上面一個個新增
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">init</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 建立一個方法來新增屬性，相較上面一個個新增
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">init</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 誰呼叫this就是誰
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">sarah</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">&#34;Sarah&#34;</span><span class="p">,</span> <span class="mi">1979</span><span class="p">);</span>
@@ -1091,18 +1096,6 @@ if (!doNotTrack) {
 <li>子類別繼承父類別的方法跟屬性，也可以有自己的方法跟屬性</li>
 <li>當子層父層有一樣名稱的方法，會用子層的</li>
 </ul>
-<p><img src="/p/object-oriented-programming/inheritance.png"
-	width="907"
-	height="439"
-	srcset="/p/object-oriented-programming/inheritance_hu0008856d59afe3d8a4f0b7a560092a32_116278_480x0_resize_box_3.png 480w, /p/object-oriented-programming/inheritance_hu0008856d59afe3d8a4f0b7a560092a32_116278_1024x0_resize_box_3.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="206"
-		data-flex-basis="495px"
-	
-></p>
 <h3 id="使用建構函式跟-new-運算子建立父子類別繼承">使用建構函式跟 new 運算子建立父子類別繼承</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1146,24 +1139,24 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 人類原型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 人類原型建立方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 學生原型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Student</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 呼叫人類屬性
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 如果用一般函式呼叫(沒有用new) Person(firstName, birthYear) 會Uncaught Error: cannot set firstName of undefined
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// a regular function call, the this keyword is set to undefined
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 如果需要呼叫函式並設置this在這個函式，使用call
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">Student</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 呼叫人類屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 如果用一般函式呼叫(沒有用new) Person(firstName, birthYear) 會Uncaught Error: cannot set firstName of undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// a regular function call, the this keyword is set to undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 如果需要呼叫函式並設置this在這個函式，使用call
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結
@@ -1171,8 +1164,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 學生原型建立方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 建立一個學生
@@ -1187,14 +1180,6 @@ if (!doNotTrack) {
 </div><ul>
 <li>子類別實例跟子類別跟父類別關係</li>
 </ul>
-<p><img src="/prototype_chain_2.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1272,30 +1257,30 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 人類原型
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 人類原型建立方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 人類原型建立方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 學生原型 不用寫父層.call 用extends就會指向父層了
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Student</span> <span class="kr">extends</span> <span class="nx">Person</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// super永遠寫在最上面 子層的this
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">super</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">introduce</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 覆寫父層方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// calcAge() {
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//  console.log(`i am ${2037- this.birthYear}`)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// }
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// super永遠寫在最上面 子層的this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">super</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">introduce</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 覆寫父層方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// calcAge() {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  console.log(`i am ${2037- this.birthYear}`)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結，讓兩個class建立父子關係
@@ -1344,18 +1329,17 @@ if (!doNotTrack) {
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
-</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PersonProto</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">init</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">init</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用Object.create建立原型連結
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">StudentProto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">PersonProto</span><span class="p">);</span>
@@ -1364,17 +1348,16 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">jay</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">StudentProto</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 子層新增相同名稱方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">StudentProto</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 呼叫函式並設置this在這個函式，使用call 獲取父層init方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">PersonProto</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">StudentProto</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">,</span> <span class="nx">course</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 呼叫函式並設置this在這個函式，使用call 獲取父層init方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">PersonProto</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">course</span> <span class="o">=</span> <span class="nx">course</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 子層新增不同方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">StudentProto</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">StudentProto</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> and I study </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">course</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">jay</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s2">&#34;Jay&#34;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="s2">&#34;computer science&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">jay</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span> <span class="c1">// My name is Jay and I study computer science

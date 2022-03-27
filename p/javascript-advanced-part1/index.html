@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -291,13 +292,16 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>我們之前在<a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101"
+    <p>之前在<a class="link" href="https://bacnotes.github.io/p/javascript-behind-the-scenes/"  title="JavaScript底層運作原理101"
      target="_blank" rel="noopener"
-    >JavaScript 底層運作原理 101</a>，介紹過 primitives 跟 objects 使用記憶體的方式
-也有在<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part2/"  title="JavaScript基礎知識複習(2)｜The Complete JavaScript Course"
+    >JavaScript 底層運作原理 101</a>，介紹過 primitives 跟 objects 使用記憶體的方式有所不同，也在<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part2/"  title="JavaScript基礎知識複習(2)｜The Complete JavaScript Course"
      target="_blank" rel="noopener"
-    >JavaScript 基礎知識複習(2)</a>，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址</p>
-<p>在這篇文章中，我們會繼續介紹傳址跟傳值在函式傳遞參數(arguments)時，primitives 跟 objects 兩者表現會有什麼不同</p>
+    >JavaScript 基礎知識複習(2)</a>，補充中提到 primitives 賦值時是 <code>傳值</code> ，而陣列、物件賦值時是 <code>傳址</code></p>
+<p>在這篇文章，我們會繼續介紹傳址跟傳值在函式傳遞參數(arguments)時，primitives 跟 objects 兩者表現會有什麼不同</p>
+<ul>
+<li>參數為primitives，直接傳值(flightNum)，若為objects則會傳址(passenger)</li>
+<li>下方checkIn函式會把passenger裡面的屬性name加上一個稱謂</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -325,37 +329,41 @@ if (!doNotTrack) {
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 有一個字串資料跟一個物件資料
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">flight</span> <span class="o">=</span> <span class="s1">&#39;LH234&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">passport</span><span class="o">:</span> <span class="mi">24739479284</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">passport</span><span class="o">:</span> <span class="mi">24739479284</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// flightNum 只是一個flight字串值的copy 兩者使用不同記憶體
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// passenger.name 則是直接把記憶體傳過去 使用同一份記憶體
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// flightNum 只是一個flight字串值的copy 兩者使用不同記憶體
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// passenger.name 則是直接把記憶體傳過去 使用同一份記憶體
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">passenger</span><span class="p">.</span><span class="nx">passport</span> <span class="o">===</span> <span class="mi">24739479284</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checked in&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Wrong passport!&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">passenger</span><span class="p">.</span><span class="nx">passport</span> <span class="o">===</span> <span class="mi">24739479284</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checked in&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Wrong passport!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// flight是一個primitives 傳值進function
 </span></span></span><span class="line"><span class="cl"><span class="c1">// jonas是一個object 傳址進function
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">checkIn</span><span class="p">(</span><span class="nx">flight</span><span class="p">,</span> <span class="nx">jonas</span><span class="p">);</span> <span class="c1">// Checked in
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flight</span><span class="p">);</span> <span class="c1">// flight變數(primitives): LH234 沒有變
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// person.name(物件屬性)：Mr.Jonas Schmedtmann 變了
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flight</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// flight變數(primitives): LH234 沒有變
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// person.name(物件屬性)：Mr.Jonas Schmedtmann 改變到原資料
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>當兩個函式操作同一個物件且沒有做淺拷貝，直接傳址</li>
+<li>當兩個函式不做淺拷貝直接操作同一個物件，因為傳址，物件內容被修改</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -388,25 +396,25 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flight</span> <span class="o">=</span> <span class="s1">&#39;LH234&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">passport</span><span class="o">:</span> <span class="mi">24739479284</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">passport</span><span class="o">:</span> <span class="mi">24739479284</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flightNum</span> <span class="o">=</span> <span class="nx">flight</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">passenger</span> <span class="o">=</span> <span class="nx">jonas</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">checkIn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">passenger</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 修改記憶體中的值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">flightNum</span> <span class="o">=</span> <span class="s1">&#39;LH999&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改記憶體中的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Mr. &#39;</span> <span class="o">+</span> <span class="nx">passenger</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">passenger</span><span class="p">.</span><span class="nx">passport</span> <span class="o">===</span> <span class="mi">24739479284</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checked in&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Wrong passport!&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">passenger</span><span class="p">.</span><span class="nx">passport</span> <span class="o">===</span> <span class="mi">24739479284</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Checked in&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Wrong passport!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">newPassport</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">person</span><span class="p">.</span><span class="nx">passport</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100000000000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">newPassport</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">person</span><span class="p">.</span><span class="nx">passport</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100000000000</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">newPassport</span><span class="p">(</span><span class="nx">jonas</span><span class="p">);</span> <span class="c1">// a random number
@@ -461,22 +469,22 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 把所有英文字空白去掉，把字拼在一起的函式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">oneWord</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">oneWord</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 把第一個英文字都轉大寫字的函式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">upperFirstWord</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">first</span><span class="p">,</span> <span class="p">...</span><span class="nx">others</span><span class="p">]</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">[</span><span class="nx">first</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span> <span class="p">...</span><span class="nx">others</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">upperFirstWord</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">[</span><span class="nx">first</span><span class="p">,</span> <span class="p">...</span><span class="nx">others</span><span class="p">]</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="nx">first</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span> <span class="p">...</span><span class="nx">others</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Higher-order function 字串跟函式為參數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">transformer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Original string: </span><span class="si">${</span><span class="nx">str</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Transformed string: </span><span class="si">${</span><span class="nx">fn</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">transformer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Original string: </span><span class="si">${</span><span class="nx">str</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Transformed string: </span><span class="si">${</span><span class="nx">fn</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Transformed by: </span><span class="si">${</span><span class="nx">fn</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Transformed by: </span><span class="si">${</span><span class="nx">fn</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 回呼函式範例1
@@ -516,10 +524,10 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">greeting</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">greeting</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greeterHey</span> <span class="o">=</span> <span class="nx">greet</span><span class="p">(</span><span class="s1">&#39;Hey&#39;</span><span class="p">);</span>
@@ -581,19 +589,25 @@ if (!doNotTrack) {
 </span><span class="lnt">38
 </span><span class="lnt">39
 </span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">lufthansa</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Lufthansa&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LH&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// book: function() {}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">book</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">      <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> booked a seat on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">airline</span><span class="si">}</span><span class="sb"> flight </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">    <span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bookings</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">flight</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="nx">name</span> <span class="p">});</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Lufthansa&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LH&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// book: function() {}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">book</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> booked a seat on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">airline</span><span class="si">}</span><span class="sb"> flight </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">bookings</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">flight</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">name</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">book</span><span class="p">(</span><span class="mi">239</span><span class="p">,</span> <span class="s1">&#39;Jonas Schmedtmann&#39;</span><span class="p">);</span>
@@ -601,9 +615,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 也想在這邊使用上面book的方法
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">eurowings</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Eurowings&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;EW&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Eurowings&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;EW&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// copy方法，內容為push一段文字到bookings
@@ -657,9 +671,9 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 定義另一個物件
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">swiss</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Swiss Air Lines&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LX&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Swiss Air Lines&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LX&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 參數放入陣列
@@ -723,26 +737,32 @@ if (!doNotTrack) {
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用剛剛的物件跟原型方法
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">lufthansa</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Lufthansa&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LH&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// book: function() {}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">book</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">      <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> booked a seat on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">airline</span><span class="si">}</span><span class="sb"> flight </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">    <span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bookings</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">flight</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="nx">name</span> <span class="p">});</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Lufthansa&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;LH&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// book: function() {}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">book</span><span class="p">(</span><span class="nx">flightNum</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> booked a seat on </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">airline</span><span class="si">}</span><span class="sb"> flight </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">bookings</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">flight</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">iataCode</span><span class="si">}${</span><span class="nx">flightNum</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">name</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">book</span> <span class="o">=</span> <span class="nx">lufthansa</span><span class="p">.</span><span class="nx">book</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">eurowings</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Eurowings&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;EW&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">airline</span><span class="o">:</span> <span class="s1">&#39;Eurowings&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iataCode</span><span class="o">:</span> <span class="s1">&#39;EW&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bookings</span><span class="o">:</span> <span class="p">[],</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 複習一下 下方是return新的函式綁定this對象為eurowings
@@ -792,19 +812,19 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">planes</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 計數器
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// 使用監聽時 this指向觸發event元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// 使用監聽時 this指向觸發event元素
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">planes</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">planes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">planes</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">planes</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span><span class="p">();</span> <span class="c1">// 的確有+1 變成301
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="nb">document</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.buy&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 我們不希望立即觸發所以使用bind綁定this指向對象，等click再執行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">lufthansa</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.buy&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 我們不希望立即觸發所以使用bind綁定this指向對象，等click再執行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">lufthansa</span><span class="p">.</span><span class="nx">buyPlane</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">lufthansa</span><span class="p">));</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -845,10 +865,10 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addVAT</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span> <span class="c1">// 123
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 嘗試用function return function 改寫上面bind方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">addTax</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">rate</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">*</span> <span class="nx">rate</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">addTax</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">rate</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">*</span> <span class="nx">rate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">addVAT</span> <span class="o">=</span> <span class="nx">addTax</span><span class="p">(</span><span class="mf">0.23</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
@@ -871,12 +891,12 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">statements</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">statements</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">})();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 也可以寫箭頭函式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(()=&gt;</span> <span class="nx">statements</span><span class="p">)()</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">statements</span><span class="p">)()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 但不會存取在一個變數裡const abc = function () {statements}
 </span></span></span></code></pre></td></tr></table>
@@ -899,8 +919,8 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// block區域
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">state2</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">state2</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span> <span class="c1">// Uncaught ReferenceError: state is not defined
@@ -935,17 +955,26 @@ if (!doNotTrack) {
     >JavaScript 底層運作原理 101</a>再回來</li>
 <li>我們以下方函式來講解閉包的運作</li>
 <li>step1. 創造全域執行文本
-(全域變數環境：secureBooking=fn, booker=fn)</li>
+<ul>
+<li>全域變數環境：secureBooking=fn, booker=fn</li>
+</ul>
+</li>
 <li>step2. 執行全域執行文本，創造出個別執行文本
-secureBooking()作用域：可以獲取本地作用域跟父層的環境變數
-(變數環境：passengerCount=0, secureBooking=fn)
-程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker
-(變數環境：passengerCount=0, secureBooking=fn, booker=fn)</li>
+<ul>
+<li>secureBooking()作用域：可以獲取本地作用域跟父層的環境變數</li>
+<li>變數環境：passengerCount=0, secureBooking=fn</li>
+<li>程式跑到 return function 後，secureBooking()執行文本消失，回傳的 function 指派給 booker</li>
+<li>變數環境：passengerCount=0, secureBooking=fn, booker=fn</li>
+</ul>
+</li>
 <li>step3. 執行個別文本
 執行 booker()
-(變數環境：empty, secureBooking=fn, booker=fn)
-由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)
-因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn的變數環境，而secureBooking()的變數環境裡面有passengerCount=0</li>
+<ul>
+<li>變數環境：empty, secureBooking=fn, booker=fn)</li>
+<li>由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)</li>
+<li>因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn的變數環境，而secureBooking()的變數環境裡面有passengerCount=0</li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -961,13 +990,13 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">secureBooking</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">passengerCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">secureBooking</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">passengerCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">passengerCount</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">passengerCount</span><span class="si">}</span><span class="sb"> passenger`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">passengerCount</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">passengerCount</span><span class="si">}</span><span class="sb"> passenger`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">booker</span> <span class="o">=</span> <span class="nx">secureBooking</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="nx">booker</span><span class="p">();</span> <span class="c1">// 1 passenger
@@ -1001,7 +1030,7 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數
 ></p>
 <h3 id="總結">總結</h3>
 <ul>
-<li>閉包建立在所有函式都可以獲取被創造當下的執行文本的變數環境的機制下</li>
+<li>閉包的存在建立在所有函式都可以獲取被創造當下的執行文本的變數環境的機制下</li>
 <li>即便執行文本已經被銷毀，函式還是可以透過某種 ref 獲取到這個變數環境</li>
 <li>所以可以取得 passengerCount = 0 的值，且可以持續更新這個變數</li>
 </ul>
@@ -1025,13 +1054,19 @@ secureBooking()作用域：可以獲取本地作用域跟父層的環境變數
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">booker</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">Scopes</span><span class="p">]]</span><span class="o">:</span> <span class="nx">Scopes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">:</span> <span class="nx">Closure</span> <span class="p">(</span><span class="nx">secureBooking</span><span class="p">)</span> <span class="p">{</span><span class="nx">passengerCount</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">Scopes</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span><span class="o">:</span> <span class="nx">Scopes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">:</span> <span class="nx">Closure</span><span class="p">(</span><span class="nx">secureBooking</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">passengerCount</span><span class="o">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>

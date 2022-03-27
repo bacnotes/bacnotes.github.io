@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -291,17 +292,17 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="前端驗證時機">前端驗證時機</h2>
-<ol>
-<li>當使用者 submit
-等使用者打完再跳出錯誤訊息，避免不必要的開頭就報錯的不好體驗
-沒辦法在輸入完成就告訴使用者有無錯誤，要等到最後，回饋不及時</li>
-<li>當 input lose focus
-等使用者打完再跳出錯誤訊息，避免不必要的開頭就報錯的不好體驗
-適合未被點擊過狀態的 form</li>
-<li>每個 keystroke
-在輸入資料過程中會出現不必要的錯誤訊息，但可以立即回饋</li>
-</ol>
+    <h2 id="前端驗證時機有三種">前端驗證時機有三種</h2>
+<h3 id="當使用者點-submit">當使用者點 submit</h3>
+<ul>
+<li>等使用者輸入完所有內容再跳出錯誤訊息</li>
+<li>沒辦法在輸入完成就告訴使用者有無錯誤，要等到最後，回饋不及時</li>
+</ul>
+<h3 id="當-input-lose-focus">當 input lose focus</h3>
+<ul>
+<li>跳到下一個input時再跳出錯誤訊息</li>
+<li>回饋即時，但input需紀錄未被點擊過狀態</li>
+</ul>
 <h2 id="獲取當前表單輸入值">獲取當前表單輸入值</h2>
 <h3 id="usestate">useState</h3>
 <ul>
@@ -404,11 +405,12 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">SimpleInput</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="submit-搭配-keystroke-更新表單值驗證">submit 搭配 keystroke 更新表單值驗證</h3>
+</div><h3 id="submit-搭配-keystroke事件-更新表單值驗證">submit 搭配 keystroke事件 更新表單值驗證</h3>
 <ul>
-<li>驗證內容為確認表單內容不為空白 e.g.trim()完後的結果不為空字串，或 if(!變數.trim())</li>
-<li>回饋使用者驗證結果，在 input 欄位下方加上 p 的欄位，條件渲染顯示 e.g.使用 nameInputIsInvalid &amp;&amp; <!-- raw HTML omitted -->some err msg<!-- raw HTML omitted -->，加上 invalid 樣式</li>
-<li>為了不要一開始就呈現出 err msg，多加上一個狀態有無 touched 過判斷</li>
+<li>驗證內容為確認表單內容不為空白：trim()完後的結果不為空字串，或 if(! 變數.trim())</li>
+<li>回饋使用者驗證結果：在 input 欄位下方加上 p 的欄位</li>
+<li>條件渲染顯示 e.g. 使用 nameInputIsInvalid &amp;&amp; <!-- raw HTML omitted -->some err msg<!-- raw HTML omitted -->，加上 invalid 樣式</li>
+<li>為了不要太早就呈現出 err msg，多加上一個狀態有無 touched 做判斷</li>
 <li>新增變數作為錯誤訊息渲染判斷(nameInputIsInvalid)，當不符合驗證且有 touched 過才會顯示，!enteredNameIsValid &amp;&amp; enteredNameTouched;</li>
 <li>下方範例為 useState 獲取表單值</li>
 </ul>
@@ -1156,12 +1158,17 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#前端驗證時機">前端驗證時機</a></li>
+    <li><a href="#前端驗證時機有三種">前端驗證時機有三種</a>
+      <ul>
+        <li><a href="#當使用者點-submit">當使用者點 submit</a></li>
+        <li><a href="#當-input-lose-focus">當 input lose focus</a></li>
+      </ul>
+    </li>
     <li><a href="#獲取當前表單輸入值">獲取當前表單輸入值</a>
       <ul>
         <li><a href="#usestate">useState</a></li>
         <li><a href="#useref">useRef</a></li>
-        <li><a href="#submit-搭配-keystroke-更新表單值驗證">submit 搭配 keystroke 更新表單值驗證</a></li>
+        <li><a href="#submit-搭配-keystroke事件-更新表單值驗證">submit 搭配 keystroke事件 更新表單值驗證</a></li>
         <li><a href="#提早在-input-lose-focusblur-時觸發-touched">提早在 input lose focus(blur) 時觸發 touched</a></li>
         <li><a href="#使用-custom-hook-管理多個元素驗證">使用 Custom Hook 管理多個元素驗證</a></li>
       </ul>

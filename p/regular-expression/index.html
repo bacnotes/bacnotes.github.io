@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='正規表達式是一個物件，用來來匹配字串中字元進行字串操作，常用於字串判斷、資料搜尋、清除或取代目標字詞等，常常會在專案裡用到，但又有時候因為特殊符號不容易聯想他的意義，因此整理一篇筆記方便後續查看。'><h1><title>認識正規表達式RegExp (Regular Expression)｜bacnotes備份筆記</title></h1>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/regular-expression/'>
+
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='認識正規表達式RegExp (Regular Expression)｜bacnotes備份筆記'>
+<meta property='og:description' content='正規表達式是一個物件，用來來匹配字串中字元進行字串操作，常用於字串判斷、資料搜尋、清除或取代目標字詞等，常常會在專案裡用到，但又有時候因為特殊符號不容易聯想他的意義，因此整理一篇筆記方便後續查看。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/regular-expression/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='RegExp' /><meta property='article:published_time' content='2022-03-06T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-03-06T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/regular-expression/pexels-photo-7794425.jpeg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="認識正規表達式RegExp (Regular Expression)｜bacnotes備份筆記">
+<meta name="twitter:description" content="正規表達式是一個物件，用來來匹配字串中字元進行字串操作，常用於字串判斷、資料搜尋、清除或取代目標字詞等，常常會在專案裡用到，但又有時候因為特殊符號不容易聯想他的意義，因此整理一篇筆記方便後續查看。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/regular-expression/pexels-photo-7794425.jpeg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <p class="site-name"><a href="/">bacnotes備份筆記</a></p>
+            <p class="site-description">記錄小小Junior的學習過程</p>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/regular-expression/">
+                <img src="/p/regular-expression/pexels-photo-7794425_hud76bb672323e27b5286a038ed903a966_45826_800x0_resize_q75_box.jpeg"
+                        srcset="/p/regular-expression/pexels-photo-7794425_hud76bb672323e27b5286a038ed903a966_45826_800x0_resize_q75_box.jpeg 800w, /p/regular-expression/pexels-photo-7794425_hud76bb672323e27b5286a038ed903a966_45826_1600x0_resize_q75_box.jpeg 1600w"
+                        width="800" 
+                        height="1200" 
+                        loading="lazy"
+                        alt="Featured image of post 認識正規表達式RegExp (Regular Expression)｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <p class="article-title">
+            <a href="/p/regular-expression/">認識正規表達式RegExp (Regular Expression)｜bacnotes備份筆記</a>
+        </p>
+    
+        
+        <p class="article-subtitle">
+            正規表達式是一個物件，用來來匹配字串中字元進行字串操作，常用於字串判斷、資料搜尋、清除或取代目標字詞等，常常會在專案裡用到，但又有時候因為特殊符號不容易聯想他的意義，因此整理一篇筆記方便後續查看。
+        </p>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 06, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 2 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="建立正規表達式物件">建立正規表達式物件</h2>
+<ul>
+<li>兩個斜線 / /</li>
+<li>new RegExp()</li>
+<li>定值時，使用斜線的方法效能較佳</li>
+<li>若內容會異動，匹配模式未知，用建構函式較佳</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 匹配完全符合abc的字串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/abc/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用建構函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;abc&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="flag-寫在後面">Flag: 寫在//後面</h3>
+<ul>
+<li>i：不區分大小寫</li>
+<li>m：多行，讓^$比對每一行的開頭跟結尾</li>
+<li>g：全局(比對多個相符結果，而非只有一個，可以從尾巴找)</li>
+<li>正規表示式有開啟 g flag，可以連續執行 exec() 逐一取得原始字串中所有的匹配字串</li>
+<li>每次執行完 exec() 都會重設 lastIndex 為匹配字串後面接續的字元的索引位置。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/ab*/g</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&#34;abbcdefabh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">((</span><span class="nx">arr</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="s2">&#34;Found &#34;</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;. &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">msg</span> <span class="o">+=</span> <span class="s2">&#34;Next match starts at &#34;</span> <span class="o">+</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Found abb. Next match starts at 3
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Found ab. Next match starts at 9
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="正規表達式物件自帶方法">正規表達式物件自帶方法</h2>
+<ul>
+<li>regex.test(測試內容) // 會回傳 true false 判斷是否匹配</li>
+<li>regex.exec(測試內容) // 回傳陣列 匹配的全部字串/個別匹配字串/開始符合的 index 起始點/原始輸入字串</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Match &#34;quick brown&#34; followed by &#34;jumps&#34;, ignoring characters in between
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Remember &#34;brown&#34; and &#34;jumps&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Ignore case
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">inputValue</span> <span class="o">=</span> <span class="s2">&#34;The Quick Brown Fox Jumps Over The Lazy Dog&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/quick\s(brown).+?(jumps)/gi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">inputValue</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// [
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;Quick Brown Fox Jumps&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;Brown&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;Jumps&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  index: 4,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  input: &#39;The Quick Brown Fox Jumps Over The Lazy Dog&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  groups: undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>這些字串方法也可以用正規表達式 search、match、replace、split
+可以參考這篇<a class="link" href="https://bacnotes.github.io/string-methods/"  title="字串的處理方法"
+     target="_blank" rel="noopener"
+    >字串的處理方法</a></li>
+</ul>
+<h2 id="特殊字元">特殊字元</h2>
+<ul>
+<li>^：字串開頭為 (/^A/ 會匹配「An E」中的 A 不會匹配「an A」的 A) 寫在集合[]表示非</li>
+<li>$：字串結尾為（/t$/ 會匹配「eat」中的 t 不會匹配「eater」中的 t）</li>
+<li>\：下一個字元開始視為一般值而非運算式</li>
+<li>\b：字串邊界不能有英數或底線</li>
+<li>\B：字串邊界要有英數或底線</li>
+<li>.：代替除了換行符號所有可能的字元（a.c 會匹配到 &ldquo;aGc&rdquo;, &ldquo;a c&rdquo;, &ldquo;a_c&rdquo;，但不能匹配 &ldquo;a\nc&rdquo;，.ool 會匹配到 cool fool）</li>
+<li>|：或，不能放在最後面</li>
+</ul>
+<h3 id="字元代號">字元代號</h3>
+<ul>
+<li>()：匹配括弧中內相符字元順序（(sym)，結果可能有 sympathy、assym，sy(m|n) 會匹配 syn 或 sym）</li>
+<li>[]：匹配括弧中的字元範圍，不分順序</li>
+<li>[^]：匹配非括弧中的字元</li>
+<li>[A-Z]：匹配大寫英文字母</li>
+<li>[a-z]：匹配小寫英文字母</li>
+<li>[0–9]：匹配數字 0–9，[^0-9] 匹配不含數字 0–9</li>
+<li>red[1-3]：red1 red2 red3 都會匹配到</li>
+<li>\d：匹配數字 (digital)</li>
+<li>\D：匹配非數字</li>
+<li>\w：匹配英數與底線，即 [A-Za-z0–9_]</li>
+<li>\W：匹配非英數與底線，即 [^a-za-z0–9_]</li>
+<li>\s：匹配泛空白字元，包含換行符號 tab space \r \n</li>
+<li>\S：匹配非泛空白字元</li>
+</ul>
+<h3 id="匹配次數">匹配次數</h3>
+<ul>
+<li>{m}：匹配前面的運算式 m 次</li>
+<li>{n,}：匹配前面的運算式最少 n 次</li>
+<li>{m,n}：匹配前面的運算式 m 次到 n 次</li>
+<li>{m,n}?：匹配前面的運算式 m 次到 n 次之間最少次的</li>
+<li><code>*</code>：至少 0 次，等於{0,}，有或無都可，匹配多次(bag0<code>1*</code>: bag0 bag01 bag011 )</li>
+<li>+：至少 1 次，等於 {1,}，至少要包含一個</li>
+<li>?：0 次或 1 次，等於{0,}，有或無都可(ha<code>?t</code>: ha hat)</li>
+</ul>
+<h2 id="常見-case">常見 case</h2>
+<p>信箱</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>身分證</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^[A-Z]{1}[1-2]{1}[0-9]{8}$/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>郵遞區號</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^[1-9]\d{4}$/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>手機</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^09\d{8}$/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>密碼要大小寫英文+數字+長度至少 8</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>日期</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 日
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/(([0-2][1-9])|10|20|30|31)/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 月
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/((0[1-9])|(1[0-2]))/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 年
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/(19|20)\d{2}/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正規表達式測試工具 <a class="link" href="https://www.regextester.com/"  target="_blank" rel="noopener"
+    >https://www.regextester.com/</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/regexp/">RegExp</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#建立正規表達式物件">建立正規表達式物件</a>
+      <ul>
+        <li><a href="#flag-寫在後面">Flag: 寫在//後面</a></li>
+      </ul>
+    </li>
+    <li><a href="#正規表達式物件自帶方法">正規表達式物件自帶方法</a></li>
+    <li><a href="#特殊字元">特殊字元</a>
+      <ul>
+        <li><a href="#字元代號">字元代號</a></li>
+        <li><a href="#匹配次數">匹配次數</a></li>
+      </ul>
+    </li>
+    <li><a href="#常見-case">常見 case</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

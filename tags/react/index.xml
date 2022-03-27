@@ -12,17 +12,17 @@
         <pubDate>Fri, 18 Feb 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/react_input_form/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/react_input_form/pexels-pixabay-261621.jpg" alt="Featured image of post React 如何處理表單元素｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;前端驗證時機&#34;&gt;前端驗證時機&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;當使用者 submit
-等使用者打完再跳出錯誤訊息，避免不必要的開頭就報錯的不好體驗
-沒辦法在輸入完成就告訴使用者有無錯誤，要等到最後，回饋不及時&lt;/li&gt;
-&lt;li&gt;當 input lose focus
-等使用者打完再跳出錯誤訊息，避免不必要的開頭就報錯的不好體驗
-適合未被點擊過狀態的 form&lt;/li&gt;
-&lt;li&gt;每個 keystroke
-在輸入資料過程中會出現不必要的錯誤訊息，但可以立即回饋&lt;/li&gt;
-&lt;/ol&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/react_input_form/pexels-pixabay-261621.jpg" alt="Featured image of post React 如何處理表單元素｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;前端驗證時機有三種&#34;&gt;前端驗證時機有三種&lt;/h2&gt;
+&lt;h3 id=&#34;當使用者點-submit&#34;&gt;當使用者點 submit&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;等使用者輸入完所有內容再跳出錯誤訊息&lt;/li&gt;
+&lt;li&gt;沒辦法在輸入完成就告訴使用者有無錯誤，要等到最後，回饋不及時&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;當-input-lose-focus&#34;&gt;當 input lose focus&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;跳到下一個input時再跳出錯誤訊息&lt;/li&gt;
+&lt;li&gt;回饋即時，但input需紀錄未被點擊過狀態&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;獲取當前表單輸入值&#34;&gt;獲取當前表單輸入值&lt;/h2&gt;
 &lt;h3 id=&#34;usestate&#34;&gt;useState&lt;/h3&gt;
 &lt;ul&gt;
@@ -125,11 +125,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SimpleInput&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;submit-搭配-keystroke-更新表單值驗證&#34;&gt;submit 搭配 keystroke 更新表單值驗證&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;submit-搭配-keystroke事件-更新表單值驗證&#34;&gt;submit 搭配 keystroke事件 更新表單值驗證&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;驗證內容為確認表單內容不為空白 e.g.trim()完後的結果不為空字串，或 if(!變數.trim())&lt;/li&gt;
-&lt;li&gt;回饋使用者驗證結果，在 input 欄位下方加上 p 的欄位，條件渲染顯示 e.g.使用 nameInputIsInvalid &amp;amp;&amp;amp; &lt;!-- raw HTML omitted --&gt;some err msg&lt;!-- raw HTML omitted --&gt;，加上 invalid 樣式&lt;/li&gt;
-&lt;li&gt;為了不要一開始就呈現出 err msg，多加上一個狀態有無 touched 過判斷&lt;/li&gt;
+&lt;li&gt;驗證內容為確認表單內容不為空白：trim()完後的結果不為空字串，或 if(! 變數.trim())&lt;/li&gt;
+&lt;li&gt;回饋使用者驗證結果：在 input 欄位下方加上 p 的欄位&lt;/li&gt;
+&lt;li&gt;條件渲染顯示 e.g. 使用 nameInputIsInvalid &amp;amp;&amp;amp; &lt;!-- raw HTML omitted --&gt;some err msg&lt;!-- raw HTML omitted --&gt;，加上 invalid 樣式&lt;/li&gt;
+&lt;li&gt;為了不要太早就呈現出 err msg，多加上一個狀態有無 touched 做判斷&lt;/li&gt;
 &lt;li&gt;新增變數作為錯誤訊息渲染判斷(nameInputIsInvalid)，當不符合驗證且有 touched 過才會顯示，!enteredNameIsValid &amp;amp;&amp;amp; enteredNameTouched;&lt;/li&gt;
 &lt;li&gt;下方範例為 useState 獲取表單值&lt;/li&gt;
 &lt;/ul&gt;
@@ -688,14 +689,13 @@
         <guid>https://bacnotes.github.io/p/react-custom-hook/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/react-custom-hook/pexels-photo-4792079.jpeg" alt="Featured image of post React 使用Custom Hook複用程式碼邏輯｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;什麼是-custom-hook&#34;&gt;什麼是 Custom Hook?&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;我們知道 Hook 是 React 內建的 JavaScript 函式&lt;/li&gt;
-&lt;li&gt;所以 Custom Hook 就是我們自創的 JavaScript 函式，用來複用程式碼邏輯&lt;/li&gt;
-&lt;li&gt;Hook 邏輯可以共享，但元件獲取到的變數狀態彼此都是獨立的，不用擔心會互相影響&lt;/li&gt;
+&lt;li&gt;Hook 是 React 內建的 JavaScript 函式，而 Custom Hook 就是我們自創的 JavaScript 函式，用來複用程式碼邏輯&lt;/li&gt;
+&lt;li&gt;Custom Hook 邏輯共享，但元件獲取到的變數狀態彼此都是獨立的，不用擔心會互相影響&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;如何打造-custom-hook&#34;&gt;如何打造 Custom Hook?&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;在 src 下面創一個 hooks 資料夾，創一個 use 開頭的 js 檔案 e.g. use-counter.js（檔名不一定要 use 開頭，取名 use 開頭好辨識這是一個 Hook）&lt;/li&gt;
-&lt;li&gt;但 hook 元件裡面的變數一定要 use 開頭&lt;/li&gt;
+&lt;li&gt;在 src 下面創一個 hooks 資料夾，創一個 use 開頭的 js 檔案 e.g. use-counter.js（檔名不一定要 use 開頭，取名 use 開頭是為了方便辨識這是一個 Hook）&lt;/li&gt;
+&lt;li&gt;hook 元件裡面的變數一定要 use 開頭&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;hook-使用範例&#34;&gt;Hook 使用範例&lt;/h2&gt;
 &lt;h3 id=&#34;計數器範例&#34;&gt;計數器範例&lt;/h3&gt;
@@ -1094,7 +1094,17 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;以上，就是本次 Custom Hook 的簡單分享，有興趣的話可以繼續看下一篇介紹Custom Hook在表單上的應用。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;對Custom Hook的應用有興趣的話，可以繼續看Custom Hook在表單上的應用
+&lt;img src=&#34;http://localhost:1313/p/react_input_form/&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;React 如何處理表單元素&#34;
+	
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1122,7 +1132,7 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// do something with your data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// do something with your data
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -1437,7 +1447,7 @@
 &lt;/div&gt;&lt;h3 id=&#34;使用-useeffect-管理-fetch-方法&#34;&gt;使用 useEffect 管理 fetch 方法&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;如果 fetch 方法只需要在渲染元件時執行一次，放在 useEffect 中不讓 re-render 重跑 fetch 即可&lt;/li&gt;
-&lt;li&gt;但若 fetch 方法會跟其他元件一起使用(e.g.點按鈕也會重拉資料），則需放到 useEffect 外，用 useCallback 包裹存成變數(記住記憶體位置)，把再變數放到 useEffect 的 dependencies 中&lt;/li&gt;
+&lt;li&gt;但若 fetch 方法會跟其他元件一起使用(e.g. 點按鈕也會重拉資料)，則需放到 useEffect 外，用 useCallback 包裹存成變數(記住記憶體位置)，把再變數放到 useEffect 的 dependencies 中&lt;/li&gt;
 &lt;li&gt;不然點下去按鈕，重新渲染 APP 元件時，函式記憶體位置也會改變，等於 useEffect 的相依參數有更新[fetchMoviesHandler]，再次執行 useEffect，陷入無限無圈&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1848,7 +1858,7 @@
 &lt;li&gt;一樣需要定義狀態跟初始化 state&lt;/li&gt;
 &lt;li&gt;使用 constructor 定義 this.state，= 後面要是一個物件&lt;/li&gt;
 &lt;li&gt;functional component 的 state 定義則是任意資料，useState(null)&lt;/li&gt;
-&lt;li&gt;一樣不能用 this.state.變數 = 值直接修改資料，必須用 setState(物件)&lt;/li&gt;
+&lt;li&gt;一樣不能用 this.state. 變數 = 值直接修改資料，必須用 setState(物件)&lt;/li&gt;
 &lt;li&gt;改寫一段 Function Component Code&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2011,15 +2021,15 @@
 &lt;h3 id=&#34;先了解-react-重要的生命週期&#34;&gt;先了解 React 重要的生命週期&lt;/h3&gt;
 &lt;p&gt;componentDidMount()&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;在 evaluate 且渲染完後，只會在 mount 元件時呼叫一次，更新資料 re-render 不會，類似 useEffect(()=&amp;gt;{},[])&lt;/li&gt;
+&lt;li&gt;在 evaluate 且渲染完後，只會在 mount 元件時呼叫一次，更新資料 re-render 不會，類似 useEffect(()=&amp;gt;{}, [])&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;componentDidUpdate()&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;當元件更新狀態或 Props 會呼叫，類似 useEffect(()=&amp;gt;{},[參數])&lt;/li&gt;
+&lt;li&gt;當元件更新狀態或 Props 會呼叫，類似 useEffect(()=&amp;gt;{}, [參數])&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;componentWillUnmount()&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;當元件被銷毀，從真實 DOM 拿掉，類似 cleanup useEffect(()=&amp;gt;{},[])&lt;/li&gt;
+&lt;li&gt;當元件被銷毀，從真實 DOM 拿掉，類似 cleanup useEffect(()=&amp;gt;{}, [])&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;以一個搜尋元件來當範例會依照不同字詞出現不同使用者清單&#34;&gt;以一個搜尋元件來當範例，會依照不同字詞出現不同使用者清單&lt;/h3&gt;
 &lt;ul&gt;
@@ -2765,7 +2775,6 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 父層元件
@@ -2794,7 +2803,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 子層元件
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DemoOutput&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;props&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -2846,7 +2854,6 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 父層元件
@@ -2875,7 +2882,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 子層元件
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DemoOutput&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;props&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -4245,7 +4251,7 @@
 &lt;li&gt;不適合頻繁更動的資料（每秒好幾次)，使用 redux&lt;/li&gt;
 &lt;li&gt;鄰近父子元件還是建議透過 props 傳遞資料，而非用 useContext 取代&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;如果還想多了解 React 的朋友，可以繼續閱讀這篇&lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/react-knowledge/&#34;  title=&#34;自學React的你需要知道的一些知識｜React - The Complete Guide&#34;
+&lt;p&gt;延伸閱讀：&lt;a class=&#34;link&#34; href=&#34;https://bacnotes.github.io/p/react-knowledge/&#34;  title=&#34;自學React的你需要知道的一些知識｜React - The Complete Guide&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;自學 React 的你需要知道的一些知識｜ React - The Complete Guide&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -4324,17 +4330,19 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-CSS&#34; data-lang=&#34;CSS&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;form-control&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;pink&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;border-corlor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;err&#34;&gt;...等等其他固定的樣式&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;pink&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;border-corlor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;err&#34;&gt;...等等其他固定的樣式&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;invalid&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -4364,7 +4372,7 @@
 &lt;ul&gt;
 &lt;li&gt;cd 到專案資料夾&lt;code&gt; npm install --save styled-components&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;const Input = styled.html 元素&lt;code&gt;CSS樣式&lt;/code&gt; (attacked template literal)&lt;/li&gt;
-&lt;li&gt;styled package 有所有 html 元素的方法，透過``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中&lt;/li&gt;
+&lt;li&gt;styled package 有所有 html 元素的方法，透過反引號``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中&lt;/li&gt;
 &lt;li&gt;動態產生獨特 hash&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4403,7 +4411,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;使用-props-動態管理樣式&#34;&gt;使用 props 動態管理樣式&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 這種聯集的選擇器)&lt;/li&gt;
+&lt;li&gt;可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 聯集的選擇器)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4560,7 +4568,7 @@
 &lt;ul&gt;
 &lt;li&gt;不用安裝套件，CRA 本身支援 CSS modules&lt;/li&gt;
 &lt;li&gt;把副檔名.css 檔案改成.module.css，引用路徑也要改&lt;/li&gt;
-&lt;li&gt;className = {styles.樣式選擇器名}&lt;/li&gt;
+&lt;li&gt;className = {styles. 樣式選擇器名}&lt;/li&gt;
 &lt;li&gt;瀏覽器看到 class 名為：元件名_class 名__hash，因此不會撞名&lt;/li&gt;
 &lt;li&gt;class 名若有橫線&lt;code&gt;-&lt;/code&gt;連接，寫法需要改成&lt;code&gt;${style[&#39;form-control&#39;]}&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -4630,31 +4638,31 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-CSS&#34; data-lang=&#34;CSS&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;font&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;inherit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;padding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.5&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;border&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;solid&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#8b005d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;white&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#8b005d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.26&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;pointer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;font&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;inherit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;padding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.5&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;rem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;border&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;solid&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#8b005d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;white&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#8b005d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.26&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;cursor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;pointer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;focus&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;outline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;hover&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;active&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ac0e77&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ac0e77&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.26&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;background&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ac0e77&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;border-color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ac0e77&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;box-shadow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.26&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;media&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;min-width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;768px&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -4691,7 +4699,7 @@
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;React 是客戶端 based(非伺服器端運作)，在瀏覽器操作 DOM 讓互動性變高&lt;/li&gt;
 &lt;li&gt;使用 SPA 減少跟伺服器的溝通，使用上就跟手機的原生 APP 一樣順暢，所以名字才叫 React&lt;/li&gt;
-&lt;li&gt;技術上來說(e.g.跟 Augular 相比)React 不算是一個完整的框架&lt;/li&gt;
+&lt;li&gt;技術上來說(e.g. 跟 Augular 相比)React 不算是一個完整的框架&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;＊什麼是 SPA（Single-page application）&lt;/p&gt;
 &lt;ul&gt;
@@ -4776,21 +4784,21 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// JavaScript
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;[javascript]&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// vue
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;[vue]&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// react JSX
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;[javascriptreact]&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// JavaScript
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;[javascript]&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// vue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;[vue]&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// react JSX
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;[javascriptreact]&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -4811,9 +4819,9 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;emmet.includeLanguages&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;javascript&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;javascriptreact&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;emmet.includeLanguages&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;javascript&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;javascriptreact&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -5307,7 +5315,7 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 ＊不這麼做的話畫面是不會重新渲染的（也就是跑一次下方的 return 的 JSX)。&lt;/li&gt;
 &lt;li&gt;我們會用 setModalIsOpen 來更新值，用 modalIsOpen 判斷條件渲染 JSX 的程式碼&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;＊Hook 有很多種，官方文件有列出所有的 Hook 在這裡&lt;a class=&#34;link&#34; href=&#34;https://zh-hant.reactjs.org/docs/hooks-reference.html&#34;  title=&#34;Hook API&#34;
+&lt;p&gt;＊Hook 有很多種，官方文件有列出所有的 &lt;a class=&#34;link&#34; href=&#34;https://zh-hant.reactjs.org/docs/hooks-reference.html&#34;  title=&#34;Hook API&#34;
      target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hook API&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -6930,19 +6938,19 @@ JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;最後想補充一下&amp;hellip;
 其實我覺得 Vue 也不錯啊（x)&lt;/p&gt;
-&lt;p&gt;有好吃的語法糖：用@監聽事件，@submit.prevent.stop 就可阻止瀏覽器提交表單跟冒泡：動態 class，watch 深層監聽物件屬性，computed 動態更新，v-model 雙向綁定表單&amp;hellip;各種好吃的糖)&lt;/p&gt;
+&lt;p&gt;有好吃的語法糖：用@監聽事件，@submit.prevent.stop 就可阻止瀏覽器提交表單跟冒泡：動態 class，watch 深層監聽物件屬性，computed 動態更新，v-model 雙向綁定表單&amp;hellip; 等各種好吃的糖)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile.jpeg&#34;
-	width=&#34;388&#34;
-	height=&#34;401&#34;
-	srcset=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile_hud4d4f2c437a37a6da93416be95c29e39_12858_480x0_resize_q75_box.jpeg 480w, https://bacnotes.github.io/p/react-knowledge-101/smile_hud4d4f2c437a37a6da93416be95c29e39_12858_1024x0_resize_q75_box.jpeg 1024w&#34;
+	width=&#34;694&#34;
+	height=&#34;403&#34;
+	srcset=&#34;https://bacnotes.github.io/p/react-knowledge-101/smile_hu5ee87cd0bb8e6af2b6c77ccaa4ce81f6_125672_480x0_resize_q75_box.jpeg 480w, https://bacnotes.github.io/p/react-knowledge-101/smile_hu5ee87cd0bb8e6af2b6c77ccaa4ce81f6_125672_1024x0_resize_q75_box.jpeg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;smile-cat-meme&#34;
+		alt=&#34;eval-smile-meme&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;96&#34;
-		data-flex-basis=&#34;232px&#34;
+		data-flex-grow=&#34;172&#34;
+		data-flex-basis=&#34;413px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;原來暗藏一篇 Vue 推銷文，真是太邪惡了&lt;/p&gt;

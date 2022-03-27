@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='當需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。'><h1><title>React 使用Custom Hook複用程式碼邏輯｜bacnotes備份筆記</title></h1>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。'><h1><title>React 使用Custom Hook複用程式碼邏輯｜bacnotes備份筆記</title></h1>
 
 <link rel='canonical' href='https://bacnotes.github.io/p/react-custom-hook/'>
 
 <link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='React 使用Custom Hook複用程式碼邏輯｜bacnotes備份筆記'>
-<meta property='og:description' content='當需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。'>
+<meta property='og:description' content='需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。'>
 <meta property='og:url' content='https://bacnotes.github.io/p/react-custom-hook/'>
 <meta property='og:site_name' content='bacnotes備份筆記'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='React' /><meta property='article:published_time' content='2022-02-14T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-02-14T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/react-custom-hook/pexels-photo-4792079.jpeg' />
 <meta name="twitter:site" content="@bacnotes">
     <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="React 使用Custom Hook複用程式碼邏輯｜bacnotes備份筆記">
-<meta name="twitter:description" content="當需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://bacnotes.github.io/p/react-custom-hook/pexels-photo-4792079.jpeg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -244,7 +245,7 @@ if (!doNotTrack) {
     
         
         <p class="article-subtitle">
-            當需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。
+            需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。
         </p>
         
     </div>
@@ -293,14 +294,13 @@ if (!doNotTrack) {
     
     <h2 id="什麼是-custom-hook">什麼是 Custom Hook?</h2>
 <ul>
-<li>我們知道 Hook 是 React 內建的 JavaScript 函式</li>
-<li>所以 Custom Hook 就是我們自創的 JavaScript 函式，用來複用程式碼邏輯</li>
-<li>Hook 邏輯可以共享，但元件獲取到的變數狀態彼此都是獨立的，不用擔心會互相影響</li>
+<li>Hook 是 React 內建的 JavaScript 函式，而 Custom Hook 就是我們自創的 JavaScript 函式，用來複用程式碼邏輯</li>
+<li>Custom Hook 邏輯共享，但元件獲取到的變數狀態彼此都是獨立的，不用擔心會互相影響</li>
 </ul>
 <h2 id="如何打造-custom-hook">如何打造 Custom Hook?</h2>
 <ul>
-<li>在 src 下面創一個 hooks 資料夾，創一個 use 開頭的 js 檔案 e.g. use-counter.js（檔名不一定要 use 開頭，取名 use 開頭好辨識這是一個 Hook）</li>
-<li>但 hook 元件裡面的變數一定要 use 開頭</li>
+<li>在 src 下面創一個 hooks 資料夾，創一個 use 開頭的 js 檔案 e.g. use-counter.js（檔名不一定要 use 開頭，取名 use 開頭是為了方便辨識這是一個 Hook）</li>
+<li>hook 元件裡面的變數一定要 use 開頭</li>
 </ul>
 <h2 id="hook-使用範例">Hook 使用範例</h2>
 <h3 id="計數器範例">計數器範例</h3>
@@ -699,7 +699,17 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>以上，就是本次 Custom Hook 的簡單分享，有興趣的話可以繼續看下一篇介紹Custom Hook在表單上的應用。</p>
+</div><p>對Custom Hook的應用有興趣的話，可以繼續看Custom Hook在表單上的應用
+<img src="http://localhost:1313/p/react_input_form/"
+	
+	
+	
+	loading="lazy"
+	
+		alt="React 如何處理表單元素"
+	
+	
+></p>
 
 </section>
 

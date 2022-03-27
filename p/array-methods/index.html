@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -292,7 +293,7 @@ if (!doNotTrack) {
     
     
     <h2 id="不會改變原始資料">不會改變原始資料</h2>
-<p>&lt;&ndash; 參數為值系列 &ndash;&gt;</p>
+<p>&lt;&ndash; 參數為值 &ndash;&gt;</p>
 <h3 id="slice">slice()</h3>
 <ul>
 <li>array.slice([start[, end]])</li>
@@ -300,7 +301,7 @@ if (!doNotTrack) {
 <li>回傳一個新陣列物件，為原陣列選擇之 start 至 end（end index 元素不包含在回傳結果）的淺拷貝</li>
 <li>可以不傳參數(start 預設 0，end 預設 array.length)</li>
 <li>可單傳 start 參數或 start end 都傳</li>
-<li>接受負數，slice(2,-1) 代表拷貝陣列中第三個元素至倒數第二個元素</li>
+<li>接受負數，slice(2, -1) 代表拷貝陣列中第三個元素至倒數第二個元素</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -360,7 +361,7 @@ if (!doNotTrack) {
 <ul>
 <li>array.join([separator])</li>
 <li>回傳合併所有陣列元素的字串</li>
-<li>separator 為用來隔開陣列中每個元素的字串。如果必要的話，separator 會自動被轉成字串型態。如果未傳入此參數，陣列中的元素將預設用英文逗號（「,」）隔開。如果 separator 是空字串，合併後，元素間不會有任何字元。</li>
+<li>separator 為用來隔開陣列中每個元素的字串。如果必要的話，separator 會自動被轉成字串型態。如果未傳入此參數，陣列中的元素將預設用英文逗號（「, 」）隔開。如果 separator 是空字串，合併後，元素間不會有任何字元。</li>
 <li>任何 undefined 或 null 的元素都會被視為空字串處理。</li>
 <li>假如 arr.length 為 0，將回傳空字串。</li>
 </ul>
@@ -438,7 +439,6 @@ if (!doNotTrack) {
 </span><span class="lnt">47
 </span><span class="lnt">48
 </span><span class="lnt">49
-</span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]];</span>
@@ -457,40 +457,39 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// [1, 2, 3, 4, 5, 6]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 相加帳戶中所有金額
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 不同物件中的某個屬性為陣列，將陣列值丟到一個新陣列
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 攤平陣列中巢狀結構（單層)
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 加總
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overallBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flat</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="nx">mov</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="nx">mov</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="flatmap-ie-沒有支援">flatMap() (IE 沒有支援)</h3>
@@ -514,11 +513,11 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 攤平陣列中巢狀結構（單層)
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 加總
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overallBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="nx">mov</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">+</span> <span class="nx">mov</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>&lt;&ndash; 參數為 callback 系列 &ndash;&gt;</p>
+</div><p>&lt;&ndash; 參數為 callback  &ndash;&gt;</p>
 <h3 id="map">map()</h3>
 <ul>
 <li>var new_array = arr.map(function callback(currentValue[, index[, array]]) {
@@ -572,12 +571,12 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;spray&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;limit&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;elite&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;exuberant&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;destruction&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;present&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;spray&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;limit&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;elite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;exuberant&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;destruction&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;present&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">words</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">);</span>
@@ -637,6 +636,9 @@ if (!doNotTrack) {
 </span><span class="lnt">38
 </span><span class="lnt">39
 </span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// a is accumulator, b is currentValue
@@ -651,32 +653,35 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// 找max最大值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">movements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span> <span class="k">return</span> <span class="nx">a</span>
-</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="k">return</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span> <span class="k">return</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="nx">b</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">maxValue</span> <span class="o">=</span> <span class="nx">movements</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">maxVlue</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 3000
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 攤平巢狀陣列
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span>  <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flattened</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">reducer</span><span class="p">),[]);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">flattened</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">reducer</span><span class="p">),</span> <span class="p">[]);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flattened</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [0, 1, 2, 3, 4, 5]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 計數器
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Tiff&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruce&#39;</span><span class="p">,</span> <span class="s1">&#39;Alice&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">allNames</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">allNames</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">allNames</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">allNames</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">allNames</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">},</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">countedNames</span> <span class="o">=</span> <span class="nx">names</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,{});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">allNames</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">allNames</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">allNames</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">allNames</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">countedNames</span> <span class="o">=</span> <span class="nx">names</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="p">{});</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countedNames</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// { &#39;Alice&#39;: 2, &#39;Bob&#39;: 1, &#39;Tiff&#39;: 1, &#39;Bruce&#39;: 1 }
 </span></span></span></code></pre></td></tr></table>
@@ -727,35 +732,33 @@ if (!doNotTrack) {
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
-</span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 查找含有特定屬性的物件
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">account</span><span class="p">.</span><span class="nx">owner</span> <span class="o">===</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">);</span>
@@ -799,11 +802,11 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 刪除特定筆資料
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">btnCloseAccount</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">account</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">username</span>
-</span></span><span class="line"><span class="cl">  <span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">accounts</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">account</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">username</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">accounts</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">44</span><span class="p">];</span>
@@ -898,16 +901,16 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">anyDeposit</span><span class="p">);</span> <span class="c1">// true
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 借貸條件為，曾存款過且需有一筆存款金額大於等於借貸金額10% 假設借貸30000 需要有一筆大於3000的存款
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">btnLoan</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">btnLoan</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">inputLoanAmount</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">condition</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">mov</span> <span class="o">&gt;=</span> <span class="nx">amount</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">condition</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">amount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">inputLoanAmount</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">condition</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mov</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">mov</span> <span class="o">&gt;=</span> <span class="nx">amount</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">condition</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">amount</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">updateUI</span><span class="p">(</span><span class="nx">currentAccount</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">updateUI</span><span class="p">(</span><span class="nx">currentAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -936,7 +939,18 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="會改變原始資料">會改變原始資料</h2>
-<p>push()、pop()、shift()、unshift()之前在這篇有介紹過，可以看這邊</p>
+<p>push()、pop()、shift()、unshift()可以參考這篇的array 方法</p>
+<p><img src="/p/javascript-fundamentals-part2/"
+	
+	
+	
+	loading="lazy"
+	
+		alt="JavaScript基礎知識複習(2)"
+	
+	
+></p>
+<p>&lt;– 參數為值 –&gt;</p>
 <h3 id="splice">splice()</h3>
 <ul>
 <li>array.splice(start[, deleteCount[, item1[, item2[, &hellip;]]]])</li>
@@ -1000,12 +1014,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// [&#34;three&#34;, &#34;two&#34;, &#34;one&#34;]
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="針對每個元素處理">針對每個元素處理</h2>
-<ul>
-<li>原始資料可改可不改，看函式邏輯</li>
-<li>可以只迭代 render 在畫面上，也可修改資料 e.g.新增物件屬性等</li>
-</ul>
-<h2 id="sort">sort()</h2>
+</div><p>&lt;&ndash; 參數為 callback  &ndash;&gt;</p>
+<h3 id="sort">sort()</h3>
 <ul>
 <li>arr.sort([compareFunction])</li>
 <li>對一個陣列的所有元素進行排序，並回傳此陣列。排序不一定是穩定的（stable）</li>
@@ -1027,14 +1037,14 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">在某排序標準下</span> <span class="nx">a</span> <span class="nx">小於</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">在某排序標準下</span> <span class="nx">a</span> <span class="nx">大於</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// a 必須等於 b
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">在某排序標準下</span> <span class="nx">a</span> <span class="nx">小於</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">在某排序標準下</span> <span class="nx">a</span> <span class="nx">大於</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// a 必須等於 b
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1090,27 +1100,31 @@ if (!doNotTrack) {
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 展示的function
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 展示的function
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">displayMovements</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">movements</span><span class="p">,</span> <span class="nx">sort</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 有要sort才會使用排序後資料(copy資料)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">movs</span> <span class="o">=</span> <span class="nx">sort</span> <span class="o">?</span> <span class="nx">movements</span><span class="p">.</span><span class="nx">slice</span><span class="p">().</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span>  <span class="o">-</span> <span class="nx">b</span> <span class="p">)</span> <span class="o">:</span><span class="nx">movements</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">movs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">render</span> <span class="kd">function</span>
-</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 有要sort才會使用排序後資料(copy資料)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">movs</span> <span class="o">=</span> <span class="nx">sort</span> <span class="o">?</span> <span class="nx">movements</span><span class="p">.</span><span class="nx">slice</span><span class="p">().</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span> <span class="o">:</span> <span class="nx">movements</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span><span class="nx">render</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">function</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl"><span class="nx">btnSort</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 改變畫面
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">displayMovements</span><span class="p">(</span><span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">,</span> <span class="o">!</span><span class="nx">sorted</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 更新狀態
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">sorted</span> <span class="o">=</span> <span class="o">!</span><span class="nx">sorted</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 改變畫面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">displayMovements</span><span class="p">(</span><span class="nx">currentAccount</span><span class="p">.</span><span class="nx">movements</span><span class="p">,</span> <span class="o">!</span><span class="nx">sorted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 更新狀態
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">sorted</span> <span class="o">=</span> <span class="o">!</span><span class="nx">sorted</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>&lt;&ndash; 參數為 callback 系列 &ndash;&gt;</p>
+</div><h2 id="針對每個元素處理">針對每個元素處理</h2>
+<ul>
+<li>原始資料可改可不改，看函式邏輯</li>
+<li>可以只迭代 render 在畫面上，也可修改資料 e.g. 新增物件屬性等</li>
+</ul>
 <h3 id="foreach">forEach()</h3>
 <ul>
 <li>array.forEach(callback(currentValue [, index [, array]])[, thisArg])</li>
@@ -1154,20 +1168,20 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you deposited </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you withdrew </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you deposited </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you withdrew </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 等於之前的for of 搭配array.entries()同時取出index(key) value
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">index</span><span class="p">,</span> <span class="nx">el</span><span class="p">]</span> <span class="k">of</span> <span class="nx">array</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you deposited </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you withdrew </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you deposited </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: you withdrew </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="si">}</span><span class="sb"> dollars`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 0: you deposited 100 dollars
@@ -1213,7 +1227,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// set
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">currenciesUnique</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="s2">&#34;USD&#34;</span><span class="p">,</span> <span class="s2">&#34;EUR&#34;</span><span class="p">,</span> <span class="s2">&#34;GBP&#34;</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">currenciesUnique</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">map</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// USD: USD
@@ -1222,13 +1236,13 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// map
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">currencies</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;USD&#34;</span><span class="p">,</span> <span class="s2">&#34;United States dollar&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;EUR&#34;</span><span class="p">,</span> <span class="s2">&#34;Euro&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;GBP&#34;</span><span class="p">,</span> <span class="s2">&#34;Pound sterling&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;USD&#34;</span><span class="p">,</span> <span class="s2">&#34;United States dollar&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;EUR&#34;</span><span class="p">,</span> <span class="s2">&#34;Euro&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;GBP&#34;</span><span class="p">,</span> <span class="s2">&#34;Pound sterling&#34;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">currencies</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">map</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// USD: United States dollar
 </span></span></span><span class="line"><span class="cl"><span class="c1">// EUR: Euro
@@ -1275,44 +1289,42 @@ if (!doNotTrack) {
 </span><span class="lnt">33
 </span><span class="lnt">34
 </span><span class="lnt">35
-</span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">createUsernames</span> <span class="o">=</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">accounts</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">acc</span><span class="p">.</span><span class="nx">owner</span>
-</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">account</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">accounts</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">acc</span><span class="p">.</span><span class="nx">owner</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1368,22 +1380,30 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">length</span><span class="o">:</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [1,1,1,1,1,1,1]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">length</span><span class="o">:</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [1,2,3,4,5,6,7]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="s2">&#34;foo&#34;</span><span class="p">));</span>
@@ -1403,17 +1423,15 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 選取需要的div元素，取出textContent
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">labelBalance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()=&gt;{</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">movementsUI</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__value&#39;</span><span class="p">),</span> <span class="nx">el</span> <span class="p">=&gt;</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;€&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">movementsUI</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">labelBalance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">movementsUI</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__value&#39;</span><span class="p">),</span> <span class="nx">el</span> <span class="p">=&gt;</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;€&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">movementsUI</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">movementsUI2</span> <span class="o">=</span> <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__value&#39;</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">movementsUI2</span> <span class="o">=</span> <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__value&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1446,18 +1464,18 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1">//TEST DATA 1: Julia&#39;s data [3, 5, 2, 12, 7], Kate&#39;s data [4, 1, 15, 8, 3]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">//TEST DATA 2: Julia&#39;s data [9, 16, 6, 8, 3], Kate&#39;s data [10, 5, 6, 1, 4]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">checkDogs</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">arr1</span><span class="p">,</span> <span class="nx">arr2</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// [...arr1]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 排除第一個跟最後兩筆錯誤資料
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">dogsJulia</span> <span class="o">=</span> <span class="nx">arr1</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">dogsKate</span> <span class="o">=</span> <span class="nx">arr2</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 合併兩組陣列
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">allDogs</span> <span class="o">=</span> <span class="nx">dogsJulia</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">dogsKate</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// console文字 大於等於3算adult 小於算puppy
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">allDogs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">dogType</span> <span class="o">=</span> <span class="nx">el</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="o">?</span> <span class="s2">&#34;adult&#34;</span> <span class="o">:</span> <span class="s2">&#34;puppy&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Dog </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb"> is an </span><span class="si">${</span><span class="nx">dogType</span><span class="si">}</span><span class="sb"> and is </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> years old`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">checkDogs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arr1</span><span class="p">,</span> <span class="nx">arr2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// [...arr1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 排除第一個跟最後兩筆錯誤資料
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">dogsJulia</span> <span class="o">=</span> <span class="nx">arr1</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">dogsKate</span> <span class="o">=</span> <span class="nx">arr2</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 合併兩組陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">allDogs</span> <span class="o">=</span> <span class="nx">dogsJulia</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">dogsKate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// console文字 大於等於3算adult 小於算puppy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">allDogs</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">dogType</span> <span class="o">=</span> <span class="nx">el</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="o">?</span> <span class="s2">&#34;adult&#34;</span> <span class="o">:</span> <span class="s2">&#34;puppy&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Dog </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb"> is an </span><span class="si">${</span><span class="nx">dogType</span><span class="si">}</span><span class="sb"> and is </span><span class="si">${</span><span class="nx">el</span><span class="si">}</span><span class="sb"> years old`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1492,17 +1510,17 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 寫一個calcAverageHumanAge 換算成平均人類年齡
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAverageHumanAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">ages</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 狗狗年齡換算人類邏輯 若&lt;=2 直接*2; 若&gt;2 初始值16 + 年齡*4
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">humanAges</span> <span class="o">=</span> <span class="nx">ages</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">age</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">age</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">?</span> <span class="nx">age</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">16</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">age</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">);</span> <span class="c1">// 排除換算年齡小於18的狗狗  
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAverageHumanAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ages</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 狗狗年齡換算人類邏輯 若&lt;=2 直接*2; 若&gt;2 初始值16 + 年齡*4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">humanAges</span> <span class="o">=</span> <span class="nx">ages</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">age</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">age</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">?</span> <span class="nx">age</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">16</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">age</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">);</span> <span class="c1">// 排除換算年齡小於18的狗狗  
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">/</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 狗狗換算平均年齡
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 下方reduce若沒有設定初始值 結果會有錯
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// const avg = adults.reduce((sum, age, i, arr) =&gt; sum + age / arr.length, 0)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 2 3. (2+3)/2 = 2.5 === 2/2+3/2 = 2.5
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">avg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 下方reduce若沒有設定初始值 結果會有錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const avg = adults.reduce((sum, age, i, arr) =&gt; sum + age / arr.length, 0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 2 3. (2+3)/2 = 2.5 === 2/2+3/2 = 2.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">avg</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">calcAverageHumanAge</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
@@ -1617,107 +1635,115 @@ if (!doNotTrack) {
 </span><span class="lnt">100
 </span><span class="lnt">101
 </span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// challenge #3
 </span></span></span><span class="line"><span class="cl"><span class="c1">// data
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">account1</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jonas Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="o">-</span><span class="mi">400</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="o">-</span><span class="mi">650</span><span class="p">,</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1300</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="c1">// %
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pin</span><span class="o">:</span> <span class="mi">1111</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account2</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Jessica Davis&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">790</span><span class="p">,</span> <span class="o">-</span><span class="mi">3210</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8500</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">2222</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account3</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Steven Thomas Williams&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="o">-</span><span class="mi">460</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mf">0.7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">3333</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">account4</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Sarah Smith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">movements</span><span class="o">:</span> <span class="p">[</span><span class="mi">430</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">interestRate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pin</span><span class="o">:</span> <span class="mi">4444</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="p">[</span><span class="nx">account1</span><span class="p">,</span> <span class="nx">account2</span><span class="p">,</span> <span class="nx">account3</span><span class="p">,</span> <span class="nx">account4</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 1-1 所有帳戶存款紀錄加總 map flat
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overAllBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flat</span><span class="p">()</span> <span class="c1">// 變成一維陣列
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">el</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flat</span><span class="p">()</span> <span class="c1">// 變成一維陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">el</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">overAllBalance</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 1-2 所有帳戶存款紀錄加總 flatMap
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">overAllBalance</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span> <span class="c1">// 變成一維陣列
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">el</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span> <span class="c1">// 變成一維陣列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">el</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">overAllBalance</span><span class="p">);</span> <span class="c1">// 25180
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 2 大於1000存款記錄有幾筆
 </span></span></span><span class="line"><span class="cl"><span class="c1">// reduce 第二個參數為初始值 複習計數器用法
 </span></span></span><span class="line"><span class="cl"><span class="c1">// sum++先return 再+ ; ++sum 先+再return
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">numDeposit1000</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">count</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="o">?</span> <span class="o">++</span><span class="nx">count</span> <span class="o">:</span> <span class="nx">count</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">count</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="o">?</span> <span class="o">++</span><span class="nx">count</span> <span class="o">:</span> <span class="nx">count</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numDeposit1000</span><span class="p">);</span> <span class="c1">// 5
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 3 reduce 回傳結果為{存款記錄筆數: 提款記錄筆數:}
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">balanceCounter</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">sums</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="nx">sums</span><span class="p">.</span><span class="nx">deposits</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="nx">sums</span><span class="p">.</span><span class="nx">withdraws</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">// 這邊有+= 運算 非單行 記得加return
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">sums</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="nx">deposits</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">withdraws</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nx">sums</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="nx">sums</span><span class="p">.</span><span class="nx">deposits</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="nx">sums</span><span class="p">.</span><span class="nx">withdraws</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 這邊有+= 運算 非單行 記得加return
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="nx">sums</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">deposits</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">withdraws</span><span class="o">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">balanceCounter</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// {deposits: 25180, withdraws: -7340}
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 更簡潔的寫法
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">balanceCounter</span> <span class="o">=</span> <span class="nx">accounts</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">sums</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">sums</span><span class="p">[</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="s2">&#34;deposits&#34;</span> <span class="o">:</span> <span class="s2">&#34;withdraws&#34;</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">sums</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="nx">deposits</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">withdraws</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">movements</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果寫sum++ 每次都先return 0 給accumulator 再+1 累加結果就永遠是0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nx">sums</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">sums</span><span class="p">[</span><span class="nx">el</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="s2">&#34;deposits&#34;</span> <span class="o">:</span> <span class="s2">&#34;withdraws&#34;</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">el</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">sums</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">deposits</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">withdraws</span><span class="o">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">balanceCounter</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 4. 格式轉換器 this is a nice title -&gt; This Is a Nice Title
 </span></span></span><span class="line"><span class="cl"><span class="c1">// array.includes(element)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">covertTitleCase</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">exceptions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;an&#34;</span><span class="p">,</span> <span class="s2">&#34;and&#34;</span><span class="p">,</span> <span class="s2">&#34;the&#34;</span><span class="p">,</span> <span class="s2">&#34;but&#34;</span><span class="p">,</span> <span class="s2">&#34;or&#34;</span><span class="p">,</span> <span class="s2">&#34;on&#34;</span><span class="p">,</span> <span class="s2">&#34;in&#34;</span><span class="p">,</span> <span class="s2">&#34;with&#34;</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">titleCase</span> <span class="o">=</span> <span class="nx">title</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="p">=&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">exceptions</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">?</span> <span class="nx">word</span> <span class="o">:</span> <span class="nx">word</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">word</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">covertTitleCase</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">exceptions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;an&#34;</span><span class="p">,</span> <span class="s2">&#34;and&#34;</span><span class="p">,</span> <span class="s2">&#34;the&#34;</span><span class="p">,</span> <span class="s2">&#34;but&#34;</span><span class="p">,</span> <span class="s2">&#34;or&#34;</span><span class="p">,</span> <span class="s2">&#34;on&#34;</span><span class="p">,</span> <span class="s2">&#34;in&#34;</span><span class="p">,</span> <span class="s2">&#34;with&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">titleCase</span> <span class="o">=</span> <span class="nx">title</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">exceptions</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">?</span> <span class="nx">word</span> <span class="o">:</span> <span class="nx">word</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">word</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">titleCase</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">titleCase</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 
@@ -1752,7 +1778,6 @@ if (!doNotTrack) {
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// challenge #4
@@ -1766,7 +1791,6 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 1. calculate the recommended food portion and add it to the object as a new property. Do NOT create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 2. Find Sarah&#39;s dog and log to the console whether it&#39;s eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 3. Create an array containing all owners of dogs who eat too much (&#39;ownersEatTooMuch&#39;) and an array with all owners of dogs who eat too little (&#39;ownersEatTooLittle&#39;).
@@ -2002,10 +2026,10 @@ if (!doNotTrack) {
       <ul>
         <li><a href="#splice">splice()</a></li>
         <li><a href="#reverse">reverse()</a></li>
+        <li><a href="#sort">sort()</a></li>
       </ul>
     </li>
-    <li><a href="#針對每個元素處理">針對每個元素處理</a></li>
-    <li><a href="#sort">sort()</a>
+    <li><a href="#針對每個元素處理">針對每個元素處理</a>
       <ul>
         <li><a href="#foreach">forEach()</a></li>
       </ul>

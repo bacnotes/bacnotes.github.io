@@ -3,15 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bacnotes.github.io/</loc>
-    <lastmod>2022-02-26T00:00:00+08:00</lastmod>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/date/</loc>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/math/</loc>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/number/</loc>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/post/</loc>
-    <lastmod>2022-02-26T00:00:00+08:00</lastmod>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/</loc>
-    <lastmod>2022-02-26T00:00:00+08:00</lastmod>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/math-number-date/</loc>
+    <lastmod>2022-03-14T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/regexp/</loc>
+    <lastmod>2022-03-06T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/regular-expression/</loc>
+    <lastmod>2022-03-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/vue/</loc>

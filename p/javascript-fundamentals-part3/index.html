@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。'><h1><title>JavaScript基礎知識複習(3)｜bacnotes備份筆記</title></h1>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習。'><h1><title>JavaScript基礎知識複習(3)｜bacnotes備份筆記</title></h1>
 
 <link rel='canonical' href='https://bacnotes.github.io/p/javascript-fundamentals-part3/'>
 
 <link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='JavaScript基礎知識複習(3)｜bacnotes備份筆記'>
-<meta property='og:description' content='這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。'>
+<meta property='og:description' content='這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習。'>
 <meta property='og:url' content='https://bacnotes.github.io/p/javascript-fundamentals-part3/'>
 <meta property='og:site_name' content='bacnotes備份筆記'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-01-10T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-01-10T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/javascript-fundamentals-part3/javascript.png' />
 <meta name="twitter:site" content="@bacnotes">
     <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="JavaScript基礎知識複習(3)｜bacnotes備份筆記">
-<meta name="twitter:description" content="這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://bacnotes.github.io/p/javascript-fundamentals-part3/javascript.png' />
     <link rel="shortcut icon" href="favicon.ico" />
 
@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -244,7 +245,7 @@ if (!doNotTrack) {
     
         
         <p class="article-subtitle">
-            這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。
+            這篇會介紹邏輯運算子&#43;指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習。
         </p>
         
     </div>
@@ -291,10 +292,10 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>歡迎來到JavaScript基礎知識複習(3)，還記得 <code>&amp;&amp;</code> <code>||</code> <code>??</code> 這三個邏輯運算子嗎？其實他們可以跟指派運算子一起使用，如果沒有接觸過的可以先看看第一篇<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part1/"  title="JavaScript基礎知識複習(1)｜The Complete JavaScript Course"
+    <p>歡迎來到JavaScript基礎知識複習(3)，還記得 <code>&amp;&amp;</code>  <code>||</code>  <code>??</code> 這三個邏輯運算子嗎？其實他們可以跟指派運算子一起使用，如果沒有接觸過的可以先看看第一篇<a class="link" href="https://bacnotes.github.io/p/javascript-fundamentals-part1/"  title="JavaScript基礎知識複習(1)｜The Complete JavaScript Course"
      target="_blank" rel="noopener"
-    >JavaScript 基礎知識複習(1)</a>的介紹再來往下看唷</p>
-<h2 id="邏輯運算子--指派運算子---">邏輯運算子 + 指派運算子 <code>&amp;&amp;=</code> <code>||=</code> <code>??=</code></h2>
+    >JavaScript 基礎知識複習(1)</a>再來往下看唷</p>
+<h2 id="邏輯運算子--指派運算子-----">邏輯運算子 + 指派運算子 <code>&amp;&amp;=</code>  <code>||=</code>  <code>??=</code></h2>
 <ul>
 <li>下方是兩個餐廳資料物件，彼此的屬性略有不同</li>
 </ul>
@@ -312,18 +313,18 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant1</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Carpi&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">numGuests</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Carpi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">numGuests</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant2</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;La Piazza&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Giovanni Rossi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;La Piazza&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&#34;Giovanni Rossi&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>當我們想增加物件內的屬性，可以用邏輯運算子的方式添加</li>
+<li>當想增加物件內的屬性，可以用邏輯運算子的方式添加</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -350,8 +351,8 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 屬性存在不會有變動
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 沒有這個屬性，新增一個numGuests: 10
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 屬性存在不會有變動
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">||</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 沒有這個屬性，新增一個numGuests: 10
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// { name: &#39;Carpi&#39;, numGuests: 20 }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// { name: &#39;La Piazza&#39;, owner: &#39;Giovanni Rossi&#39;, numGuests: 10 }
 </span></span></span></code></pre></td></tr></table>
@@ -368,8 +369,8 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">??=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">??=</span> <span class="mi">10</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">??</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">??</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// { name: &#39;Carpi&#39;, numGuests: 20 }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// { name: &#39;La Piazza&#39;, owner: &#39;Giovanni Rossi&#39;, numGuests: 10 }
 </span></span></span></code></pre></td></tr></table>
@@ -389,11 +390,11 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 更新第一家餐廳的客戶數量
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">&amp;&amp;=</span> <span class="mi">300</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant1</span><span class="p">.</span><span class="nx">numGuests</span> <span class="o">&amp;&amp;</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant1</span><span class="p">);</span> <span class="c1">// {name: &#39;Carpi&#39;, numGuests: 300}
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 更新第二家餐廳的owner
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">owner</span> <span class="o">&amp;&amp;=</span> <span class="s2">&#34;Mars&#34;</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant2</span><span class="p">.</span><span class="nx">owner</span> <span class="o">&amp;&amp;</span> <span class="o">=</span> <span class="s2">&#34;Mars&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant2</span><span class="p">);</span> <span class="c1">// {name: &#39;La Piazza&#39;, owner: &#39;Mars&#39;, numGuests: 10}
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -422,7 +423,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Focaccia&#34;</span><span class="p">,</span> <span class="s2">&#34;Bruschetta&#34;</span><span class="p">,</span> <span class="s2">&#34;Garlic Bread&#34;</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Focaccia
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Bruschetta
@@ -453,17 +454,17 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">in</span> <span class="nx">openingHours</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">day</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">day</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// mon
 </span></span></span><span class="line"><span class="cl"><span class="c1">// tue
@@ -492,24 +493,24 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">in</span> <span class="nx">openingHours</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">[</span><span class="nx">day</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">[</span><span class="nx">day</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// mon
 </span></span></span><span class="line"><span class="cl"><span class="c1">// tue
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>for..in 不應該用來迭代一個索引順序很重要的陣列。 陣列索引只是以整數命名的可列舉屬性，其他方面等同於一般物件屬性。 無法擔保 for&hellip;in 以特定順序傳回索引，並且它將傳回全部可列舉屬性，包括非整數名的，以及繼承而來的可列舉屬性。</li>
+<li>for..in 不應該用來迭代一個索引順序很重要的陣列。陣列索引只是以整數命名的可列舉屬性，其他方面等同於一般物件屬性。無法擔保 for&hellip;in 以特定順序傳回索引，並且它將傳回全部可列舉屬性，包括非整數名的，以及繼承而來的可列舉屬性。</li>
 </ul>
 <h2 id="使用-objectkeysobjectvalues-迭代物件屬性名或值">使用 Object.keys()、Object.values() 迭代物件屬性名或值</h2>
 <h3 id="objectkeys-迭代物件屬性名成一個陣列">Object.keys 迭代物件屬性名成一個陣列</h3>
@@ -533,14 +534,14 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//  [&#39;mon&#39;, &#39;tue&#39;]
@@ -554,11 +555,13 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">-</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">()</span><span class="nx">可搭配</span> <span class="k">for</span> <span class="k">of</span> <span class="nx">迭代出陣列元素</span><span class="p">(</span><span class="nx">值</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">)){</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">day</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">-</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">()</span> <span class="nx">可搭配</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="k">of</span> <span class="nx">迭代出陣列元素</span><span class="p">(</span><span class="nx">值</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">day</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">day</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// mon
 </span></span></span><span class="line"><span class="cl"><span class="c1">// tue
@@ -588,14 +591,14 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [{open: 10, close: 16}, {open: 12, close: 18}]
@@ -633,7 +636,7 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Focaccia&#34;</span><span class="p">,</span> <span class="s2">&#34;Bruschetta&#34;</span><span class="p">,</span> <span class="s2">&#34;Garlic Bread&#34;</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [ 0, &#39;Focaccia&#39; ]
 </span></span></span><span class="line"><span class="cl"><span class="c1">// [ 1, &#39;Bruschetta&#39; ]
@@ -641,7 +644,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// ...展開陣列
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(...</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(...</span><span class="nx">item</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 0 Focaccia
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 1 Bruschetta
@@ -649,7 +652,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用解構賦值，並從1開始呈現
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">]</span> <span class="k">of</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 1: Focaccia
@@ -679,21 +682,27 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 屬性key 值value
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="p">{</span> <span class="nx">open</span><span class="p">,</span> <span class="nx">close</span> <span class="p">}]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`On </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">, we open at</span><span class="si">${</span><span class="nx">open</span><span class="si">}</span><span class="sb"> and close at </span><span class="si">${</span><span class="nx">close</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`On </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">, we open at</span><span class="si">${</span><span class="nx">open</span><span class="si">}</span><span class="sb"> and close at </span><span class="si">${</span><span class="nx">close</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// On mon, we open at10 and close at 16
 </span></span></span><span class="line"><span class="cl"><span class="c1">// On tue, we open at12 and close at 18
@@ -732,28 +741,28 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 變數name 跟 openingHours
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Great Restaurant&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 以往物件賦值，需要屬性key跟值value都寫上去
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">openingHours</span><span class="o">:</span><span class="nx">openingHours</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;France&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">openingHours</span><span class="o">:</span> <span class="nx">openingHours</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;France&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 現在只要屬性跟變數名一樣，單寫屬性就好，程式碼會幫你把值對起來
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">openingHours</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;France&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">openingHours</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;France&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -772,13 +781,13 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 過去會寫成
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">order</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">order</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 可以簡寫成 長得就跟宣告函式一樣
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">order</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -804,14 +813,14 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">weekdays</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;mon&#34;</span><span class="p">,</span> <span class="s2">&#34;tue&#34;</span><span class="p">,</span> <span class="s2">&#34;wed&#34;</span><span class="p">,</span> <span class="s2">&#34;thu&#34;</span><span class="p">,</span> <span class="s2">&#34;fri&#34;</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">weekdays</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="sb">`day-</span><span class="si">${</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="si">}</span><span class="sb">`</span><span class="p">]</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">19</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">weekdays</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="sb">`day-</span><span class="si">${</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="si">}</span><span class="sb">`</span><span class="p">]</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">19</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">);</span>
@@ -822,9 +831,9 @@ if (!doNotTrack) {
 </div><h2 id="optional-chaininges2020-">Optional Chaining(ES2020) ?.</h2>
 <ul>
 <li>當資料本身很多屬性且每筆資料不一定存在這個屬性，讀取到不存在的屬性會跳出 Uncaught TypeError</li>
-<li>使用?.讀取屬性，若不存在 null 或 undefined，會立即回傳 undefined，可以避免上方的 Uncaught TypeError</li>
+<li>使用?. 讀取屬性，若不存在 null 或 undefined，會立即回傳 undefined，可以避免上方的 Uncaught TypeError</li>
 <li>若為 0 &lsquo;&lsquo;會回傳相對應的值，只有 null undefined 會回傳 undefined</li>
-<li>常搭配??一起使用</li>
+<li>常搭配?? 一起使用</li>
 </ul>
 <h3 id="屬性加上-optional-chaining">屬性加上 Optional Chaining</h3>
 <div class="highlight"><div class="chroma">
@@ -871,37 +880,37 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">wed</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">wed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Great restaurant&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">openingHours</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Great restaurant&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">openingHours</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用邏輯運算子的寫法 當屬性存在才執行（但資料一多會吐血）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span> <span class="o">&amp;&amp;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">.</span><span class="nx">mon</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">.</span><span class="nx">mon</span><span class="p">.</span><span class="nx">open</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span> <span class="o">&amp;&amp;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">.</span><span class="nx">mon</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">.</span><span class="nx">mon</span><span class="p">.</span><span class="nx">open</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用Optional Chaining的寫法 簡短
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="o">?</span><span class="p">.</span><span class="nx">mon</span><span class="o">?</span><span class="p">.</span><span class="nx">open</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 加上迭代for of 想知道平日幾點開門
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">weekdays</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mon&#39;</span><span class="p">,</span> <span class="s1">&#39;tue&#39;</span><span class="p">,</span> <span class="s1">&#39;wed&#39;</span><span class="p">,</span> <span class="s1">&#39;thu&#39;</span><span class="p">,</span> <span class="s1">&#39;fri&#39;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">weekday</span> <span class="k">of</span> <span class="nx">weekdays</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 避免undefined出現 使用??設定預設值 not open
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">open</span> <span class="o">=</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">[</span><span class="nx">weekday</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="nx">open</span> <span class="o">??</span><span class="s1">&#39;not open&#39;</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`On </span><span class="si">${</span><span class="nx">weekday</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">open</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">weekday</span> <span class="k">of</span> <span class="nx">weekdays</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 避免undefined出現 使用??設定預設值 not open
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">open</span> <span class="o">=</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">openingHours</span><span class="p">[</span><span class="nx">weekday</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="nx">open</span> <span class="o">??</span> <span class="s1">&#39;not open&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`On </span><span class="si">${</span><span class="nx">weekday</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">open</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// On mon, 10
@@ -927,15 +936,21 @@ if (!doNotTrack) {
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">order</span><span class="p">(</span><span class="nx">starterIndex</span><span class="p">,</span> <span class="nx">mainIndex</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;Order!&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">orderDelivery</span><span class="p">({</span> <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">mainIndex</span> <span class="p">})</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;OrderDelivery!&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">order</span><span class="p">(</span><span class="nx">starterIndex</span><span class="p">,</span> <span class="nx">mainIndex</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Order!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">orderDelivery</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">mainIndex</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;OrderDelivery!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">order</span><span class="o">?</span><span class="p">.(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">??</span> <span class="s2">&#34;Method not existed&#34;</span><span class="p">);</span> <span class="c1">// Order!
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderRisotto</span><span class="o">?</span><span class="p">.(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">??</span> <span class="s2">&#34;Method not exist&#34;</span><span class="p">);</span> <span class="c1">// &#39;Method not exist&#39;
@@ -947,20 +962,26 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;hello@jonas.com&#39;</span><span class="p">}]</span>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;hello@jonas.com&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 過去可能要寫
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User array empty&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用Optional Chaining 寫起來更精簡
@@ -1118,10 +1139,10 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restaurant</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;categories&#34;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;Italian&#34;</span><span class="p">,</span> <span class="s2">&#34;Pizzeria&#34;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;we are open&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;categories&#34;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;Italian&#34;</span><span class="p">,</span> <span class="s2">&#34;Pizzeria&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;we are open&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restaurant</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Map(4) {
@@ -1171,9 +1192,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// 判斷營業時間
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">time</span> <span class="o">&gt;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">time</span> <span class="o">&gt;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">restaurant</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;close&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// we are closed
 </span></span></span></code></pre></td></tr></table>
@@ -1296,14 +1317,14 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">openingHours</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mon</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tue</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">open</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">close</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">openingHours</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//[
@@ -1346,13 +1367,13 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;question&#34;</span><span class="p">,</span> <span class="s2">&#34;What is the best programming language in the world?&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;Java&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;JavaScript&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s2">&#34;correct&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;Correct 🎉&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="kc">false</span><span class="p">,</span> <span class="s2">&#34;Try again!&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;question&#34;</span><span class="p">,</span> <span class="s2">&#34;What is the best programming language in the world?&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;Java&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;JavaScript&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;correct&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;Correct 🎉&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="kc">false</span><span class="p">,</span> <span class="s2">&#34;Try again!&#34;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1419,7 +1440,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">question</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;question&#34;</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// What is the best programming language in the world?
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">question</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">key</span> <span class="o">===</span> <span class="s2">&#34;number&#34;</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Answer </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">key</span> <span class="o">===</span> <span class="s2">&#34;number&#34;</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Answer </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Anwser 1: C
@@ -1455,7 +1476,7 @@ if (!doNotTrack) {
 <li>當資料插入順序是需要考慮的因素</li>
 <li>需要使用不同資料型態的 key（不限於 string 和 symbol 作為 key)</li>
 <li>方便迭代跟計算大小 size</li>
-<li>比較少需要單獨對部分資料做操作(物件比較方便用.跟[]取值)</li>
+<li>比較少需要單獨對部分資料做操作(物件比較方便用. 跟[]取值)</li>
 </ul>
 <h3 id="課程小練習">課程小練習</h3>
 <div class="highlight"><div class="chroma">
@@ -1610,48 +1631,52 @@ if (!doNotTrack) {
 </span><span class="lnt">148
 </span><span class="lnt">149
 </span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// challenge 1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">game</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">team1</span><span class="o">:</span> <span class="s2">&#34;Bayern Munich&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">team2</span><span class="o">:</span> <span class="s2">&#34;Borrussia Dortmund&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">players</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Neuer&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Pavard&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Martinez&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Alaba&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Davies&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Kimmich&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Goretzka&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Coman&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Muller&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Gnarby&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">team1</span><span class="o">:</span> <span class="s2">&#34;Bayern Munich&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">team2</span><span class="o">:</span> <span class="s2">&#34;Borrussia Dortmund&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">players</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Neuer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Pavard&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Martinez&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Alaba&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Davies&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Kimmich&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Goretzka&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Coman&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Muller&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Gnarby&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Burki&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Schulz&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Hummels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Akanji&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Hakimi&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Weigl&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Witsel&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Hazard&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Brandt&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Sancho&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Gotze&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Burki&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Schulz&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Hummels&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Akanji&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Hakimi&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Weigl&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Witsel&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Hazard&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Brandt&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Sancho&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Gotze&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">score</span><span class="o">:</span> <span class="s2">&#34;4:0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">scored</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Gnarby&#34;</span><span class="p">,</span> <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Hummels&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">date</span><span class="o">:</span> <span class="s2">&#34;Nov 9th, 2037&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">odds</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">team1</span><span class="o">:</span> <span class="mf">1.33</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">x</span><span class="o">:</span> <span class="mf">3.25</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">team2</span><span class="o">:</span> <span class="mf">6.5</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">score</span><span class="o">:</span> <span class="s2">&#34;4:0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">scored</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Gnarby&#34;</span><span class="p">,</span> <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Hummels&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">date</span><span class="o">:</span> <span class="s2">&#34;Nov 9th, 2037&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">odds</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">team1</span><span class="o">:</span> <span class="mf">1.33</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">x</span><span class="o">:</span> <span class="mf">3.25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">team2</span><span class="o">:</span> <span class="mf">6.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 分組
@@ -1673,13 +1698,17 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 解構賦值取出變數 x的變數名改為draw
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">odds</span><span class="o">:</span> <span class="p">{</span> <span class="nx">team1</span><span class="p">,</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">team2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">odds</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">team1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">x</span><span class="o">:</span> <span class="nx">draw</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">team2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="o">=</span> <span class="nx">game</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">team1</span><span class="p">,</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">team2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 丟一堆名字進去，使用其餘運算子合併成陣列，length計算長度
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">printGoals</span><span class="p">(...</span><span class="nx">players</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">players</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> goals were scored`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">players</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> goals were scored`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">printGoals</span><span class="p">(</span><span class="s2">&#34;Davies&#34;</span><span class="p">,</span> <span class="s2">&#34;Muller&#34;</span><span class="p">,</span> <span class="s2">&#34;Lewandowski&#34;</span><span class="p">,</span> <span class="s2">&#34;Kimmich&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -1690,13 +1719,13 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// challenge 2
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 依序列印出game.scored array 裡面的球員  Goal 1: Lewandowski
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">]</span> <span class="k">of</span> <span class="nx">game</span><span class="p">.</span><span class="nx">scored</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Goal </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Goal </span><span class="si">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 需要算出team1 x team2平均數 累加value / 長度
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">odds</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">odds</span><span class="p">);</span> <span class="c1">// [ 1.33, 3.25, 6.5 ]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">odds</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">item</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">item</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span> <span class="o">/</span> <span class="nx">odds</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -1706,10 +1735,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Odd of victory Borrussia Dortmund: 6.5
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">team</span><span class="p">,</span> <span class="nx">odd</span><span class="p">]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">odds</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// Object.entries(game.odds) // [ [ &#39;team1&#39;, 1.33 ], [ &#39;x&#39;, 3.25 ], [ &#39;team2&#39;, 6.5 ] ]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">teamStr</span> <span class="o">=</span> <span class="nx">team</span> <span class="o">===</span> <span class="s2">&#34;x&#34;</span> <span class="o">?</span> <span class="s2">&#34;draw&#34;</span> <span class="o">:</span> <span class="sb">`victory </span><span class="si">${</span><span class="nx">game</span><span class="p">[</span><span class="nx">team</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 每次loop出來的team是字串，所以可以用這個[]方式取值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">team</span><span class="p">,</span> <span class="nx">odd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Object.entries(game.odds) // [ [ &#39;team1&#39;, 1.33 ], [ &#39;x&#39;, 3.25 ], [ &#39;team2&#39;, 6.5 ] ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">teamStr</span> <span class="o">=</span> <span class="nx">team</span> <span class="o">===</span> <span class="s2">&#34;x&#34;</span> <span class="o">?</span> <span class="s2">&#34;draw&#34;</span> <span class="o">:</span> <span class="sb">`victory </span><span class="si">${</span><span class="nx">game</span><span class="p">[</span><span class="nx">team</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 每次loop出來的team是字串，所以可以用這個[]方式取值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">team</span><span class="p">,</span> <span class="nx">odd</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//  分數統計
@@ -1721,24 +1750,24 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">scorers</span> <span class="o">=</span> <span class="p">{};</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">game</span><span class="p">.</span><span class="nx">scored</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 屬性存在 賦值+1 不存在時賦值=1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">?</span> <span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span><span class="o">++</span> <span class="o">:</span> <span class="p">(</span><span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 屬性存在 賦值+1 不存在時賦值=1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">?</span> <span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span><span class="o">++</span> <span class="o">:</span> <span class="p">(</span><span class="nx">scorers</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scorers</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// challenge 3
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">gameEvents</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">47</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="s2">&#34;🔶 Yellow card&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="s2">&#34;🔴 Red card&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">72</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">76</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="mi">92</span><span class="p">,</span> <span class="s2">&#34;🔶 Yellow card&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">47</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="s2">&#34;🔶 Yellow card&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="s2">&#34;🔴 Red card&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">72</span><span class="p">,</span> <span class="s2">&#34;🔁 Substitution&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">76</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="s2">&#34;⚽️ GOAL&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">92</span><span class="p">,</span> <span class="s2">&#34;🔶 Yellow card&#34;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 創造不重複事件陣列：迭代巢狀陣列的value變成一個陣列 不重複使用new Set(array)
@@ -1753,14 +1782,14 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">gameEvents</span><span class="p">.</span><span class="nx">keys</span><span class="p">()].</span><span class="nx">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">time</span><span class="p">);</span> <span class="c1">// 92 有超過90分鐘因此另外計算
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">  <span class="sb">`An event happened, on average, every </span><span class="si">${</span><span class="nx">time</span> <span class="o">/</span> <span class="nx">gameEvents</span><span class="p">.</span><span class="nx">size</span><span class="si">}</span><span class="sb"> minutes`</span>
+</span></span><span class="line"><span class="cl">    <span class="sb">`An event happened, on average, every </span><span class="si">${</span><span class="nx">time</span> <span class="o">/</span> <span class="nx">gameEvents</span><span class="p">.</span><span class="nx">size</span><span class="si">}</span><span class="sb"> minutes`</span>
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 加上前後半場標示[FIRST HALF] 17: ⚽️ GOAL
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">gameEvents</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">half</span> <span class="o">=</span> <span class="nx">key</span> <span class="o">&lt;=</span> <span class="mi">45</span> <span class="o">?</span> <span class="s2">&#34;First&#34;</span> <span class="o">:</span> <span class="s2">&#34;Second&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="nx">half</span><span class="si">}</span><span class="sb"> HALF]</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">half</span> <span class="o">=</span> <span class="nx">key</span> <span class="o">&lt;=</span> <span class="mi">45</span> <span class="o">?</span> <span class="s2">&#34;First&#34;</span> <span class="o">:</span> <span class="s2">&#34;Second&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="nx">half</span><span class="si">}</span><span class="sb"> HALF]</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1963,7 +1992,7 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#邏輯運算子--指派運算子---">邏輯運算子 + 指派運算子 <code>&amp;&amp;=</code> <code>||=</code> <code>??=</code></a></li>
+    <li><a href="#邏輯運算子--指派運算子-----">邏輯運算子 + 指派運算子 <code>&amp;&amp;=</code>  <code>||=</code>  <code>??=</code></a></li>
     <li><a href="#for-迴圈語法糖for-of-迭代元素for-in-迭代屬性">for 迴圈語法糖：for of 迭代元素、for in 迭代屬性</a>
       <ul>
         <li><a href="#for-of-迴圈迭代陣列裡的元素">for of 迴圈迭代陣列裡的元素</a></li>

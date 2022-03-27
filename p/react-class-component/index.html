@@ -26,7 +26,8 @@ if (!doNotTrack) {
 	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
 }
 </script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
     </head>
     <body class="
     article-page
@@ -339,7 +340,7 @@ if (!doNotTrack) {
 <li>一樣需要定義狀態跟初始化 state</li>
 <li>使用 constructor 定義 this.state，= 後面要是一個物件</li>
 <li>functional component 的 state 定義則是任意資料，useState(null)</li>
-<li>一樣不能用 this.state.變數 = 值直接修改資料，必須用 setState(物件)</li>
+<li>一樣不能用 this.state. 變數 = 值直接修改資料，必須用 setState(物件)</li>
 <li>改寫一段 Function Component Code</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -502,15 +503,15 @@ if (!doNotTrack) {
 <h3 id="先了解-react-重要的生命週期">先了解 React 重要的生命週期</h3>
 <p>componentDidMount()</p>
 <ul>
-<li>在 evaluate 且渲染完後，只會在 mount 元件時呼叫一次，更新資料 re-render 不會，類似 useEffect(()=&gt;{},[])</li>
+<li>在 evaluate 且渲染完後，只會在 mount 元件時呼叫一次，更新資料 re-render 不會，類似 useEffect(()=&gt;{}, [])</li>
 </ul>
 <p>componentDidUpdate()</p>
 <ul>
-<li>當元件更新狀態或 Props 會呼叫，類似 useEffect(()=&gt;{},[參數])</li>
+<li>當元件更新狀態或 Props 會呼叫，類似 useEffect(()=&gt;{}, [參數])</li>
 </ul>
 <p>componentWillUnmount()</p>
 <ul>
-<li>當元件被銷毀，從真實 DOM 拿掉，類似 cleanup useEffect(()=&gt;{},[])</li>
+<li>當元件被銷毀，從真實 DOM 拿掉，類似 cleanup useEffect(()=&gt;{}, [])</li>
 </ul>
 <h3 id="以一個搜尋元件來當範例會依照不同字詞出現不同使用者清單">以一個搜尋元件來當範例，會依照不同字詞出現不同使用者清單</h3>
 <ul>

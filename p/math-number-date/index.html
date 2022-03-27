@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先讀讀這ㄘ篇筆記避免踩雷。'><h1><title>數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記</title></h1>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/math-number-date/'>
+
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記'>
+<meta property='og:description' content='介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先讀讀這ㄘ篇筆記避免踩雷。'>
+<meta property='og:url' content='https://bacnotes.github.io/p/math-number-date/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='math' /><meta property='article:tag' content='number' /><meta property='article:tag' content='date' /><meta property='article:published_time' content='2022-03-14T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-03-14T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記">
+<meta name="twitter:description" content="介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先讀讀這ㄘ篇筆記避免踩雷。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <p class="site-name"><a href="/">bacnotes備份筆記</a></p>
+            <p class="site-description">記錄小小Junior的學習過程</p>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/math-number-date/">
+                <img src="/p/math-number-date/pexels-photo-168784_hu20254ebf286f88ed55b1fa26f2cb8d47_51813_800x0_resize_q75_box.jpeg"
+                        srcset="/p/math-number-date/pexels-photo-168784_hu20254ebf286f88ed55b1fa26f2cb8d47_51813_800x0_resize_q75_box.jpeg 800w, /p/math-number-date/pexels-photo-168784_hu20254ebf286f88ed55b1fa26f2cb8d47_51813_1600x0_resize_q75_box.jpeg 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <p class="article-title">
+            <a href="/p/math-number-date/">數字檢查及轉換還有時間處理的那些小事｜bacnotes備份筆記</a>
+        </p>
+    
+        
+        <p class="article-subtitle">
+            介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先讀讀這ㄘ篇筆記避免踩雷。
+        </p>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 14, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 5 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="數字檢查跟數字轉換">數字檢查跟數字轉換</h2>
+<h3 id="javascript-數字都是浮點數">JavaScript 數字都是浮點數</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">23</span> <span class="o">===</span> <span class="mf">23.0</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="數字是-base64-的-2-進位編碼">數字是 Base64 的 2 進位編碼</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">);</span> <span class="c1">// 0.30000000000000004
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">===</span> <span class="mf">0.3</span><span class="p">);</span> <span class="c1">// false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字串轉數字">字串轉數字</h2>
+<h3 id="number">Number</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="s2">&#34;23&#34;</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="-運算子"><code>+</code> 運算子</h3>
+<ul>
+<li>
+<ul>
+<li>是 Number() 的簡寫</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="s2">&#34;23&#34;</span><span class="p">);</span> <span class="c1">// 23
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="解析數字">解析數字</h2>
+<h3 id="numberparseintstring-radix">Number.parseInt(string[, radix])</h3>
+<ul>
+<li>此方法跟全局 parseInt()一樣</li>
+<li>第一個參數為待轉成數字的字串。若 string 參數類型不是字串的話，會先將其轉成字串（相當於先執行 ToString 再執行 parseInt）空白值會被忽略，如果遇到不能轉為數字的字符，就不再進行下去，回傳已經轉好的部分，若無法轉為數自回傳 NaN</li>
+<li>第二個參數為進位數，從 2 到 36，能代表該進位系統的數字。如果沒有指定 radix 的話，給出的結果會按照實做不同而異，通常預設值不是 10 進位，強烈建議填寫好進位參數避免非預期 bug</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// parsing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span> <span class="o">===</span> <span class="nb">parseInt</span><span class="p">;</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;30px&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">// 30
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 開頭不能為字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;e23&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">// NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 整數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;2.5rem&#34;</span><span class="p">));</span> <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 浮點數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34;2.5rem&#34;</span><span class="p">));</span> <span class="c1">// 2.5
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="nan-系列">NaN 系列</h2>
+<h3 id="何時出現-nan-not-a-number">何時出現 NaN (Not a Number)</h3>
+<ul>
+<li>NaN 是一個 Number 型態但強制轉成數字後無法用任何數字表現的結果</li>
+<li>NaN !== NaN // true</li>
+<li>回傳未定義 not defined</li>
+<li>超出範圍</li>
+<li>運算式有一個參數是 NaN</li>
+</ul>
+<h3 id="isnanvalue">isNaN(value)</h3>
+<ul>
+<li>過往判斷 NaN 習慣用 isNaN(因為 NaN !== NaN)，但有些缺點，遇到非數字會強制轉型，容易出現非預期的狀況</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 正常使用狀況下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true 是NaN 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// true 是NaN 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">({});</span> <span class="c1">// true 不是數字 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;37,5&#34;</span><span class="p">);</span> <span class="c1">// true 不是數字 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">37</span><span class="p">);</span> <span class="c1">// false 是數字 回傳false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 布林值強制轉型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// false 不是數字 強制轉1 變成數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// false 不是數字 強制轉0 變成數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 字串強制轉型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;37&#34;</span><span class="p">);</span> <span class="c1">// false  不是數字 強制轉37 為數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;37.37&#34;</span><span class="p">);</span> <span class="c1">// false  不是數字 強制轉37.37 為數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span> <span class="c1">// false: 轉0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 數字混合字串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;123ABC&#34;</span><span class="p">);</span> <span class="c1">// true:  Number(&#34;123ABC&#34;)無法轉成功，為 NaN; 若parseInt(&#34;123ABC&#34;)會轉 123,
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="numberisnanvalue">Number.isNaN(value)</h3>
+<ul>
+<li>檢查是否為 NaN，回傳布林值 <strong>注意不是非數字回傳 true，而是 NaN 回傳 true</strong></li>
+<li>使用 Number.isNaN 回傳結果則單純續多</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">// false 不是NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;20&#34;</span><span class="p">));</span> <span class="c1">// false 不是NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="o">+</span><span class="s2">&#34;20x&#34;</span><span class="p">));</span> <span class="c1">// true  表達式+&#39;20x&#39;為NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false Infinity不是NaN
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="numberisfinitevalue">Number.isFinite(value)</h3>
+<ul>
+<li>適合確認是否為數字</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="s2">&#34;20&#34;</span><span class="p">));</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="o">+</span><span class="s2">&#34;20x&#34;</span><span class="p">));</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="numberisintegervalue">Number.isInteger(value)</h3>
+<ul>
+<li>適合確認是否為整數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mf">20.0</span><span class="p">));</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mf">20.5</span><span class="p">));</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="math-運算系列跟取整數">Math 運算系列跟取整數</h2>
+<h3 id="開根號平方">開根號、平方</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">));</span> <span class="c1">// 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 25
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">25</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 5   1 / 2需要括號 不然會算成12.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">8</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="找最大值最小值">找最大值、最小值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">&#34;23&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// &#39;23&#39;也會強制轉型 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">&#34;23px&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 轉失敗 NaN
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="圓周率">圓周率</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Math.PI 為3.14159...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34;10px&#34;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">//314.159...
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mathrandom-隨機產生-01-的小數不包含-1">Math.random() 隨機產生 0~1 的小數，不包含 1</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 隨機產生 0... - 5...的小數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 隨機產生 1 - 6 的整數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mathtrunc-去掉小數">Math.trunc() 去掉小數</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 隨機產生1~6的整數 骰子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 產生一個介於min與max的隨機數(包含min max)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getRandomIntInclusive</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mathround-四捨五入">Math.round() 四捨五入</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">23.9</span><span class="p">));</span> <span class="c1">// 24
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mathceil-無條件往更大的值取整數">Math.ceil() 無條件往更大的值取整數</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">23.9</span><span class="p">));</span> <span class="c1">// 24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// -23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">23.9</span><span class="p">));</span> <span class="c1">// -23
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mathfloor-無條件往更小的值取整數">Math.floor() 無條件往更小的值取整數</h3>
+<ul>
+<li>正數時跟 Math.trunc() 結果一樣，負數則不同</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="s2">&#34;23.9&#34;</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// -24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 正數跟Math.trunc() 相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 負數跟Math.trunc() 不同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// -23
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="numberprototypetofixed">Number.prototype.toFixed()</h3>
+<ul>
+<li>使用定點小數表示法（fixed-point notation）來格式化數字。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Rounding decimals
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.7</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.7</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="餘數運算子-">餘數運算子 <code>%</code></h2>
+<h3 id="表格變色">表格變色</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isEven</span> <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">isEven</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">isEven</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// even cols change to blue background
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">labelBalance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.movements__row&#39;</span><span class="p">)].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">,</span> <span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="nx">isEven</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="nx">row</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s1">&#39;marined&#39;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="numeric-separators-數字分隔符">Numeric Separators 數字分隔符</h2>
+<ul>
+<li>一樣的值，透過底線分割提高可讀性</li>
+<li>Number()無法解析含有數字分隔的的數字，這個只適合用於手動建立的參數，而非 API 回傳字串類型的數字</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">diameter1</span> <span class="o">=</span> <span class="mi">2082432342</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">diameter2</span> <span class="o">=</span> <span class="mi">2_082_432_342</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">diameter1</span><span class="p">);</span> <span class="c1">// 2082432342
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">diameter2</span><span class="p">);</span> <span class="c1">// 2082432342
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>小數點</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mf">15.000</span><span class="nx">_3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fee</span><span class="p">);</span> <span class="c1">// 15.0003
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bigint">BigInt</h2>
+<ul>
+<li>用來儲存更大的數字，因為一個數字能使用的記憶體有限</li>
+<li>JavaScript 可以呈現的最大值是 9007199254740991，即(2 ** 53 - 1)，超過這個數字無法往上加</li>
+<li>數字後面寫 n，或用 BigInt 包裹後會變成 BigInt</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_SAFE_INTEGER</span><span class="p">);</span> <span class="c1">// 9007199254740991
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">53</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 9007199254740991
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">23423412312311</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// 23423412312311n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BigInt</span><span class="p">(</span><span class="mi">23423412312311</span><span class="p">));</span> <span class="c1">// 23423412312311n
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bigint-運算">BigInt 運算</h2>
+<ul>
+<li>用 n 的形式無法跟其他數字相加，BigInt 只能跟 BigInt 運算</li>
+<li>若 BitInt+d 字串，BitInt 一樣會轉成字串</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">huge</span> <span class="o">=</span> <span class="mi">2342341231242352</span><span class="nx">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span> <span class="o">+</span> <span class="nx">huge</span><span class="p">);</span> <span class="c1">// 數字跟BigInt相加會 error 因為不同類型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BigInt</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="o">+</span> <span class="nx">huge</span><span class="p">);</span> <span class="c1">// 2342341231242375n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">12</span><span class="nx">n</span> <span class="o">/</span> <span class="mi">3</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// 4n
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>判斷運算子&gt; &lt; =，用 n 的形式沒問題</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">);</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">==</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="建立日期物件">建立日期物件</h2>
+<h3 id="datenow">Date.now()</h3>
+<ul>
+<li>回傳自 1970 年 1 月 1 日 00:00:00 (UTC) 到當前時間的毫秒數</li>
+<li>Date.now() 的精度可能受到瀏覽器影響被取整數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">start</span><span class="p">);</span> <span class="c1">// 1647780438069
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="new-date">new Date()</h3>
+<ul>
+<li>new Date(): 沒有傳入任務參數到建構子，會依系統設定建立出代表當下時間的 Date 物件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Mon Jan 30 2017 00:00:00 GMT+0800
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>new Date(value): value 是自世界標準時間（UTC） 1970 年 1 月 1 日 00:00:00 開始的毫秒整數值（注意：Unix timestamp是以秒而非毫秒為單位）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thu Jan 01 1970 08:00:00 GMT+0800
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>new Date(dateString): 表示時間日期的字串。這個字串應該要能被 Date.parse() (en-US) 方法解析</li>
+<li>new Date(&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;) 符合所有瀏覽器格式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&#34;2010/08/17 12:09:36&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&#34;Jan 30 2017&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Mon Jan 30 2017 00:00:00 GMT+0800
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);</li>
+<li>傳入至少兩個參數，缺少日期的話會設為 1，其它參數則會被設定為 0。</li>
+<li>備註：當傳入超過一個參數，且參數值超過它的合理範圍（例如：傳數值 13 到月份，或傳數值 70 給分鐘），相鄰的參數值將會被調整。例如： new Date(2013, 13, 1) 將等同於 new Date(2014, 1, 1) 都會建立代表 2014-02-01 的物件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Sun Nov 19 2017 14:23:01 GMT+0800
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Wed Nov 01 2017 00:00:00 GMT+0800
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="取得日期物件的值">取得日期物件的值</h3>
+<ul>
+<li>getFullYear(): 年</li>
+<li>getMonth(): 月</li>
+<li>getDate(): 日</li>
+<li>getHours(): 時</li>
+<li>getMinutes(): 分</li>
+<li>getSeconds(): 秒</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span> <span class="c1">// 2037
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">());</span> <span class="c1">// 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span> <span class="c1">// 19
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="修改日期物件的值">修改日期物件的值</h3>
+<ul>
+<li>如果設定的 value 超出了合理範圍，會相對應的往前或往後推算</li>
+<li>setFullYear(): 年</li>
+<li>setMonth(): 月</li>
+<li>setDate(): 日</li>
+<li>setHours(): 時</li>
+<li>setMinutes(): 分</li>
+<li>setSeconds(): 秒</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">future</span><span class="p">.</span><span class="nx">setFullYear</span><span class="p">(</span><span class="mi">2022</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">future</span><span class="p">.</span><span class="nx">setMonth</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">future</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thu Mar 03 2022 14:22:00 GMT+0800
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="時間物件轉字串-toisostring">時間物件轉字串 .toISOString())</h3>
+<ul>
+<li>時區為UTC</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">());</span> <span class="c1">// 2037-11-19T06:22:00.000Z
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="時間物件轉毫秒">時間物件轉毫秒</h3>
+<ul>
+<li>回傳距離 1970 年 1 月 1 日 0 時 0 分 0 秒（UTC 時間）多久的毫秒數</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getTime</span><span class="p">());</span> <span class="c1">// 2142224520000
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="時間的運算">時間的運算</h3>
+<ul>
+<li>會先轉換成Time Stamp毫秒為單位</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">)</span> <span class="c1">// 2142172800000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcDaysPassed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">date1</span><span class="p">,</span> <span class="nx">date2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">days</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">days</span><span class="p">)</span> <span class="c1">// 5
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>持續更新中&hellip;</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/math/">math</a>
+        
+            <a href="/tags/number/">number</a>
+        
+            <a href="/tags/date/">date</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#數字檢查跟數字轉換">數字檢查跟數字轉換</a>
+      <ul>
+        <li><a href="#javascript-數字都是浮點數">JavaScript 數字都是浮點數</a></li>
+      </ul>
+    </li>
+    <li><a href="#數字是-base64-的-2-進位編碼">數字是 Base64 的 2 進位編碼</a></li>
+    <li><a href="#字串轉數字">字串轉數字</a>
+      <ul>
+        <li><a href="#number">Number</a></li>
+        <li><a href="#-運算子"><code>+</code> 運算子</a></li>
+      </ul>
+    </li>
+    <li><a href="#解析數字">解析數字</a>
+      <ul>
+        <li><a href="#numberparseintstring-radix">Number.parseInt(string[, radix])</a></li>
+      </ul>
+    </li>
+    <li><a href="#nan-系列">NaN 系列</a>
+      <ul>
+        <li><a href="#何時出現-nan-not-a-number">何時出現 NaN (Not a Number)</a></li>
+        <li><a href="#isnanvalue">isNaN(value)</a></li>
+        <li><a href="#numberisnanvalue">Number.isNaN(value)</a></li>
+        <li><a href="#numberisfinitevalue">Number.isFinite(value)</a></li>
+        <li><a href="#numberisintegervalue">Number.isInteger(value)</a></li>
+      </ul>
+    </li>
+    <li><a href="#math-運算系列跟取整數">Math 運算系列跟取整數</a>
+      <ul>
+        <li><a href="#開根號平方">開根號、平方</a></li>
+        <li><a href="#找最大值最小值">找最大值、最小值</a></li>
+        <li><a href="#圓周率">圓周率</a></li>
+        <li><a href="#mathrandom-隨機產生-01-的小數不包含-1">Math.random() 隨機產生 0~1 的小數，不包含 1</a></li>
+        <li><a href="#mathtrunc-去掉小數">Math.trunc() 去掉小數</a></li>
+        <li><a href="#mathround-四捨五入">Math.round() 四捨五入</a></li>
+        <li><a href="#mathceil-無條件往更大的值取整數">Math.ceil() 無條件往更大的值取整數</a></li>
+        <li><a href="#mathfloor-無條件往更小的值取整數">Math.floor() 無條件往更小的值取整數</a></li>
+        <li><a href="#numberprototypetofixed">Number.prototype.toFixed()</a></li>
+      </ul>
+    </li>
+    <li><a href="#餘數運算子-">餘數運算子 <code>%</code></a>
+      <ul>
+        <li><a href="#表格變色">表格變色</a></li>
+      </ul>
+    </li>
+    <li><a href="#numeric-separators-數字分隔符">Numeric Separators 數字分隔符</a></li>
+    <li><a href="#bigint">BigInt</a></li>
+    <li><a href="#bigint-運算">BigInt 運算</a></li>
+    <li><a href="#建立日期物件">建立日期物件</a>
+      <ul>
+        <li><a href="#datenow">Date.now()</a></li>
+        <li><a href="#new-date">new Date()</a></li>
+        <li><a href="#取得日期物件的值">取得日期物件的值</a></li>
+        <li><a href="#修改日期物件的值">修改日期物件的值</a></li>
+        <li><a href="#時間物件轉字串-toisostring">時間物件轉字串 .toISOString())</a></li>
+        <li><a href="#時間物件轉毫秒">時間物件轉毫秒</a></li>
+        <li><a href="#時間的運算">時間的運算</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
