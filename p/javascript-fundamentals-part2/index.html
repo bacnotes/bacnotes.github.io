@@ -333,8 +333,8 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fruitProcessor</span><span class="p">(</span><span class="nx">applesCount</span><span class="p">,</span> <span class="nx">orangesCount</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">juice</span> <span class="o">=</span> <span class="sb">`juice with </span><span class="si">${</span><span class="nx">applesCount</span><span class="si">}</span><span class="sb"> apples &amp; </span><span class="si">${</span><span class="nx">orangesCount</span><span class="si">}</span><span class="sb"> oranges`</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">juice</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">juice</span> <span class="o">=</span> <span class="sb">`juice with </span><span class="si">${</span><span class="nx">applesCount</span><span class="si">}</span><span class="sb"> apples &amp; </span><span class="si">${</span><span class="nx">orangesCount</span><span class="si">}</span><span class="sb"> oranges`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">juice</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">fruitProcessor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// &#39;juice with 2 apples &amp; 5 oranges&#39;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fruitProcessor</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// &#39;juice with 3 apples &amp; 4 oranges&#39;
@@ -354,7 +354,7 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">calcAge</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">calcAge</span><span class="p">(</span><span class="mi">2036</span><span class="p">);</span> <span class="c1">// 放在function前後都可以 因為hoisting
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 1
@@ -372,15 +372,15 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calcAge</span><span class="p">(</span><span class="mi">2036</span><span class="p">));</span> <span class="c1">// 1
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="箭頭函式-arrow-function">箭頭函式 arrow function</h3>
 <ul>
-<li>ES6 語法，沒有自己的 this，若箭頭函式裡面寫了this，會往父層找，this值取決於父層scope</li>
+<li>ES6 語法，沒有自己的 this，若箭頭函式裡面寫了 this，會往父層找，this 值取決於父層 scope</li>
 <li>若箭頭函式直接返回一個物件，必須在物件外面加上小括號(可參考下方範例)</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -427,33 +427,33 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 多行程式碼 需要{}跟return 程式會結束在return這行
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">retireAge</span> <span class="o">=</span> <span class="p">(</span><span class="nx">yourName</span><span class="p">,</span> <span class="nx">birthYear</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">retirement</span> <span class="o">=</span> <span class="mi">65</span> <span class="o">-</span> <span class="nx">age</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">yourName</span><span class="si">}</span><span class="sb"> retires in </span><span class="si">${</span><span class="nx">retirement</span><span class="si">}</span><span class="sb"> years`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">retirement</span> <span class="o">=</span> <span class="mi">65</span> <span class="o">-</span> <span class="nx">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">yourName</span><span class="si">}</span><span class="sb"> retires in </span><span class="si">${</span><span class="nx">retirement</span><span class="si">}</span><span class="sb"> years`</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">retireAge</span><span class="p">(</span><span class="s2">&#34;bacnotes&#34;</span><span class="p">,</span> <span class="mi">2036</span><span class="p">));</span> <span class="c1">// bacnotes retires in 64 years
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 單一參數時，小括號可以省略
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 多個參數時，小括號不能省略
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 單行程式碼要直接回傳物件時，則需要再套一層小括號，key value一樣{a:a, b:b} 寫 {a,b}即可
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">b</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">b</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 等於
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">print</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">b</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">b</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -606,12 +606,12 @@ if (!doNotTrack) {
 </div>
 </div><p>其他的 array 方法可以參考這篇 <a class="link" href="https://bacnotes.github.io/p/array-methods/"  title="陣列的處理方法"
      target="_blank" rel="noopener"
-    >陣列的處理方法</a>。另外也推薦oxxostudio的這篇<a class="link" href="https://www.oxxostudio.tw/articles/201908/js-array.html"  title="JavaScript Array 陣列操作方法大全 ( 含 ES6 )"
+    >陣列的處理方法</a>。另外也推薦 oxxostudio 的這篇<a class="link" href="https://www.oxxostudio.tw/articles/201908/js-array.html"  title="JavaScript Array 陣列操作方法大全 ( 含 ES6 )"
      target="_blank" rel="noopener"
     >JavaScript Array 陣列操作方法大全 ( 含 ES6 )</a></p>
 <h2 id="object-物件">object 物件</h2>
 <ul>
-<li>key value pair格式</li>
+<li>key value pair 格式</li>
 <li>value 可以儲存不同格式的資料</li>
 </ul>
 <h3 id="宣告物件">宣告物件</h3>
@@ -627,18 +627,18 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="dot-notation-取值物件-屬性">dot notation 取值：物件. 屬性</h3>
 <ul>
 <li>直觀簡潔</li>
-<li>特殊字元的賦值、取值無法透過dot notation取得</li>
+<li>特殊字元的賦值、取值無法透過 dot notation 取得</li>
 <li>無法使用變數進行操作</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -688,7 +688,7 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">interestedIn</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;what do you want ot know about Jonas? Choose between firstName, lastName,age or job&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;what do you want ot know about Jonas? Choose between firstName, lastName,age or job&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// dot notation 無法用expression取得屬性(物件沒有interestedIn的屬性)
@@ -698,9 +698,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">]);</span> <span class="c1">// teacher
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 當屬性存在列印出屬性值，屬性不存在時列印出&#39;data not existed&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">]</span> <span class="o">?</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">])</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;data not existed&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="o">?</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="nx">interestedIn</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="o">:</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;data not existed&#34;</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="新增修改元素值使用--賦值">新增/修改元素值：使用  =  賦值</h3>
@@ -773,16 +773,16 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">birthYear</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2027</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">birthYear</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2027</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">(</span><span class="mi">2000</span><span class="p">));</span> <span class="c1">// 27
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jonas</span><span class="p">[</span><span class="s2">&#34;calcAge&#34;</span><span class="p">](</span><span class="mi">2000</span><span class="p">));</span> <span class="c1">// 27
@@ -812,19 +812,19 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jona&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">birthYear</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">hasDriverLicense</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Jona&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Schmedtmann&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">birthYear</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">job</span><span class="o">:</span> <span class="s2">&#34;teacher&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">friends</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hasDriverLicense</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// return 2027 - jonas.birthYear 寫字的名字會不好維護
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">2027</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span> <span class="c1">// 更新值就不用每次調用都重複計算，減少浪費效能
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// return 2027 - jonas.birthYear 寫字的名字會不好維護
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">2027</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span> <span class="c1">// 更新值就不用每次調用都重複計算，減少浪費效能
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -955,9 +955,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="p">[];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// filling types array
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">type</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// filling types array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">type</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span> <span class="c1">// [ &#39;number&#39;, &#39;number&#39;, &#39;number&#39; ]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
@@ -966,15 +966,15 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ages</span> <span class="o">=</span> <span class="p">[];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">years</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">ages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">2038</span> <span class="o">-</span> <span class="nx">years</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">2038</span> <span class="o">-</span> <span class="nx">years</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//[ 47, 35, 16, 66 ]
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 範例3 使用比較簡潔的forEach語法 列印出元素
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -996,8 +996,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arrayB</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;stringA&#34;</span><span class="p">,</span> <span class="s2">&#34;stringB&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2022</span> <span class="o">-</span> <span class="mi">11</span><span class="p">,</span> <span class="kc">true</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayB</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="s2">&#34;string&#34;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="s2">&#34;string&#34;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// stringA string
 </span></span></span><span class="line"><span class="cl"><span class="c1">// stringB string
@@ -1017,8 +1017,8 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayB</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;number&#34;</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;number&#34;</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="k">typeof</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// stringA string
 </span></span></span><span class="line"><span class="cl"><span class="c1">// stringB string
@@ -1038,10 +1038,10 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`-----starting excercise </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`-----lifting </span><span class="si">${</span><span class="nx">j</span><span class="si">}</span><span class="sb"> time🏋️‍♀️`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`-----starting excercise </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`-----lifting </span><span class="si">${</span><span class="nx">j</span><span class="si">}</span><span class="sb"> time🏋️‍♀️`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1059,8 +1059,8 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">text</span> <span class="o">+=</span> <span class="s2">&#34;The number is &#34;</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">text</span> <span class="o">+=</span> <span class="s2">&#34;The number is &#34;</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1084,9 +1084,9 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">dice</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 隨機產生1~6的數字
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">dice</span> <span class="o">!==</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Your rolled a </span><span class="si">${</span><span class="nx">dice</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">dice</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">dice</span> <span class="o">===</span> <span class="mi">6</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Loop is about to end...`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Your rolled a </span><span class="si">${</span><span class="nx">dice</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dice</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dice</span> <span class="o">===</span> <span class="mi">6</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Loop is about to end...`</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Math.floor() 回傳小於等於所給數字的最大整數。(正數時等於無條件捨去，負數時等於無條件進位)

@@ -392,7 +392,7 @@ if (!doNotTrack) {
 <li>browser: JavaScript 引擎 + webAPIs + callback queue</li>
 <li>call stack : 由上到下執行 stack 裡面每一行程式，變數的記憶體也是在這個階段建立(hoisting)，遇到需要呼叫 API 的非同步函式會把裡面的 call back function 丟到 webAPI 排程執行</li>
 <li>webAPIs 處理非同步函式，當有收到回傳結果，會依照回傳時間順序把 callback function 傳到 callback queue</li>
-<li>當 stack 清空時，callback queue 就會把 callback function 依序（queue先進先出)丟到 stack 裡執行</li>
+<li>當 stack 清空時，callback queue 就會把 callback function 依序（queue 先進先出)丟到 stack 裡執行</li>
 <li>這整個過程就是 event loop，為了提高瀏覽器的使用體驗，不會被非同步函式等待過程阻塞的機制</li>
 </ul>
 <p><img src="/p/javascript-behind-the-scenes/browser.png"
@@ -554,23 +554,23 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">&#34;Jonas&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">first</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">first</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">second</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="s2">&#34;Hello&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">second</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">second</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;H1&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">third</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">second</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="s2">&#34;H1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">third</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">third</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="s1">&#39;Hey!&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// ReferenceError
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="s2">&#34;Hey!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// ReferenceError
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -627,52 +627,40 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Jonas&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">calcAge</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">printAge</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 執行時裡面沒有age，variable lookup往父層找
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">output</span> <span class="o">=</span> <span class="sb">`You are </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, born in </span><span class="si">${</span><span class="nx">birthYear</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">birthYear</span> <span class="o">&gt;=</span> <span class="mi">1981</span> <span class="o">&amp;&amp;</span> <span class="nx">birthYear</span> <span class="o">&lt;=</span> <span class="mi">1996</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">millenial</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="c1">// 創造跟外面一樣變數名的新變數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Steven&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="kr">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="sb">`you are a millenial, </span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// 執行時裡面沒有firstName，往父層找 you are a millenial, Jonas
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">printAge</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 執行時裡面沒有age，variable lookup往父層找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">output</span> <span class="o">=</span> <span class="sb">`You are </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, born in </span><span class="si">${</span><span class="nx">birthYear</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">birthYear</span> <span class="o">&gt;=</span> <span class="mi">1981</span> <span class="o">&amp;&amp;</span> <span class="nx">birthYear</span> <span class="o">&lt;=</span> <span class="mi">1996</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">var</span> <span class="nx">millenial</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 創造跟外面一樣變數名的新變數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Steven&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="sb">`you are a millenial, </span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 執行時裡面沒有firstName，往父層找 you are a millenial, Jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 內部重新賦值output 下方會列印出新的值的output
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">output</span> <span class="o">=</span> <span class="s1">&#39;New output&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="c1">// 無法獲取內部變數 str is not defined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">millenial</span><span class="p">);</span> <span class="c1">// var不是block scope是function scope因此可以獲取同function的變數 true
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">            <span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// 內部重新賦值output 下方會列印出新的值的output
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">output</span> <span class="o">=</span> <span class="s1">&#39;New output&#39;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="c1">// 無法獲取內部變數 str is not defined
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">//add function 嚴格模式下也是block scope 會ReferenceError，非嚴格模式下會是8
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">millenial</span><span class="p">);</span> <span class="c1">// var不是block scope是function scope因此可以獲取同function的變數 true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">//add function 嚴格模式下也是block scope 會ReferenceError，非嚴格模式下會是8
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="c1">//&#39;New output&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">printAge</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">age</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="c1">//&#39;New output&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">printAge</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">age</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">calcAge</span><span class="p">(</span><span class="mi">1991</span><span class="p">)</span> <span class="c1">// You are 46, born 1991
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span> <span class="c1">// ReferenceError 無法獲取內部變數age
@@ -801,11 +789,11 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addArrow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// undefined(2,3) -&gt; // addArrow is not a function
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">addDecl</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">addExpr</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addArrow</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
@@ -838,7 +826,7 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">numProducts</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">deleteShoppingCart</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;All products deleted!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;All products deleted!&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -869,7 +857,7 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 <ul>
 <li>所有執行文本下都會有的特別變數，值取決於被呼叫的方式</li>
 <li>作為 Method(物件下的 function)呼叫時，this 是呼叫他的變數</li>
-<li>一般函式呼叫，嚴格模式下 this 值是 undefined，非嚴格模式下為全域物件(瀏覽器為window/node.js是global)</li>
+<li>一般函式呼叫，嚴格模式下 this 值是 undefined，非嚴格模式下為全域物件(瀏覽器為 window/node.js 是 global)</li>
 <li>箭頭函式沒有自己的 this，this 值取決於父層(parent scope)</li>
 <li>eventListener 呼叫時，指向觸發的元素</li>
 <li>this 不會是函式自己，也不會是變數環境(Variable Environment)</li>
@@ -920,28 +908,28 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">//window object
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">calcAge</span><span class="p">(</span><span class="mi">1991</span><span class="p">);</span> <span class="c1">// 46 嚴格模式 this是undefined 非嚴格模式this是window object
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcAgeArrow</span> <span class="o">=</span> <span class="nx">birthYear</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">calcAgeArrow</span><span class="p">(</span><span class="mi">1980</span><span class="p">);</span> <span class="c1">// 父層的this window object
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 46 jonas呼叫 this是jonas
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">matilda</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">year</span><span class="o">:</span> <span class="mi">2017</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">2017</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">matilda</span><span class="p">.</span><span class="nx">calcAge</span> <span class="o">=</span> <span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">;</span> <span class="c1">// copy calcAge method from jonas
@@ -992,32 +980,32 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// var firstName = &#39;Matilda&#39;;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// console.log(this); // jonas
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">calcAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// console.log(this); // jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2037</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// Solution 1 (ES6前) 在函式外定義self為this 取得jonas
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// const self = this; // self or that
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// const isMillenial = function () {
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//   console.log(self);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//   console.log(self.year &gt;= 1981 &amp;&amp; self.year &lt;= 1996);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// };
+</span></span><span class="line"><span class="cl">    <span class="c1">// Solution 1 (ES6前) 在函式外定義self為this 取得jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const self = this; // self or that
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const isMillenial = function () {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   console.log(self);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   console.log(self.year &gt;= 1981 &amp;&amp; self.year &lt;= 1996);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// };
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Solution 2 （modern) 使用箭頭函式，沒有自己的this，會往父層找
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">isMillenial</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">&gt;=</span> <span class="mi">1981</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">&lt;=</span> <span class="mi">1996</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="nx">isMillenial</span><span class="p">();</span> <span class="c1">// 一般函式呼叫 嚴格模式下undefined 除非用self綁定this或用箭頭函式呼叫
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">greet</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Solution 2 （modern) 使用箭頭函式，沒有自己的this，會往父層找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">isMillenial</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">&gt;=</span> <span class="mi">1981</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">year</span> <span class="o">&lt;=</span> <span class="mi">1996</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">isMillenial</span><span class="p">();</span> <span class="c1">// 一般函式呼叫 嚴格模式下undefined 除非用self綁定this或用箭頭函式呼叫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">greet</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">onsole</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">();</span> <span class="c1">// 沒有solution狀況下 cannot read property of &#39;year&#39; of undefined
@@ -1049,13 +1037,13 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="c1">// 用 let/const 的話會是 undefined，使用 var 就會是&#39;hey mirenda&#39;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;mirenda&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jonas</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 箭頭函式沒有自己的this
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">greet</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jonas&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="mi">1991</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 箭頭函式沒有自己的this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">greet</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">jonas</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// window obj, hey mirenda
 </span></span></span></code></pre></td></tr></table>
@@ -1081,15 +1069,15 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">addExpr</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">addExpr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">addExpr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span> <span class="c1">// 雖然function上面參數設定2個，但可以加上更多arguments存到Arguments陣列，可以loop加總這些參數等
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addArrow</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">addArrow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
@@ -1112,10 +1100,10 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">orderPizza</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mainIngredients</span><span class="p">,</span> <span class="p">...</span><span class="nx">otherIngredients</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mainIngredients</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">otherIngredients</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">orderPizza</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mainIngredients</span><span class="p">,</span> <span class="p">...</span><span class="nx">otherIngredients</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mainIngredients</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">otherIngredients</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderPizza</span><span class="p">(</span><span class="s1">&#39;mushrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;onions&#39;</span><span class="p">,</span> <span class="s1">&#39;olives&#39;</span><span class="p">,</span> <span class="s1">&#39;spinach&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// mushrooms [ &#39;onions&#39;, &#39;olives&#39;, &#39;spinach&#39; ]
@@ -1160,31 +1148,31 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">restaurant</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">starterMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Focaccia&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruschetta&#39;</span><span class="p">,</span> <span class="s1">&#39;Garlic Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Caprese Salad&#39;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">mainMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;Pasta&#39;</span><span class="p">,</span> <span class="s1">&#39;Risotto&#39;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">orderDelivery</span><span class="o">:</span> <span class="kd">function</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">mainIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span> <span class="c1">// 預設值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">address</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">})</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">            <span class="sb">`Order received! </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">starterMenu</span><span class="p">[</span><span class="nx">starterIndex</span><span class="p">]</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">mainMenu</span><span class="p">[</span><span class="nx">mainIndex</span><span class="p">]</span><span class="si">}</span><span class="sb"> will be delivered to </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb"> at </span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">        <span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">starterMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Focaccia&#39;</span><span class="p">,</span> <span class="s1">&#39;Bruschetta&#39;</span><span class="p">,</span> <span class="s1">&#39;Garlic Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;Caprese Salad&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mainMenu</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;Pasta&#39;</span><span class="p">,</span> <span class="s1">&#39;Risotto&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">orderDelivery</span><span class="o">:</span> <span class="kd">function</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">starterIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">mainIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span> <span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">address</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="sb">`Order received! </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">starterMenu</span><span class="p">[</span><span class="nx">starterIndex</span><span class="p">]</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">mainMenu</span><span class="p">[</span><span class="nx">mainIndex</span><span class="p">]</span><span class="si">}</span><span class="sb"> will be delivered to </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb"> at </span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderDelivery</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">time</span><span class="o">:</span> <span class="s1">&#39;22:30&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">address</span><span class="o">:</span> <span class="s1">&#39;via del sole, 21&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">mainIndex</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">starterIndex</span><span class="o">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">time</span><span class="o">:</span> <span class="s1">&#39;22:30&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">address</span><span class="o">:</span> <span class="s1">&#39;via del sole, 21&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mainIndex</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">starterIndex</span><span class="o">:</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Order received! Garlic Bread and Risotto will be delivered to via del sole, 21 at 22:30
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 沒有全部參數 會用函式參數的預設值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">restaurant</span><span class="p">.</span><span class="nx">orderDelivery</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">address</span><span class="o">:</span> <span class="s1">&#39;via del sole, 21&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">starterIndex</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">address</span><span class="o">:</span> <span class="s1">&#39;via del sole, 21&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">starterIndex</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Order received! Garlic Bread and Pizza will be delivered to via del sole, 21 at 00:00
 </span></span></span></code></pre></td></tr></table>
@@ -1257,10 +1245,10 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessica</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jessica&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Williams&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">27</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">family</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Jessica&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Williams&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span><span class="o">:</span> <span class="mi">27</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">family</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">jessicaCopy</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">jessica</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">jessicaCopy</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="s1">&#39;Davis&#39;</span><span class="p">;</span>
@@ -1279,8 +1267,8 @@ third()作用域：可以獲取本地作用域跟父層的變數環境</li>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">arrCopy</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arr</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arrCopy</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arr</span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
