@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-tw" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先看看這篇筆記避免踩雷。'><h1><title>數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記</title></h1>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先看看這篇筆記避免踩雷。'><h1><title>數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記</title></h1>
 
 <link rel='canonical' href='https://bacnotes.github.io/p/math-number-date/'>
 
-<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記'>
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記'>
 <meta property='og:description' content='介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先看看這篇筆記避免踩雷。'>
 <meta property='og:url' content='https://bacnotes.github.io/p/math-number-date/'>
 <meta property='og:site_name' content='bacnotes備份筆記'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-03-14T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-03-14T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg' />
 <meta name="twitter:site" content="@bacnotes">
-    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記">
 <meta name="twitter:description" content="介紹在JavaScript該如何處理數字跟時間的資料，有時候會有意想不到的小坑，比起遇到才知道，可以考慮先看看這篇筆記避免踩雷。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg' />
     <link rel="shortcut icon" href="favicon.ico" />
@@ -229,7 +229,7 @@ if (!doNotTrack) {
                         width="800" 
                         height="450" 
                         loading="lazy"
-                        alt="Featured image of post 數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記" />
+                        alt="Featured image of post 數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記" />
                 
             </a>
         </div>
@@ -240,7 +240,7 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <p class="article-title">
-            <a href="/p/math-number-date/">數字檢查轉換還有日期處理的那些小事｜bacnotes備份筆記</a>
+            <a href="/p/math-number-date/">數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記</a>
         </p>
     
         
@@ -278,7 +278,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    閱讀時間: 6 分鐘
+                    閱讀時間: 8 分鐘
                 </time>
             </div>
         
@@ -294,8 +294,8 @@ if (!doNotTrack) {
     
     <h2 id="javascript-數字特性">JavaScript 數字特性</h2>
 <ul>
-<li>是64位元的浮點數(2 進位編碼)</li>
-<li>1與1.0指的是相同的資料類型與值</li>
+<li>是 64 位元的浮點數(2 進位編碼)</li>
+<li>1 與 1.0 指的是相同的資料類型與值</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -306,24 +306,22 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>二進位編碼只能精確地表示位數有限且分母是 2 的倍數的小數</li>
+<li>二進位編碼只能精確地表示位數有限且分母是 2 的倍數的小數(0.5、0.125)</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">con</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">);</span> <span class="c1">// 0.30000000000000004
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1">// 0.3
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">);</span> <span class="c1">// 0.30000000000000004
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.3</span><span class="p">);</span> <span class="c1">// 0.3
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">===</span> <span class="mf">0.3</span><span class="p">);</span> <span class="c1">// false
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>可以使用BigDecimal.js或decimal.js等函式庫</li>
+<li>可以使用 BigDecimal.js 或 decimal.js 等函式庫</li>
 </ul>
 <h2 id="字串轉數字">字串轉數字</h2>
 <h3 id="number">Number</h3>
@@ -496,7 +494,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="math-運算系列跟取整數">Math 運算系列跟取整數</h2>
+</div><h2 id="math-運算系列取整數餘數">Math 運算系列/取整數/餘數</h2>
 <h3 id="mathsqrt">Math.sqrt()</h3>
 <ul>
 <li>開根號</li>
@@ -590,7 +588,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 產生一個介於min與max的隨機數(包含min max)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getRandomIntInclusive</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -673,11 +671,10 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="餘數運算子-">餘數運算子 <code>%</code></h2>
+</div><h3 id="餘數運算子-">餘數運算子 <code>%</code></h3>
 <ul>
-<li>可以處理</li>
+<li>可以處理表格變色</li>
 </ul>
-<h3 id="表格變色">表格變色</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -706,7 +703,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">            <span class="p">})</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="numeric-separators-數字分隔符">Numeric Separators 數字分隔符</h2>
+</div><h2 id="數字分隔符-numeric-separators">數字分隔符 Numeric Separators</h2>
 <ul>
 <li>一樣的值，透過底線分割提高可讀性</li>
 <li>Number()無法解析含有數字分隔的的數字，這個只適合用於手動建立的參數，而非 API 回傳字串類型的數字</li>
@@ -798,7 +795,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">==</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// true
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="建立日期物件">建立日期物件</h2>
+</div><h2 id="建立日期時間物件">建立日期時間物件</h2>
 <h3 id="datenow">Date.now()</h3>
 <ul>
 <li>回傳自 1970 年 1 月 1 日 00:00:00 (UTC) 到當前時間的毫秒數</li>
@@ -814,9 +811,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">start</span><span class="p">);</span> <span class="c1">// 1647780438069
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="new-date">new Date()</h3>
+</div><h3 id="new-date-4-種建立方式">new Date() 4 種建立方式</h3>
 <ul>
-<li>new Date(): 沒有傳入任務參數到建構子，會依系統設定建立出代表當下時間的 Date 物件</li>
+<li>new Date(): 不傳入任務參數到建構子，會依系統設定建立出代表當下時間的 Date 物件</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -829,7 +826,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>new Date(value): value 是自世界標準時間（UTC） 1970 年 1 月 1 日 00:00:00 開始的毫秒整數值（注意：Unix timestamp是以秒而非毫秒為單位）</li>
+<li>new Date(value): value 是自世界標準時間（UTC） 1970 年 1 月 1 日 00:00:00 開始的毫秒整數值（注意：Unix timestamp 是以秒而非毫秒為單位）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -842,7 +839,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>new Date(dateString): 表示時間日期的字串。這個字串應該要能被 Date.parse() (en-US) 方法解析</li>
+<li>new Date(dateString): 表示日期時間物件的字串。這個字串應該要能被 Date.parse() (en-US) 方法解析</li>
 <li>new Date(&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;) 符合所有瀏覽器格式</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -859,7 +856,7 @@ if (!doNotTrack) {
 </div>
 </div><ul>
 <li>new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);</li>
-<li>傳入至少兩個參數，缺少日期的話會設為 1，其它參數則會被設定為 0。</li>
+<li>傳入至少兩個參數，缺少日的話會設為 1，其它參數則會被設定為 0。</li>
 <li>備註：當傳入超過一個參數，且參數值超過它的合理範圍（例如：傳數值 13 到月份，或傳數值 70 給分鐘），相鄰的參數值將會被調整。例如： new Date(2013, 13, 1) 將等同於 new Date(2014, 1, 1) 都會建立代表 2014-02-01 的物件</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -876,7 +873,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// Wed Nov 01 2017 00:00:00 GMT+0800
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="取得日期物件的值">取得日期物件的值</h3>
+</div><h3 id="取得日期時間物件的值">取得日期時間物件的值</h3>
 <ul>
 <li>getFullYear(): 年</li>
 <li>getMonth(): 月</li>
@@ -901,7 +898,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span> <span class="c1">// 19
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="修改日期物件的值">修改日期物件的值</h3>
+</div><h3 id="修改日期時間物件的值">修改日期時間物件的值</h3>
 <ul>
 <li>如果設定的 value 超出了合理範圍，會相對應的往前或往後推算</li>
 <li>setFullYear(): 年</li>
@@ -931,9 +928,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// Thu Mar 03 2022 14:22:00 GMT+0800
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="時間物件轉字串-toisostring">時間物件轉字串 .toISOString())</h3>
+</div><h3 id="時間轉字串-toisostring">時間轉字串 .toISOString()</h3>
 <ul>
-<li>時區為UTC</li>
+<li>時區為 UTC</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -947,7 +944,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">());</span> <span class="c1">// 2037-11-19T06:22:00.000Z
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="時間物件轉毫秒">時間物件轉毫秒</h3>
+</div><h3 id="時間轉毫秒">時間轉毫秒</h3>
 <ul>
 <li>回傳距離 1970 年 1 月 1 日 0 時 0 分 0 秒（UTC 時間）多久的毫秒數</li>
 </ul>
@@ -965,7 +962,7 @@ if (!doNotTrack) {
 </div>
 </div><h3 id="時間的運算">時間的運算</h3>
 <ul>
-<li>會先轉換成Time Stamp毫秒為單位</li>
+<li>會先轉換成 Time Stamp 毫秒為單位</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -975,18 +972,284 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">)</span> <span class="c1">// 2142172800000
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">);</span> <span class="c1">// 2142172800000
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcDaysPassed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">date1</span><span class="p">,</span> <span class="nx">date2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">days</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">days</span><span class="p">)</span> <span class="c1">// 5
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcDaysPassed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">date1</span><span class="p">,</span> <span class="nx">date2</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">days</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">days</span><span class="p">);</span> <span class="c1">// 5
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>持續更新中&hellip;</p>
-
+</div><h2 id="日期時間數字格式化-internationalization-api">日期時間/數字格式化 Internationalization API</h2>
+<h3 id="日期時間-intl-datetimeformat">日期時間 Intl. DateTimeFormat()</h3>
+<ul>
+<li>options Optional 可以使用選填項目： &ldquo;full&rdquo;、&ldquo;long&rdquo;、&ldquo;medium&rdquo;、&ldquo;short&rdquo;</li>
+<li>年可以寫&quot;numeric&quot; (e.g., 2012)、&ldquo;2-digit&rdquo; (e.g., 12)</li>
+<li>月可以寫&quot;numeric&quot; (e.g., 3)、&ldquo;2-digit&rdquo; (e.g., 03)、&ldquo;long&rdquo; (e.g., March)、&ldquo;short&rdquo; (e.g., Mar)、&ldquo;narrow&rdquo; (e.g., M)</li>
+<li>日可以寫&quot;numeric&quot; (e.g., 1)、&ldquo;2-digit&rdquo; (e.g., 01)</li>
+<li>時可以寫&quot;numeric&quot;、&ldquo;2-digit&rdquo;</li>
+<li>分可以寫&quot;numeric&quot;、&ldquo;2-digit&rdquo;</li>
+<li>秒可以寫&quot;numeric&quot;、&ldquo;2-digit&rdquo;</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">UTC</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">738</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// results may vary by region
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hour</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">minute</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">day</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">month</span><span class="o">:</span> <span class="s2">&#34;long&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s2">&#34;en-US&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 12/20/2020
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dateText</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s2">&#34;ja&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateText</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2020年12月20日 上午11:23
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>簡單格式化寫法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">formatDate</span><span class="p">(</span><span class="nx">date</span><span class="p">,</span> <span class="nx">locale</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">calcDaysPassed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">date1</span><span class="p">,</span> <span class="nx">date2</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">daysPassed</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="nx">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">daysPassed</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Today&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Yesterday&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">)</span> <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">daysPassed</span><span class="si">}</span><span class="sb"> days ago`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="nx">locale</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="數字格式化-intl-numberformat">數字格式化 Intl. NumberFormat()</h3>
+<ul>
+<li>style 可以處理種類 e.g. 距離、溫度、貨幣、百分比</li>
+<li>unit 可以處理對應單位</li>
+<li>useGrouping 處理是否需要, 分隔符</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mf">3882342.23</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;unit&#34;</span><span class="p">,</span> <span class="c1">// percent, currency
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">unit</span><span class="o">:</span> <span class="s2">&#34;mile-per-hour&#34;</span><span class="p">,</span> <span class="c1">// celsius
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">currency</span><span class="o">:</span> <span class="s2">&#34;EUR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">useGrouping</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s2">&#34;en-US&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">num</span><span class="p">));</span> <span class="c1">// 3882342.23 mph
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s2">&#34;de-De&#34;</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">num</span><span class="p">));</span> <span class="c1">// 3.882.342,23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">12345679</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s2">&#34;de-DE&#34;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;currency&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currency</span><span class="o">:</span> <span class="s2">&#34;EUR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">format</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 123.456,79 €
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">formatCurrency</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">locale</span><span class="p">,</span> <span class="nx">currency</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="nx">locale</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;currency&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currency</span><span class="o">:</span> <span class="nx">currency</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">format</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">formatCurrency</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s2">&#34;zh-TW&#34;</span><span class="p">,</span> <span class="s2">&#34;USD&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#39;US$123.00&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="計時器-settimeout-setinterval">計時器 setTimeout(), setInterval()</h2>
+<h3 id="settimeout">setTimeout()</h3>
+<ul>
+<li>var timeoutID = setTimeout(function[, delay, arg1, arg2, &hellip;])</li>
+<li>function:delay 毫秒之後執行的函式</li>
+<li>delay: 延遲多少毫秒執行</li>
+<li>時間到期後傳的參數</li>
+<li>return 值為一個正整數，傳此數值到 clearTimeout()可拿掉定時器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;olives&#34;</span><span class="p">,</span> <span class="s2">&#34;spinach&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nx">ingrediant1</span><span class="p">,</span> <span class="nx">ingrediant2</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Sending </span><span class="si">${</span><span class="nx">ingrediant1</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">ingrediant2</span><span class="si">}</span><span class="sb">`</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="mi">3000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span><span class="nx">allergyList</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;waiting...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">Timer</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="setinterval">setInterval()</h3>
+<ul>
+<li>setInterval()和 setTimeout()共享同一个 ID 池</li>
+<li>setInterval()搭配 clearInterval()使用，setTimeout 搭配 clearTimeout()使用避免 TimeId 管理混亂</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="自動登出">自動登出</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">startLogOutTimer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">tick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">min</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nx">time</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">sec</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">someElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">min</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">sec</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">time</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// change into some logout UI
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">time</span><span class="o">--</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1">// sec
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="nx">tick</span><span class="p">()</span> <span class="c1">// call the timer every second
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">timer</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// reset timer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">timer</span> <span class="o">=</span> <span class="nx">startLogOutTimer</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -1206,7 +1469,7 @@ if (!doNotTrack) {
         <li><a href="#numberisinteger">Number.isInteger()</a></li>
       </ul>
     </li>
-    <li><a href="#math-運算系列跟取整數">Math 運算系列跟取整數</a>
+    <li><a href="#math-運算系列取整數餘數">Math 運算系列/取整數/餘數</a>
       <ul>
         <li><a href="#mathsqrt">Math.sqrt()</a></li>
         <li><a href="#mathmaxmathmin">Math.max()、Math.min()</a></li>
@@ -1217,25 +1480,34 @@ if (!doNotTrack) {
         <li><a href="#mathceil">Math.ceil()</a></li>
         <li><a href="#mathfloor">Math.floor()</a></li>
         <li><a href="#numberprototypetofixed">Number.prototype.toFixed()</a></li>
+        <li><a href="#餘數運算子-">餘數運算子 <code>%</code></a></li>
       </ul>
     </li>
-    <li><a href="#餘數運算子-">餘數運算子 <code>%</code></a>
-      <ul>
-        <li><a href="#表格變色">表格變色</a></li>
-      </ul>
-    </li>
-    <li><a href="#numeric-separators-數字分隔符">Numeric Separators 數字分隔符</a></li>
+    <li><a href="#數字分隔符-numeric-separators">數字分隔符 Numeric Separators</a></li>
     <li><a href="#bigint">BigInt</a></li>
     <li><a href="#bigint-運算">BigInt 運算</a></li>
-    <li><a href="#建立日期物件">建立日期物件</a>
+    <li><a href="#建立日期時間物件">建立日期時間物件</a>
       <ul>
         <li><a href="#datenow">Date.now()</a></li>
-        <li><a href="#new-date">new Date()</a></li>
-        <li><a href="#取得日期物件的值">取得日期物件的值</a></li>
-        <li><a href="#修改日期物件的值">修改日期物件的值</a></li>
-        <li><a href="#時間物件轉字串-toisostring">時間物件轉字串 .toISOString())</a></li>
-        <li><a href="#時間物件轉毫秒">時間物件轉毫秒</a></li>
+        <li><a href="#new-date-4-種建立方式">new Date() 4 種建立方式</a></li>
+        <li><a href="#取得日期時間物件的值">取得日期時間物件的值</a></li>
+        <li><a href="#修改日期時間物件的值">修改日期時間物件的值</a></li>
+        <li><a href="#時間轉字串-toisostring">時間轉字串 .toISOString()</a></li>
+        <li><a href="#時間轉毫秒">時間轉毫秒</a></li>
         <li><a href="#時間的運算">時間的運算</a></li>
+      </ul>
+    </li>
+    <li><a href="#日期時間數字格式化-internationalization-api">日期時間/數字格式化 Internationalization API</a>
+      <ul>
+        <li><a href="#日期時間-intl-datetimeformat">日期時間 Intl. DateTimeFormat()</a></li>
+        <li><a href="#數字格式化-intl-numberformat">數字格式化 Intl. NumberFormat()</a></li>
+      </ul>
+    </li>
+    <li><a href="#計時器-settimeout-setinterval">計時器 setTimeout(), setInterval()</a>
+      <ul>
+        <li><a href="#settimeout">setTimeout()</a></li>
+        <li><a href="#setinterval">setInterval()</a></li>
+        <li><a href="#自動登出">自動登出</a></li>
       </ul>
     </li>
   </ul>

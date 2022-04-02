@@ -278,7 +278,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    閱讀時間: 5 分鐘
+                    閱讀時間: 6 分鐘
                 </time>
             </div>
         
@@ -307,18 +307,18 @@ if (!doNotTrack) {
 <ul>
 <li>setup(beforeCreate)：初始化 Vue 實例/事件跟生命週期
 &ndash; 尚無法讀取 data, computed, methods, watch/event callbacks
-&ndash; 適合展示loading畫面，不適合fetch資料，還沒有data可以存</li>
-<li>setup(created)：創建完實例(虛擬DOM)
+&ndash; 適合展示 loading 畫面，不適合 fetch 資料，還沒有 data 可以存</li>
+<li>setup(created)：創建完實例(虛擬 DOM)
 &ndash; 設置 data, computed, methods, watch/event callbacks
 &ndash; 尚無法讀取$el，適合 fetch 資料</li>
 <li>onBeforeMount(beforeMount)：尚未掛載模板
 &ndash; 相關 render 函式首次被調用</li>
-<li>onMounted(mounted)：實例掛載模板(真實DOM)
+<li>onMounted(mounted)：實例掛載模板(真實 DOM)
 &ndash; el 被新創建的 vm.$el 替換</li>
 <li>onBeforeUpdate(beforeUpdate)：data 更新但還沒重新渲染畫面
 &ndash; 適合在此更新資料</li>
 <li>onUpdated(updated)：data 更新且渲染畫面完成
-&ndash; 可以取得更新的DOM</li>
+&ndash; 可以取得更新的 DOM</li>
 <li>onBeforeUnmount(beforeDestroy)：實例被銷毀前
 &ndash; 適合在此時卸載手動添加的監聽/訂閱</li>
 <li>onUnmounted(destroyed)：實例被銷毀</li>
@@ -355,24 +355,24 @@ if (!doNotTrack) {
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="nx">script</span> <span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// @ is an alias to /src
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Home&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">components</span><span class="o">:</span> <span class="p">{},</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// before mounted, before created
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;setup&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;created&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;mounted&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span> <span class="o">&lt;</span>
-</span></span><span class="line"><span class="cl"><span class="err">/script&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// @ is an alias to /src
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Home&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">components</span><span class="o">:</span> <span class="p">{},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// before mounted, before created
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;setup&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;created&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;mounted&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="在-setup函式定義-data">在 setup()函式定義 data</h2>
@@ -396,18 +396,18 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">toRefs</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">title</span><span class="o">:</span> <span class="nb">String</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">setup</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">title</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="o">=</span> <span class="nx">toRefs</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">toRefs</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;vue&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setup</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">{</span> <span class="nx">title</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">toRefs</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -716,28 +716,12 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">watch</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">search</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">OldValue</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;newValue, OldValue&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">deep</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">immediate</span><span class="o">:</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">watch</span><span class="p">(</span> <span class="nx">search</span><span class="p">,</span> <span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">OldValue</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;newValue, OldValue&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">);</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">deep</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">immediate</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="p">}</span> <span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="watcheffect">watchEffect</h2>
@@ -748,13 +732,9 @@ if (!doNotTrack) {
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">watchEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="nx">search</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">watchEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">);</span> <span class="p">},</span> <span class="nx">search</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="watch-vs-watcheffect">watch v.s. watchEffect</h2>
@@ -777,22 +757,34 @@ if (!doNotTrack) {
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">counter</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">counter</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">enabled</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">watchEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">enabled</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// watchEffect 立即執行，enabled是false dependency只有enabled
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">watchEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">enabled</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">counter</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">});</span> <span class="c1">//watchEffect 立即執行，enabled是 false 所以dependency只有enabled
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 無反應
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 無反應
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">enabled</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// Effect 觸發，輸出1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//counter為dependency，輸出2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// counter為dependency，輸出2
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">enabled</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 函式重新執行 無輸出
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">counter</span><span class="p">.</span><span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 函式重新執行 無輸出 雖然counter是false 但還是dependency可能會觸發函式
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="什麼時候用watch或watcheffect">什麼時候用watch或watchEffect？</h3>
+</div><h3 id="什麼時候用-watch-或-watcheffect">什麼時候用 watch 或 watchEffect？</h3>
 <p><a class="link" href="https://www.zhihu.com/question/462378193"  title="Vue3 中watch 與watchEffect 有什麼區別？"
      target="_blank" rel="noopener"
     >這篇</a>推薦在大部分時候用 watch 顯式的指定依賴以避免不必要的重複觸發，也避免在後續代碼修改或重構時不小心引入新的 dependency。
@@ -1043,7 +1035,7 @@ watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的
     <li><a href="#watcheffect">watchEffect</a></li>
     <li><a href="#watch-vs-watcheffect">watch v.s. watchEffect</a>
       <ul>
-        <li><a href="#什麼時候用watch或watcheffect">什麼時候用watch或watchEffect？</a></li>
+        <li><a href="#什麼時候用-watch-或-watcheffect">什麼時候用 watch 或 watchEffect？</a></li>
       </ul>
     </li>
     <li><a href="#vue-composition-api-和-react-的-hooks-的差異">Vue Composition API 和 React 的 Hooks 的差異</a></li>

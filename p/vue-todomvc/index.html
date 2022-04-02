@@ -1456,7 +1456,6 @@ Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就
 </div><ul>
 <li>組合  <code>v-if</code>、<code>v-else</code>、<code>v-else-if</code>  來控制流程</li>
 </ul>
-<p>`</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1471,16 +1470,14 @@ Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="c1">// if else
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="nt">v-if</span><span class="s">=&#34;Math.random() &gt; 0.5&#34;&gt;Now you see me&lt;/div&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-else&gt;Now you don&#39;t&lt;/div&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">&lt;/template&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s">```vue // if else-if else
+</span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">&lt;template&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-if=&#34;type === &#39;A&#39;&#34;&gt;A&lt;/div&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">  &lt;div v-else-if=&#34;type === &#39;B&#39;&#34;&gt;B&lt;/div&gt;
@@ -1591,37 +1588,33 @@ Event-bus emit / on 事件，做跨層級傳遞，缺點是事件命名相同就
 </span><span class="lnt">59
 </span><span class="lnt">60
 </span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// 清單
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-list&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">v-for</span><span class="s">=&#34;todo in filteredTodos&#34;
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;todo-list&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span> <span class="nt">v-for</span><span class="s">=&#34;todo in filteredTodos&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">      :key=&#34;todo.id&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">      class=&#34;todo&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">      :class=&#34;{ completed: todo.completed }&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">    &gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &gt;{{ todo.title }}
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;/li&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">  &lt;/ul&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s">  // footer
-</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;strong&gt;{{ activeTodos }}&lt;/strong&gt; items left // 篩選按鈕
+</span></span></span><span class="line"><span class="cl"><span class="s">  &lt;strong&gt;{{ activeTodos }}&lt;/strong&gt; items left
+</span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">  &lt;ul class=&#34;filters&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">    &lt;li&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">      &lt;a href=&#34;#/all&#34; @click=&#34;setFilteredOption(&#39;all&#39;)&#34;&gt;All&lt;/a&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">    &lt;/li&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">    &lt;li&gt;
-</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;a href=&#34;#/active&#34; @click=&#34;setFilteredOption(&#39;active&#39;)&#34;</span><span class="p">&gt;</span><span class="na">Active</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#/completed&#34;</span> <span class="nt">@click</span><span class="s">=&#34;setFilteredOption(&#39;completed&#39;)&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">&gt;</span><span class="nx">Completed</span><span class="o">&lt;</span><span class="err">/a</span>
-</span></span><span class="line"><span class="cl">      <span class="o">&gt;</span>
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;a href=&#34;#/active&#34; @click=&#34;setFilteredOption(&#39;active&#39;)&#34;&gt;Active&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">    &lt;li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &lt;a href=&#34;#/completed&#34; @click=&#34;setFilteredOption(&#39;completed&#39;)&#34;</span><span class="p">&gt;</span><span class="na">Completed</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 過於分散
 </span></span></span><span class="line"><span class="cl"><span class="c1">// const allTodos = (todos) =&gt; todos
