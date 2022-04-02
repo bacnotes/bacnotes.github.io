@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
         <lastBuildDate>Mon, 14 Mar 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記</title>
+        <title>數字檢查/運算/轉換還有日期時間處理｜bacnotes備份筆記</title>
         <link>https://bacnotes.github.io/p/math-number-date/</link>
         <pubDate>Mon, 14 Mar 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/math-number-date/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg" alt="Featured image of post 數字檢查/運算/轉換還有日期時間處理的那些小坑｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;javascript-數字特性&#34;&gt;JavaScript 數字特性&lt;/h2&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/math-number-date/pexels-photo-168784.jpeg" alt="Featured image of post 數字檢查/運算/轉換還有日期時間處理｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;javascript-數字特性&#34;&gt;JavaScript 數字特性&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;是 64 位元的浮點數(2 進位編碼)&lt;/li&gt;
 &lt;li&gt;1 與 1.0 指的是相同的資料類型與值&lt;/li&gt;
