@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='說明DOM的一些進階知識，DOM的架構組成、如何調整元素、樣式、屬性，以及如何設置適合的事件獲取必要的資訊來做出期望的視覺效果'><h1><title>進階JavaScript DOM 知識｜bacnotes備份筆記</title></h1>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/advanced-javascript-dom/'>
+
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='進階JavaScript DOM 知識｜bacnotes備份筆記'>
+<meta property='og:description' content='說明DOM的一些進階知識，DOM的架構組成、如何調整元素、樣式、屬性，以及如何設置適合的事件獲取必要的資訊來做出期望的視覺效果'>
+<meta property='og:url' content='https://bacnotes.github.io/p/advanced-javascript-dom/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-04-01T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-04-01T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/advanced-javascript-dom/pexels-na-urchin-2377173.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="進階JavaScript DOM 知識｜bacnotes備份筆記">
+<meta name="twitter:description" content="說明DOM的一些進階知識，DOM的架構組成、如何調整元素、樣式、屬性，以及如何設置適合的事件獲取必要的資訊來做出期望的視覺效果"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/advanced-javascript-dom/pexels-na-urchin-2377173.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <p class="site-name"><a href="/">bacnotes備份筆記</a></p>
+            <p class="site-description">記錄小小Junior的學習過程</p>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/advanced-javascript-dom/">
+                <img src="/p/advanced-javascript-dom/pexels-na-urchin-2377173_hu3d03a01dcc18bc5be0e67db3d8d209a6_1054351_800x0_resize_q75_box.jpg"
+                        srcset="/p/advanced-javascript-dom/pexels-na-urchin-2377173_hu3d03a01dcc18bc5be0e67db3d8d209a6_1054351_800x0_resize_q75_box.jpg 800w, /p/advanced-javascript-dom/pexels-na-urchin-2377173_hu3d03a01dcc18bc5be0e67db3d8d209a6_1054351_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="527" 
+                        loading="lazy"
+                        alt="Featured image of post 進階JavaScript DOM 知識｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <p class="article-title">
+            <a href="/p/advanced-javascript-dom/">進階JavaScript DOM 知識｜bacnotes備份筆記</a>
+        </p>
+    
+        
+        <p class="article-subtitle">
+            說明DOM的一些進階知識，DOM的架構組成、如何調整元素、樣式、屬性，以及如何設置適合的事件獲取必要的資訊來做出期望的視覺效果
+        </p>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 01, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 10 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>若沒有操作過 DOM 可以先閱讀 <a class="link" href="https://bacnotes.github.io/p/javascript-dom-manipulation/"  target="_blank" rel="noopener"
+    >DOM 操作基礎知識複習</a></p>
+<p><img src="/p/advanced-javascript-dom/dom.png"
+	width="1151"
+	height="571"
+	srcset="/p/advanced-javascript-dom/dom_hu79a7f18fe9546d847777467d3087d71f_224898_480x0_resize_box_3.png 480w, /p/advanced-javascript-dom/dom_hu79a7f18fe9546d847777467d3087d71f_224898_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="483px"
+	
+></p>
+<h2 id="node-節點">Node 節點</h2>
+<ul>
+<li>每一個 Dom tree 的元素都是一個 Node</li>
+<li>所有 HTML 元素可以透過繼承取得父節點方法(.addEventListener(), .cloneNode(), closet())</li>
+<li>:root 同 documentElement 同 html</li>
+</ul>
+<h3 id="屬性">屬性</h3>
+<ul>
+<li>node.textContent 表示此節點或其後代的文字內容</li>
+<li>node.childNodes 此節點的所有子節點</li>
+<li>node.parentNode 表示此節點的父節點</li>
+</ul>
+<h3 id="方法">方法</h3>
+<ul>
+<li>node.cloneNode() 回傳呼叫此方法之節點物件的拷貝</li>
+</ul>
+<h3 id="4-種類型">4 種類型</h3>
+<ol>
+<li>element: <!-- raw HTML omitted --> <!-- raw HTML omitted -->可以使用.querySelector(), .classList() 等方法</li>
+<li>text: 元素裡面的文字</li>
+<li>comment: <!-- raw HTML omitted --></li>
+<li>document: querySelector(), .createElement()</li>
+<li>event target 是所有節點的 parent node，下面有一個 window node，讓不同類型的 node，包含 element 跟 document 都可以監聽事件</li>
+</ol>
+<ul>
+<li>element 跟 document 都可以使用.querySelector()</li>
+</ul>
+<h2 id="元素">元素</h2>
+<h3 id="選取元素">選取元素</h3>
+<ul>
+<li>
+<p>現代 選取單個元素 document.querySelector(selector)</p>
+</li>
+<li>
+<p>現代 選取多個元素 document.querySelectorAll(selector)</p>
+</li>
+<li>
+<p>早期 選取單個元素 document.getElementById(id)</p>
+</li>
+<li>
+<p>早期 選取多個元素 document.getElementsByTagName(tagName)</p>
+</li>
+<li>
+<p>早期 選取多個元素 document.getElementsByClassName(name)</p>
+</li>
+<li>
+<p>選取元素內的 HTML 結構 element.innerHTML</p>
+</li>
+<li>
+<p>選取元素內的可見文字 element.innerText</p>
+</li>
+<li>
+<p>選取元素內的所有文字(包含空白) element.textContent</p>
+</li>
+</ul>
+<h3 id="創造與插入元素">創造與插入元素</h3>
+<ul>
+<li>創造與插入元素 element.insertAdjacentHTML(positionName, htmlText)</li>
+<li>positionName 包含：
+<ul>
+<li>&lsquo;beforebegin&rsquo;: 在 element 之前</li>
+<li>&lsquo;afterbegin&rsquo;: 在 element 裡面，第一個子元素之前</li>
+<li>&lsquo;beforeend&rsquo;: 在 element 裡面，最後一個子元素之後</li>
+<li>&lsquo;afterend&rsquo;: 在 element 之後</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;list&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>CSS<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    // will add here
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;afterbegin&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;li&gt;HTML&lt;/li&gt;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>創造元素 document.createElement(&lsquo;元素類型&rsquo;)</li>
+<li>插入元素在 element 裡面第一個 element.prepend(元素)</li>
+<li>插入元素在 element 裡面最尾巴 element.append(元素)</li>
+<li>插入元素平行 element 前面 element.before(元素)</li>
+<li>插入元素平行 element 後面 element.after(元素)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.header&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">message</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;cookie-message&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">message</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="sb">`we use cookie for ... and .... &lt;button class=&#34;btn btn--close-cookie&#34;&gt;Got it&lt;/button&gt; 
+</span></span></span><span class="line"><span class="cl"><span class="sb">	`</span>
+</span></span><span class="line"><span class="cl"><span class="nx">header</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">header</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 若先prepend後append只會有一個存在，因為指稱的元素是唯一的，希望上下都有新增需要用clone的方式，true代表子節點都有copy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">header</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">header</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">header</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="刪除元素">刪除元素</h3>
+<ul>
+<li>刪除元素 element.remove()</li>
+<li>刪除節點下子元素 node.removeChild()</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.btn--close-cookie&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// message.remove()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">message</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="class-樣式">class 樣式</h2>
+<h3 id="取得-class-樣式">取得 class 樣式</h3>
+<ul>
+<li>元素.style.屬性名</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span> <span class="c1">// rgb(55, 55, 55)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 無法取得沒有定義，被隱藏，或不存在於class裡面的屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="c1">//
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>getComputedStyle(元素).屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">color</span><span class="p">)</span> <span class="c1">// rgb(187, 187, 187)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">height</span><span class="p">)</span> <span class="c1">// 43.55px
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">message</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">height</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="新增切換刪除確認是否有樣式">新增/切換/刪除/確認是否有樣式</h3>
+<ul>
+<li>element.classList.add(&lsquo;hidden&rsquo;)</li>
+<li>element.classList.toggle(&lsquo;hidden&rsquo;)</li>
+<li>element.classList.remove(&lsquo;hidden&rsquo;)</li>
+<li>element.classList.contains(&lsquo;hidden&rsquo;)</li>
+</ul>
+<h3 id="設置-css-樣式">設置 CSS 樣式</h3>
+<ul>
+<li>style.setProperty(propertyName, value, priority)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// root元素設置顏色樣式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s1">&#39;--color-primary&#39;</span><span class="p">,</span> <span class="s1">&#39;orangered&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="屬性-1">屬性</h2>
+<h3 id="取得屬性">取得屬性</h3>
+<ul>
+<li>element.getAttribute(attributeName)</li>
+<li>會回傳該網頁元素的屬性。 如果該屬性不存在，其回傳值會是 null 或 &quot;&quot;</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">logo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;nav__logo&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// html只有定義 src alt class designer等屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// not standard attribute 無法直接dot notation取得
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">logo</span><span class="p">.</span><span class="nx">designer</span><span class="p">)</span> <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 可取得標準 / 非標準的屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">logo</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;designer&#39;</span><span class="p">))</span> <span class="c1">// Jonas
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">logo</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">))</span> <span class="c1">// img/logo.png 相對
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="新增切換刪除確認-屬性回傳屬性值">新增/切換/刪除/確認 屬性/回傳屬性值</h3>
+<ul>
+<li>element.setAttribute(name, value)</li>
+<li>element.toggleAttribute(name)</li>
+<li>element.removeAttribute(name)</li>
+<li>element.hasAttribute(name)</li>
+<li>element.getAttribute(name)</li>
+</ul>
+<h3 id="增加-data-屬性">增加 <code>data-*</code>屬性</h3>
+<ul>
+<li>html 裡面放 <code>data-*</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">data</span><span class="o">-</span><span class="nx">version</span><span class="o">-</span><span class="nx">num</span><span class="o">=</span><span class="s2">&#34;3&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;/img/logo.png&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">logo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">logo</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">versionNum</span><span class="p">)</span> <span class="c1">// 3
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="畫面元素屬性">畫面元素屬性</h2>
+<h3 id="元素寬高">元素寬高</h3>
+<p><img src="/p/advanced-javascript-dom/metric-all.svg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ul>
+<li>scrollWidth/scrollHeight(含 overflow 部分)</li>
+<li>offsetWidth/offsetHeight(含 border/scroll)</li>
+<li>clientWidth/clientHeight(不含 border/scroll)</li>
+<li>scrollTop(clientHeight 跟 scrollHeight 的差距)</li>
+</ul>
+<h3 id="元素相對於視窗的位置">元素相對於視窗的位置</h3>
+<ul>
+<li>element.getBoundingClientRect()</li>
+<li>會回傳一個 DOMRect 物件，包含
+<ul>
+<li>x/left:元素左上角 x 座標</li>
+<li>y/top:元素左上角 y 座標</li>
+<li>width: 寬度</li>
+<li>height: 高度</li>
+<li>right:元素右上角 x 座標</li>
+<li>bottom:元素右上角 y 座標</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>IE 跟 Edge 沒有 x 跟 y 屬性，但有 left 跟 top，超出視窗範圍時，數值就會變負</li>
+</ul>
+<h3 id="視窗水平垂直滾動位置">視窗水平/垂直滾動位置</h3>
+<ul>
+<li>window.pageXOffset, window.pageYOffset</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">btnScrollTo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.btn--scroll-to&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">section1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#section--1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">btnScrollTo</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">s1coords</span> <span class="o">=</span> <span class="nx">section1</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s1coords</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// DOMRect{ &#34;x&#34;: 0,&#34;y&#34;: 169.0908966064453 &#34;width&#34;: 411.81817626953125,&#34;height&#34;: 2953.29541015625,&#34;top&#34;: 169.0908966064453,&#34;right&#34;: 411.81817626953125,&#34;bottom&#34;: 3122.3863067626953,&#34;left&#34;: 0 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current scroll(x/y)&#39;</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">pageXOffset</span><span class="p">,</span> <span class="nx">pageYOffset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// current scroll(x/y) 0 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;height/width viewport&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="滾動到指定元素-scrollintoview">滾動到指定元素 scrollIntoView</h3>
+<p>会滚动元素的父容器，使被调用 scrollIntoView()的元素对用户可见。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">btnScrollTo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.btn--scroll-to&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">section1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#section--1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">btnScrollTo</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">s1coords</span> <span class="o">=</span> <span class="nx">section1</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s1coords</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// DOMRect{ &#34;x&#34;: 0,&#34;y&#34;: 169.0908966064453 &#34;width&#34;: 411.81817626953125,&#34;height&#34;: 2953.29541015625,&#34;top&#34;: 169.0908966064453,&#34;right&#34;: 411.81817626953125,&#34;bottom&#34;: 3122.3863067626953,&#34;left&#34;: 0 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current scroll(x/y)&#39;</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">pageXOffset</span><span class="p">,</span> <span class="nx">pageYOffset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// current scroll(x/y) 0 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;height/width viewport&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// old scroll method: current position+ current scroll
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// window.scrollTo({
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//   left: s1coords.left + window.pageXOffset,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//   top: s1coords.top + window.pageYOffset,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//   behavior: &#39;smooth&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// })
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">section1</span><span class="p">.</span><span class="nx">scrollIntoView</span><span class="p">({</span> <span class="nx">behavior</span><span class="o">:</span> <span class="s1">&#39;smooth&#39;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="事件類型跟事件處理器">事件類型跟事件處理器</h2>
+<ul>
+<li>event.currentTarget 指向事件绑定的元素</li>
+<li>event.target 指向事件觸發的元素</li>
+</ul>
+<h3 id="阻檔預設事件">阻檔預設事件</h3>
+<ul>
+<li>e.preventDefault()</li>
+<li>a 連結跳轉，若為頁面會自動跳轉到指定頁面，若為錨點#(a href=&quot;#&quot;)，瀏覽器滑動到最上方</li>
+<li>submit 點擊會送出資料且刷新畫面</li>
+</ul>
+<h3 id="設置或移除監聽">設置或移除監聽</h3>
+<ul>
+<li>eventTarget.addEventListener(type, listener, useCapture)</li>
+<li>eventTarget.removeEventListener(type, listener, useCapture)</li>
+<li>第一個參數為事件，第二個為執行{}內容，第三個是否捕捉冒泡事件</li>
+<li>第三個參數沒有設定時預設為 false 監聽冒泡事件，設定為 true 監聽捕捉事件</li>
+</ul>
+<p><img src="/p/advanced-javascript-dom/bubble.png"
+	width="886"
+	height="433"
+	srcset="/p/advanced-javascript-dom/bubble_hud943c0eb92f830bd5c835003f55b5b1f_124923_480x0_resize_box_3.png 480w, /p/advanced-javascript-dom/bubble_hud943c0eb92f830bd5c835003f55b5b1f_124923_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="204"
+		data-flex-basis="491px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">h1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">printHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">h1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">printHi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 3秒後移除監聽 便無法再觸發事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">h1</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">alertH1</span><span class="p">,</span> <span class="mi">3000</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="事件捕獲與事件冒泡">事件捕獲與事件冒泡</h2>
+<ul>
+<li>點擊目標元素觸發事件時，若元素父層也有註冊 click 事件，冒泡階段時也會觸發父層相關的函式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// rgb(255, 255, 255)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">randomInt</span> <span class="o">=</span> <span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">min</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">randomColor</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="sb">`rgb(</span><span class="si">${</span><span class="nx">randomInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">randomInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">randomInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="si">}</span><span class="sb">)`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.nav__link&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">randomColor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">===</span> <span class="k">this</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.nav__links&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">randomColor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.nav&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">randomColor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;nav&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="阻擋冒泡事件">阻擋冒泡事件</h3>
+<ul>
+<li>event.stopPropagation()阻止冒泡</li>
+</ul>
+<h2 id="事件委派跟頁面頁面導航">事件委派跟頁面頁面導航</h2>
+<ul>
+<li>event listener 加到父層容器</li>
+<li>決定哪個元素會觸發事件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.nav__links&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;nav__link&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="c1">// #section--1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">scrollIntoView</span><span class="p">({</span> <span class="nx">behavior</span><span class="o">:</span> <span class="s1">&#39;smooth&#39;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="遍歷-dom">遍歷 DOM</h2>
+<ul>
+<li>document 跟 element 都能使用的方法，就不特別標示，若為 node 特有的方法會標示 node</li>
+<li>querySelectorAll 會回傳指定的選擇器匹配的元素組成的 NodeList，也會遍歷深層的節點</li>
+</ul>
+<h3 id="往子層遍歷">往子層遍歷</h3>
+<ul>
+<li>node.childNodes() 子節點組成之集合，包含所有類型節點</li>
+<li>children() 子層 HTML collection，只有 element 類型</li>
+<li>firstElementChild() 第一個元素</li>
+<li>lastElementChild() 最後一個元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">h1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.highlight&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)</span> <span class="c1">// 較少用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">children</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">h1</span><span class="p">.</span><span class="nx">firstElementChild</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">h1</span><span class="p">.</span><span class="nx">lastElementChild</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;orangered&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="往父層遍歷">往父層遍歷</h3>
+<ul>
+<li>node.parentNode() 父節點</li>
+<li>node.parentElement() 通常跟上方結果一樣，比較常用這個</li>
+<li>element.closest(selectors): 回傳符合自身或上層（父子或祖孫）的第一個元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">h1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">)</span> <span class="c1">// 較少用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">h1</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.header&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span> <span class="o">=</span> <span class="s1">&#39;var(--gradient-secondary)&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="兄弟層遍歷">兄弟層遍歷</h3>
+<ul>
+<li>element.previousElementSibling 元素相同級別的前一個元素，沒有會回傳 null</li>
+<li>element.nextElementSibling 元素相同級別的後個元素，沒有會回傳 null</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">h1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">previousElementSibling</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">h1</span><span class="p">.</span><span class="nx">nextElementSibling</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[...</span><span class="nx">h1</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">.</span><span class="nx">children</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">!==</span> <span class="nx">h1</span><span class="p">)</span> <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="s1">&#39;scale(0.5)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="tab-應用">tab 應用</h3>
+<ul>
+<li>假設 tab html 結構為下方架構</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="mi">01</span><span class="o">&lt;</span><span class="err">/span&gt;some text</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 點擊的tab 加上active
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">tabs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.operations_tab&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">tabsContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;operations__tab-container&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">tabsContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;operations__content&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">tabsContainer</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 上方結構，clicked寫e.target 依照點選位置可能會列印出span或button
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 用closest可以選到button而不用擔心
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">clicked</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.operations__tab&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 沒有點到就返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">clicked</span><span class="p">)</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 還原 取消所有active樣式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">tabsContent</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;operations__tab--active&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 在被點選的元素加上active
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">clicked</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;operations__tab--active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 拿掉所有內容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">tabsContent</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;operations__content--active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 顯示對應內容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nb">document</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`.operations__content--</span><span class="si">${</span><span class="nx">clicked</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">tab</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;operations__content--active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="傳遞參數給事件處理器">傳遞參數給事件處理器</h2>
+<ul>
+<li>希望 nav 沒被 hover 的元素變透明</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">nav</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">img</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;img/logo.png&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alt</span><span class="o">=</span><span class="s1">&#39;Bankist logo&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__logo&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">id</span><span class="o">=</span><span class="s1">&#39;logo&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">designer</span><span class="o">=</span><span class="s1">&#39;Jonas&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="o">-</span><span class="nx">version</span><span class="o">-</span><span class="nx">number</span><span class="o">=</span><span class="s1">&#39;3.0&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">ul</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__links&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__item&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">a</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__link&#39;</span> <span class="nx">href</span><span class="o">=</span><span class="s1">&#39;#section--1&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Features</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/a&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/li&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__item&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">a</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__link&#39;</span> <span class="nx">href</span><span class="o">=</span><span class="s1">&#39;#section--2&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Operations</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/a&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/li&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__item&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">a</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__link&#39;</span> <span class="nx">href</span><span class="o">=</span><span class="s1">&#39;#section--3&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Testimonials</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/a&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/li&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">li</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__item&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">a</span> <span class="kr">class</span><span class="o">=</span><span class="s1">&#39;nav__link nav__link--btn btn--show-modal&#39;</span> <span class="nx">href</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Open</span> <span class="nx">account</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/a&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/li&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/ul&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/nav&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>mousein 跟 mouseout 傳不同參數到，mousein 透明度變 0.5，mouseout 變回 1</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// you can log the handleHover(0.1) to see that it returns a function which
+</span></span></span><span class="line"><span class="cl"><span class="c1">// has access to the argument(opacity value) passed to handleHover() due to closures
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">handleHover</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;nav__link&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">siblings</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.nav&#39;</span><span class="p">).</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.nav__link&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">logo</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.nav&#39;</span><span class="p">).</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nx">siblings</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">!==</span> <span class="nx">link</span><span class="p">)</span> <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="nx">o</span>
+</span></span><span class="line"><span class="cl">      <span class="p">})</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">logo</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="nx">o</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">nav</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">handleHover</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">nav</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">handleHover</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="intersectionobserver">IntersectionObserver()</h2>
+<ul>
+<li>const observer = new IntersectionObserver(handleIntersect, options);</li>
+<li>Intersection Observer API 會註冊一個 callback function，當被監聽的元素進入/退出另一個元素(或 viewport)，或目標跟元素(或 viewport)兩個元素相交部分大小改變，會執行 callback function，減少主要的執行緒監聽元素的 loading，給瀏覽器處理</li>
+<li>options 裡面有 root（null 代表 viewport)、rootMargin(移動到目標的相對位置)、threshold(設定目標進入可見範圍多少百分比後會觸發，1 表示元素全部進到 viewport 才觸發，0.1 表示交疊目標 10%才觸發，0 表示一碰到目標馬上觸發)</li>
+<li>可以透過<code>const [entry] = entries</code>，去調用 entry.target 元素執行對應操作</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 預設值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// root Must be the ancestor of the target. Defaults to the browser viewport
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">root</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">rootMargin</span><span class="o">:</span> <span class="s2">&#34;0px 0px 0px 0px&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">threshold</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>常用於 lazy loading、無限滾動、檢測廣告曝光、使用者看到某些區域時執行任務或放影片</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 展示entries參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">obsCallback</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">entries</span><span class="p">,</span> <span class="nx">observer</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">entries</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">entry</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">entry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obsOptions</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">root</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">observer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntersectionObserver</span><span class="p">(</span><span class="nx">obsCallback</span><span class="p">,</span> <span class="nx">obsOptions</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">section1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sticky-navbar">sticky navbar</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">sticky</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.header&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 動態計算nav高
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">navHeight</span> <span class="o">=</span> <span class="nx">nav</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">height</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">navHeight</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">stickToTop</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">entries</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Entries is always an array because the options in IntersectionObserver can have multiple thresholds, and for each threshold, there will be an entry in the array, even if there is only one threshold.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="p">[</span><span class="nx">entry</span><span class="p">]</span> <span class="o">=</span> <span class="nx">entries</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">entry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">entry</span><span class="p">.</span><span class="nx">isIntersecting</span><span class="p">)</span> <span class="nx">nav</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;sticky&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="nx">nav</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;sticky&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obsOptions</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">root</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">threshold</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 把視窗上右下左都內縮navHeight px 讓位置卡在距離新section進入前的navHeight
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">rootMargin</span><span class="o">:</span> <span class="sb">`-</span><span class="si">${</span><span class="nx">navHeight</span><span class="si">}</span><span class="sb">px`</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">headerObserver</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntersectionObserver</span><span class="p">(</span><span class="nx">stickToTop</span><span class="p">,</span> <span class="nx">obsOptions</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">headerObserver</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="滾動時圖片跳出顯示">滾動時圖片跳出顯示</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">hidden</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">visibility</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">section--hidden</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateY</span><span class="p">(</span><span class="mi">8</span><span class="kt">rem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// nodelist
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">allSections</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.section&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// callback
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">revealSection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">entries</span><span class="p">,</span> <span class="nx">observer</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">entry</span><span class="p">]</span> <span class="o">=</span> <span class="nx">entries</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">entry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">entry</span><span class="p">.</span><span class="nx">isIntersecting</span><span class="p">)</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;section--hidden&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// for performance
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">observer</span><span class="p">.</span><span class="nx">unobserve</span><span class="p">(</span><span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sectionObserver</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntersectionObserver</span><span class="p">(</span><span class="nx">revealSection</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">root</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">allSections</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">section</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 每個section都加上sectionObserver
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">sectionObserver</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">section</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 初始時先全部都隱藏
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">section</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;section--hidden&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lazy-loading">Lazy Loading</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">imgTargets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;img[data-src]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">loadImg</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">entries</span><span class="p">,</span> <span class="nx">observer</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">entry</span><span class="p">]</span> <span class="o">=</span> <span class="nx">entries</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">entry</span><span class="p">.</span><span class="nx">isIntersecting</span><span class="p">)</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// change photo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">src</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// remove filter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;lazy-img&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ebserver</span><span class="p">.</span><span class="nx">unobserve</span><span class="p">(</span><span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">imgObserver</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntersectionObserver</span><span class="p">(</span><span class="nx">loadImg</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">root</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">threshold</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 視窗擴大提早觸發下載
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">rootMargin</span><span class="o">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">imgTargets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">img</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">imgObserver</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">img</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="燈箱">燈箱</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">slider</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">slides</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.slide&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">btnLeft</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.slider__btn--left&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">btnRight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.slider__btn--right&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">dotsContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.dots&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">curSlide</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">maxSlide</span> <span class="o">=</span> <span class="nx">slides</span><span class="p">.</span><span class="nx">length</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">slider</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;slider&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 方便調適用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// const slider = document.querySelector(&#39;.slider&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// slider.style.tranform = &#39;scale(0.4) translateX(-800px)&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// slider.style.overflow = &#39;visible&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">createDots</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">slides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">dotContainer</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;beforeend&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="sb">`&lt;button class=&#34;dots__dot&#34; data-slide=&#34;</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">&#34;&gt;&lt;button&gt;`</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">activateDot</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">slide</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.dots+dot&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">dot</span> <span class="p">=&gt;</span> <span class="nx">dot</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;dots__dot--active&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`.data__dot[data-slide=&#34;</span><span class="si">${</span><span class="nx">slide</span><span class="si">}</span><span class="sb">&#34;]`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dots_dot--active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">goToSlide</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">slide</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">slides</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="sb">`translateX(</span><span class="si">${</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="nx">i</span> <span class="o">-</span> <span class="nx">slide</span><span class="p">)</span><span class="si">}</span><span class="sb">%)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">nextSlide</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">curSlide</span> <span class="o">===</span> <span class="nx">maxSlide</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curSlide</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curSlide</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">goToSlide</span><span class="p">(</span><span class="nx">curSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">activateDot</span><span class="p">(</span><span class="nx">curSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">prevSlide</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">curSlide</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curSlide</span> <span class="o">=</span> <span class="nx">maxSlide</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curSlide</span><span class="o">--</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">goToSlide</span><span class="p">(</span><span class="nx">curSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">activateDot</span><span class="p">(</span><span class="nx">curSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">createDots</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">activateDot</span><span class="p">(</span><span class="nx">curSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">goToSlide</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// curSlide= 0: 0 100% 200% 300%
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// curSlide= 1: -100% 0% 100% 200%
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Event Handlers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">btnRight</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">nextSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">btnLeft</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">prevSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">dotContainer</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;dots__dot&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="p">{</span> <span class="nx">slide</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">goToSlide</span><span class="p">(</span><span class="nx">slide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">activateDot</span><span class="p">(</span><span class="nx">curSlide</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">slider</span><span class="err">（）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="dom-events-生命週期">DOM events 生命週期</h2>
+<h3 id="domcontentloaded">DOMContentLoaded</h3>
+<ul>
+<li>HTML 解析完，DOM 建構完成後觸發</li>
+<li>不會等待 stylesheets, 圖片和 subframes 等外部資源完成讀取</li>
+<li>在 DOMContentLoaded 前，所有 JavaScript 腳本應該被下載跟執行</li>
+<li>我們的 JavaScript 都放在 body 尾端，所以不用監聽這個事件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;HTML parsed and DOM tree built&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="load">load</h3>
+<ul>
+<li>發生在加載完目標資源、該資源依賴的其他資源時</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;page fully loaded&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="beforeunload">beforeunload</h3>
+<ul>
+<li>瀏覽器關閉或刷新，觸發一個 dialog，當前頁面不會直接關閉，可以點確定或取消</li>
+<li>需要搭配 e.preventDefault 使用</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;beforeunload&#39;</span><span class="p">,</span> <span class="nx">funciton</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">returnValue</span><span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>瀏覽器渲染畫面流程：建立 DOM → 建立 CSSOM → 合併為 Render Tree → Layout（空間位置排版佈局） → Paint（繪製畫面，轉換成像素做呈現）</li>
+<li>由於 JavaScript 在執行時，會停止渲染動作，阻塞 DOM 和 CSSOM 的建構過程</li>
+<li>因此會建議把 script 放在 HTML 內容下方，也就是<code>&lt;/body&gt;</code>前，等於 HTML 都解析完成了才會去 fetch 跟執行 script，但如果要優化提早在head區塊先下載，可以考慮defer跟async屬性</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./script.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果為了效能想提早載入資源而希望把 script 放在<code>&lt;head&gt;</code>區塊，需要加一個<code>defer</code>屬性避免阻擋渲染過程（DOM 還在建立），保證執行順序跟程式碼相同，通常是最佳解</li>
+<li>若使用<code>async</code>屬性，下載後會立刻執行但不保證執行順序，且請求回來後會停止解析，還是可能遇到 DOM 跟 CSSOM 還在生成，選不到元素，適合用在不會針對操作 DOM 的 script，或是第三方的函式庫（e.g. Google Analytics）</li>
+</ul>
+<p><img src="/p/advanced-javascript-dom/defer.png"
+	width="782"
+	height="378"
+	srcset="/p/advanced-javascript-dom/defer_hu6b9f353e418dae82fb0d891b6f551bfd_81224_480x0_resize_box_3.png 480w, /p/advanced-javascript-dom/defer_hu6b9f353e418dae82fb0d891b6f551bfd_81224_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="496px"
+	
+></p>
+<p>以上為<a class="link" href="https://www.udemy.com/course/the-complete-javascript-course/"  title="The Complete JavaScript Course - From Zero to Expert"
+     target="_blank" rel="noopener"
+    >The Complete JavaScript Course - From Zero to Expert</a>的小筆記，附上連結推推這堂課</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#node-節點">Node 節點</a>
+      <ul>
+        <li><a href="#屬性">屬性</a></li>
+        <li><a href="#方法">方法</a></li>
+        <li><a href="#4-種類型">4 種類型</a></li>
+      </ul>
+    </li>
+    <li><a href="#元素">元素</a>
+      <ul>
+        <li><a href="#選取元素">選取元素</a></li>
+        <li><a href="#創造與插入元素">創造與插入元素</a></li>
+        <li><a href="#刪除元素">刪除元素</a></li>
+      </ul>
+    </li>
+    <li><a href="#class-樣式">class 樣式</a>
+      <ul>
+        <li><a href="#取得-class-樣式">取得 class 樣式</a></li>
+        <li><a href="#新增切換刪除確認是否有樣式">新增/切換/刪除/確認是否有樣式</a></li>
+        <li><a href="#設置-css-樣式">設置 CSS 樣式</a></li>
+      </ul>
+    </li>
+    <li><a href="#屬性-1">屬性</a>
+      <ul>
+        <li><a href="#取得屬性">取得屬性</a></li>
+        <li><a href="#新增切換刪除確認-屬性回傳屬性值">新增/切換/刪除/確認 屬性/回傳屬性值</a></li>
+        <li><a href="#增加-data-屬性">增加 <code>data-*</code>屬性</a></li>
+      </ul>
+    </li>
+    <li><a href="#畫面元素屬性">畫面元素屬性</a>
+      <ul>
+        <li><a href="#元素寬高">元素寬高</a></li>
+        <li><a href="#元素相對於視窗的位置">元素相對於視窗的位置</a></li>
+        <li><a href="#視窗水平垂直滾動位置">視窗水平/垂直滾動位置</a></li>
+        <li><a href="#滾動到指定元素-scrollintoview">滾動到指定元素 scrollIntoView</a></li>
+      </ul>
+    </li>
+    <li><a href="#事件類型跟事件處理器">事件類型跟事件處理器</a>
+      <ul>
+        <li><a href="#阻檔預設事件">阻檔預設事件</a></li>
+        <li><a href="#設置或移除監聽">設置或移除監聽</a></li>
+      </ul>
+    </li>
+    <li><a href="#事件捕獲與事件冒泡">事件捕獲與事件冒泡</a>
+      <ul>
+        <li><a href="#阻擋冒泡事件">阻擋冒泡事件</a></li>
+      </ul>
+    </li>
+    <li><a href="#事件委派跟頁面頁面導航">事件委派跟頁面頁面導航</a></li>
+    <li><a href="#遍歷-dom">遍歷 DOM</a>
+      <ul>
+        <li><a href="#往子層遍歷">往子層遍歷</a></li>
+        <li><a href="#往父層遍歷">往父層遍歷</a></li>
+        <li><a href="#兄弟層遍歷">兄弟層遍歷</a></li>
+        <li><a href="#tab-應用">tab 應用</a></li>
+      </ul>
+    </li>
+    <li><a href="#傳遞參數給事件處理器">傳遞參數給事件處理器</a></li>
+    <li><a href="#intersectionobserver">IntersectionObserver()</a>
+      <ul>
+        <li><a href="#sticky-navbar">sticky navbar</a></li>
+        <li><a href="#滾動時圖片跳出顯示">滾動時圖片跳出顯示</a></li>
+      </ul>
+    </li>
+    <li><a href="#lazy-loading">Lazy Loading</a></li>
+    <li><a href="#燈箱">燈箱</a></li>
+    <li><a href="#dom-events-生命週期">DOM events 生命週期</a>
+      <ul>
+        <li><a href="#domcontentloaded">DOMContentLoaded</a></li>
+        <li><a href="#load">load</a></li>
+        <li><a href="#beforeunload">beforeunload</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

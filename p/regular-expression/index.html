@@ -308,9 +308,9 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 匹配完全符合abc的字串
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/abc/</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/abc/</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用建構函式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;abc&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="flag-寫在後面">Flag: 寫在//後面</h3>
@@ -337,14 +337,14 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/ab*/g</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&#34;abbcdefabh&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/ab*/g</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;abbcdefabh&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">((</span><span class="nx">arr</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="s2">&#34;Found &#34;</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;. &#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">msg</span> <span class="o">+=</span> <span class="s2">&#34;Next match starts at &#34;</span> <span class="o">+</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="s1">&#39;Found &#39;</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;. &#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">msg</span> <span class="o">+=</span> <span class="s1">&#39;Next match starts at &#39;</span> <span class="o">+</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">lastIndex</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Found abb. Next match starts at 3
@@ -380,11 +380,11 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Match &#34;quick brown&#34; followed by &#34;jumps&#34;, ignoring characters in between
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Remember &#34;brown&#34; and &#34;jumps&#34;
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Ignore case
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">inputValue</span> <span class="o">=</span> <span class="s2">&#34;The Quick Brown Fox Jumps Over The Lazy Dog&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/quick\s(brown).+?(jumps)/gi</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">inputValue</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">inputValue</span> <span class="o">=</span> <span class="s1">&#39;The Quick Brown Fox Jumps Over The Lazy Dog&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/quick\s(brown).+?(jumps)/gi</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">inputValue</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// [
 </span></span></span><span class="line"><span class="cl"><span class="c1">//  &#39;Quick Brown Fox Jumps&#39;,
@@ -445,7 +445,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>身分證</p>
@@ -454,7 +454,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^[A-Z]{1}[1-2]{1}[0-9]{8}$/</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^[A-Z]{1}[1-2]{1}[0-9]{8}$/</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>郵遞區號</p>
@@ -463,7 +463,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^[1-9]\d{4}$/</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^[1-9]\d{4}$/</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>手機</p>
@@ -472,7 +472,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^09\d{8}$/</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^09\d{8}$/</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>密碼要大小寫英文+數字+長度至少 8</p>
@@ -481,7 +481,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>日期</p>
@@ -496,11 +496,11 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 日
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/(([0-2][1-9])|10|20|30|31)/</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/(([0-2][1-9])|10|20|30|31)/</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 月
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/((0[1-9])|(1[0-2]))/</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/((0[1-9])|(1[0-2]))/</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 年
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/(19|20)\d{2}/</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/(19|20)\d{2}/</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>正規表達式測試工具 <a class="link" href="https://www.regextester.com/"  target="_blank" rel="noopener"

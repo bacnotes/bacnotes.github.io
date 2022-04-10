@@ -302,7 +302,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">===</span> <span class="mf">1.0</span><span class="p">);</span> <span class="c1">// true
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">===</span> <span class="mf">1.0</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -315,9 +315,9 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">);</span> <span class="c1">// 0.30000000000000004
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.3</span><span class="p">);</span> <span class="c1">// 0.3
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">===</span> <span class="mf">0.3</span><span class="p">);</span> <span class="c1">// false
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">)</span> <span class="c1">// 0.30000000000000004
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1">// 0.3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">===</span> <span class="mf">0.3</span><span class="p">)</span> <span class="c1">// false
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -330,31 +330,29 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="s2">&#34;23&#34;</span><span class="p">));</span> <span class="c1">// 23
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="s1">&#39;23&#39;</span><span class="p">))</span> <span class="c1">// 23
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="-運算子"><code>+</code> 運算子</h3>
 <ul>
-<li>
-<ul>
 <li>是 Number() 的簡寫</li>
-</ul>
-</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="s2">&#34;23&#34;</span><span class="p">);</span> <span class="c1">// 23
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="s1">&#39;23&#39;</span><span class="p">)</span> <span class="c1">// 23
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="解析數字">解析數字</h2>
+</div><h2 id="字串轉數字-1">字串轉數字</h2>
 <h3 id="numberparseintstring-radix">Number.parseInt(string[, radix])</h3>
 <ul>
 <li>此方法跟全局 parseInt()一樣</li>
-<li>第一個參數為待轉成數字的字串。若 string 參數類型不是字串的話，會先將其轉成字串（相當於先執行 ToString 再執行 parseInt）空白值會被忽略，如果遇到不能轉為數字的字符，就不再進行下去，回傳已經轉好的部分，若無法轉為數自回傳 NaN</li>
-<li>第二個參數為進位數，從 2 到 36，能代表該進位系統的數字。如果沒有指定 radix 的話，給出的結果會按照實做不同而異，通常預設值不是 10 進位，強烈建議填寫好進位參數避免非預期 bug</li>
+<li>若傳入參數不是字串的話，會先將其轉成字串（相當於先執行 ToString 再執行 parseInt）</li>
+<li>由左至右掃描，空白值會被忽略，遇到非數值字元，就不再進行下去，回傳已經轉好的部分</li>
+<li>若整個字串都是非數值，回傳 NaN。</li>
+<li>第二個參數為進位數，強烈建議填寫好進位參數避免非預期 bug，進位數從 2 到 36，能代表該進位系統的數字。如果沒有指定 radix 的話，給出的結果會按照實做不同而異，通常預設值不是 10 進位，</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -372,23 +370,23 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// parsing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span> <span class="o">===</span> <span class="nb">parseInt</span><span class="p">;</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span> <span class="o">===</span> <span class="nb">parseInt</span> <span class="c1">// true
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;30px&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">// 30
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="c1">// 30
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 開頭不能為字母
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;e23&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">// NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;e23&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="c1">// NaN
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 整數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;2.5rem&#34;</span><span class="p">));</span> <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;2.5rem&#39;</span><span class="p">))</span> <span class="c1">// 2
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 浮點數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34;2.5rem&#34;</span><span class="p">));</span> <span class="c1">// 2.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;2.5rem&#39;</span><span class="p">))</span> <span class="c1">// 2.5
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="nan-系列">NaN 系列</h2>
 <h3 id="何時出現-nan-not-a-number">何時出現 NaN (Not a Number)</h3>
 <ul>
 <li>NaN 是一個 Number 型態但強制轉成數字後無法用任何數字表現的結果</li>
-<li>NaN !== NaN // true</li>
+<li>NaN 不等於 NaN，NaN !== NaN // true</li>
 <li>回傳未定義 not defined</li>
 <li>超出範圍</li>
 <li>運算式有一個參數是 NaN</li>
@@ -420,23 +418,23 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 正常使用狀況下
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true 是NaN 回傳true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// true 是NaN 回傳true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">({});</span> <span class="c1">// true 不是數字 回傳true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;37,5&#34;</span><span class="p">);</span> <span class="c1">// true 不是數字 回傳true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">37</span><span class="p">);</span> <span class="c1">// false 是數字 回傳false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)</span> <span class="c1">// true 是NaN 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span> <span class="c1">// true 是NaN 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">({})</span> <span class="c1">// true 不是數字 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;37,5&#39;</span><span class="p">)</span> <span class="c1">// true 不是數字 回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span> <span class="c1">// false 是數字 回傳false
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 布林值強制轉型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// false 不是數字 強制轉1 變成數字
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// false 不是數字 強制轉0 變成數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="c1">// false 不是數字 強制轉1 變成數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span> <span class="c1">// false 不是數字 強制轉0 變成數字
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 字串強制轉型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;37&#34;</span><span class="p">);</span> <span class="c1">// false  不是數字 強制轉37 為數字
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;37.37&#34;</span><span class="p">);</span> <span class="c1">// false  不是數字 強制轉37.37 為數字
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span> <span class="c1">// false: 轉0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;37&#39;</span><span class="p">)</span> <span class="c1">// false  不是數字 強制轉37 為數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;37.37&#39;</span><span class="p">)</span> <span class="c1">// false  不是數字 強制轉37.37 為數字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">// false: 轉0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 數字混合字串
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;123ABC&#34;</span><span class="p">);</span> <span class="c1">// true:  Number(&#34;123ABC&#34;)無法轉成功，為 NaN; 若parseInt(&#34;123ABC&#34;)會轉 123,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;123ABC&#39;</span><span class="p">)</span> <span class="c1">// true:  Number(&#34;123ABC&#34;)無法轉成功，為 NaN; 若parseInt(&#34;123ABC&#34;)會轉 123,
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="numberisnan">Number.isNaN()</h3>
@@ -452,10 +450,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">// false 不是NaN
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s2">&#34;20&#34;</span><span class="p">));</span> <span class="c1">// false 不是NaN
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="o">+</span><span class="s2">&#34;20x&#34;</span><span class="p">));</span> <span class="c1">// true  表達式+&#39;20x&#39;為NaN
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false Infinity不是NaN
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span> <span class="c1">// false 不是NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;20&#39;</span><span class="p">))</span> <span class="c1">// false 不是NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="o">+</span><span class="s1">&#39;20x&#39;</span><span class="p">))</span> <span class="c1">// true  表達式+&#39;20x&#39;為NaN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">// false Infinity不是NaN
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="numberisfinite">Number.isFinite()</h3>
@@ -470,10 +468,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="s2">&#34;20&#34;</span><span class="p">));</span> <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="o">+</span><span class="s2">&#34;20x&#34;</span><span class="p">));</span> <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="s1">&#39;20&#39;</span><span class="p">))</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="o">+</span><span class="s1">&#39;20x&#39;</span><span class="p">))</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isFinite</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">// false
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="numberisinteger">Number.isInteger()</h3>
@@ -488,10 +486,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mf">20.0</span><span class="p">));</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mf">20.5</span><span class="p">));</span> <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// false
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mf">20.0</span><span class="p">))</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mf">20.5</span><span class="p">))</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="mi">23</span> <span class="o">/</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">// false
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="math-運算系列取整數餘數">Math 運算系列/取整數/餘數</h2>
@@ -507,10 +505,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">));</span> <span class="c1">// 5
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 25
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">25</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 5   1 / 2需要括號 不然會算成12.5
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">8</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span> <span class="c1">// 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// 25
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">25</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">// 5   1 / 2需要括號 不然會算成12.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">8</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="mathmaxmathmin">Math.max()、Math.min()</h3>
@@ -526,11 +524,11 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">&#34;23&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// &#39;23&#39;也會強制轉型 23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s2">&#34;23px&#34;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 轉失敗 NaN
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;23&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">// &#39;23&#39;也會強制轉型 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;23px&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">// 轉失敗 NaN
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// 2
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">// 2
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="圓周率-pi">圓周率 Pi</h3>
@@ -541,7 +539,7 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Math.PI 為3.14159...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34;10px&#34;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">//314.159...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;10px&#39;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">//314.159...
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="mathrandom">Math.random()</h3>
@@ -559,13 +557,13 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">());</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 隨機產生 0... - 5...的小數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 隨機產生 1 - 6 的整數
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="mathtrunc">Math.trunc()</h3>
@@ -584,11 +582,11 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 隨機產生1~6的整數 骰子
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 產生一個介於min與max的隨機數(包含min max)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getRandomIntInclusive</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nx">min</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -602,8 +600,8 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">23.9</span><span class="p">));</span> <span class="c1">// 24
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">23.9</span><span class="p">))</span> <span class="c1">// 24
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="mathceil">Math.ceil()</h3>
@@ -618,10 +616,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 24
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">23.9</span><span class="p">));</span> <span class="c1">// 24
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// -23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">23.9</span><span class="p">));</span> <span class="c1">// -23
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// 24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">23.9</span><span class="p">))</span> <span class="c1">// 24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// -23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="o">-</span><span class="mf">23.9</span><span class="p">))</span> <span class="c1">// -23
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="mathfloor">Math.floor()</h3>
@@ -641,14 +639,26 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="s2">&#34;23.9&#34;</span><span class="p">));</span> <span class="c1">// 23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// -24
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="s1">&#39;23.9&#39;</span><span class="p">))</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// -24
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 正數跟Math.trunc() 相同
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// 23
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 負數跟Math.trunc() 不同
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">));</span> <span class="c1">// -23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="o">-</span><span class="mf">23.3</span><span class="p">))</span> <span class="c1">// -23
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="heading">~~</h3>
+<ul>
+<li>~~  將浮點數轉為整數，其運作方式為反轉兩次而得到 Math.trunc()的結果</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">~~-</span><span class="mf">29.8</span> <span class="o">-</span> <span class="c1">// -29
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="numberprototypetofixed">Number.prototype.toFixed()</h3>
@@ -665,10 +675,10 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Rounding decimals
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.7</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.7</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.7</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.7</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="mf">2.345</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="餘數運算子-">餘數運算子 <code>%</code></h3>
@@ -716,10 +726,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">diameter1</span> <span class="o">=</span> <span class="mi">2082432342</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">diameter2</span> <span class="o">=</span> <span class="mi">2_082_432_342</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">diameter1</span><span class="p">);</span> <span class="c1">// 2082432342
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">diameter2</span><span class="p">);</span> <span class="c1">// 2082432342
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">diameter1</span> <span class="o">=</span> <span class="mi">2082432342</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">diameter2</span> <span class="o">=</span> <span class="mi">2_082_432_342</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">diameter1</span><span class="p">)</span> <span class="c1">// 2082432342
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">diameter2</span><span class="p">)</span> <span class="c1">// 2082432342
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -731,8 +741,8 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mf">15.000</span><span class="nx">_3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fee</span><span class="p">);</span> <span class="c1">// 15.0003
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fee</span> <span class="o">=</span> <span class="mf">15.000</span><span class="nx">_3</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fee</span><span class="p">)</span> <span class="c1">// 15.0003
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="bigint">BigInt</h2>
@@ -749,10 +759,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_SAFE_INTEGER</span><span class="p">);</span> <span class="c1">// 9007199254740991
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">53</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 9007199254740991
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">23423412312311</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// 23423412312311n
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BigInt</span><span class="p">(</span><span class="mi">23423412312311</span><span class="p">));</span> <span class="c1">// 23423412312311n
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_SAFE_INTEGER</span><span class="p">)</span> <span class="c1">// 9007199254740991
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">53</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 9007199254740991
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">23423412312311</span><span class="nx">n</span><span class="p">)</span> <span class="c1">// 23423412312311n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BigInt</span><span class="p">(</span><span class="mi">23423412312311</span><span class="p">))</span> <span class="c1">// 23423412312311n
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="bigint-運算">BigInt 運算</h2>
@@ -771,13 +781,13 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">huge</span> <span class="o">=</span> <span class="mi">2342341231242352</span><span class="nx">n</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">23</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">huge</span> <span class="o">=</span> <span class="mi">2342341231242352</span><span class="nx">n</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span> <span class="o">+</span> <span class="nx">huge</span><span class="p">);</span> <span class="c1">// 數字跟BigInt相加會 error 因為不同類型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BigInt</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="o">+</span> <span class="nx">huge</span><span class="p">);</span> <span class="c1">// 2342341231242375n
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span> <span class="o">+</span> <span class="nx">huge</span><span class="p">)</span> <span class="c1">// 數字跟BigInt相加會 error 因為不同類型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BigInt</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="o">+</span> <span class="nx">huge</span><span class="p">)</span> <span class="c1">// 2342341231242375n
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">12</span><span class="nx">n</span> <span class="o">/</span> <span class="mi">3</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// 4n
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">12</span><span class="nx">n</span> <span class="o">/</span> <span class="mi">3</span><span class="nx">n</span><span class="p">)</span> <span class="c1">// 4n
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -790,9 +800,9 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">);</span> <span class="c1">//true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">==</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// true
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">)</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">20</span><span class="p">)</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">20</span><span class="nx">n</span> <span class="o">==</span> <span class="mi">20</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="建立日期時間物件">建立日期時間物件</h2>
@@ -807,8 +817,8 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">start</span><span class="p">);</span> <span class="c1">// 1647780438069
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="c1">// 1647780438069
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="new-date-4-種建立方式">new Date() 4 種建立方式</h3>
@@ -821,7 +831,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Mon Jan 30 2017 00:00:00 GMT+0800
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -834,7 +844,7 @@ if (!doNotTrack) {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Thu Jan 01 1970 08:00:00 GMT+0800
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -849,8 +859,8 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&#34;2010/08/17 12:09:36&#34;</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&#34;Jan 30 2017&#34;</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2010/08/17 12:09:36&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;Jan 30 2017&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Mon Jan 30 2017 00:00:00 GMT+0800
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -867,9 +877,9 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Sun Nov 19 2017 14:23:01 GMT+0800
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Wed Nov 01 2017 00:00:00 GMT+0800
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -891,11 +901,11 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span> <span class="c1">// 2037
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">());</span> <span class="c1">// 10
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span> <span class="c1">// 19
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">())</span> <span class="c1">// 2037
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">())</span> <span class="c1">// 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getDate</span><span class="p">())</span> <span class="c1">// 19
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="修改日期時間物件的值">修改日期時間物件的值</h3>
@@ -939,9 +949,9 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">());</span> <span class="c1">// 2037-11-19T06:22:00.000Z
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">())</span> <span class="c1">// 2037-11-19T06:22:00.000Z
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="時間轉毫秒">時間轉毫秒</h3>
@@ -955,9 +965,9 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Thu Nov 19 2037 14:22:00 GMT+0800
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getTime</span><span class="p">());</span> <span class="c1">// 2142224520000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">.</span><span class="nx">getTime</span><span class="p">())</span> <span class="c1">// 2142224520000
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="時間的運算">時間的運算</h3>
@@ -975,13 +985,13 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">);</span> <span class="c1">// 2142172800000
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">future</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">)</span> <span class="c1">// 2142172800000
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">calcDaysPassed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">date1</span><span class="p">,</span> <span class="nx">date2</span><span class="p">)</span> <span class="p">=&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">days</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">days</span><span class="p">);</span> <span class="c1">// 5
+</span></span><span class="line"><span class="cl">  <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">days</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2037</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">days</span><span class="p">)</span> <span class="c1">// 5
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="日期時間數字格式化-internationalization-api">日期時間/數字格式化 Internationalization API</h2>
@@ -1017,23 +1027,23 @@ if (!doNotTrack) {
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">UTC</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">738</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">UTC</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">738</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// results may vary by region
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">hour</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">minute</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">day</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">month</span><span class="o">:</span> <span class="s2">&#34;long&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="s2">&#34;numeric&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hour</span><span class="o">:</span> <span class="s1">&#39;numeric&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">minute</span><span class="o">:</span> <span class="s1">&#39;numeric&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">day</span><span class="o">:</span> <span class="s1">&#39;numeric&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">month</span><span class="o">:</span> <span class="s1">&#39;long&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span><span class="o">:</span> <span class="s1">&#39;numeric&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s2">&#34;en-US&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 12/20/2020
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dateText</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s2">&#34;ja&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateText</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dateText</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s1">&#39;ja&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dateText</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 2020年12月20日 上午11:23
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1059,16 +1069,16 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">formatDate</span><span class="p">(</span><span class="nx">date</span><span class="p">,</span> <span class="nx">locale</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">calcDaysPassed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">date1</span><span class="p">,</span> <span class="nx">date2</span><span class="p">)</span> <span class="p">=&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">date2</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">daysPassed</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="nx">date</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">daysPassed</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">daysPassed</span> <span class="o">=</span> <span class="nx">calcDaysPassed</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="nx">date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">daysPassed</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Today&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Yesterday&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">)</span> <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">daysPassed</span><span class="si">}</span><span class="sb"> days ago`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;Today&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;Yesterday&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">dayPassed</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">)</span> <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">daysPassed</span><span class="si">}</span><span class="sb"> days ago`</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="nx">locale</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="nx">locale</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1112,35 +1122,35 @@ if (!doNotTrack) {
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mf">3882342.23</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mf">3882342.23</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;unit&#34;</span><span class="p">,</span> <span class="c1">// percent, currency
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">unit</span><span class="o">:</span> <span class="s2">&#34;mile-per-hour&#34;</span><span class="p">,</span> <span class="c1">// celsius
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">currency</span><span class="o">:</span> <span class="s2">&#34;EUR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;unit&#39;</span><span class="p">,</span> <span class="c1">// percent, currency
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">unit</span><span class="o">:</span> <span class="s1">&#39;mile-per-hour&#39;</span><span class="p">,</span> <span class="c1">// celsius
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">currency</span><span class="o">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">useGrouping</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s2">&#34;en-US&#34;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">num</span><span class="p">));</span> <span class="c1">// 3882342.23 mph
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s2">&#34;de-De&#34;</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">num</span><span class="p">));</span> <span class="c1">// 3.882.342,23
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">12345679</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s2">&#34;de-DE&#34;</span><span class="p">,</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;currency&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">currency</span><span class="o">:</span> <span class="s2">&#34;EUR&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">format</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 123.456,79 €
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">formatCurrency</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">locale</span><span class="p">,</span> <span class="nx">currency</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="nx">locale</span><span class="p">,</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;currency&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">currency</span><span class="o">:</span> <span class="nx">currency</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">format</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">formatCurrency</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s2">&#34;zh-TW&#34;</span><span class="p">,</span> <span class="s2">&#34;USD&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">num</span><span class="p">))</span> <span class="c1">// 3882342.23 mph
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s1">&#39;de-De&#39;</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="nx">num</span><span class="p">))</span> <span class="c1">// 3.882.342,23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">12345679</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="s1">&#39;de-DE&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;currency&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currency</span><span class="o">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">format</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 123.456,79 €
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">locale</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">formatCurrency</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">locale</span><span class="p">,</span> <span class="nx">currency</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">NumberFormat</span><span class="p">(</span><span class="nx">locale</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;currency&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currency</span><span class="o">:</span> <span class="nx">currency</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">format</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">formatCurrency</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;zh-TW&#39;</span><span class="p">,</span> <span class="s1">&#39;USD&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &#39;US$123.00&#39;
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1167,16 +1177,16 @@ if (!doNotTrack) {
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;olives&#34;</span><span class="p">,</span> <span class="s2">&#34;spinach&#34;</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;olives&#39;</span><span class="p">,</span> <span class="s1">&#39;spinach&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nx">ingrediant1</span><span class="p">,</span> <span class="nx">ingrediant2</span><span class="p">)</span> <span class="p">=&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Sending </span><span class="si">${</span><span class="nx">ingrediant1</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">ingrediant2</span><span class="si">}</span><span class="sb">`</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">  <span class="mi">3000</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="p">...</span><span class="nx">allergyList</span>
-</span></span><span class="line"><span class="cl"><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;waiting...&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">Timer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;waiting...&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">Timer</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="setinterval">setInterval()</h3>
@@ -1193,9 +1203,9 @@ if (!doNotTrack) {
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">now</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="自動登出">自動登出</h3>
@@ -1227,29 +1237,32 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">startLogOutTimer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">tick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">min</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nx">time</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">sec</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">someElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">min</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">sec</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">min</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">trunc</span><span class="p">(</span><span class="nx">time</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">sec</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">someElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">min</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">sec</span><span class="si">}</span><span class="sb">`</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">time</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// change into some logout UI
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">time</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">time</span><span class="o">--</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span> <span class="c1">// sec
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1">// sec
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">  <span class="nx">tick</span><span class="p">();</span> <span class="c1">// call the timer every second
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">timer</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tick</span><span class="p">()</span> <span class="c1">// call the timer every second
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">timer</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// reset timer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">timer</span> <span class="o">=</span> <span class="nx">startLogOutTimer</span><span class="p">();</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">timer</span> <span class="o">=</span> <span class="nx">startLogOutTimer</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><p>以上為<a class="link" href="https://www.udemy.com/course/the-complete-javascript-course/"  title="The Complete JavaScript Course - From Zero to Expert"
+     target="_blank" rel="noopener"
+    >The Complete JavaScript Course - From Zero to Expert</a>的小筆記，附上連結推推這堂課</p>
+
 </section>
 
 
@@ -1455,7 +1468,7 @@ if (!doNotTrack) {
         <li><a href="#-運算子"><code>+</code> 運算子</a></li>
       </ul>
     </li>
-    <li><a href="#解析數字">解析數字</a>
+    <li><a href="#字串轉數字-1">字串轉數字</a>
       <ul>
         <li><a href="#numberparseintstring-radix">Number.parseInt(string[, radix])</a></li>
       </ul>
@@ -1479,6 +1492,7 @@ if (!doNotTrack) {
         <li><a href="#mathround">Math.round()</a></li>
         <li><a href="#mathceil">Math.ceil()</a></li>
         <li><a href="#mathfloor">Math.floor()</a></li>
+        <li><a href="#heading">~~</a></li>
         <li><a href="#numberprototypetofixed">Number.prototype.toFixed()</a></li>
         <li><a href="#餘數運算子-">餘數運算子 <code>%</code></a></li>
       </ul>

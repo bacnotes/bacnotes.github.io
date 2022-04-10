@@ -474,10 +474,10 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="新增切換刪除確認-屬性回傳屬性值">新增/切換/刪除/確認 屬性/回傳屬性值</h3>
@@ -490,11 +490,11 @@ if (!doNotTrack) {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">toggleAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">hasAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span> <span class="c1">// 是否包含指定屬性 return boolean
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">);</span> <span class="c1">// 回傳指定屬性值 e.g. 18rem 不存在會回傳null
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">toggleAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">hasAttribute</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">);</span> <span class="c1">// 是否包含指定屬性 return boolean
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">);</span> <span class="c1">// 回傳指定屬性值 e.g. 18rem 不存在會回傳null
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="設置監聽事件">設置監聽事件</h2>
@@ -685,6 +685,9 @@ if (!doNotTrack) {
 <li>HTMLCollection 為 HTML 元素集合，只有元素節點，不包含其他節點</li>
 <li>HTMLCollection 多一個 nameItem()方法，可以回傳集合中 name 屬性和 id 屬性值的元素</li>
 </ul>
+<p>以上為<a class="link" href="https://www.udemy.com/course/the-complete-javascript-course/"  title="The Complete JavaScript Course - From Zero to Expert"
+     target="_blank" rel="noopener"
+    >The Complete JavaScript Course - From Zero to Expert</a>的小筆記，附上連結推推這堂課</p>
 
 </section>
 
