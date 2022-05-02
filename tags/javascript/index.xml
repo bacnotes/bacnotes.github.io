@@ -806,7 +806,7 @@ curl -o- &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/
         <guid>https://bacnotes.github.io/p/async-javascript/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/async-javascript/pexels-uzunov-rostislav-10458835.jpg" alt="Featured image of post 非同步 JavaScript 知識｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;非同步-javascript&#34;&gt;非同步 JavaScript&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;code 由上到一行行下執行&lt;/li&gt;
+&lt;li&gt;code 由上往下一行行執行&lt;/li&gt;
 &lt;li&gt;想像電腦在 execution thread(部分 execution context)，但這樣的機制容易被卡住&lt;/li&gt;
 &lt;li&gt;非同步有不阻塞的好處，先執行等待結果回傳(e.g. 計時器，&lt;code&gt;img.src = &#39;someImg&#39;&lt;/code&gt;，AJAX、API)&lt;/li&gt;
 &lt;/ul&gt;
