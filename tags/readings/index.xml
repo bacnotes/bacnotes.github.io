@@ -92,7 +92,8 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;目前有電子書版本&#34;&gt;目前有電子書版本&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%22https://github.com/xiaolai/time-as-a-friend%22&#34; &gt;把時間當作朋友&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/xiaolai/time-as-a-friend&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;把時間當作朋友&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
