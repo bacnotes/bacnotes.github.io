@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='執行順序總是跟想像的不同？可能你需要知道一點同步與非同步的知識，哪些非同步的語法需要注意呢？Promise函式怎麼包，async await怎麼寫，這邊都會講解'><h1><title>非同步 JavaScript 知識｜bacnotes備份筆記</title></h1>
+
+<link rel='canonical' href='https://bacnotes.github.io/p/async-javascript/'>
+
+<link rel="stylesheet" href="/scss/style.min.30d783ffd09b63aac959d5dfe5cafebfa1e5b6861b28226ac3b05c7210fcc0bf.css"><meta property='og:title' content='非同步 JavaScript 知識｜bacnotes備份筆記'>
+<meta property='og:description' content='執行順序總是跟想像的不同？可能你需要知道一點同步與非同步的知識，哪些非同步的語法需要注意呢？Promise函式怎麼包，async await怎麼寫，這邊都會講解'>
+<meta property='og:url' content='https://bacnotes.github.io/p/async-javascript/'>
+<meta property='og:site_name' content='bacnotes備份筆記'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:published_time' content='2022-04-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-04-24T00:00:00&#43;08:00'/><meta property='og:image' content='https://bacnotes.github.io/p/async-javascript/pexels-uzunov-rostislav-10458835.jpg' />
+<meta name="twitter:site" content="@bacnotes">
+    <meta name="twitter:creator" content="@bacnotes"><meta name="twitter:title" content="非同步 JavaScript 知識｜bacnotes備份筆記">
+<meta name="twitter:description" content="執行順序總是跟想像的不同？可能你需要知道一點同步與非同步的知識，哪些非同步的語法需要注意呢？Promise函式怎麼包，async await怎麼寫，這邊都會講解"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://bacnotes.github.io/p/async-javascript/pexels-uzunov-rostislav-10458835.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4R93LRYFV"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Y4R93LRYFV', { 'anonymize_ip': false });
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750742665415100"
+     crossorigin="anonymous"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/julia-caesar-asct7UP3YDE-unsplash_hu296d2c295a04a461664de06126b5c2e0_498703_300x0_resize_q75_box.jpg" width="300"
+                            height="200" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <p class="site-name"><a href="/">bacnotes備份筆記</a></p>
+            <p class="site-description">記錄小小Junior的學習過程</p>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/bacnotes'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/bacnotes'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/async-javascript/">
+                <img src="/p/async-javascript/pexels-uzunov-rostislav-10458835_hu3d03a01dcc18bc5be0e67db3d8d209a6_456140_800x0_resize_q75_box.jpg"
+                        srcset="/p/async-javascript/pexels-uzunov-rostislav-10458835_hu3d03a01dcc18bc5be0e67db3d8d209a6_456140_800x0_resize_q75_box.jpg 800w, /p/async-javascript/pexels-uzunov-rostislav-10458835_hu3d03a01dcc18bc5be0e67db3d8d209a6_456140_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 非同步 JavaScript 知識｜bacnotes備份筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <p class="article-title">
+            <a href="/p/async-javascript/">非同步 JavaScript 知識｜bacnotes備份筆記</a>
+        </p>
+    
+        
+        <p class="article-subtitle">
+            執行順序總是跟想像的不同？可能你需要知道一點同步與非同步的知識，哪些非同步的語法需要注意呢？Promise函式怎麼包，async await怎麼寫，這邊都會講解
+        </p>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 24, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 12 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="非同步-javascript">非同步 JavaScript</h2>
+<ul>
+<li>code 由上到一行行下執行</li>
+<li>想像電腦在 execution thread(部分 execution context)，但這樣的機制容易被卡住</li>
+<li>非同步有不阻塞的好處，先執行等待結果回傳(e.g. 計時器，<code>img.src = 'someImg'</code>，AJAX、API)</li>
+</ul>
+<h3 id="ajax-and-api">AJAX and API</h3>
+<ul>
+<li>AJAX(Asynchronous Javascript and XML): 可以動態取得 server data</li>
+<li>API(Application programming Interface): 讓程式之間彼此溝通的介面</li>
+<li>常見 API 種類: DOM API、Geolocation API、online API、Own Class API</li>
+<li>第三方 API: Weather、Flight、SMS、貨幣、Google Map</li>
+<li>API 傳的資料格式過往以 XML 格式為主所以名稱才會叫 AJAX，近代主要用 JSON 格式為主</li>
+<li>JSON 格式是 JavaScript 物件轉成字串格式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">p</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">p</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="xmlhttprequest-with-callback">XMLHttpRequest with callback</h2>
+<ul>
+<li>最早的發送 AJAX 的方式，目前少用因為需要寫的步驟很繁瑣</li>
+<li>為了使用 callback 方式而使用 XMLHttpRequest 展示</li>
+<li>若有多個請求，會看哪個結果先回傳，先發送 load event 先渲染</li>
+<li>若要確保渲染順序會需要 chain request, 也是早成造成 callback hell 的原因</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getCountryData</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// open request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// send request to url, fetch in the background
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// can not use data = request.response to get result because not finished
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span> <span class="c1">// can not immediately get anything
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// once it done it will emit load event
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// load after it is done
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">request</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span> <span class="c1">// this = request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// will get [{...}], so destructure like this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 根據收到資料update
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">countriesContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.countries&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">html</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &lt;article class=&#34;country&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;img class=&#34;country__img&#34; src=&#34;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">flag</span><span class="si">}</span><span class="sb">&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;div class=&#34;country__data&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;h3 class=&#34;country__name&#34;&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/h3&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;h4 class=&#34;country__region&#34;&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">region</span><span class="si">}</span><span class="sb">&lt;/h4&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        // 四捨五入到百萬
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;👫&lt;/span&gt;</span><span class="si">${</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">Number</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">population</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span>
+</span></span><span class="line"><span class="cl">        <span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;🗣️&lt;/span&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;💰&lt;/span&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">currencies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &lt;/article&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    `</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span> <span class="nx">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">getCountryData</span><span class="p">(</span><span class="s1">&#39;portugal&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">getCountryData</span><span class="p">(</span><span class="s1">&#39;usa&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">countries</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">transition</span><span class="p">:</span> <span class="k">opacity</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="request-and-response">request and response</h3>
+<ul>
+<li>client 發送 request，server 接收 request 並發出 response 給 client</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">https</span><span class="o">:</span><span class="c1">//restcountries.com/v2/name/portugal
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>protocol: http/https(https 使用 TLS SSl 加密)</li>
+<li>domain name: restcountries.com</li>
+<li>resource: /v2/name/portugal</li>
+</ul>
+<h3 id="what-happens-when-we-access-a-web-server">what happens when we access a web server</h3>
+<ul>
+<li>step1: DNS(domain name server) lookup 查找 IP 地址
+<ul>
+<li>呼叫 protocol + ip address + port number</li>
+<li>port 用來辨別特定服務(有點類似副地址)</li>
+</ul>
+</li>
+<li>step2: TCP/IP socket connect
+<ul>
+<li>TCP is 通訊控制協議, IP is 網路協議。兩者一起定義如何傳輸資料</li>
+</ul>
+</li>
+<li>step3: HTTP request(hypertext transfer protocol) 可以讓 server 跟 client 互傳訊息
+<ul>
+<li>start line: HTTP method + request target + http version <code>Get /rest/v2/alpha/PT HTTP/1.1</code></li>
+<li>http methods: get/post/put/patch</li>
+<li>如果地址只寫/就只會到根目錄，也就是 restcountries.com</li>
+<li>request headers(request itself)(多種組合可能)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Host: www.google.com
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0
+</span></span><span class="line"><span class="cl">Accept-Language: en-US
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>request body(only when sending data to server e.g. POST)</li>
+</ul>
+</li>
+<li>HTTP response
+<ul>
+<li>start line: HTTP version + status code + status message <code>HTTP/1.1 200 OK </code></li>
+<li>HTTP response headers(很多種組合可能)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Date: Fri, 18 Jan 2021
+</span></span><span class="line"><span class="cl">Content-Type: text/html
+</span></span><span class="line"><span class="cl">Transfer-Encoding: chunked
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>response body(most responses)，通常是 JSON 格式或看請求內容</li>
+</ul>
+</li>
+<li>對 server 發送請求後，server 回傳 html，瀏覽器解析 html 時會隊 server 再次請求相關資源(js/css files/img assets)，就是這樣來回的資源請求讓我們可以看到網頁</li>
+<li>TCP: TCP 會把 request 跟 response 拆成小塊封包送出，收到時會組合成原貌，這樣發送的時候可以在網路中走不同的 route，提高傳輸效率</li>
+<li>IP: IP 負責在網路中發送跟交管 route 這些封包，確保都有傳輸到正確的位置</li>
+</ul>
+<p><img src="/p/async-javascript/request_response.png"
+	width="877"
+	height="435"
+	srcset="/p/async-javascript/request_response_hu83f705deb82ea8661ec9248622948aa7_140322_480x0_resize_box_3.png 480w, /p/async-javascript/request_response_hu83f705deb82ea8661ec9248622948aa7_140322_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="483px"
+	
+></p>
+<h3 id="callback-hell">callback hell</h3>
+<ul>
+<li>nested callback function is hard to read and maintain</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 根據收到資料update
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">countriesContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.countries&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">renderCountry</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">html</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &lt;article class=&#34;country </span><span class="si">${</span><span class="nx">className</span><span class="si">}</span><span class="sb">&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;img class=&#34;country__img&#34; src=&#34;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">flag</span><span class="si">}</span><span class="sb">&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;div class=&#34;country__data&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;h3 class=&#34;country__name&#34;&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/h3&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;h4 class=&#34;country__region&#34;&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">region</span><span class="si">}</span><span class="sb">&lt;/h4&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        // 四捨五入到百萬
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;👫&lt;/span&gt;</span><span class="si">${</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">Number</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">population</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span>
+</span></span><span class="line"><span class="cl">        <span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;🗣️&lt;/span&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;💰&lt;/span&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">currencies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &lt;/article&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    `</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span> <span class="nx">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getCountryAndNeighbor</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// AJAX call country 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// open request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// load after it is done
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">request</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span> <span class="nx">data</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span> <span class="c1">// [ {...} ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// get neighbour country (2)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span> <span class="nx">neighbour</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">borders</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">neighbour</span><span class="p">)</span> <span class="o">=</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// AJAX call country 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">request2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// open request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">request2</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="sb">`https://restcountries.com/v3.1/alpha/</span><span class="si">${</span><span class="nx">neightbor</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">request2</span><span class="p">.</span><span class="nx">send</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">request2</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// obj
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">data2</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data2</span><span class="p">,</span> <span class="s1">&#39;neighbour&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>getCountryAndNeighbor(&lsquo;usa&rsquo;)</p>
+<h3 id="why-promises-with-fetch">Why Promises with fetch</h3>
+<ul>
+<li>Promise 類似一個接收未來非同步函式回傳結果的容器</li>
+<li>不用依賴 events 跟 callback 傳遞跟處理非同步函式結果</li>
+<li>透過 chain Promise 可以避免 callback hell，打造更好讀的程式碼</li>
+</ul>
+<h3 id="promise-的生命週期">Promise 的生命週期</h3>
+<ul>
+<li>fetch API in a Promise</li>
+<li>pending (response not available yet)</li>
+<li>async task settled (get results)
+<ul>
+<li>fulfilled</li>
+<li>rejected</li>
+</ul>
+</li>
+<li>consume Promise</li>
+</ul>
+<h3 id="promise-結構">Promise 結構</h3>
+<ul>
+<li>fetch 後會回傳一個 Promise</li>
+<li>透過 json()方法解析後，會再回傳一個 Promise</li>
+<li>透過 then 接起來，獲取 data</li>
+<li>then 區塊回傳 fulfilled value</li>
+<li>catch 區塊 回傳 rejected value，chain 中所有的錯誤會在這裡被拋出</li>
+<li>err 是一個 object，可以把使用者需要知道的錯誤顯示在上面</li>
+<li>finally 區塊是無論回傳結果永遠都會執行的區塊，處理一定需要執行的邏輯</li>
+<li>用 then 來 chain Promise，不要把 then chain 成巢狀，在外層接 Promise</li>
+</ul>
+<h3 id="callback-vs-promise">callback v.s. Promise</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// XMLHttpRequest
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">request</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;neighbour&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Promise with less code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;neighbour&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="改寫-callback-成-promise-物件">改寫 callback 成 Promise 物件</h3>
+<ul>
+<li>若要模擬 reject 可以先渲染出畫面後，畫面上一個可以再次 fetch data 的按鈕，把 network 設定改成 offline 模擬 Promise reject。若直接改 offline 會看到小恐龍</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://restcountries.com/v2/name/portugal&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;btn-country&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">countriesContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.countries&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">getCountryData</span><span class="p">(</span><span class="s1">&#39;portugal&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">renderCountry</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">html</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &lt;article class=&#34;country </span><span class="si">${</span><span class="nx">className</span><span class="si">}</span><span class="sb">&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;img class=&#34;country__img&#34; src=&#34;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">flag</span><span class="si">}</span><span class="sb">&#34; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;div class=&#34;country__data&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;h3 class=&#34;country__name&#34;&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/h3&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;h4 class=&#34;country__region&#34;&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">region</span><span class="si">}</span><span class="sb">&lt;/h4&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        // 四捨五入到百萬
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;👫&lt;/span&gt;</span><span class="si">${</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">Number</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">population</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span>
+</span></span><span class="line"><span class="cl">        <span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;🗣️&lt;/span&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        &lt;p class=&#34;country__row&#34;&gt;&lt;span&gt;💰&lt;/span&gt;</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">currencies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &lt;/article&gt;
+</span></span></span><span class="line"><span class="cl"><span class="sb">    `</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span> <span class="nx">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// countriesContainer.style.opacity = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">renderError</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">insertAdjacentTExt</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// countriesContainer.style.opacity = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getCountryData</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 若成功 response.status: 200, response.ok: true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">neighbour</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">borders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">neighbour</span><span class="p">)</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// country 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">neighbour</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=</span> <span class="o">&gt;</span> <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;neighbour&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderError</span><span class="p">(</span><span class="sb">`something is wrong </span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">finally</span><span class="p">(()=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">getCountryData</span><span class="p">(</span><span class="s1">&#39;portugal&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="錯誤處理">錯誤處理</h2>
+<ul>
+<li>any error would cause any Promise to reject</li>
+<li>需要在 then 區塊主動丟出錯誤才會進入 reject，進到 catch 區塊</li>
+<li>用 catch finally 處理好沒有資料時要呈現的畫面</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getCountryData</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 第一個錯誤處理 status = 404, ok =false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Country not found (</span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 沒有這個msg 就會render出來&#39;flag&#39; of undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// const neighbour = data[0].borders[0]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 用不存在的國家模擬network無法抓取資料狀況
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">neighbour</span> <span class="o">=</span> <span class="s1">&#39;123123&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">neighbour</span><span class="p">)</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 請求會被reject
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">neighbour</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Country not found (</span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=</span> <span class="o">&gt;</span> <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;neighbour&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderError</span><span class="p">(</span><span class="sb">`something is wrong </span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">finally</span><span class="p">(()=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>重複 fetch 的 code 可以精簡成一個函式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getJSON</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">errMsg</span> <span class="o">=</span> <span class="s1">&#39;something went wrong&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">errorMsg</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>改寫 function 跟加上處理沒有鄰國的國家</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getCountryData</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">getJSON</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="s1">&#39;Country not found&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">neighbour</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">borders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 沒有鄰國的狀況也丟錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">neighbour</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;no neighbour found!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">getJSON</span><span class="p">(</span><span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">    https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">neighbour</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="s1">&#39;Country not found&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=</span> <span class="o">&gt;</span> <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;neighbour&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderError</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">finally</span><span class="p">(()=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">countriesContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="小練習">小練習</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">whereAmI</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">lat</span><span class="p">,</span> <span class="nx">lng</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://geocode.xyz/</span><span class="si">${</span><span class="nx">lat</span><span class="si">}</span><span class="sb">,</span><span class="si">${</span><span class="nx">lng</span><span class="si">}</span><span class="sb">?geoit=json`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Problem with geocoding </span><span class="si">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`You are in </span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">city</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.eu/rest/v2/name/</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Country not found (</span><span class="si">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">whereAmI</span><span class="p">(</span><span class="mf">52.508</span><span class="p">,</span> <span class="mf">13.381</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">whereAmI</span><span class="p">(</span><span class="mf">19.037</span><span class="p">,</span> <span class="mf">72.873</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promise-與-event-loop">Promise 與 Event loop</h3>
+<ul>
+<li>Promise 回傳結果會進到 Micro task queue，在 Event loop 會比一般 callback (進到 Callback queue) 優先處理</li>
+<li>Promise.resolve(&lsquo;要 pass 的 value&rsquo;)是一個馬上執行 resolve 的靜態方法</li>
+<li>Promise.reject(new Error(&lsquo;reject 的內容&rsquo;))是一個馬上執行 resolve 的靜態方法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Test start&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;0 sec timer&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Resolved Promise 1&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// heavy task
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Resolved Promise 2&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10000000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Test end&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// &#39;Test start&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// &#39;Test end&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// &#39;Resolved Promise 1&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// &#39;Resolved Promise 2&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// &#39;0 sec timer&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="打造一個-promise非來自-fetch-結果">打造一個 Promise(非來自 fetch 結果)</h3>
+<ul>
+<li>創造一個函式，呼叫後隨機回傳 resolve 或 reject(手動拋出錯誤)</li>
+<li>舊的 callback function，用 Promise 來包裝異步處理避免 callback hell</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">lotteryPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;You win&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;You lose&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">lotteryPromise</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">err</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promise-包裝-settimeout">Promise 包裝 setTimeout</h3>
+<ul>
+<li>傳給 wait 秒數設定多久回傳 Promise，裡面是一個 Promise，因為 setTImeout 不會失敗只會 resolve</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">wait</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">seconds</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 沒有要傳入resolve value ，要不要回傳value非強制
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">seconds</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;1 sec passed&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;another 1 sec passed&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;another 1 sec passed&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promise-包裝-geolocation-callback">Promise 包裝 geolocation callback</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// sync
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">getPosition</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// navigator.geolocation.getCurrentPosition(
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   // if allow
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   (position) =&gt; console.log(position),
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   // not allow
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//   (err) =&gt; console.error(err)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// )
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">getPosition</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">pos</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pos</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// GeolocationPosition {coords: GeolocationCoordinates, timestamp: 1650122094727}
+</span></span></span><span class="line"><span class="cl"><span class="c1">// coords裡面有lat lng
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promise-練習">Promise 練習</h3>
+<ul>
+<li>const whereAmI = function (lat, lng)外部參數改用 fetch 取得</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getPosition</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">whereAmI</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">getPosition</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">pos</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="p">{</span> <span class="nx">latitude</span><span class="o">:</span> <span class="nx">lat</span><span class="p">,</span> <span class="nx">longitude</span><span class="o">:</span> <span class="nx">lng</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">coords</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://geocode.xyz/</span><span class="si">${</span><span class="nx">lat</span><span class="si">}</span><span class="sb">,</span><span class="si">${</span><span class="nx">lng</span><span class="si">}</span><span class="sb">?geoit=json`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Problem with geocoding </span><span class="si">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`You are in </span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">city</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.eu/rest/v2/name/</span><span class="si">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Country not found (</span><span class="si">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">whereAmI</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="打造-2-秒換圖功能">打造 2 秒換圖功能</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- html --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">main</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;images&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">imgContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.images&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">wait</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">sec</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">seconds</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">createImage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">imgPath</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">imgPath</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// load event means success
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">img</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">imgContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 回傳html元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">resolve</span><span class="p">(</span><span class="nx">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// not success
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">img</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;image not found&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">currentImg</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 因為then不同區塊不在同一個function scope
+</span></span></span><span class="line"><span class="cl"><span class="c1">// global var 才有辦法隱藏跟後續更新第二個圖片
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 下載圖片，指定到對應src，插入圖片到畫面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">createImage</span><span class="p">(</span><span class="s1">&#39; https://picsum.photos/500/300&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">img</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currentImg</span> <span class="o">=</span> <span class="nx">img</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;image 1 loaded&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// timer 計時2秒，完成後回傳1個Promise
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 隱藏
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">currentImg</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 下載圖片，指定到對應src，插入圖片到畫面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">createImage</span><span class="p">(</span><span class="s1">&#39;https://picsum.photos/500/300&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">img</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currentImg</span> <span class="o">=</span> <span class="nx">img</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Image 2 loaded&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// timer 計時2秒，完成後回傳1個Promise
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">currentImg</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="async-awaites7">async await(ES7)</h2>
+<ul>
+<li>是 Promise then 的語法糖，用來處理非同步流程</li>
+<li>async呼叫後一樣會回傳一個 Promise，但可讀性更佳</li>
+<li>搭配 try catch 結構處理錯誤</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res =&gt; console.log(res))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">whereAmI</span> <span class="o">=</span> <span class="p">(</span><span class="kr">async</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// geolocation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 這邊不用主動拋錯因為function內建Promise reject，會主動拋錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">position</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getPosition</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">{</span> <span class="nx">latitude</span><span class="o">:</span> <span class="nx">lat</span><span class="p">,</span> <span class="nx">longitude</span><span class="o">:</span> <span class="nx">lng</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// reverse geo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">resGeo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://geocode.xyz/</span><span class="si">${</span><span class="nx">lat</span><span class="si">}</span><span class="sb">,</span><span class="si">${</span><span class="nx">lng</span><span class="si">}</span><span class="sb">?geoit=json`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">dataGeo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">resGeo</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// fetch有問題時主動拋錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">resGeo</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Problem getting location data`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// country data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://restcountries.eu/rest/v2/name/</span><span class="si">${</span><span class="nx">country</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// fetch有問題時主動拋錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">resGeo</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`Problem getting location country`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderCountry</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderError</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})(</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// whereAmI()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// .then(data =&gt; console.log(`${data}`))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// .catch(error =&gt; console.error(`error.message`))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// .finally(()=&gt; console.log(&#39;finish&#39;))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 改寫成async await
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">whereAmI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">conosle</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;finish&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="同時處理多個非同步函式">同時處理多個非同步函式</h2>
+<ul>
+<li>await 多個函式放在陣列中，平行處理後回傳結果於一個陣列中</li>
+</ul>
+<h3 id="promiseall">Promise.all</h3>
+<ul>
+<li>其中一個 reject，Promise.all 就會 reject</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">get3Countries</span> <span class="o">=</span> <span class="kr">async</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">country1</span><span class="p">,</span> <span class="nx">country2</span><span class="p">,</span> <span class="nx">country3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">try</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 這樣寫太冗，所以後來有了Promise.all
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const [data1] = await getJSON(
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// `https://restcountries.com/v2/name/${country1}`, &#39;data not found&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const [data2] = await getJSON(
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// `https://restcountries.com/v2/name/${country2}`, &#39;data not found&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// const [data3] = await getJSON(
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// `https://restcountries.com/v2/name/${country3}`, &#39;data not found&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">getJSON</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country1</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="s1">&#39;data not found&#39;</span><span class="p">),</span> <span class="nx">getJSON</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country3</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="s1">&#39;data not found&#39;</span><span class="p">),</span> <span class="nx">getJSON</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="sb">`https://restcountries.com/v2/name/</span><span class="si">${</span><span class="nx">country2</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="s1">&#39;data not found&#39;</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">country</span> <span class="p">=&gt;</span> <span class="nx">country</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">capital</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">get3Countries</span><span class="p">(</span><span class="s1">&#39;portugal&#39;</span><span class="p">,</span> <span class="s1">&#39;canada&#39;</span><span class="p">,</span> <span class="s1">&#39;tanzania&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promiserace">Promise.race</h3>
+<ul>
+<li>陣列中只會出現最先完成的結果(可能是成功或拒絕)</li>
+<li>當使用者網路不好，等待時間太久可以用這個 reject</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">;(</span><span class="kr">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getJSON</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/italy}`</span><span class="p">,</span> <span class="s1">&#39;data not found&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getJSON</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/egypt`</span><span class="p">,</span> <span class="s1">&#39;data not found&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="p">})()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 只會是italy or egypt其中一個內容
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 計時器，超過5秒就發出拒絕
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">timeout</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">second</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Request too long&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="nx">second</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">getJSON</span><span class="p">(</span><span class="sb">`https://restcountries.com/v2/name/italy`</span><span class="p">),</span> <span class="nx">timeout</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promiseallsettled">Promise.allSettled</h3>
+<ul>
+<li>不會因為其中一個拒絕而全部拒絕，會回傳所有結果</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">allSettled</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">v</span><span class="p">.</span><span class="nx">s</span><span class="p">.</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promiseany">Promise.any</h3>
+<ul>
+<li>忽略所有拒絕的結果，回傳第一個成功的結果</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">any</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-秒換圖功能改寫成-async-await">2 秒換圖功能改寫成 async await</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 不需要global var 因為都在同一個function scope處理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">loadNPause</span> <span class="o">=</span> <span class="kr">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// load image 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">img</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">createImage</span><span class="p">(</span><span class="s1">&#39; https://picsum.photos/500/300&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;image 1 loaded&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">img</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// load image 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">img</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">createImage</span><span class="p">(</span><span class="s1">&#39; https://picsum.photos/500/300&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;image 1 loaded&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">img</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>改成一開始就 load 所有圖片</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">loadAll</span> <span class="o">=</span> <span class="kr">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">imgArr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">try</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// createImage 處理創建元素，指定到圖片路徑到對應src，插入圖片到畫面，並回傳創建的img元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">imgs</span> <span class="o">=</span> <span class="nx">imgArr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kr">async</span> <span class="nx">img</span> <span class="p">=&gt;</span> <span class="kr">await</span> <span class="nx">createImage</span><span class="p">(</span><span class="nx">img</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">imgs</span><span class="p">)</span> <span class="c1">// [Promise, Promise, Promise]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 等到所有的元素都完成，存到imgsEl
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">imgsEl</span> <span class="o">=</span> <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">imgs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">imgsEl</span><span class="p">)</span> <span class="c1">// [img, img, img] 三個img元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// img元素加上樣式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">imgsEl</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">img</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;parallel&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">loadAll</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;https://picsum.photos/500/300&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;https://picsum.photos/500/300&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;https://picsum.photos/500/300&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上為<a class="link" href="https://www.udemy.com/course/the-complete-javascript-course/"  title="The Complete JavaScript Course - From Zero to Expert"
+     target="_blank" rel="noopener"
+    >The Complete JavaScript Course - From Zero to Expert</a>的小筆記，附上連結推推這堂課</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="bacnotes/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 bacnotes備份筆記
+    </section>
+    
+    <section class="powerby">
+        
+            相信科技讓社會更美好，所以開始寫起了程式 <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#非同步-javascript">非同步 JavaScript</a>
+      <ul>
+        <li><a href="#ajax-and-api">AJAX and API</a></li>
+      </ul>
+    </li>
+    <li><a href="#xmlhttprequest-with-callback">XMLHttpRequest with callback</a>
+      <ul>
+        <li><a href="#request-and-response">request and response</a></li>
+        <li><a href="#what-happens-when-we-access-a-web-server">what happens when we access a web server</a></li>
+        <li><a href="#callback-hell">callback hell</a></li>
+        <li><a href="#why-promises-with-fetch">Why Promises with fetch</a></li>
+        <li><a href="#promise-的生命週期">Promise 的生命週期</a></li>
+        <li><a href="#promise-結構">Promise 結構</a></li>
+        <li><a href="#callback-vs-promise">callback v.s. Promise</a></li>
+        <li><a href="#改寫-callback-成-promise-物件">改寫 callback 成 Promise 物件</a></li>
+      </ul>
+    </li>
+    <li><a href="#錯誤處理">錯誤處理</a>
+      <ul>
+        <li><a href="#小練習">小練習</a></li>
+        <li><a href="#promise-與-event-loop">Promise 與 Event loop</a></li>
+        <li><a href="#打造一個-promise非來自-fetch-結果">打造一個 Promise(非來自 fetch 結果)</a></li>
+        <li><a href="#promise-包裝-settimeout">Promise 包裝 setTimeout</a></li>
+        <li><a href="#promise-包裝-geolocation-callback">Promise 包裝 geolocation callback</a></li>
+        <li><a href="#promise-練習">Promise 練習</a></li>
+        <li><a href="#打造-2-秒換圖功能">打造 2 秒換圖功能</a></li>
+      </ul>
+    </li>
+    <li><a href="#async-awaites7">async await(ES7)</a></li>
+    <li><a href="#同時處理多個非同步函式">同時處理多個非同步函式</a>
+      <ul>
+        <li><a href="#promiseall">Promise.all</a></li>
+        <li><a href="#promiserace">Promise.race</a></li>
+        <li><a href="#promiseallsettled">Promise.allSettled</a></li>
+        <li><a href="#promiseany">Promise.any</a></li>
+        <li><a href="#2-秒換圖功能改寫成-async-await">2 秒換圖功能改寫成 async await</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

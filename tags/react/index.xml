@@ -1214,7 +1214,7 @@
 &lt;/div&gt;&lt;h3 id=&#34;改寫為-async-await-加上錯誤處理&#34;&gt;改寫為 async await 加上錯誤處理&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;搭配 try catch 加上 Loading&lt;/li&gt;
-&lt;li&gt;Fetch API doesn&amp;rsquo;t 不會把錯誤狀態代碼 404 視為錯誤，只要有成功回傳就會 200&lt;/li&gt;
+&lt;li&gt;Fetch API doesn&amp;rsquo;t 不會把錯誤狀態碼 404 視為錯誤，只要有成功回傳就會 200&lt;/li&gt;
 &lt;li&gt;所以我們可以自己加一段判斷在 try 裡面&lt;/li&gt;
 &lt;li&gt;當 Response 有問題拋出錯誤 if (!response.ok &amp;amp;&amp;amp; response.status !== 200)&lt;/li&gt;
 &lt;li&gt;error 記得也要用 useState 控制&lt;/li&gt;
@@ -1768,7 +1768,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;伺服器回傳狀態代碼&#34;&gt;伺服器回傳狀態代碼&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;伺服器回傳狀態碼&#34;&gt;伺服器回傳狀態碼&lt;/h3&gt;
 &lt;p&gt;​​- 瀏覽器會根據 HTTP Status code 判斷目前跟伺服器溝通狀態為何&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;2xx 成功&lt;/li&gt;
@@ -4705,7 +4705,7 @@
 &lt;li&gt;使用 Declarative programming 宣告式程式設計
 描述目標而非流程，比起過往 DOM 操作要一個個選元素，一個口令一個動作的指令式程式設計 imperative programming，可以讓撰寫的程式碼精簡不少&lt;/li&gt;
 &lt;li&gt;以元件為中心
-把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複代碼&lt;/li&gt;
+把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複程式碼&lt;/li&gt;
 &lt;li&gt;JSX 語法
 JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直接寫在 HTML 上，很方便，像是在 HTML 上實作 JS 邏輯，且容易閱讀&lt;/li&gt;
 &lt;li&gt;關注點分離

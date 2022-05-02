@@ -3,19 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bacnotes.github.io/</loc>
-    <lastmod>2022-04-01T00:00:00+08:00</lastmod>
+    <lastmod>2022-05-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/javascript/</loc>
-    <lastmod>2022-04-01T00:00:00+08:00</lastmod>
+    <lastmod>2022-05-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/post/</loc>
-    <lastmod>2022-04-01T00:00:00+08:00</lastmod>
+    <lastmod>2022-05-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/</loc>
-    <lastmod>2022-04-01T00:00:00+08:00</lastmod>
+    <lastmod>2022-05-01T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/modern-javascript-development/</loc>
+    <lastmod>2022-05-01T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/p/async-javascript/</loc>
+    <lastmod>2022-04-24T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/p/advanced-javascript-dom/</loc>
