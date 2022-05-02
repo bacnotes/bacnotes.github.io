@@ -367,8 +367,8 @@ if (!doNotTrack) {
 </div><h2 id="初始化地圖與點擊插入座標">初始化地圖與點擊插入座標</h2>
 <ul>
 <li>L.map 內傳入的字串要是 html 元素的 id ，以查找 html 元素的位置<code>&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</code></li>
-<li>L 是 leaflat 的主要的 function 的 entry point，也是 global var，表示其他比較晚下載的 script 也可以呼叫他</li>
-<li>需要設置 event handler 處理點擊事件，但我們不知道點擊畫面時對應的 GPS 位置，只有 leaflet 知道，所以需要使用他的方法</li>
+<li>L 是 Leaflat 的主要的 function 的 entry point，也是全域變數，其他較晚下載的 script 也可以呼叫他</li>
+<li>需要設置 event handler 處理點擊事件，但我們不知道點擊畫面時對應的 GPS 位置，只有 Leaflat 知道，所以需要使用他的方法</li>
 <li>希望點擊就會出現 marker 且 pop 都會打開</li>
 <li>bindPopup 可以傳入一個物件，放入不同選項</li>
 </ul>
@@ -433,7 +433,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">          <span class="s1">&#39;&amp;copy; &lt;a href=&#34;https://www.openstreetmap.org/copyright&#34;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      <span class="c1">// leaflat提供的方法跟特殊事件
+</span></span><span class="line"><span class="cl">      <span class="c1">// Leaflat提供的方法跟特殊事件
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">map</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">mapEvent</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// console.log(mapEvent)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="p">{</span> <span class="nx">lat</span><span class="p">,</span> <span class="nx">lng</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">mapEvent</span><span class="p">.</span><span class="nx">latlng</span>
