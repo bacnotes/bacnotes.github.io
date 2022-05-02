@@ -366,7 +366,7 @@ if (!doNotTrack) {
 </div>
 </div><h2 id="初始化地圖與點擊插入座標">初始化地圖與點擊插入座標</h2>
 <ul>
-<li>L.map 內傳入的字串要是 html 元素的 id 查找 html 元素的位置<code>&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</code></li>
+<li>L.map 內傳入的字串要是 html 元素的 id ，以查找 html 元素的位置<code>&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</code></li>
 <li>L 是 leaflat 的主要的 function 的 entry point，也是 global var，表示其他比較晚下載的 script 也可以呼叫他</li>
 <li>需要設置 event handler 處理點擊事件，但我們不知道點擊畫面時對應的 GPS 位置，只有 leaflet 知道，所以需要使用他的方法</li>
 <li>希望點擊就會出現 marker 且 pop 都會打開</li>

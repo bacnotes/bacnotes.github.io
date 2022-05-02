@@ -2380,7 +2380,7 @@ curl -o- &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;初始化地圖與點擊插入座標&#34;&gt;初始化地圖與點擊插入座標&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;L.map 內傳入的字串要是 html 元素的 id 查找 html 元素的位置&lt;code&gt;&amp;lt;div id=&amp;quot;map&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;L.map 內傳入的字串要是 html 元素的 id ，以查找 html 元素的位置&lt;code&gt;&amp;lt;div id=&amp;quot;map&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;L 是 leaflat 的主要的 function 的 entry point，也是 global var，表示其他比較晚下載的 script 也可以呼叫他&lt;/li&gt;
 &lt;li&gt;需要設置 event handler 處理點擊事件，但我們不知道點擊畫面時對應的 GPS 位置，只有 leaflet 知道，所以需要使用他的方法&lt;/li&gt;
 &lt;li&gt;希望點擊就會出現 marker 且 pop 都會打開&lt;/li&gt;
