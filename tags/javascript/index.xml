@@ -2308,7 +2308,8 @@ curl -o- &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/
         <guid>https://bacnotes.github.io/p/map-geolocation/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/map-geolocation/pexels-aksonsat-uanthoeng-1078850.jpg" alt="Featured image of post 關於地理位置API｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;navigatorgeolocationgetcurrentposition&#34;&gt;navigator.geolocation.getCurrentPosition()&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;第一個參數是允許獲取執行的函式，第二個參數是不允許獲取時執行的函式&lt;/li&gt;
+&lt;li&gt;第一個參數是允許獲取執行的函式&lt;/li&gt;
+&lt;li&gt;第二個參數是不允許獲取時執行的函式&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2337,7 +2338,7 @@ curl -o- &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/
 &lt;/div&gt;&lt;h2 id=&#34;leaflat&#34;&gt;Leaflat&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;第三方地圖函式庫，CDN 或 npm 下載&lt;/li&gt;
-&lt;li&gt;先以 CDN 為例&lt;/li&gt;
+&lt;li&gt;以 CDN 為例&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
