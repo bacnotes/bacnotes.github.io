@@ -278,9 +278,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reduce&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;etc&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;what an algorithm is: A PROCESS OR SET OF STEPS TO ACCOMPLISH A CERTAIN TASK
-devise a plan to solve algorithms
-compare and contrast a problem solving patterns including frequency counters, 2 pointer problem and divide and conquer&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;what-an-algorithm-is&#34;&gt;what an algorithm is:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A PROCESS OR SET OF STEPS TO ACCOMPLISH A CERTAIN TASK&lt;/li&gt;
+&lt;li&gt;devise a plan to solve algorithms&lt;/li&gt;
+&lt;li&gt;compare and contrast a problem solving patterns including frequency counters, 2 pointer problem and divide and conquer&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;problem-solving&#34;&gt;problem solving&lt;/h2&gt;
 &lt;h3 id=&#34;understand-the-problem&#34;&gt;understand the problem&lt;/h3&gt;
 &lt;ul&gt;
