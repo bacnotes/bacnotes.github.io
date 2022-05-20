@@ -6,153 +6,10 @@
         <description>Recent content in Readings on bacnotes備份筆記</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
-        <lastBuildDate>Mon, 02 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/readings/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>把時間當作朋友 - 李笑來｜bacnotes備份筆記</title>
-        <link>https://bacnotes.github.io/p/time-as-a-friend/</link>
-        <pubDate>Mon, 02 May 2022 00:00:00 +0800</pubDate>
-        
-        <guid>https://bacnotes.github.io/p/time-as-a-friend/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/time-as-a-friend/pexels-janko-ferlic-590493.jpg" alt="Featured image of post 把時間當作朋友 - 李笑來｜bacnotes備份筆記" /&gt;&lt;p&gt;2016 年在上海某個書店買的一本書，當時隨手筆記下的東西&lt;/p&gt;
-&lt;h2 id=&#34;困境&#34;&gt;困境&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;時間不夠/拖延症/錯誤估算時間/過程遇到麻煩&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;醒悟&#34;&gt;醒悟&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;擺脫自己的局限需要心智的力量&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;別人知道的&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;o&#34;&gt;-----------&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;自己知道的&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;控制自己的行為(不僅是對外在被動做出反應)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;現實&#34;&gt;現實&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;戒躁戒驕/無速成/現狀無法馬上擺脫&lt;/li&gt;
-&lt;li&gt;只能以現有資源交換想要跟需要&lt;/li&gt;
-&lt;li&gt;付出才有收穫/持續積累的東西&lt;/li&gt;
-&lt;li&gt;沒有完美/未知永遠存在&lt;/li&gt;
-&lt;li&gt;快樂是種本事(知足)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;管理&#34;&gt;管理&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;估算時間/即時行動/面對困難找出路&lt;/li&gt;
-&lt;li&gt;建立 SOP/分解任務(可完成事項)/找出方法&lt;/li&gt;
-&lt;li&gt;多工作業能力/優化工程順序（預測跟驗收品質)&lt;/li&gt;
-&lt;li&gt;感知時間(一項作業需要花費的時間)&lt;/li&gt;
-&lt;li&gt;記錄自己的昨天前天大前天上週上月去年的時間開銷&lt;/li&gt;
-&lt;li&gt;制定未來的短長期計畫並持續修正&lt;/li&gt;
-&lt;li&gt;簡單的任務只需要行動 e.g. 運動唸書&lt;/li&gt;
-&lt;li&gt;習慣製作清單方便檢視&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;學習&#34;&gt;學習&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;跟遊戲的技能樹一樣，是開拓心智的方法&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;實踐應用&#34;&gt;實踐應用&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;五感體驗/試錯&lt;/li&gt;
-&lt;li&gt;閱讀(他人經驗)&lt;/li&gt;
-&lt;li&gt;正確思考(邏輯/科學)&lt;/li&gt;
-&lt;li&gt;自學能力(理論到融會貫通)&lt;/li&gt;
-&lt;li&gt;保持開放心態&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;思考&#34;&gt;思考&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;勤於檢視目標跟實際意義&lt;/li&gt;
-&lt;li&gt;不迷信權威&lt;/li&gt;
-&lt;li&gt;釐清概念/不過度簡化/不草率概括或倉促結論&lt;/li&gt;
-&lt;li&gt;誰主張誰舉證&lt;/li&gt;
-&lt;li&gt;案例侷限(倖存者偏差)&lt;/li&gt;
-&lt;li&gt;小心人云亦云張冠李戴(玩射擊遊戲引發校園槍殺)&lt;/li&gt;
-&lt;li&gt;克服恐懼&lt;/li&gt;
-&lt;li&gt;句型思維訓練(&amp;hellip;是;&amp;hellip;是另一個&amp;hellip;/&amp;hellip;的前提是/事實上&amp;hellip;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;交流&#34;&gt;交流&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;討論大於爭辯/正確複述/勤於反思&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;目前有電子書版本&#34;&gt;目前有電子書版本&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/xiaolai/time-as-a-friend&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;把時間當作朋友&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>日文文法小記｜bacnotes備份筆記</title>
-        <link>https://bacnotes.github.io/p/japanese-grammar/</link>
-        <pubDate>Mon, 02 May 2022 00:00:00 +0800</pubDate>
-        
-        <guid>https://bacnotes.github.io/p/japanese-grammar/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/japanese-grammar/pexels-tirachard-kumtanom-601174.jpg" alt="Featured image of post 日文文法小記｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;n4&#34;&gt;N4&lt;/h2&gt;
-&lt;h3 id=&#34;v-た時-or-v-る時動詞時態跟發生順序有關&#34;&gt;V た時 or V る時：動詞時態跟發生順序有關&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;V た時(先)、V ます・ました(後)&lt;/li&gt;
-&lt;li&gt;V る時(後)、V ます・ました(先)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;v-ながら不加瞬間動詞&#34;&gt;V ながら不加瞬間動詞&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;座りながら(x)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;後で不加持續行為狀態&#34;&gt;後で不加持續行為狀態&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;後で、ずっと元気です(x)&lt;/li&gt;
-&lt;li&gt;後、ずっと元気です(o)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;てから不用在先後關係明確的句子&#34;&gt;てから不用在先後關係明確的句子&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;ドアを開けてから外に出る&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;v-るところv-ているところ不能用在狀態或沒有意圖的句子&#34;&gt;V るところ/V ているところ不能用在狀態或沒有意圖的句子&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;V るところ不能用在預測要做什麼會成為什麼樣子&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;v-たばかり-v-たところ-語氣更強調才剛&#34;&gt;V たばかり　&amp;gt; V たところ 語氣更強調&lt;code&gt;才剛...&lt;/code&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;V たところ比較有餘地&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;間--持續動詞繼續動詞&#34;&gt;間 + 持續動詞/繼續動詞&lt;/h3&gt;
-&lt;h3 id=&#34;間に--瞬間動詞&#34;&gt;間に + 瞬間動詞&lt;/h3&gt;
-&lt;h3 id=&#34;疑問詞--より-最高級&#34;&gt;疑問詞 + より 最高級&lt;/h3&gt;
-&lt;h3 id=&#34;より-一般不接否定型&#34;&gt;より 一般不接否定型&lt;/h3&gt;
-&lt;h3 id=&#34;n-は-n-ほどません&#34;&gt;N は N ほど〜ません&lt;/h3&gt;
-&lt;h3 id=&#34;v-たり-v-たりします-普通列舉不適合列舉太瑣碎的事物重複相反的動作表示不一定&#34;&gt;V たり V たりします 普通列舉(不適合列舉太瑣碎的事物)/重複相反的動作/表示不一定&lt;/h3&gt;
-&lt;h3 id=&#34;v-たことがあります-經驗&#34;&gt;V たことがあります 經驗&lt;/h3&gt;
-&lt;h3 id=&#34;v-るv-ないことがあります習慣-sometimes&#34;&gt;V る/V ないことがあります　習慣 sometimes&lt;/h3&gt;
-&lt;h3 id=&#34;のでてで表示原因前後主語不一樣-ok後面不接意志而是狀態&#34;&gt;ので/て/で表示原因，前後主語不一樣 ok，後面不接意志，而是狀態&lt;/h3&gt;
-&lt;h3 id=&#34;から表示原因前後主語不一樣-ok後面可接意志命令禁止&#34;&gt;から表示原因，前後主語不一樣 ok，後面可接意志/命令/禁止&lt;/h3&gt;
-&lt;h3 id=&#34;なくて-表示理由的使用&#34;&gt;なくて 表示理由的使用&lt;/h3&gt;
-&lt;h3 id=&#34;ないで表示以何種狀態發生時使用&#34;&gt;ないで表示以何種狀態發生時使用&lt;/h3&gt;
-&lt;h3 id=&#34;個人自我辯解からです&#34;&gt;個人自我辯解からです&lt;/h3&gt;
-&lt;h3 id=&#34;しし-列舉多重理由包含還有其他理由的意思因果關係較不密切&#34;&gt;&amp;hellip;し&amp;hellip;し 列舉多重理由(包含還有其他理由的意思)，因果關係較不密切&lt;/h3&gt;
-&lt;h3 id=&#34;ために不加意志或請求用於非同尋常事物&#34;&gt;ため(に)不加意志或請求，用於非同尋常事物&lt;/h3&gt;
-&lt;h3 id=&#34;が書面けれども-口語&#34;&gt;が書面　けれども 口語&lt;/h3&gt;
-&lt;h3 id=&#34;のに接不滿非難遺憾意外後面不加請求&#34;&gt;のに接不滿/非難/遺憾/意外，後面不加請求&lt;/h3&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Sun, 15 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/readings/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>演算法｜bacnotes備份筆記</title>
         <link>https://bacnotes.github.io/p/algorithm-note/</link>
-        <pubDate>Mon, 02 May 2022 00:00:00 +0800</pubDate>
+        <pubDate>Sun, 15 May 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/p/algorithm-note/</guid>
         <description>&lt;img src="https://bacnotes.github.io/p/algorithm-note/pexels-cottonbro-4778676.jpg" alt="Featured image of post 演算法｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;如何計算哪一種程式的效能比較好&#34;&gt;如何計算哪一種程式的效能比較好&lt;/h2&gt;
@@ -637,12 +494,64 @@ int? float? string?&lt;/p&gt;
 &lt;/div&gt;</description>
         </item>
         <item>
-        <title>史上最強整理術(最強の整理術) - 三橋志津子｜bacnotes備份筆記</title>
+        <title>日文文法小記｜bacnotes備份筆記</title>
+        <link>https://bacnotes.github.io/p/japanese-grammar/</link>
+        <pubDate>Thu, 12 May 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/p/japanese-grammar/</guid>
+        <description>&lt;img src="https://bacnotes.github.io/p/japanese-grammar/pexels-tirachard-kumtanom-601174.jpg" alt="Featured image of post 日文文法小記｜bacnotes備份筆記" /&gt;&lt;h2 id=&#34;n4&#34;&gt;N4&lt;/h2&gt;
+&lt;h3 id=&#34;v-た時-or-v-る時動詞時態跟發生順序有關&#34;&gt;V た時 or V る時：動詞時態跟發生順序有關&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;V た時(先)、V ます・ました(後)&lt;/li&gt;
+&lt;li&gt;V る時(後)、V ます・ました(先)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;v-ながら不加瞬間動詞&#34;&gt;V ながら不加瞬間動詞&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;座りながら(x)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;後で不加持續行為狀態&#34;&gt;後で不加持續行為狀態&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;後で、ずっと元気です(x)&lt;/li&gt;
+&lt;li&gt;後、ずっと元気です(o)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;てから不用在先後關係明確的句子&#34;&gt;てから不用在先後關係明確的句子&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ドアを開けてから外に出る&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;v-るところv-ているところ不能用在狀態或沒有意圖的句子&#34;&gt;V るところ/V ているところ不能用在狀態或沒有意圖的句子&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;V るところ不能用在預測要做什麼會成為什麼樣子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;v-たばかり-v-たところ-語氣更強調才剛&#34;&gt;V たばかり　&amp;gt; V たところ 語氣更強調&lt;code&gt;才剛...&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;V たところ比較有餘地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;間--持續動詞繼續動詞&#34;&gt;間 + 持續動詞/繼續動詞&lt;/h3&gt;
+&lt;h3 id=&#34;間に--瞬間動詞&#34;&gt;間に + 瞬間動詞&lt;/h3&gt;
+&lt;h3 id=&#34;疑問詞--より-最高級&#34;&gt;疑問詞 + より 最高級&lt;/h3&gt;
+&lt;h3 id=&#34;より-一般不接否定型&#34;&gt;より 一般不接否定型&lt;/h3&gt;
+&lt;h3 id=&#34;n-は-n-ほどません&#34;&gt;N は N ほど〜ません&lt;/h3&gt;
+&lt;h3 id=&#34;v-たり-v-たりします-普通列舉不適合列舉太瑣碎的事物重複相反的動作表示不一定&#34;&gt;V たり V たりします 普通列舉(不適合列舉太瑣碎的事物)/重複相反的動作/表示不一定&lt;/h3&gt;
+&lt;h3 id=&#34;v-たことがあります-經驗&#34;&gt;V たことがあります 經驗&lt;/h3&gt;
+&lt;h3 id=&#34;v-るv-ないことがあります習慣-sometimes&#34;&gt;V る/V ないことがあります　習慣 sometimes&lt;/h3&gt;
+&lt;h3 id=&#34;のでてで表示原因前後主語不一樣-ok後面不接意志而是狀態&#34;&gt;ので/て/で表示原因，前後主語不一樣 ok，後面不接意志，而是狀態&lt;/h3&gt;
+&lt;h3 id=&#34;から表示原因前後主語不一樣-ok後面可接意志命令禁止&#34;&gt;から表示原因，前後主語不一樣 ok，後面可接意志/命令/禁止&lt;/h3&gt;
+&lt;h3 id=&#34;なくて-表示理由的使用&#34;&gt;なくて 表示理由的使用&lt;/h3&gt;
+&lt;h3 id=&#34;ないで表示以何種狀態發生時使用&#34;&gt;ないで表示以何種狀態發生時使用&lt;/h3&gt;
+&lt;h3 id=&#34;個人自我辯解からです&#34;&gt;個人自我辯解からです&lt;/h3&gt;
+&lt;h3 id=&#34;しし-列舉多重理由包含還有其他理由的意思因果關係較不密切&#34;&gt;&amp;hellip;し&amp;hellip;し 列舉多重理由(包含還有其他理由的意思)，因果關係較不密切&lt;/h3&gt;
+&lt;h3 id=&#34;ために不加意志或請求用於非同尋常事物&#34;&gt;ため(に)不加意志或請求，用於非同尋常事物&lt;/h3&gt;
+&lt;h3 id=&#34;が書面けれども-口語&#34;&gt;が書面　けれども 口語&lt;/h3&gt;
+&lt;h3 id=&#34;のに接不滿非難遺憾意外後面不加請求&#34;&gt;のに接不滿/非難/遺憾/意外，後面不加請求&lt;/h3&gt;
+</description>
+        </item>
+        <item>
+        <title>史上最強整理術 - 三橋志津子｜bacnotes備份筆記</title>
         <link>https://bacnotes.github.io/p/organize-art/</link>
-        <pubDate>Mon, 02 May 2022 00:00:00 +0900</pubDate>
+        <pubDate>Sun, 08 May 2022 00:00:00 +0900</pubDate>
         
         <guid>https://bacnotes.github.io/p/organize-art/</guid>
-        <description>&lt;img src="https://bacnotes.github.io/p/organize-art/pexels-janko-ferlic-590493.jpg" alt="Featured image of post 史上最強整理術(最強の整理術) - 三橋志津子｜bacnotes備份筆記" /&gt;&lt;p&gt;有些觀念對於精簡房間內東西跟擺設滿有幫助，擷取有關的部分&lt;/p&gt;
+        <description>&lt;img src="https://bacnotes.github.io/p/organize-art/pexels-janko-ferlic-590493.jpg" alt="Featured image of post 史上最強整理術 - 三橋志津子｜bacnotes備份筆記" /&gt;&lt;p&gt;有些觀念對於精簡房間內東西跟擺設滿有幫助，擷取有關的部分&lt;/p&gt;
 &lt;h2 id=&#34;捨棄大容量櫃子井然有序的完美收納空間&#34;&gt;捨棄&lt;code&gt;大容量&lt;/code&gt;櫃子＋井然有序的&lt;code&gt;完美&lt;/code&gt;收納空間&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;因為現實中空間有局限性，不要完美取向&lt;/li&gt;
@@ -667,6 +576,97 @@ int? float? string?&lt;/p&gt;
 &lt;li&gt;效率 &amp;gt; 重要性&lt;/li&gt;
 &lt;li&gt;拖延會讓問題變嚴重，無法馬上處理需要人幫忙也可以&lt;/li&gt;
 &lt;li&gt;清楚每個東西的意義跟狀態&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>把時間當作朋友 - 李笑來｜bacnotes備份筆記</title>
+        <link>https://bacnotes.github.io/p/time-as-a-friend/</link>
+        <pubDate>Sat, 07 May 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/p/time-as-a-friend/</guid>
+        <description>&lt;img src="https://bacnotes.github.io/p/time-as-a-friend/pexels-janko-ferlic-590493.jpg" alt="Featured image of post 把時間當作朋友 - 李笑來｜bacnotes備份筆記" /&gt;&lt;p&gt;2016 年在上海某個書店買的一本書，當時隨手筆記下的東西&lt;/p&gt;
+&lt;h2 id=&#34;困境&#34;&gt;困境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;時間不夠/拖延症/錯誤估算時間/過程遇到麻煩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;醒悟&#34;&gt;醒悟&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;擺脫自己的局限需要心智的力量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;別人知道的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;o&#34;&gt;-----------&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;自己知道的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;控制自己的行為(不僅是對外在被動做出反應)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;現實&#34;&gt;現實&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;戒躁戒驕/無速成/現狀無法馬上擺脫&lt;/li&gt;
+&lt;li&gt;只能以現有資源交換想要跟需要&lt;/li&gt;
+&lt;li&gt;付出才有收穫/持續積累的東西&lt;/li&gt;
+&lt;li&gt;沒有完美/未知永遠存在&lt;/li&gt;
+&lt;li&gt;快樂是種本事(知足)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;管理&#34;&gt;管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;估算時間/即時行動/面對困難找出路&lt;/li&gt;
+&lt;li&gt;建立 SOP/分解任務(可完成事項)/找出方法&lt;/li&gt;
+&lt;li&gt;多工作業能力/優化工程順序（預測跟驗收品質)&lt;/li&gt;
+&lt;li&gt;感知時間(一項作業需要花費的時間)&lt;/li&gt;
+&lt;li&gt;記錄自己的昨天前天大前天上週上月去年的時間開銷&lt;/li&gt;
+&lt;li&gt;制定未來的短長期計畫並持續修正&lt;/li&gt;
+&lt;li&gt;簡單的任務只需要行動 e.g. 運動唸書&lt;/li&gt;
+&lt;li&gt;習慣製作清單方便檢視&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;學習&#34;&gt;學習&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;跟遊戲的技能樹一樣，是開拓心智的方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;實踐應用&#34;&gt;實踐應用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;五感體驗/試錯&lt;/li&gt;
+&lt;li&gt;閱讀(他人經驗)&lt;/li&gt;
+&lt;li&gt;正確思考(邏輯/科學)&lt;/li&gt;
+&lt;li&gt;自學能力(理論到融會貫通)&lt;/li&gt;
+&lt;li&gt;保持開放心態&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;思考&#34;&gt;思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;勤於檢視目標跟實際意義&lt;/li&gt;
+&lt;li&gt;不迷信權威&lt;/li&gt;
+&lt;li&gt;釐清概念/不過度簡化/不草率概括或倉促結論&lt;/li&gt;
+&lt;li&gt;誰主張誰舉證&lt;/li&gt;
+&lt;li&gt;案例侷限(倖存者偏差)&lt;/li&gt;
+&lt;li&gt;小心人云亦云張冠李戴(玩射擊遊戲引發校園槍殺)&lt;/li&gt;
+&lt;li&gt;克服恐懼&lt;/li&gt;
+&lt;li&gt;句型思維訓練(&amp;hellip;是;&amp;hellip;是另一個&amp;hellip;/&amp;hellip;的前提是/事實上&amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;交流&#34;&gt;交流&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;討論大於爭辯/正確複述/勤於反思&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;目前有電子書版本&#34;&gt;目前有電子書版本&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/xiaolai/time-as-a-friend&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;把時間當作朋友&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
