@@ -6,15 +6,7 @@
         <description>Recent content in Tags on bacnotes備份筆記</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-tw</language>
-        <lastBuildDate>Fri, 20 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Vue</title>
-        <link>https://bacnotes.github.io/tags/vue/</link>
-        <pubDate>Fri, 20 May 2022 00:00:00 +0800</pubDate>
-        
-        <guid>https://bacnotes.github.io/tags/vue/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Sun, 15 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://bacnotes.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Readings</title>
         <link>https://bacnotes.github.io/tags/readings/</link>
         <pubDate>Sun, 15 May 2022 00:00:00 +0800</pubDate>
@@ -36,6 +28,14 @@
         <pubDate>Sun, 06 Mar 2022 00:00:00 +0800</pubDate>
         
         <guid>https://bacnotes.github.io/tags/regexp/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Vue</title>
+        <link>https://bacnotes.github.io/tags/vue/</link>
+        <pubDate>Sat, 26 Feb 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://bacnotes.github.io/tags/vue/</guid>
         <description></description>
         </item>
         <item>

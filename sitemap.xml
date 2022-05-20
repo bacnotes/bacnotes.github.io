@@ -3,26 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bacnotes.github.io/</loc>
-    <lastmod>2022-05-20T00:00:00+08:00</lastmod>
+    <lastmod>2022-05-15T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/post/</loc>
-    <lastmod>2022-05-20T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://bacnotes.github.io/tags/</loc>
-    <lastmod>2022-05-20T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://bacnotes.github.io/tags/vue/</loc>
-    <lastmod>2022-05-20T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://bacnotes.github.io/p/vue2-note-2/</loc>
-    <lastmod>2022-05-20T00:00:00+08:00</lastmod>
+    <lastmod>2022-05-15T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/tags/readings/</loc>
+    <lastmod>2022-05-15T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/</loc>
     <lastmod>2022-05-15T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -72,6 +64,10 @@
   </url><url>
     <loc>https://bacnotes.github.io/p/regular-expression/</loc>
     <lastmod>2022-03-06T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://bacnotes.github.io/tags/vue/</loc>
+    <lastmod>2022-02-26T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://bacnotes.github.io/p/vue-composition-api/</loc>
