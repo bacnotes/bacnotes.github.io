@@ -229,7 +229,7 @@ if (!doNotTrack) {
                         width="800" 
                         height="800" 
                         loading="lazy"
-                        alt="Featured image of post 演算法｜bacnotes備份筆記" />
+                        alt="Featured image of post 日文文法小記｜bacnotes備份筆記" />
                 
             </a>
         </div>
@@ -292,486 +292,51 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="如何計算哪一種程式的效能比較好">如何計算哪一種程式的效能比較好</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">addUpTo</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">i</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">total</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">addUpTo</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="performancenow">performance.now()</h3>
+    <h2 id="n4">N4</h2>
+<h3 id="v-た時-or-v-る時動詞時態跟發生順序有關">V た時 or V る時：動詞時態跟發生順序有關</h3>
 <ul>
-<li>列印出執行時間差</li>
+<li>V た時(先)、V ます・ました(後)</li>
+<li>V る時(後)、V ます・ました(先)</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">addUpTo</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">time1</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nx">addUpTo</span><span class="p">(</span><span class="mi">1000000000</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">time2</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Time Elapsed: </span><span class="si">${</span><span class="p">(</span><span class="nx">time2</span> <span class="o">-</span> <span class="nx">time1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="si">}</span><span class="sb"> seconds.`</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">addUpTo</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">i</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">total</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">t1</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nx">addUpTo</span><span class="p">(</span><span class="mi">1000000000</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">t2</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Time Elapsed: </span><span class="si">${</span><span class="p">(</span><span class="nx">t2</span> <span class="o">-</span> <span class="nx">t1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="si">}</span><span class="sb"> seconds.`</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>不同機器跑出來的時間不同誤差</li>
-<li>同樣的機器跑同樣的程式也會有誤差</li>
-<li>計算時間的測量本身也會有誤差</li>
-</ul>
-<h3 id="big-o-比時間更好衡量效能的指標">Big O 比時間更好衡量效能的指標</h3>
+<h3 id="v-ながら不加瞬間動詞">V ながら不加瞬間動詞</h3>
 <ul>
-<li>is a way to formalize fuzzy counting</li>
-<li>how the runtime of an algorithm grows as the inputs grow</li>
-<li>algorithm is o(f(n)) if the number of simple operations the computer has to do</li>
-<li>algorithm is eventually less than a constant times f(n) as n increases</li>
+<li>座りながら(x)</li>
 </ul>
-<h3 id="時間複雜度">時間複雜度</h3>
+<h3 id="後で不加持續行為狀態">後で不加持續行為狀態</h3>
 <ul>
-<li>constant/linear/quadratic</li>
+<li>後で、ずっと元気です(x)</li>
+<li>後、ずっと元気です(o)</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// O(n2)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">printAllPairs</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;</span><span class="nx">n</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">j</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// O(n)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">addUpTo</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">i</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// O(1)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">addUpTo</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>arithmetic operations are constant</li>
-<li>variable assignment is constant</li>
-<li>accessing elements in an array(by index) or object(by key) is constant</li>
-<li>in a loop, the complexity is the length of the loop times the complexity of whatever happens inside of the loop</li>
-<li>趨近無限大，常數可忽略，只看次方最大的</li>
-<li>巢狀迴圈看要跑的次數，若為常數時間複雜度不會增加</li>
-</ul>
-<h3 id="空間複雜度-使用記憶體的量">空間複雜度: 使用記憶體的量</h3>
+<h3 id="てから不用在先後關係明確的句子">てから不用在先後關係明確的句子</h3>
 <ul>
-<li>基礎型別空間複雜度是 O(1)</li>
-<li>n 長度的字串空間複雜度是 O(n)</li>
-<li>n 個元素陣列跟 n 個 keys 的物件等 ref types 通常是 O(n)</li>
+<li>ドアを開けてから外に出る</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// O(1)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">total</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// O(n)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="kr">double</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">newArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><a class="link" href="https://rithmschool.github.io/function-timer-demo/"  target="_blank" rel="noopener"
-    >performance 模擬教材</a></p>
-<h3 id="big-o-of-objects">Big O of objects</h3>
+<h3 id="v-るところv-ているところ不能用在狀態或沒有意圖的句子">V るところ/V ているところ不能用在狀態或沒有意圖的句子</h3>
 <ul>
-<li>Fast, but no order</li>
-<li>Most constant</li>
+<li>V るところ不能用在預測要做什麼會成為什麼樣子</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">insertion</span> <span class="nx">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">removal</span> <span class="nx">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">searching</span> <span class="nx">O</span><span class="p">(</span><span class="nx">N</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">access</span> <span class="nx">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="nb">Object</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="big-o-of-arrays">Big O of arrays</h3>
+<h3 id="v-たばかり-v-たところ-語氣更強調才剛">V たばかり　&gt; V たところ 語氣更強調<code>才剛...</code></h3>
 <ul>
-<li>When you need order and fast access</li>
+<li>V たところ比較有餘地</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">searching</span> <span class="nx">O</span><span class="p">(</span><span class="nx">N</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">access</span> <span class="nx">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">insertion</span> <span class="nx">and</span> <span class="nx">removal</span>
-</span></span><span class="line"><span class="cl"> <span class="o">-</span> <span class="nx">pop</span> <span class="nx">push</span> <span class="nx">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"> <span class="o">-</span> <span class="nx">unshift</span> <span class="nx">unshift</span> <span class="nx">O</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">concat</span> <span class="nx">O</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">slice</span> <span class="nx">O</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">splice</span> <span class="nx">O</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">sort</span> <span class="nx">O</span><span class="p">(</span><span class="nx">N</span><span class="o">*</span><span class="nx">logN</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">forEach</span><span class="o">/</span><span class="nx">map</span><span class="o">/</span><span class="nx">filter</span><span class="o">/</span><span class="nx">reduce</span><span class="o">/</span><span class="nx">etc</span> <span class="nx">O</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>what an algorithm is: A PROCESS OR SET OF STEPS TO ACCOMPLISH A CERTAIN TASK
-devise a plan to solve algorithms
-compare and contrast a problem solving patterns including frequency counters, 2 pointer problem and divide and conquer</p>
-<h2 id="problem-solving">problem solving</h2>
-<h3 id="understand-the-problem">understand the problem</h3>
-<ul>
-<li>
-<p>can i restate the problem in my own words?
-a add b</p>
-</li>
-<li>
-<p>what are the inputs that go into the problem
-ints? floats? what about string of large numbers</p>
-</li>
-<li>
-<p>what are the outputs that should come from the solution to the problem
-int? float? string?</p>
-</li>
-<li>
-<p>can the outputs be determined by the inputs?( do i have enough info to solve the problem)</p>
-</li>
-<li>
-<p>how should i label the important pieces of data that are a part of the problem</p>
-</li>
-</ul>
-<h3 id="explore-concrete-examples">explore concrete examples</h3>
-<ul>
-<li>user stories</li>
-<li>start with simple examples -&gt; complex</li>
-<li>empty inputs/ invalid inputs</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// a function takes in a string and returns counts of each char in the string
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nx">charCount</span><span class="p">(</span><span class="err">“</span><span class="nx">aaaa</span><span class="err">”</span><span class="p">)</span> <span class="c1">// {a: 4}
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">charCount</span><span class="p">(</span><span class="err">“</span><span class="nx">hello</span><span class="err">”</span><span class="p">)</span> <span class="c1">// {h: 1, e: 1. l:2, o:1}
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>可以問：需要回傳不在單字內的字母數量嗎</li>
-<li>“my phone number is 191231” // 需要數空白嗎 大小寫敏感嗎 數字忽略嗎</li>
-<li>() “” 回傳 null undefined?</li>
-</ul>
-<h3 id="break-down-problem">break down problem</h3>
-<ul>
-<li>寫下步驟 幫助自己跟考官了解整體規劃</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">charCount</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// make obj to return at end
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// loop over string, for each char
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// if the char is a number/letter AND is a key in obj add 1 to count
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// if the char is a number/letter AND not in obj, add it to obj, and set value to 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// if char is something else(space, period, etc), do nothing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// return obj
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="solve-or-simplify">solve or simplify</h3>
-<ul>
-<li>先做出核心邏輯，找出 pattern 再處理複雜的</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">charCount</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// make obj to return at end
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// loop over string, for each char
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">toLowerCase</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">// if the char is a number/letter AND is a key in obj add 1 to count
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">results</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span><span class="o">++</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">// if the char is a number/letter AND not in obj, add it to obj and set value to 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">result</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// return obj
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nx">results</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="loop-back-and-refactor">loop back and refactor</h3>
-<ul>
-<li>結果正確嗎</li>
-<li>有其他種寫法嗎</li>
-<li>可以一看就懂嗎</li>
-<li>可以複用在其他情境嗎</li>
-<li>可以優化效能嗎</li>
-<li>有其他重構或優化的方法嗎</li>
-<li>其他人怎麼解的</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">charCount</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="k">of</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">char</span> <span class="o">=</span> <span class="kr">char</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="sr">/a-z0-9/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="kr">char</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">obj</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="nx">obj</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span> <span class="o">||</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">obj</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>優化版</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">charCount</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="kr">char</span> <span class="k">of</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">char</span> <span class="o">=</span> <span class="kr">char</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isAlphaNumeric</span><span class="p">(</span><span class="kr">char</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="kr">char</span> <span class="o">=</span> <span class="kr">char</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">obj</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="nx">obj</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span> <span class="o">||</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">obj</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">isAlphaNumeric</span><span class="p">(</span><span class="kr">char</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="kr">char</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="p">(</span><span class="nx">code</span> <span class="o">&gt;</span> <span class="mi">47</span> <span class="o">&amp;&amp;</span> <span class="nx">code</span> <span class="o">&lt;</span> <span class="mi">58</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="c1">// 0-9
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">!</span><span class="p">(</span><span class="nx">code</span> <span class="o">&gt;</span> <span class="mi">64</span> <span class="o">&amp;&amp;</span> <span class="nx">code</span> <span class="o">&lt;</span> <span class="mi">91</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="c1">// A-Z
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">!</span><span class="p">(</span><span class="nx">code</span> <span class="o">&gt;</span> <span class="mi">96</span> <span class="o">&amp;&amp;</span> <span class="nx">code</span> <span class="o">&lt;</span> <span class="mi">123</span><span class="p">)</span> <span class="c1">// a-z
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+<h3 id="間--持續動詞繼續動詞">間 + 持續動詞/繼續動詞</h3>
+<h3 id="間に--瞬間動詞">間に + 瞬間動詞</h3>
+<h3 id="疑問詞--より-最高級">疑問詞 + より 最高級</h3>
+<h3 id="より-一般不接否定型">より 一般不接否定型</h3>
+<h3 id="n-は-n-ほどません">N は N ほど〜ません</h3>
+<h3 id="v-たり-v-たりします-普通列舉不適合列舉太瑣碎的事物重複相反的動作表示不一定">V たり V たりします 普通列舉(不適合列舉太瑣碎的事物)/重複相反的動作/表示不一定</h3>
+<h3 id="v-たことがあります-經驗">V たことがあります 經驗</h3>
+<h3 id="v-るv-ないことがあります習慣-sometimes">V る/V ないことがあります　習慣 sometimes</h3>
+<h3 id="のでてで表示原因前後主語不一樣-ok後面不接意志而是狀態">ので/て/で表示原因，前後主語不一樣 ok，後面不接意志，而是狀態</h3>
+<h3 id="から表示原因前後主語不一樣-ok後面可接意志命令禁止">から表示原因，前後主語不一樣 ok，後面可接意志/命令/禁止</h3>
+<h3 id="なくて-表示理由的使用">なくて 表示理由的使用</h3>
+<h3 id="ないで表示以何種狀態發生時使用">ないで表示以何種狀態發生時使用</h3>
+<h3 id="個人自我辯解からです">個人自我辯解からです</h3>
+<h3 id="しし-列舉多重理由包含還有其他理由的意思因果關係較不密切">&hellip;し&hellip;し 列舉多重理由(包含還有其他理由的意思)，因果關係較不密切</h3>
+<h3 id="ために不加意志或請求用於非同尋常事物">ため(に)不加意志或請求，用於非同尋常事物</h3>
+<h3 id="が書面けれども-口語">が書面　けれども 口語</h3>
+<h3 id="のに接不滿非難遺憾意外後面不加請求">のに接不滿/非難/遺憾/意外，後面不加請求</h3>
+
 </section>
 
 
@@ -970,23 +535,31 @@ int? float? string?</p>
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#如何計算哪一種程式的效能比較好">如何計算哪一種程式的效能比較好</a>
+    <li><a href="#n4">N4</a>
       <ul>
-        <li><a href="#performancenow">performance.now()</a></li>
-        <li><a href="#big-o-比時間更好衡量效能的指標">Big O 比時間更好衡量效能的指標</a></li>
-        <li><a href="#時間複雜度">時間複雜度</a></li>
-        <li><a href="#空間複雜度-使用記憶體的量">空間複雜度: 使用記憶體的量</a></li>
-        <li><a href="#big-o-of-objects">Big O of objects</a></li>
-        <li><a href="#big-o-of-arrays">Big O of arrays</a></li>
-      </ul>
-    </li>
-    <li><a href="#problem-solving">problem solving</a>
-      <ul>
-        <li><a href="#understand-the-problem">understand the problem</a></li>
-        <li><a href="#explore-concrete-examples">explore concrete examples</a></li>
-        <li><a href="#break-down-problem">break down problem</a></li>
-        <li><a href="#solve-or-simplify">solve or simplify</a></li>
-        <li><a href="#loop-back-and-refactor">loop back and refactor</a></li>
+        <li><a href="#v-た時-or-v-る時動詞時態跟發生順序有關">V た時 or V る時：動詞時態跟發生順序有關</a></li>
+        <li><a href="#v-ながら不加瞬間動詞">V ながら不加瞬間動詞</a></li>
+        <li><a href="#後で不加持續行為狀態">後で不加持續行為狀態</a></li>
+        <li><a href="#てから不用在先後關係明確的句子">てから不用在先後關係明確的句子</a></li>
+        <li><a href="#v-るところv-ているところ不能用在狀態或沒有意圖的句子">V るところ/V ているところ不能用在狀態或沒有意圖的句子</a></li>
+        <li><a href="#v-たばかり-v-たところ-語氣更強調才剛">V たばかり　&gt; V たところ 語氣更強調<code>才剛...</code></a></li>
+        <li><a href="#間--持續動詞繼續動詞">間 + 持續動詞/繼續動詞</a></li>
+        <li><a href="#間に--瞬間動詞">間に + 瞬間動詞</a></li>
+        <li><a href="#疑問詞--より-最高級">疑問詞 + より 最高級</a></li>
+        <li><a href="#より-一般不接否定型">より 一般不接否定型</a></li>
+        <li><a href="#n-は-n-ほどません">N は N ほど〜ません</a></li>
+        <li><a href="#v-たり-v-たりします-普通列舉不適合列舉太瑣碎的事物重複相反的動作表示不一定">V たり V たりします 普通列舉(不適合列舉太瑣碎的事物)/重複相反的動作/表示不一定</a></li>
+        <li><a href="#v-たことがあります-經驗">V たことがあります 經驗</a></li>
+        <li><a href="#v-るv-ないことがあります習慣-sometimes">V る/V ないことがあります　習慣 sometimes</a></li>
+        <li><a href="#のでてで表示原因前後主語不一樣-ok後面不接意志而是狀態">ので/て/で表示原因，前後主語不一樣 ok，後面不接意志，而是狀態</a></li>
+        <li><a href="#から表示原因前後主語不一樣-ok後面可接意志命令禁止">から表示原因，前後主語不一樣 ok，後面可接意志/命令/禁止</a></li>
+        <li><a href="#なくて-表示理由的使用">なくて 表示理由的使用</a></li>
+        <li><a href="#ないで表示以何種狀態發生時使用">ないで表示以何種狀態發生時使用</a></li>
+        <li><a href="#個人自我辯解からです">個人自我辯解からです</a></li>
+        <li><a href="#しし-列舉多重理由包含還有其他理由的意思因果關係較不密切">&hellip;し&hellip;し 列舉多重理由(包含還有其他理由的意思)，因果關係較不密切</a></li>
+        <li><a href="#ために不加意志或請求用於非同尋常事物">ため(に)不加意志或請求，用於非同尋常事物</a></li>
+        <li><a href="#が書面けれども-口語">が書面　けれども 口語</a></li>
+        <li><a href="#のに接不滿非難遺憾意外後面不加請求">のに接不滿/非難/遺憾/意外，後面不加請求</a></li>
       </ul>
     </li>
   </ul>
