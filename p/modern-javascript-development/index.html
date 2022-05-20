@@ -679,23 +679,23 @@ if (!doNotTrack) {
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ShoppingCart2</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">cart</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">	<span class="kr">const</span> <span class="nx">shippingCost</span> <span class="o">=</span> <span class="mi">10</span>
-</span></span><span class="line"><span class="cl">	<span class="kr">const</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="mi">238</span>
-</span></span><span class="line"><span class="cl">	<span class="kr">const</span> <span class="nx">totalCount</span> <span class="o">=</span> <span class="mi">23</span>
-</span></span><span class="line"><span class="cl">	<span class="kr">const</span> <span class="nx">addToCart</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">product</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">cart</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">product</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">quantity</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">product</span><span class="si">}</span><span class="sb"> added to cart`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">shippingCost</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="mi">238</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">totalCount</span> <span class="o">=</span> <span class="mi">23</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">addToCart</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">product</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cart</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">product</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">quantity</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">product</span><span class="si">}</span><span class="sb"> added to cart`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kr">const</span> <span class="nx">orderStock</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">product</span><span class="p">,</span> <span class="nx">quality</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">quantity</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">product</span><span class="si">}</span><span class="sb"> ordered from supplier`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">orderStock</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">product</span><span class="p">,</span> <span class="nx">quality</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">quantity</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">product</span><span class="si">}</span><span class="sb"> ordered from supplier`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">addToCart</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">cart</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">totalPrice</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">totalCount</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">addToCart</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cart</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">totalPrice</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">totalCount</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">})()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">ShoppingCart2</span><span class="p">.</span><span class="nx">addToCart</span><span class="p">(</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -845,38 +845,38 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stateClone</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;cart&#34;: [
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;product&#34;: &#34;bread&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;quantity&#34;: 5
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;product&#34;: &#34;pizza&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;quantity&#34;: 3
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         }
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     ],
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;user&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;loggedIn&#34;: false
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;newProperty&#34;: 1
-</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    &#34;cart&#34;:[
+</span></span></span><span class="line"><span class="cl"><span class="c1">//      {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       &#34;product&#34;: &#34;bread&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;quantity&#34;: 5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;product&#34;: &#34;pizza&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;quantity&#34;: 3
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       }
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    &#34;user&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//      &#34;loggedIn&#34;: false
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//      &#34;newProperty&#34;: 1
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;cart&#34;: [
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;product&#34;: &#34;bread&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;quantity&#34;: 5
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;product&#34;: &#34;pizza&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//             &#34;quantity&#34;: 3
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         }
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     ],
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;user&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;loggedIn&#34;: false
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   &#34;cart&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       &#34;product&#34;: &#34;bread&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       &#34;quantity&#34;: 5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     },
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       &#34;product&#34;: &#34;pizza&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//       &#34;quantity&#34;: 3
 </span></span></span><span class="line"><span class="cl"><span class="c1">//     }
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   ],
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   &#34;user&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;loggedIn&#34;: false
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   }
 </span></span></span><span class="line"><span class="cl"><span class="c1">// }
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// methods2: 用lodash的cloneDeep方法
